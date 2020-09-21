@@ -2,7 +2,7 @@
 			<ul>
 			<li><a href="index.php">Inicio</a></li>
 			<?php 
-				if($_SESSION['id_rol'] == 1){
+				if($_SESSION['rol'] == 1){
 			 ?>
 				<li class="principal">
 

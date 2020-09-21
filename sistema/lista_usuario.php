@@ -4,11 +4,8 @@
 	{
 		header("location: ./");
 	}
-	
 	include "../conexion.php";	
-
  ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -31,11 +28,7 @@
 <table>
 <tr>
     <th>ID</th>
-    <th>Cedula</th>
     <th>Nombre</th>
-    <th>Apellido</th>
-    <th>Edad</th>
-    <th>Correo</th>
     <th>Rol</th>
     <th>Acciones</th>
 </tr>
@@ -44,7 +37,7 @@
 $sql_registe = mysqli_query($conection,"SELECT COUNT(*) as total_registro FROM usuario WHERE estatus = 1 ");
 $result_register = mysqli_fetch_array($sql_registe);
 $total_registro = $result_register['total_registro'];
-$por_pagina = 5;
+$por_pagina = 7;
 if(empty($_GET['pagina']))
 {
     $pagina = 1;
@@ -54,27 +47,25 @@ if(empty($_GET['pagina']))
 $desde = ($pagina-1) * $por_pagina;
 $total_paginas = ceil($total_registro / $por_pagina);
 
- $query = mysqli_query($conection, "SELECT u.idusuario ,u.cedula,u.usuario,u.apellido,u.edad,u.correo,r.rol
- FROM usuario u INNER JOIN rol r ON u.rol = r.idrol WHERE estatus = 1 ORDER BY u.idusuario ASC LIMIT $desde,$por_pagina");
+ $query = mysqli_query($conection, "SELECT u.id_user,u.user,r.rol
+ FROM usuario u INNER JOIN rol r ON u.rol = r.idrol WHERE estatus = 1 ORDER BY u.id_user ASC LIMIT $desde,$por_pagina");
 mysqli_close($conection);
+
 $result=mysqli_num_rows($query);
 
  if($result>0){
     while($data=mysqli_fetch_array($query)){
       ?>
 <tr>
-    <td><?php echo $data["idusuario"]; ?></td>
-    <td><?php echo $data["cedula"]  ; ?></td>
-    <td><?php echo $data["usuario"] ;  ?></td>
-    <td><?php echo $data["apellido"]  ; ?></td>
-    <td><?php echo $data["edad"]   ;?></td>
-    <td><?php echo $data["correo"]  ; ?></td>
+    <td><?php echo $data["id_user"]; ?></td>
+    <td><?php echo $data["user"] ;  ?></td>
     <td><?php echo $data["rol"]   ;?></td>
     <td>
-        <a class="link_edit" href="editar_usuario.php?id=<?php echo $data["idusuario"]; ?>">Editar</a>
-        <?php if($data["idusuario"] != 1){ ?>
+        <a class="link_edit" href="editar_usuario.php?id=<?php echo $data["id_user"]; ?>">Editar</a>
+		
+        <?php if($data["id_user"] != 1){ ?>
         |
-        <a class="link_delete" href="eliminar_usuario.php?id=<?php echo $data["idusuario"]; ?>">Eliminar</a>
+        <a class="link_delete" href="eliminar_usuario.php?id=<?php echo $data["id_user"]; ?>">Eliminar</a>
         <?php } ?>
     </td>
 </tr>
@@ -115,6 +106,5 @@ $result=mysqli_num_rows($query);
 		</div>
 
 	</section>
-	<?php include "includes/footer.php";?>
 </body>
 </html> 

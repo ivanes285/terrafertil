@@ -10,14 +10,15 @@
   
 if(!empty($_POST)){
   
-  if($_POST['idusuario'] == 1){
+  if($_POST['id_user'] == 1){
     header("location: lista_usuario.php");
     mysqli_close($conection);
     exit;
   }
-  $idusuario=$_POST['idusuario'];
 
-  $query_delete = mysqli_query($conection, "UPDATE usuario SET estatus = 0 WHERE idusuario = $idusuario");
+  $idusuario=$_POST['id_user'];
+
+  $query_delete = mysqli_query($conection, "UPDATE usuario SET estatus = 0 WHERE id_user = $idusuario");
   mysqli_close($conection);
   if($query_delete){
     header("location: lista_usuario.php");
@@ -33,19 +34,14 @@ if (empty($_REQUEST['id'])|| $_REQUEST['id'] == 1 ) {
     }else{
        
         $idusuario=$_REQUEST['id'];
-        $sql = mysqli_query($conection, "SELECT u.cedula,u.usuario,u.apellido,u.edad,u.correo,
-        r.rol FROM usuario u INNER JOIN rol r ON u.rol = r.idrol WHERE idusuario= $idusuario");
+        $sql = mysqli_query($conection, "SELECT u.user,r.rol FROM usuario u INNER JOIN rol r ON u.rol = r.idrol WHERE id_user= $idusuario");
         	mysqli_close($conection);
         $result= mysqli_num_rows($sql);
 
  if($result>0){
 
 while($data=mysqli_fetch_array($sql)){
-$cedula=$data['cedula'];
-$usuario=$data['usuario'];
-$apellido=$data['apellido'];
-$edad=$data['edad'];
-$correo=$data['correo'];
+$usuario=$data['user'];
 $rol=$data['rol'];
 }
  }else{
@@ -66,24 +62,19 @@ $rol=$data['rol'];
 	<section id="container">
        <div class="data_delete">
 <h2 style="color: #C82333">¿Está seguro de eliminar este registro?</h2>
-<p>Cedula: <span><?php  echo $cedula;?></span></p>
+
 <p>Nombre: <span><?php  echo $usuario;?></span></p>
-<p>Apellido: <span><?php  echo $apellido;?></span></p>
-<p>Edad : <span><?php  echo $edad;?></span></p>
-<p>Correo: <span><?php  echo $correo;?></span></p>
 <p>Rol: <span><?php  echo $rol;?></span></p>
 
 <form method="POST" action="">
-<input type="hidden" name="idusuario" value="<?php echo $idusuario;?>"> 
+<input type="hidden" name="id_user" value="<?php echo $idusuario;?>"> 
 <a href="lista_usuario.php" class="btn_cancel">Cancelar</a>
 <input type="submit" value="Aceptar" class="btn_ok" >
+ <?php header("location: lista_usuario.php");  ?>
 
 </form>
 
   </div>
-
-
 	</section>
-	<?php include "includes/footer.php";?>
 </body>
 </html>

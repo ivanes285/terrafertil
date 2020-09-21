@@ -1,17 +1,17 @@
 <?php
 session_start();
-if($_SESSION['id_rol'] != 1)
+if($_SESSION['rol'] != 1)
 	{
 		header("location: ./");
 	}
   include "../conexion.php";
-   include ("validar.php");
+   
 if (!empty($_POST)) {
     $alert = '';
           
           $user=$_POST['user'];
           $password=md5($_POST['password']);
-          $id_rol=$_POST['rol'];
+          $rol=$_POST['rol'];
 
           $query = mysqli_query($conection, " SELECT * FROM usuario  WHERE  user='$user' ");
           $result= mysqli_fetch_array($query);
@@ -20,8 +20,7 @@ if (!empty($_POST)) {
             $alert = '<p class="msg_error">!Ya existe un usuario con este nombre INTENTA POR FAVOR CON OTRO</p>';  
           } else {
 
-            $query_insert= mysqli_query($conection, "INSERT INTO usuario 
-            (user,password,rol) VALUES ('$user','$password','$id_rol')");
+            $query_insert= mysqli_query($conection, "INSERT INTO usuario (user,password,rol) VALUES ('$user','$password','$rol')");
          
          if($query_insert){
               $alert = '<p class="msg_save">user Creado CORRECTAMENTE</p>';
@@ -70,7 +69,7 @@ if (!empty($_POST)) {
 if($result_id_rol>0){
   while($rol=mysqli_fetch_array($query_id_rol)){
     ?>
-     <option value="<?php echo $rol["id_rol"];?>"><?php echo $rol["rol"];?></option> 
+     <option value="<?php echo $rol["idrol"];?>"><?php echo $rol["rol"];?></option> 
      <?php
   }
 }
@@ -82,7 +81,7 @@ if($result_id_rol>0){
 </div>
 
 	</section>
-	<?php include "includes/footer.php";?>
+
 </body>
 
 </html>

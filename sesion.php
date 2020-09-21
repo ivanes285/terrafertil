@@ -24,7 +24,7 @@ if (!empty($_SESSION['activo'])) {
                 $_SESSION['activo'] = true;
                 $_SESSION['id_user'] = $data['id_user'];
                 $_SESSION['user'] = $data['user'];
-                $_SESSION['id_rol'] = $data['id_rol'];
+                $_SESSION['rol'] = $data['rol'];
                 header('location: sistema/');
             
             } else {
