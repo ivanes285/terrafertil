@@ -1,8 +1,6 @@
 <?php
 session_start();
-if ($_SESSION['rol'] != 2) {
-	header("location: ./");
-}
+
 include "../conexion.php";
 ?>
 
@@ -63,9 +61,10 @@ include "../conexion.php";
 						<td><?php echo $data[2]; ?></td>
 						<td><?php echo $data[3]; ?></td>
 						<td><?php echo $data[4]; ?></td>
-						<td><?php echo $data[5]; ?></td>
+                        <td><?php echo $data[5]; ?></td>
+                        
 						<td>
-							<a class="link_edit" href="">Editar</a>
+							<a class="link_edit" href="editar_pedido.php?id=<?php echo $data["id_pedido"];?>">Editar</a>
 
 							<!-- <?php if ($data[""] != 1) { ?> -->
 								
@@ -80,7 +79,7 @@ include "../conexion.php";
 
 		</table>
 
-		<div class="paginador">
+		<div class="paginador ">
 			<ul>
 				<?php
 				if ($pagina != 1) {
@@ -91,7 +90,7 @@ include "../conexion.php";
 												for ($i = 1; $i <= $total_paginas; $i++) {
 													# code...
 													if ($i == $pagina) {
-														echo '<li class="pageSelected">' . $i . '</li>';
+														echo '<li class="center pageSelected">' . $i . '</li>';
 													} else {
 														echo '<li><a href="?pagina=' . $i . '">' . $i . '</a></li>';
 													}
