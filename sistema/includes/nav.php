@@ -26,7 +26,7 @@
 					<a href="#">Pedidos</a>
 					<ul>
 						<li><a href="registro_pedido.php">Nuevo Pedido</a></li>
-						<li><a href="lista_pedidos.php">Lista de Pedidos</a></li>
+						<li><a href="listar_pedidos.php">Lista de Pedidos</a></li>
 					</ul>
 				</li>
 				
