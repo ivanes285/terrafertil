@@ -21,11 +21,6 @@ include "../conexion.php";
 		<h1>Lista de Usuarios</h1>
 		<a href="registro_usuario.php" class="btn_new">Crear Usuario</a>
 
-		<form action="buscar_usuario.php" method="get" class="form_search">
-			<input type="text" name="busqueda" id="busqueda" placeholder="Buscar">
-			<input type="submit" value="Buscar" class="btn_search">
-		</form>
-
 		<table>
 			<tr>
 				<th>ID</th>

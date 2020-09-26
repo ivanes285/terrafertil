@@ -18,7 +18,7 @@
 					<a href="#">Pasteles</a>
 					<ul>
 						<li><a href="registro_pastel.php">Nuevo Pastel</a></li>
-						<li><a href="lista_pasteles.php">Lista de  Pasteles</a></li>
+						<li><a href="lista_pastel.php">Lista de  Pasteles</a></li>
 					</ul>
 				</li>
 
