@@ -68,7 +68,7 @@ include "../conexion.php";
 
                             <?php if ($_SESSION['rol']==1){?>
                             |
-                            <a class="link_delete" href="eliminar_pastel.php?id=<?php echo $data["id_pedido"]; ?>">Eliminar</a>
+                            <a class="link_delete" href="eliminar_pedido.php?id=<?php echo $data["id_pedido"]; ?>">Eliminar</a>
                             
                         <?php }?>
 						</td>
