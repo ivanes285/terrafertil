@@ -10,7 +10,7 @@ include "../conexion.php";
 <head>
 	<meta charset="UTF-8">
 	<?php include "includes/scripts.php"; ?>
-	<title>Lista de Usuarios</title>
+	<title>Lista de Pedidos</title>
 </head>
 
 <body>
@@ -47,7 +47,7 @@ include "../conexion.php";
 			$desde = ($pagina - 1) * $por_pagina;
 			$total_paginas = ceil($total_registro / $por_pagina);
 
-			$query = mysqli_query($conection, "select u.user, pa.nombre, pe.cedula,pe.nombre,pe.cantidad,pe.fecha from pedidos pe INNER JOIN pastel pa, usuario u WHERE pe.id_user = u.id_user and pa.id_pastel=pe.id_pastel ");
+			$query = mysqli_query($conection, "select pe.id_pedido, pa.id_pastel, u.user, pa.nombre, pe.cedula,pe.nombre,pe.cantidad,pe.fecha from pedidos pe INNER JOIN pastel pa, usuario u WHERE pe.id_user = u.id_user and pa.id_pastel=pe.id_pastel ");
 			mysqli_close($conection);
 
 			$result = mysqli_num_rows($query);
@@ -56,20 +56,21 @@ include "../conexion.php";
 				while ($data = mysqli_fetch_array($query)) {
 			?>
 					<tr>
-						<td><?php echo $data[0]; ?></td>
-						<td><?php echo $data[1];  ?></td>
 						<td><?php echo $data[2]; ?></td>
-						<td><?php echo $data[3]; ?></td>
+						<td><?php echo $data[3];  ?></td>
 						<td><?php echo $data[4]; ?></td>
-                        <td><?php echo $data[5]; ?></td>
+						<td><?php echo $data[5]; ?></td>
+						<td><?php echo $data[6]; ?></td>
+                        <td><?php echo $data[7]; ?></td>
                         
 						<td>
 							<a class="link_edit" href="editar_pedido.php?id=<?php echo $data["id_pedido"];?>">Editar</a>
 
-							<!-- <?php if ($data[""] != 1) { ?> -->
-								
-								<a class="link_delete" href="">Eliminar</a>
-							<!-- <?php } ?> -->
+                            <?php if ($_SESSION['rol']==1){?>
+                            |
+                            <a class="link_delete" href="eliminar_pastel.php?id=<?php echo $data["id_pedido"]; ?>">Eliminar</a>
+                            
+                        <?php }?>
 						</td>
 					</tr>
 			<?php

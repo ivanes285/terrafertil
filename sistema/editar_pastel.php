@@ -40,19 +40,19 @@ if (!empty($_POST)) {
          	mysqli_close($conection);
          $result_sql= mysqli_num_rows($sql);
       if($result_sql==0){
-  header('Location: lista_pastel.php');
-}else{
- $option='';
-  while($data=mysqli_fetch_array($sql)){
-    $id_pastel= $data['id_pastel'];
-    $nombre= $data['nombre'];
-    $descripcion= $data['descripcion'];
-    $precio= $data['precio'];
-    $tamano= $data['tamano'];
+       header('Location: lista_pastel.php');
+            }else{
+            $option='';
+              while($data=mysqli_fetch_array($sql)){
+                $id_pastel= $data['id_pastel'];
+                $nombre= $data['nombre'];
+                $descripcion= $data['descripcion'];
+                $precio= $data['precio'];
+                $tamano= $data['tamano'];
 
-  }
-  
-}
+              }
+              
+      }
 
 ?>
 

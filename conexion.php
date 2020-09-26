@@ -2,7 +2,7 @@
 
 $host= 'localhost';
 $user= 'root';
-$password ='alexander';
+$password ='';
 $db='pasteleria';
 $conection=@mysqli_connect($host,$user,$password,$db);
 if(!$conection){

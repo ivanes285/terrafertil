@@ -8,7 +8,7 @@ include "../conexion.php";
 
 if (!empty($_POST)) {
     $alert = '';
-    $id_pedido = $_POST['id'];
+    $id_pedido = $_POST['id_pedido'];
    
     $id_pastel = $_POST['pastel'];
     $cedula = $_POST['cedula'];
@@ -17,19 +17,13 @@ if (!empty($_POST)) {
     $fecha = $_POST['date'];
 
 
-    $query = mysqli_query($conection, "SELECT * FROM pedidos WHERE  id_pedido)");
+    $query = mysqli_query($conection, "SELECT * FROM pedidos WHERE  id_pedido= $id_pedido)");
     $result = mysqli_fetch_array($query);
 
     if ($result > 0) {
-        $alert = '<p class="msg_error">usuario YA existe !Intente de Nuevo</p>';
+        $alert = '<p class="msg_error">Pedido YA existe !Intente de Nuevo</p>';
     } else {
-        if (empty($_POST['password'])) {
-            $query_update = mysqli_query($conection, "UPDATE usuario SET user='$usuario', rol='$rol' WHERE id_user=$idusuario");
-        } else {
-
-            $query_update = mysqli_query($conection, "UPDATE usuario SET user='$usuario', password='$clave', rol='$rol' 
-              WHERE id_user= $idusuario");
-        }
+            $query_update = mysqli_query($conection, "UPDATE pedidos SET id_pastel='$id_pastel', cedula=$cedula, nombre='$nombre', cantidad=$cantidad, fecha= '$fecha' WHERE id_pedido=$id_pedido");
 
         if ($query_update) {
             $alert = '<p class="msg_save">PEDIDO Actualizado </p>';
@@ -41,33 +35,30 @@ if (!empty($_POST)) {
 
 /*********************************************/
 
-            // if (empty($_REQUEST['id'])) {
-            //     header('Location: listar_pedidos.php');
-            //     mysqli_close($conection);
-            // }
-            // $iduser = $_REQUEST['id'];
-            // $sql = mysqli_query($conection, "SELECT u.id_user,u.user,(u.rol) AS idrol,
-            //         (r.rol) AS rol FROM usuario u INNER JOIN rol r ON u.rol = r.idrol WHERE id_user= $iduser AND estatus=1");
-            // mysqli_close($conection);
-            // $result_sql = mysqli_num_rows($sql);
-            // if ($result_sql == 0) {
-            //     header('Location: lista_usuario.php');
-            // } else {
-            //     $option = '';
-            //     while ($data = mysqli_fetch_array($sql)) {
-            //         $idusuario = $data['id_user'];
-            //         $usuario = $data['user'];
-            //         $idrol = $data['idrol'];
-            //         $rol = $data['rol'];
+            if (empty($_REQUEST['id'])) {
+                header('Location: listar_pedidos.php');
+                mysqli_close($conection);
+            }
+            $id_pedido = $_REQUEST['id'];
+            $sql = mysqli_query($conection, "SELECT * FROM pedidos WHERE id_pedido=$id_pedido");
 
-            //         if ($idrol == 1) {
-            //             $option = '<option value="' . $idrol . '" select>' . $rol . '</option>';
-            //         } else if ($idrol == 2) {
-            //             $option = '<option value="' . $idrol . '" select >' . $rol . '</option>';
-            //         }
-            //     }
-            // }
-
+            mysqli_close($conection);
+            $result_sql= mysqli_num_rows($sql);
+         if($result_sql==0){
+                header('Location: listar_pedidos.php');
+            }else{
+                $option='';
+                while($data=mysqli_fetch_array($sql)){
+                $id_pedido= $data['id_pedido'];
+                $id_pastel=$data['id_pastel'];
+                $cedula= $data['cedula'];
+                $nombre= $data['nombre'];
+                $cantidad= $data['cantidad'];
+                $fecha= $data['fecha'];
+                
+                }
+                
+           }
 ?>
 
 <!DOCTYPE html>
@@ -77,6 +68,10 @@ if (!empty($_POST)) {
     <meta charset="UTF-8">
     <?php include "includes/scripts.php"; ?>
     <title>Actualizar pedido</title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 </head>
 
 <body>
@@ -90,69 +85,58 @@ if (!empty($_POST)) {
 
             <form action="" method="POST">
 
-                <input type="hidden" name="id" value="<?php echo $idusuario; ?>">
-
+                <input type="hidden" name="id_pedido" value="<?php echo $id_pedido; ?>">
                 <?php
-
-                $query_id_pastel = mysqli_query($conection, "SELECT * FROM pastel ");
-                // mysqli_close($conection);
-                $result_id_pastel = mysqli_num_rows($query_id_pastel);
+                include "../conexion.php";
+                $query_pastel= mysqli_query($conection,"SELECT * FROM pastel");
+                mysqli_close($conection);
+                $result_rol= mysqli_num_rows($query_pastel);
                 ?>
+                <label for="rol">Pastel</label>
 
                 <select name="pastel" id="pastel">
-                    <?php
-                    if ($result_id_pastel > 0) {
-                        while ($pastel = mysqli_fetch_array($query_id_pastel)) {
-                    ?>
-                            <option value="<?php echo $pastel["id_pastel"]; ?>"><?php echo $pastel["nombre"]; ?></option>
-                    <?php
-                        }
-                    }
-                    ?>
-                </select>
+                <?php
 
+                while($pastel=mysqli_fetch_array($query_pastel)){
+                 ?>
+
+                 <option value="<?php echo $pastel["id_pastel"]; ?>"><?php echo $pastel['nombre'];?></option>
+                 <?php
+                    }
+                 
+                ?>
+                </select>
                 <label for="user">Cedula</label>
-                <input type="number" name="user" id="user" placeholder="Ingrese su nombre" required value="<?php echo $cedula; ?>">
+                <input type="number" name="cedula" id="cedula" placeholder="Ingrese su nombre" required value="<?php echo $cedula; ?>">
 
 
                 <label for="user">Nombre</label>
-                <input type="text" name="user" id="user" placeholder="Ingrese su nombre" required value="<?php echo $usuario; ?>">
+                <input type="text" name="nombres" id="nombres" placeholder="Ingrese su nombre" required value="<?php echo $nombre; ?>">
 
                 <label for="user">Cantidad</label>
-                <input type="number" name="user" id="user" placeholder="Ingrese su nombre" required value="<?php echo $cantidad; ?>">
+                <input type="number" name="cantidad" id="cantidad" placeholder="Ingrese su nombre" required value="<?php echo $cantidad; ?>">
 
                 <label for="cedula">Fecha</label>
 
                 <input type="text" name="date" id="date" value="<?php echo $fecha;?>">
 
+                <a href="listar_pedidos.php" class="btn_cancel">Cancelar</a>
 
-                <?php
-                include "../conexion.php";
-                $query_rol = mysqli_query($conection, "SELECT * FROM rol");
-                mysqli_close($conection);
-                $result_rol = mysqli_num_rows($query_rol);
-                ?>
-
-                <label for="rol">Rol</label>
-                <select name="rol" id="rol" class="noItemOne">
-                    <?php
-                    echo $option;
-                    if ($result_rol > 0) {
-                        while ($rol = mysqli_fetch_array($query_rol)) {
-                    ?>
-                            <option value="<?php echo $rol["idrol"]; ?>"><?php echo $rol["rol"]; ?></option>
-                    <?php
-                        }
-                    }
-                    ?>
-
-                </select>
-                <input type="submit" value="Actualizar Usuario" class="btn_save">
+                <input type="submit" value="Actualizar" class="btn_save">
 
             </form>
         </div>
 
     </section>
+    <script>
+        $(function() {
+            $("#date").datepicker({
+
+                dateFormat: "yy-mm-dd"
+            });
+
+        });
+    </script>
 
 </body>
 
