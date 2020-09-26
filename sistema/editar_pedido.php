@@ -132,7 +132,8 @@ if (!empty($_POST)) {
         $(function() {
             $("#date").datepicker({
 
-                dateFormat: "yy-mm-dd"
+                dateFormat: "yy-mm-dd",
+               minDate: 0 
             });
 
         });
