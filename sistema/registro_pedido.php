@@ -8,18 +8,7 @@ include "../conexion.php";
 if (!empty($_POST)) {
     $alert = '';
 
-    //   $user = $_POST['user'];
-    //   $password = md5($_POST['password']);
-    //   $rol = $_POST['rol'];
-
-    //   $query = mysqli_query($conection, " SELECT * FROM usuario  WHERE  user='$user' ");
-    //   $result = mysqli_fetch_array($query);
-
-    //   if ($result > 0) {
-    //     $alert = '<p class="msg_error">!Ya existe un usuario con este nombre INTENTA POR FAVOR CON OTRO</p>';
-    //   } else {
-
-        $id_user = $_SESSION['id_user'];
+    $id_user = $_SESSION['id_user'];
 
     $id_pastel = $_POST['pastel'];
     $cedula = $_POST['cedula'];
