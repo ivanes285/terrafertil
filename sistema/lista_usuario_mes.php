@@ -8,14 +8,15 @@ include "../conexion.php";
 
 <head>
 	<meta charset="UTF-8">
+	
 	<?php include "includes/scripts.php"; ?>
-	<title>Lista de Pedidos</title>
+	<title>Lista de Pedidos Del Mes</title>
 </head>
 
 <body>
 	<?php include "includes/header.php"; ?>
 	<section id="container">
-		<h1>Reporte de pedidos</h1>
+		<h1>Reporte de pedidos del Mes</h1>
 		<a href="registro_pedido.php" class="btn_new">Crear Pedido</a>
 		<table>
 			<tr>
@@ -30,6 +31,8 @@ include "../conexion.php";
                 
 			</tr>
 			<?php
+            $mesactual= date('n');
+			$yearactual=date('Y');
 			$sql_registe = mysqli_query($conection, "SELECT COUNT(*) as total_registro FROM pedidos ");
 			$result_register = mysqli_fetch_array($sql_registe);
 			$total_registro = $result_register['total_registro'];
@@ -42,9 +45,7 @@ include "../conexion.php";
 			$desde = ($pagina - 1) * $por_pagina;
 			$total_paginas = ceil($total_registro / $por_pagina);
 
-			
-			$query = mysqli_query($conection, "select pe.id_pedido, pa.id_pastel, u.user, pa.nombre, pe.cedula,pe.nombre,pe.cantidad,pe.fecha from pedidos pe INNER JOIN pastel pa, usuario u WHERE pe.id_user = u.id_user and pa.id_pastel=pe.id_pastel ORDER BY pe.fecha DESC ");
-			
+		    $query = mysqli_query($conection, "select pe.id_pedido, pa.id_pastel, u.user, pa.nombre, pe.cedula,pe.nombre,pe.cantidad,pe.fecha from pedidos pe INNER JOIN pastel pa, usuario u WHERE pe.id_user = u.id_user and pa.id_pastel=pe.id_pastel and MONTH(pe.fecha)='$mesactual' and YEAR(pe.fecha)='$yearactual'");
 			mysqli_close($conection);
 
 			$result = mysqli_num_rows($query);
@@ -76,6 +77,7 @@ include "../conexion.php";
 			?>
 
 		</table>
+	
 
 		<div class="paginador ">
 			<ul>
@@ -105,8 +107,6 @@ include "../conexion.php";
 
 
 
-
-	
 </body>
 
 </html>

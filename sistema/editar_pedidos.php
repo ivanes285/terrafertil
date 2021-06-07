@@ -1,8 +1,8 @@
 <?php
 session_start();
-if ($_SESSION['rol'] != 2) {
-    header("location: ./");
-}
+//if ($_SESSION['rol'] != 2) {
+  //  header("location: ./");
+//}
 
 include "../conexion.php";
 
@@ -121,6 +121,7 @@ if (!empty($_POST)) {
                 <input type="text" name="date" id="date" value="<?php echo $fecha;?>">
 
                 <a href="listar_pedidos.php" class="btn_cancel">Cancelar</a>
+       
 
                 <input type="submit" value="Actualizar" class="btn_save">
 

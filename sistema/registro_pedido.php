@@ -38,9 +38,11 @@ if (!empty($_POST)) {
     <meta charset="UTF-8">
     <?php include "includes/scripts.php"; ?>
     <title>Registro de pedidos</title>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 </head>
 
 <body>
@@ -98,14 +100,16 @@ if (!empty($_POST)) {
     <script>
         $(function() {
             $("#date").datepicker({
-
                 dateFormat: "yy-mm-dd",
-                
                 minDate: 0 
             });
-
         });
-    </script>
-</body>
 
+$(document).ready(function(){
+$('#pastel').select2();
+});
+
+    </script>
+    
+</body>
 </html>

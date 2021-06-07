@@ -28,7 +28,6 @@ if (!empty($_SESSION['activo'])) {
                 header('location: sistema/');
             
             } else {
-               
                 $alert = ' <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 El usuario o clave son incorrectos
                 <button style="text-align: right" type="button" class="close" data-dismiss="alert" aria-label="Close">

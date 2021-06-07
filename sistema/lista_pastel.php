@@ -52,7 +52,7 @@ $result=mysqli_num_rows($query);
     <td><?php echo $data["nombre"] ;  ?></td>
     <td><?php echo $data["descripcion"]; ?></td>
 	<td><?php echo $data["precio"];?></td>
-	<td><?php echo $data["tamaño"];?></td>
+	<td><?php echo $data["tamano"];?></td>
     <td>
         <a class="link_edit" href="editar_pastel.php?id=<?php echo $data["id_pastel"]; ?>">Editar</a>
 	   

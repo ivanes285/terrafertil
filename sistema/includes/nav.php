@@ -27,12 +27,8 @@
 					<ul>
 						<li><a href="registro_pedido.php">Nuevo Pedido</a></li>
 						<li><a href="listar_pedidos.php">Lista de Pedidos</a></li>
+						<li><a href="lista_usuario_mes.php">Lista de Pedidos del Mes</a></li>
 					</ul>
 				</li>
-				
-				
-
-				
-
 			</ul>
 		</nav>

@@ -7,7 +7,7 @@ if (empty($_SESSION['activo'])) {
 
 <header>
 		<div class="header">
-			<h1 class="relleno">Sistema de Reservacion de Pasteles</h1>
+			<h1 class="relleno">Sistema de Recordatorios de Análisis de Productos</h1>
 			<div class="optionsBar">
 				<p>Ibarra,<?php echo fechaC(); ?></p>
 				<span>|</span>

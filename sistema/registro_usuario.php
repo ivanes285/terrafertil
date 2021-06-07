@@ -5,6 +5,8 @@ if ($_SESSION['rol'] != 1) {
 }
 include "../conexion.php";
 
+
+//Seccion para enviar los datos a la bdd
 if (!empty($_POST)) {
   $alert = '';
 
