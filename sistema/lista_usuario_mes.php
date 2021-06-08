@@ -33,6 +33,8 @@ include "../conexion.php";
 			<?php
             $mesactual= date('n');
 			$yearactual=date('Y');
+			//$mesactual= "09";
+			//$yearactual="2020";
 			$sql_registe = mysqli_query($conection, "SELECT COUNT(*) as total_registro FROM pedidos ");
 			$result_register = mysqli_fetch_array($sql_registe);
 			$total_registro = $result_register['total_registro'];
