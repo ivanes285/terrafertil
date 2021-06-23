@@ -7,7 +7,7 @@
 <head>
 	<meta charset="UTF-8">
 	<?php include "includes/scripts.php";?>
-	<title>Sistema de Reservacion de Pasteles</title>
+	<title>Nature's Heart</title>
 </head>
 <body>
 <?php include "includes/header.php";?>

@@ -12,6 +12,14 @@
 						<li><a href="lista_usuario.php">Lista de Usuarios</a></li>
 					</ul>
 				</li>
+			
+				<li class="principal">
+					<a href="#">Procesos</a>
+					<ul>
+						<li><a href="registro_procesos.php">Nuevo Proceso</a></li>
+						<li><a href="lista_pastel.php">Lista de  Procesos</a></li>
+					</ul>
+				</li>
 				<?php } ?>
 
 				<li class="principal">
