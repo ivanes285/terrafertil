@@ -53,13 +53,10 @@ if (!empty($_POST)) {
 
             <label for="nombreproceso">Nombre Proceso</label>
                 <input type="text" name="nombreproceso" id="nombreproceso" placeholder="Ingrese nombre del Proceso" required>
-
-
                 <label for="liderproceso">Lider del Proceso</label>
-
                 <?php
 
-                $query_id_user= mysqli_query($conection, "SELECT * FROM usuario ");
+                $query_id_user= mysqli_query($conection, "SELECT * FROM usuario  WHERE rol=3");
                 // mysqli_close($conection);
                 $result_id_user = mysqli_num_rows($query_id_user);
                 ?>
