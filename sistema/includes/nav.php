@@ -15,7 +15,7 @@
 					<a href="#">Procesos</a>
 					<ul>
 						<li><a href="registro_procesos.php">Nuevo Proceso</a></li>
-						<li><a href="lista_pastel.php">Lista de  Procesos</a></li>
+						<li><a href="listar_procesos.php">Lista de  Procesos</a></li>
 					</ul>
 				</li>
 				<li class="principal">
@@ -26,6 +26,14 @@
 					</ul>
 				</li>
 				<?php } ?>
+
+				<li class="principal">
+					<a href="#">Grupo Pedidos</a>
+					<ul>
+						<li><a href="registro_pedido.php">Nuevo Grupo</a></li>
+						<li><a href="listar_pedidos.php">Lista de Grupos</a></li>
+					</ul>
+				</li>
 			
 			</ul>
 		</nav>
