@@ -25,6 +25,7 @@
 						><li><a href="lista_grupo_auditor.php">Lista de Grupos</a></li>
 					</ul>
 				</li>
-				<?php } ?>	
+				<?php } ?>
+	
 			</ul>
 		</nav>
