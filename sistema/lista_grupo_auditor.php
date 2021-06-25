@@ -22,7 +22,7 @@
     <th>Nombre Grupo</th>
     <th>Auditor Lider</th>
 	<th>Norma</th>
-	
+	<th>Acciones</th>
 </tr>
  <?php
 
@@ -55,11 +55,11 @@ $result=mysqli_num_rows($query);
 	<td><?php echo $data["idnorma"];?></td>
 	
     <td>
-        <a class="link_edit" href="editar_pastel.php?id=<?php echo $data["id_pastel"]; ?>">Editar</a>
+        <a class="link_edit" href="editar_grupo_auditor.php?id=<?php echo $data["idgrupo"]; ?>">Editar</a>
 	   
 		<?php if ($_SESSION['rol']==1){?>
 		|
-		<a class="link_delete" href="eliminar_pastel.php?id=<?php echo $data["id_pastel"]; ?>">Eliminar</a>
+		<a class="link_delete" href="eliminar_grupo_auditor.php?id=<?php echo $data["idgrupo"]; ?>">Eliminar</a>
 		
 	   <?php }?>
     </td>
