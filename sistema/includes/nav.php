@@ -25,15 +25,6 @@
 						><li><a href="lista_grupo_auditor.php">Lista de Grupos</a></li>
 					</ul>
 				</li>
-				<?php } ?>
-
-				<li class="principal">
-					<a href="#">Grupo Pedidos</a>
-					<ul>
-						<li><a href="registro_pedido.php">Nuevo Grupo</a></li>
-						<li><a href="listar_pedidos.php">Lista de Grupos</a></li>
-					</ul>
-				</li>
-			
+				<?php } ?>	
 			</ul>
 		</nav>

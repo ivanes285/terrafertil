@@ -8,21 +8,28 @@ include "../conexion.php";
 if (!empty($_POST)) {
     $alert = '';
 
-    
+
     $nombreproceso= $_POST['nombreproceso'];
     $liderproceso =$_POST['liderproceso']; //valor del select que trae datos de la tabla usuario
 
-    $query_insert = mysqli_query($conection, "INSERT INTO procesos (nombreproceso,liderproceso) VALUES 
-    ('$nombreproceso','$liderproceso')");
-
-    if ($query_insert) {
-        $alert = '<p class="msg_save">CREADO CORRECTAMENTE</p>';
+    $query = mysqli_query($conection, "SELECT * FROM procesos WHERE  nombreproceso='$nombreproceso' ");
+    $result = mysqli_fetch_array($query);
+    if ($result > 0) {
+        $alert = '<p class="msg_error">Proceso YA existe !Intente de Nuevo con otro Proceso</p>';
     } else {
-        
-        $alert = '<p class="msg_error">Error al Registra Proceso</p>' ;
+        $query_insert = mysqli_query($conection, "INSERT INTO procesos (nombreproceso,liderproceso) VALUES 
+        ('$nombreproceso','$liderproceso')");
+    
+        if ($query_insert) {
+            $alert = '<p class="msg_save">CREADO CORRECTAMENTE</p>';
+        } else {
+            
+            $alert = '<p class="msg_error">Error al Registra Proceso</p>' ;
+        }
     }
+    
 }
-// }
+
 
 ?>
 

@@ -21,7 +21,8 @@ if (empty($_REQUEST['id'])) {
     mysqli_close($conection);
 } else {
     $idproceso = $_REQUEST['id'];
-    $sql = mysqli_query($conection, "SELECT * FROM procesos WHERE idproceso=  $idproceso");
+    
+    $sql = mysqli_query($conection, "SELECT p.idproceso, p.nombreproceso,u.user from procesos p INNER JOIN usuario u WHERE p.liderproceso=u.id_user AND p.idproceso= $idproceso");
     mysqli_close($conection);
     $result = mysqli_num_rows($sql);
     if ($result > 0) {
@@ -50,7 +51,7 @@ if (empty($_REQUEST['id'])) {
             <h2 style="color: #C82333">¿Está seguro de eliminar el proceso?</h2>
             <p>ID proceso: <span><?php echo $idproceso; ?></span></p>
             <p>Nombre proceso: <span><?php echo $nombreproceso; ?></span></p>
-            <p>Lider Proceso: <span><?php echo $nombreproceso; ?></span></p>
+            <p>Lider Proceso: <span><?php echo $liderproceso; ?></span></p>
             <form method="POST" action="">
                 <input type="hidden" name="idproceso" value="<?php echo  $idproceso; ?>">
                 <a href="listar_procesos.php" class="btn_cancel">Cancelar</a>

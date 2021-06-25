@@ -8,19 +8,15 @@ if (!empty($_POST)) {
     $idproceso = $_POST['idproceso'];
     $nombreproceso = $_POST['nombreproceso'];
     $liderproceso = $_POST['liderproceso'];
-    $query = mysqli_query($conection, "SELECT * FROM procesos WHERE  nombreproceso='$nombreproceso' ");
-    $result = mysqli_fetch_array($query);
-    if ($result > 0) {
-        $alert = '<p class="msg_error">Proceso YA existe !Intente de Nuevo con otro Proceso</p>';
-    } else {
-        $query_update = mysqli_query($conection, "UPDATE procesos SET nombreproceso='$nombreproceso', liderproceso='$liderproceso' WHERE id_pedido=$id_pedido");
+   
+        $query_update = mysqli_query($conection, "UPDATE procesos SET nombreproceso='$nombreproceso', liderproceso='$liderproceso' WHERE idproceso=$idproceso");
         if ($query_update) {
             $alert = '<p class="msg_save">PROCESO Actualizado </p>';
         } else {
             $alert = '<p class="msg_error">Error al Actualizar </p>';
         }
     }
-}
+
 
 
 if (empty($_REQUEST['id'])) {
