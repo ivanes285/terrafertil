@@ -22,7 +22,7 @@
 					<a href="#">Grupo Auditor</a>
 					<ul>
 						<li><a href="registro_grupo_auditor.php">Nuevo Grupo</a></li>
-						><li><a href="lista_grupo_auditor.php">Lista de Grupos</a></li>
+						<li><a href="lista_grupo_auditor.php">Lista de Grupos</a></li>
 					</ul>
 				</li>
 				<?php } ?>
