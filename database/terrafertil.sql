@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-06-2021 a las 23:18:26
+-- Tiempo de generación: 25-06-2021 a las 00:13:07
 -- Versión del servidor: 10.4.18-MariaDB
 -- Versión de PHP: 7.4.16
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `pasteleria`
+-- Base de datos: `terrafertil`
 --
 
 -- --------------------------------------------------------
@@ -146,12 +146,8 @@ CREATE TABLE `procesos` (
 
 INSERT INTO `procesos` (`idproceso`, `nombreproceso`, `liderproceso`) VALUES
 (2, 'Compras', 3),
-(4, 'Compras', 3),
 (5, 'Ventas', 2),
-(6, 'Recepcion', 3),
-(7, 'Compras', 3),
-(8, 'Recepcion', 3),
-(9, 'Recepcion', 2);
+(11, 'Recepcion', 6);
 
 -- --------------------------------------------------------
 
@@ -197,7 +193,9 @@ INSERT INTO `usuario` (`id_user`, `user`, `password`, `correo`, `rol`, `estatus`
 (2, 'francis', '102ddaf691e1615d5dacd4c86299bfa4', 'francis@gmail.com', 2, 1),
 (3, 'malcom', '102ddaf691e1615d5dacd4c86299bfa4', 'malcom@gmail.com', 2, 1),
 (4, 'Don Aux', '102ddaf691e1615d5dacd4c86299bfa4', '', 3, 1),
-(5, 'brandon', '102ddaf691e1615d5dacd4c86299bfa4', '', 3, 1);
+(5, 'brandon', '102ddaf691e1615d5dacd4c86299bfa4', '', 3, 0),
+(6, 'Ana', '102ddaf691e1615d5dacd4c86299bfa4', '', 2, 0),
+(7, 'hall', '102ddaf691e1615d5dacd4c86299bfa4', '', 2, 1);
 
 --
 -- Índices para tablas volcadas
@@ -283,7 +281,7 @@ ALTER TABLE `pedidos`
 -- AUTO_INCREMENT de la tabla `procesos`
 --
 ALTER TABLE `procesos`
-  MODIFY `idproceso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `idproceso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `rol`
@@ -295,7 +293,7 @@ ALTER TABLE `rol`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Restricciones para tablas volcadas
