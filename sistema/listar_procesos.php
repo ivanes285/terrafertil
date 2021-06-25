@@ -9,23 +9,25 @@ include "../conexion.php";
 <head>
 	<meta charset="UTF-8">
 	<?php include "includes/scripts.php"; ?>
-	<title>Lista de Usuarios</title>
+	<title>Lista de Procesos</title>
 </head>
 
 <body>
 	<?php include "includes/header.php"; ?>
 	<section id="container">
-		<h1>Lista de Usuarios</h1>
-		<a href="registro_usuario.php" class="btn_new">Crear Usuario</a>
+		<h1>Lista de Procesos</h1>
+		<a href="registro_procesos.php" class="btn_new">Ingresar Proceso</a>
+
 		<table>
 			<tr>
 				<th>ID</th>
-				<th>Nombre</th>
-				<th>Rol</th>
+				<th>Nombre del Proceso</th>
+				<th>Lider del Proceso</th>
 				<th>Acciones</th>
 			</tr>
 			<?php
-			$sql_registe = mysqli_query($conection, "SELECT COUNT(*) as total_registro FROM usuario WHERE estatus = 1 ");
+
+			$sql_registe = mysqli_query($conection, "SELECT COUNT(*) as total_registro FROM procesos");
 			$result_register = mysqli_fetch_array($sql_registe);
 			$total_registro = $result_register['total_registro'];
 			$por_pagina = 7;
@@ -37,23 +39,26 @@ include "../conexion.php";
 			$desde = ($pagina - 1) * $por_pagina;
 			$total_paginas = ceil($total_registro / $por_pagina);
 
-			$query = mysqli_query($conection, "SELECT u.id_user,u.user,r.rol FROM usuario u INNER JOIN rol r ON u.rol = r.idrol WHERE estatus = 1 ORDER BY u.id_user ASC LIMIT $desde,$por_pagina");
+			$query = mysqli_query($conection, "SELECT p.idproceso, p.nombreproceso,u.user from procesos p INNER JOIN usuario u WHERE p.liderproceso=u.id_user");
 			mysqli_close($conection);
+
 			$result = mysqli_num_rows($query);
 
 			if ($result > 0) {
 				while ($data = mysqli_fetch_array($query)) {
 			?>
 					<tr>
-						<td><?php echo $data["id_user"]; ?></td>
-						<td><?php echo $data["user"];  ?></td>
-						<td><?php echo $data["rol"]; ?></td>
+						<td><?php echo $data[0]; ?></td>
+						<td><?php echo $data[1]; ?></td>
+						<td><?php echo $data[2]; ?></td>
+
 						<td>
-							<a class="link_edit" href="editar_usuario.php?id=<?php echo $data["id_user"]; ?>">Editar</a>
-							<!--$data["id_user"] != 1   -->
-							<?php if ($data["id_user"] != 1) { ?>
+							<a class="link_edit" href="editar_procesos.php?id=<?php echo $data[0]; ?>">Editar</a>
+
+							<?php if ($_SESSION['rol'] == 1) { ?>
 								|
-								<a class="link_delete" href="eliminar_usuario.php?id=<?php echo $data["id_user"]; ?>">Eliminar</a>
+								<a class="link_delete" href="eliminar_procesos.php?id=<?php echo $data[0]; ?>">Eliminar</a>
+
 							<?php } ?>
 						</td>
 					</tr>
@@ -61,7 +66,9 @@ include "../conexion.php";
 				}
 			}
 			?>
+
 		</table>
+
 		<div class="paginador">
 			<ul>
 				<?php
@@ -82,6 +89,7 @@ include "../conexion.php";
 						echo '<li><a href="?pagina=' . $i . '">' . $i . '</a></li>';
 					}
 				}
+
 				if ($pagina != $total_paginas) {
 				?>
 					<li><a href="?pagina=<?php echo $pagina + 1; ?>">>></a></li>
@@ -90,5 +98,7 @@ include "../conexion.php";
 			</ul>
 		</div>
 	</section>
+
 </body>
+
 </html>

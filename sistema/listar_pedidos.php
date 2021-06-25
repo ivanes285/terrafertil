@@ -82,7 +82,9 @@ include "../conexion.php";
 				<?php
 				if ($pagina != 1) {
 				?>
-					<li><a href="?pagina=<?php echo 1; ?>">|<</a> </li> <li><a href="?pagina=<?php echo $pagina - 1; ?>">
+					<li><a href="?pagina=<?php echo 1; ?>">|<</a>
+					 </li> 
+					 <li><a href="?pagina=<?php echo $pagina - 1; ?>">
 									<<</a> </li> <?php
 												}
 												for ($i = 1; $i <= $total_paginas; $i++) {

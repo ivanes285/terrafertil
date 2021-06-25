@@ -8,7 +8,6 @@ include "../conexion.php";
 
 <head>
 	<meta charset="UTF-8">
-	
 	<?php include "includes/scripts.php"; ?>
 	<title>Lista de Pedidos Del Mes</title>
 </head>
@@ -28,7 +27,6 @@ include "../conexion.php";
                 <th>Fecha</th>
 				<th>Opciones</th>
                 
-                
 			</tr>
 			<?php
             $mesactual= date('n');
@@ -47,7 +45,7 @@ include "../conexion.php";
 			$desde = ($pagina - 1) * $por_pagina;
 			$total_paginas = ceil($total_registro / $por_pagina);
 
-		    $query = mysqli_query($conection, "select pe.id_pedido, pa.id_pastel, u.user, pa.nombre, pe.cedula,pe.nombre,pe.cantidad,pe.fecha from pedidos pe INNER JOIN pastel pa, usuario u WHERE pe.id_user = u.id_user and pa.id_pastel=pe.id_pastel and MONTH(pe.fecha)='$mesactual' and YEAR(pe.fecha)='$yearactual'");
+		    $query = mysqli_query($conection, "SELECT pe.id_pedido, pa.id_pastel, u.user, pa.nombre, pe.cedula,pe.nombre,pe.cantidad,pe.fecha from pedidos pe INNER JOIN pastel pa, usuario u WHERE pe.id_user = u.id_user and pa.id_pastel=pe.id_pastel and MONTH(pe.fecha)='$mesactual' and YEAR(pe.fecha)='$yearactual'");
 			mysqli_close($conection);
 
 			$result = mysqli_num_rows($query);
@@ -66,7 +64,7 @@ include "../conexion.php";
 						<td>
 							<a class="link_edit" href="editar_pedidos.php?id=<?php echo $data["id_pedido"];?>">Editar</a>
 
-                            <?php if ($_SESSION['rol']==1){?>
+                            <?php if ($_SESSION['rol']==1 ){?>
                             |
                             <a class="link_delete" href="eliminar_pedido.php?id=<?php echo $data["id_pedido"]; ?>">Eliminar</a>
                             
