@@ -49,9 +49,9 @@ $result=mysqli_num_rows($query);
     while($data=mysqli_fetch_array($query)){
       ?>
 <tr>
-    <td><?php echo $data[0]; ?></td>
-    <td><?php echo $data[1] ;  ?></td>
-    <td><?php echo $data[2]; ?></td>
+    <td><?php echo $data[0];?></td>
+    <td><?php echo $data[1] ;?></td>
+    <td><?php echo $data[2];?></td>
 	<td><?php echo $data[3];?></td>
 	
     <td>

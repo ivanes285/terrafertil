@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-06-2021 a las 00:13:07
+-- Tiempo de generación: 29-06-2021 a las 22:21:39
 -- Versión del servidor: 10.4.18-MariaDB
 -- Versión de PHP: 7.4.16
 
@@ -39,8 +39,8 @@ CREATE TABLE `grupoauditor` (
 --
 
 INSERT INTO `grupoauditor` (`idgrupo`, `nombregrupo`, `idusuario`, `idnorma`) VALUES
-(1, 'grupoISO9001', 2, 1),
-(2, 'grupoBasc', 3, 3);
+(4, 'GrupoIso9001', 3, 1),
+(5, 'GrupoBasc', 6, 3);
 
 -- --------------------------------------------------------
 
@@ -50,19 +50,17 @@ INSERT INTO `grupoauditor` (`idgrupo`, `nombregrupo`, `idusuario`, `idnorma`) VA
 
 CREATE TABLE `norma` (
   `idnorma` int(11) NOT NULL,
-  `nombrenorma` varchar(50) NOT NULL,
-  `clausulanorma` varchar(700) NOT NULL
+  `nombrenorma` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `norma`
 --
 
-INSERT INTO `norma` (`idnorma`, `nombrenorma`, `clausulanorma`) VALUES
-(1, 'ISO9001', '1.1  Establecer los objetivos de la ISO '),
-(2, 'ISO9001', '1.2  Establecer los códigos de ética'),
-(3, 'Basc', '1.1  Requisitos de asociados de negocios'),
-(4, 'Basc', '1.2  Seguridad de las unidades de carga ');
+INSERT INTO `norma` (`idnorma`, `nombrenorma`) VALUES
+(3, 'Basc'),
+(5, 'ISO17000'),
+(1, 'ISO9001');
 
 -- --------------------------------------------------------
 
@@ -147,7 +145,8 @@ CREATE TABLE `procesos` (
 INSERT INTO `procesos` (`idproceso`, `nombreproceso`, `liderproceso`) VALUES
 (2, 'Compras', 3),
 (5, 'Ventas', 2),
-(11, 'Recepcion', 6);
+(11, 'Recepcion', 7),
+(12, 'Seguridad', 3);
 
 -- --------------------------------------------------------
 
@@ -213,7 +212,8 @@ ALTER TABLE `grupoauditor`
 -- Indices de la tabla `norma`
 --
 ALTER TABLE `norma`
-  ADD PRIMARY KEY (`idnorma`);
+  ADD PRIMARY KEY (`idnorma`),
+  ADD UNIQUE KEY `nombrenorma` (`nombrenorma`);
 
 --
 -- Indices de la tabla `pastel`
@@ -257,13 +257,13 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `grupoauditor`
 --
 ALTER TABLE `grupoauditor`
-  MODIFY `idgrupo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idgrupo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `norma`
 --
 ALTER TABLE `norma`
-  MODIFY `idnorma` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idnorma` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `pastel`
@@ -281,7 +281,7 @@ ALTER TABLE `pedidos`
 -- AUTO_INCREMENT de la tabla `procesos`
 --
 ALTER TABLE `procesos`
-  MODIFY `idproceso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `idproceso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `rol`
