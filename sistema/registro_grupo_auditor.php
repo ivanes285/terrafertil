@@ -1,17 +1,11 @@
 <?php
 session_start();
-// if ($_SESSION['rol'] != 1) {
-//     header("location: ./");
-// }
 
 include "../conexion.php";
 if (!empty($_POST)) {
     $alert = '';
 
     
-    //$nombreproceso= $_POST['nombreproceso'];
-    //$liderproceso =$_POST['liderproceso']; //valor del select que trae datos de la tabla usuario
-   // $idgrupo=$_POST['idgrupo'];
     $nombregrupo=$_POST['nombregrupo'];
     $idusuario=$_POST['idusuario'];
     $idnorma=$_POST['idnorma'];
