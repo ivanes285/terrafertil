@@ -39,7 +39,7 @@
 				if($_SESSION['rol'] == 2){
 			 		?>
 				<li class="principal">
-				<a href="#">Usuarios</a>
+				<a href="#">Auditorias</a>
 				<ul>
 						
 						<li><a href="lista_auditorvista.php">Auditorias Pendientes</a></li>
