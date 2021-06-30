@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 29-06-2021 a las 22:21:39
+-- Tiempo de generación: 01-07-2021 a las 00:06:36
 -- Versión del servidor: 10.4.18-MariaDB
 -- Versión de PHP: 7.4.16
 
@@ -24,6 +24,34 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `detalleauditoria`
+--
+
+CREATE TABLE `detalleauditoria` (
+  `iddetalleauditoria` int(11) NOT NULL,
+  `codigoauditoria` varchar(80) NOT NULL,
+  `idperiodo` int(11) NOT NULL,
+  `fechacreacion` date NOT NULL DEFAULT current_timestamp(),
+  `fechaejecucion` date NOT NULL,
+  `idgrupo` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `detalleauditoria`
+--
+
+INSERT INTO `detalleauditoria` (`iddetalleauditoria`, `codigoauditoria`, `idperiodo`, `fechacreacion`, `fechaejecucion`, `idgrupo`) VALUES
+(1, 'Cod-9001', 1, '2021-06-29', '2021-07-14', 4),
+(2, 'Cod-9003', 3, '2021-06-29', '0000-00-00', 5),
+(3, 'Cod-9002', 3, '2021-06-29', '0000-00-00', 5),
+(4, 'Cod-9004', 1, '2021-06-29', '0000-00-00', 4),
+(6, 'Cod-9006', 1, '2021-06-30', '0000-00-00', 5),
+(7, 'Cod-9007', 1, '2021-06-30', '2021-07-14', 5),
+(9, 'Aux1212', 3, '2021-06-30', '2021-07-15', 6);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `grupoauditor`
 --
 
@@ -40,7 +68,8 @@ CREATE TABLE `grupoauditor` (
 
 INSERT INTO `grupoauditor` (`idgrupo`, `nombregrupo`, `idusuario`, `idnorma`) VALUES
 (4, 'GrupoIso9001', 3, 1),
-(5, 'GrupoBasc', 6, 3);
+(5, 'GrupoBasc', 6, 3),
+(6, 'Aux', 7, 5);
 
 -- --------------------------------------------------------
 
@@ -129,6 +158,26 @@ INSERT INTO `pedidos` (`id_pedido`, `id_user`, `id_pastel`, `cedula`, `nombre`, 
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `periodo`
+--
+
+CREATE TABLE `periodo` (
+  `idperiodo` int(11) NOT NULL,
+  `tiempoperiodo` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `periodo`
+--
+
+INSERT INTO `periodo` (`idperiodo`, `tiempoperiodo`) VALUES
+(3, '12 meses'),
+(1, '4 meses '),
+(2, '6 meses ');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `procesos`
 --
 
@@ -201,6 +250,15 @@ INSERT INTO `usuario` (`id_user`, `user`, `password`, `correo`, `rol`, `estatus`
 --
 
 --
+-- Indices de la tabla `detalleauditoria`
+--
+ALTER TABLE `detalleauditoria`
+  ADD PRIMARY KEY (`iddetalleauditoria`),
+  ADD UNIQUE KEY `codigoauditoria` (`codigoauditoria`),
+  ADD KEY `idperiodo` (`idperiodo`,`idgrupo`),
+  ADD KEY `idgrupo` (`idgrupo`);
+
+--
 -- Indices de la tabla `grupoauditor`
 --
 ALTER TABLE `grupoauditor`
@@ -230,6 +288,13 @@ ALTER TABLE `pedidos`
   ADD KEY `id_pastel` (`id_pastel`);
 
 --
+-- Indices de la tabla `periodo`
+--
+ALTER TABLE `periodo`
+  ADD PRIMARY KEY (`idperiodo`),
+  ADD UNIQUE KEY `tiempoperiodo` (`tiempoperiodo`);
+
+--
 -- Indices de la tabla `procesos`
 --
 ALTER TABLE `procesos`
@@ -254,10 +319,16 @@ ALTER TABLE `usuario`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `detalleauditoria`
+--
+ALTER TABLE `detalleauditoria`
+  MODIFY `iddetalleauditoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
 -- AUTO_INCREMENT de la tabla `grupoauditor`
 --
 ALTER TABLE `grupoauditor`
-  MODIFY `idgrupo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `idgrupo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `norma`
@@ -276,6 +347,12 @@ ALTER TABLE `pastel`
 --
 ALTER TABLE `pedidos`
   MODIFY `id_pedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT de la tabla `periodo`
+--
+ALTER TABLE `periodo`
+  MODIFY `idperiodo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `procesos`
@@ -298,6 +375,13 @@ ALTER TABLE `usuario`
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `detalleauditoria`
+--
+ALTER TABLE `detalleauditoria`
+  ADD CONSTRAINT `detalleauditoria_ibfk_1` FOREIGN KEY (`idperiodo`) REFERENCES `periodo` (`idperiodo`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `detalleauditoria_ibfk_2` FOREIGN KEY (`idgrupo`) REFERENCES `grupoauditor` (`idgrupo`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `grupoauditor`
