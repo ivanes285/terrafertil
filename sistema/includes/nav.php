@@ -25,6 +25,13 @@
 						<li><a href="lista_grupo_auditor.php">Lista de Grupos</a></li>
 					</ul>
 				</li>
+				<li class="principal">
+					<a href="#">Auditoria</a>
+					<ul>
+						<li><a href="registro_auditoria.php">Nueva Auditoría</a></li>
+						<li><a href="lista_auditoria.php">Lista de Grupos</a></li>
+					</ul>
+				</li>
 				<?php } ?>
 	
 			</ul>

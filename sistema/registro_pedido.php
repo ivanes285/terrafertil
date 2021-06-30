@@ -81,7 +81,7 @@ if (!empty($_POST)) {
                 <label for="cedula">Cantidad</label>
                 <input type="number" name="cantidad" id="cantidad" placeholder="Cantidad " required>
                 <label for="cedula">Fecha</label>
-                <input type="text" name="date" id="date" autocomplete="off">
+                <input type="text" name="date" id="date" >
                 <input type="submit" value="Registrar" class="btn_save">
             </form>
         </div>
