@@ -82,6 +82,6 @@ if (!empty($_POST)) {
             </form>
         </div>
     </section>
-    </script>
+   
 </body>
 </html>

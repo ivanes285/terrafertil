@@ -26,10 +26,17 @@
 					</ul>
 				</li>
 				<li class="principal">
+<<<<<<< HEAD
 					<a href="#">Auditorias</a>
 					<ul>
 						<li><a href="registro_auditoria.php">Nueva auditoria</a></li>
 						<li><a href="lista_detalleauditoria.php">Lista de Auditorias</a></li>
+=======
+					<a href="#">Auditoria</a>
+					<ul>
+						<li><a href="registro_auditoria.php">Nueva Auditoría</a></li>
+						<li><a href="lista_auditoria.php">Lista de Grupos</a></li>
+>>>>>>> 8124082bf4927b92ca8b12dd5b6cacb619e93c7b
 					</ul>
 				</li>
 				<?php } ?>
