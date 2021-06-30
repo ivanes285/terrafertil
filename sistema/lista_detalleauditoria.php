@@ -14,7 +14,7 @@
 <?php include "includes/header.php";?>
 	<section id="container">
     <h1>Lista de Auditorias</h1>
- <a href="registro_grupo_auditor.php" class="btn_new">Ingresar Auditoria</a>
+ <a href="registro_auditoria.php" class="btn_new">Ingresar Auditoria</a>
 
 <table>
 <tr>
@@ -24,6 +24,7 @@
 	<th>Norma</th>
 	<th>Grupo Auditor</th>
 	<th>Codigo Auditoría</th>
+	<th>Acciones</th>
 </tr>
  <?php
 
@@ -41,7 +42,7 @@ $desde = ($pagina-1) * $por_pagina;
 $total_paginas = ceil($total_registro / $por_pagina);
  
 
- $query = mysqli_query($conection, "select fechacreacion, tiempoperiodo,fechaejecucion,nombrenorma,nombregrupo,codigoauditoria from norma n, grupoauditor ga, periodo p, detalleauditoria da where n.idnorma=ga.idnorma and ga.idgrupo=da.idgrupo and p.idperiodo=da.idperiodo ORDER BY codigoauditoria ASC LIMIT $desde,$por_pagina");
+ $query = mysqli_query($conection, "select iddetalleauditoria, fechacreacion, tiempoperiodo,fechaejecucion,nombrenorma,nombregrupo,codigoauditoria from norma n, grupoauditor ga, periodo p, detalleauditoria da where n.idnorma=ga.idnorma and ga.idgrupo=da.idgrupo and p.idperiodo=da.idperiodo ORDER BY codigoauditoria ASC LIMIT $desde,$por_pagina");
  mysqli_close($conection);
 $result=mysqli_num_rows($query);
 
@@ -49,19 +50,21 @@ $result=mysqli_num_rows($query);
     while($data=mysqli_fetch_array($query)){
       ?>
 <tr>
-    <td><?php echo $data[0]; ?></td>
+	
+	
     <td><?php echo $data[1]; ?></td>
 	<td><?php echo $data[2]; ?></td>
 	<td><?php echo $data[3]; ?></td>
 	<td><?php echo $data[4]; ?></td>
 	<td><?php echo $data[5]; ?></td>
+	<td><?php echo $data[6]; ?></td>
 	
     <td>
-        <a class="link_edit" href="editar.php?id=<?php echo $data["idnorma"]; ?>">Editar</a>
+        <a class="link_edit" href="editar_auditoria.php?id=<?php echo $data["idnorma"]; ?>">Editar</a>
 	   
 		<?php if ($_SESSION['rol']==1){?>
 		|
-		<a class="link_delete" href="eliminar_auditorias.php?id=<?php echo $data[5]; ?>">Eliminar</a>
+		<a class="link_delete" href="eliminar_auditorias.php?id=<?php echo $data[0]; ?>">Eliminar</a>
 		
 	   <?php }?>
     </td>

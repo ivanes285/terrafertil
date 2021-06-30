@@ -7,8 +7,8 @@ if ($_SESSION['rol'] != 1) {
 
 include "../conexion.php";
 if (!empty($_POST)) {
-    $codigoauditoria = $_POST['codigoauditoria'];
-    $query_delete = mysqli_query($conection, "DELETE FROM detalleauditoria WHERE codigoauditoria = $codigoauditoria");
+    $codigo = $_POST['iddetalleauditoria'];
+    $query_delete = mysqli_query($conection, "DELETE FROM detalleauditoria WHERE iddetalleauditoria = $codigo");
     mysqli_close($conection);
     if ($query_delete) {
         header("location: lista_detalleauditoria.php");
@@ -20,8 +20,8 @@ if (empty($_REQUEST['id'])) {
     header("location: lista_detalleauditoria.php");
     mysqli_close($conection);
 } else {
-    $codigoauditoria = $_REQUEST['id'];
-    $sql = mysqli_query($conection, "SELECT * FROM detalleauditoria WHERE codigoauditoria= $codigoauditoria");
+    $codigo = $_REQUEST['id'];
+    $sql = mysqli_query($conection, "SELECT * FROM detalleauditoria WHERE iddetalleauditoria= $codigo");
     mysqli_close($conection);
     $result = mysqli_num_rows($sql);
     if ($result > 0) {
@@ -31,7 +31,7 @@ if (empty($_REQUEST['id'])) {
             $idperiodo = $data[2];
             $fechacreacion  = $data[3];
             $fechaejecucion = $data[4];
-            $codigoauditoria = $data[5];
+            $idgrupo = $data[5];
         }
     } else {
         header('Location: lista_detalleauditoria.php');
@@ -56,10 +56,10 @@ if (empty($_REQUEST['id'])) {
             <p>ID grupo: <span><?php echo $idperiodo; ?></span></p>
             <p>ID grupo: <span><?php echo $fechacreacion; ?></span></p>
             <p>ID grupo: <span><?php echo $fechaejecucion; ?></span></p>
-            <p>ID grupo: <span><?php echo $codigoauditoria; ?></span></p>
+            <p>ID grupo: <span><?php echo $idgrupo; ?></span></p>
            
             <form method="POST" action="">
-                <input type="hidden" name="codigoauditoria" value="<?php echo  $codigoauditoria; ?>">
+                <input type="hidden" name="iddetalleauditoria" value="<?php echo  $codigo; ?>">
                 <a href="lista_detalleauditoria.php" class="btn_cancel">Cancelar</a>
                 <input type="submit" value="Aceptar" class="btn_ok">
             </form>
