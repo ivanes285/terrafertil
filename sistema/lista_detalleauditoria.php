@@ -60,7 +60,7 @@ $result=mysqli_num_rows($query);
 	<td><?php echo $data[6]; ?></td>
 	
     <td>
-        <a class="link_edit" href="editar_auditoria.php?id=<?php echo $data["idnorma"]; ?>">Editar</a>
+        <a class="link_edit" href="editar_auditoria.php?id=<?php echo $data[0]; ?>">Editar</a>
 	   
 		<?php if ($_SESSION['rol']==1){?>
 		|
