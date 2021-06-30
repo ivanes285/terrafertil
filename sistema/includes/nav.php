@@ -33,6 +33,18 @@
 
 					</ul>
 				</li>
+				
+				<?php } ?>
+				<?php 
+				if($_SESSION['rol'] == 2){
+			 		?>
+				<li class="principal">
+				<a href="#">Usuarios</a>
+				<ul>
+						
+						<li><a href="lista_auditorvista.php">Auditorias Pendientes</a></li>
+					</ul>
+				</li>
 				<?php } ?>
 	
 			</ul>
