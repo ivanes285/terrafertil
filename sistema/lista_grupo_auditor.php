@@ -20,6 +20,7 @@
 <tr>
     <th>ID</th>
     <th>Nombre Grupo</th>
+
 	<th>Norma</th>
 	<th>Acciones</th>
 </tr>
@@ -50,7 +51,7 @@ $result=mysqli_num_rows($query);
 <tr>
     <td><?php echo $data[0];?></td>
     <td><?php echo $data[1] ;?></td>
-	<td><?php echo $data[2];?></td>
+    <td><?php echo $data[2];?></td>
 	
     <td>
         <a class="link_edit" href="editar_grupo_auditor.php?id=<?php echo $data["idgrupo"]; ?>">Editar</a>
