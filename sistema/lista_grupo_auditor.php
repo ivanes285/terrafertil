@@ -20,7 +20,6 @@
 <tr>
     <th>ID</th>
     <th>Nombre Grupo</th>
-    <th>Auditor Lider</th>
 	<th>Norma</th>
 	<th>Acciones</th>
 </tr>
@@ -40,7 +39,7 @@ $desde = ($pagina-1) * $por_pagina;
 $total_paginas = ceil($total_registro / $por_pagina);
 
 //$query = mysqli_query($conection, "SELECT * FROM grupoauditor ORDER BY idgrupo ASC LIMIT $desde,$por_pagina");
- $query = mysqli_query($conection, "SELECT g.idgrupo, g.nombregrupo,u.user,n.nombrenorma from norma n , grupoauditor g, usuario u where g.idusuario=u.id_user AND g.idnorma=n.idnorma ORDER BY idgrupo ASC LIMIT $desde,$por_pagina");
+ $query = mysqli_query($conection, "SELECT g.idgrupo, g.nombregrupo,n.nombrenorma from norma n , grupoauditor g where g.idnorma=n.idnorma ORDER BY idgrupo ASC LIMIT $desde,$por_pagina");
  //$query2 = mysqli_query($conection, "SELECT u.user FROM usuario u INNER JOIN grupoauditor gp where u.id_user=gp.idusuario ORDER BY gp.idgrupo ASC LIMIT $desde,$por_pagina");
 mysqli_close($conection);
 $result=mysqli_num_rows($query);
@@ -51,8 +50,7 @@ $result=mysqli_num_rows($query);
 <tr>
     <td><?php echo $data[0];?></td>
     <td><?php echo $data[1] ;?></td>
-    <td><?php echo $data[2];?></td>
-	<td><?php echo $data[3];?></td>
+	<td><?php echo $data[2];?></td>
 	
     <td>
         <a class="link_edit" href="editar_grupo_auditor.php?id=<?php echo $data["idgrupo"]; ?>">Editar</a>

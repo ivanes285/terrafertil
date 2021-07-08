@@ -7,13 +7,13 @@ if (!empty($_POST)) {
     $alert = '';
     $idgrupo = $_POST['idgrupo'];
     $nombregrupo = $_POST['nombregrupo'];
-    $idusuario = $_POST['idusuario'];
+ 
     $query = mysqli_query($conection, "SELECT * FROM grupoauditor WHERE  nombregrupo='$nombregrupo' ");
     $result = mysqli_fetch_array($query);
     if ($result > 0) {
         $alert = '<p class="msg_error">Proceso YA existe !Intente de Nuevo con otro Proceso</p>';
     } else {
-        $query_update = mysqli_query($conection, "UPDATE grupoauditor SET nombregrupo='$nombregrupo', idusuario='$idusuario' WHERE idgrupo=$idgrupo");
+        $query_update = mysqli_query($conection, "UPDATE grupoauditor SET nombregrupo='$nombregrupo' WHERE idgrupo=$idgrupo");
         if ($query_update) {
             $alert = '<p class="msg_save">Grupo Actualizado </p>';
         } else {
@@ -41,7 +41,6 @@ if ($result_sql == 0) {
     while ($data = mysqli_fetch_array($sql)) {
         $idgrupo = $data['idgrupo'];
         $nombregrupo = $data['nombregrupo'];
-        $idusuario = $data['idusuario'];
     }
 }
 ?>
@@ -67,24 +66,8 @@ if ($result_sql == 0) {
                 <input type="hidden" name="idgrupo" value="<?php echo $idgrupo; ?>">
                 <label for="nombregrupo ">Nombre Grupo</label>
                 <input type="text" name="nombregrupo" id="nombregrupo" placeholder="Ingrese nombre del Grupo" required value="<?php echo $nombregrupo; ?>">
-                <?php
-                include "../conexion.php";
-                $query_pastel = mysqli_query($conection, "SELECT * FROM usuario WHERE rol=2");
-                mysqli_close($conection);
-                $result_rol = mysqli_num_rows($query_pastel);
-                ?>
-                <label for="idusuario">Lider Auditor Grupo</label>
-                <select name="idusuario" id="idusuario">
-                    <?php
-                    while ($pastel = mysqli_fetch_array($query_pastel)) {
-                    ?>
-                        <option value="<?php echo $pastel["id_user"]; ?>"><?php echo $pastel['user']; ?></option>
-                    <?php
-                    }
-                    ?>
-                </select>
                 <a href="lista_grupo_auditor.php" class="btn_cancel">Cancelar</a>
-                <input type="submit" value="Actualizar" class="btn_save">
+                <input type="submit" value="Actualizar" class="btn_save">   
             </form>
         </div>
     </section>

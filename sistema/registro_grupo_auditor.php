@@ -7,11 +7,10 @@ if (!empty($_POST)) {
 
     
     $nombregrupo=$_POST['nombregrupo'];
-    $idusuario=$_POST['idusuario'];
     $idnorma=$_POST['idnorma'];
 
-    $query_insert = mysqli_query($conection, "INSERT INTO grupoauditor (nombregrupo,idusuario,idnorma) VALUES 
-    ('$nombregrupo','$idusuario','$idnorma')");
+    $query_insert = mysqli_query($conection, "INSERT INTO grupoauditor (nombregrupo,idnorma) VALUES 
+    ('$nombregrupo','$idnorma')");
 
     if ($query_insert) {
         $alert = '<p class="msg_save">CREADO CORRECTAMENTE</p>';
@@ -20,7 +19,6 @@ if (!empty($_POST)) {
         $alert = '<p class="msg_error">Error al Registra Proceso</p>' ;
     }
 }
-// }
 
 ?>
 
@@ -51,24 +49,7 @@ if (!empty($_POST)) {
 
             <label for="nombregrupo">Nombre Grupo de Auditores</label>
                 <input type="text" name="nombregrupo" id="nombregrupo" placeholder="Ingrese nombre del Grupo" required>
-                <label for="idusuario">Auditor lider del Grupo</label>
-                <?php
 
-                $query_id_user= mysqli_query($conection, "SELECT * FROM usuario  WHERE rol=2");
-                // mysqli_close($conection);
-                $result_id_user = mysqli_num_rows($query_id_user);
-                ?>
-                <select name="idusuario" id="idusuario">
-                    <?php
-                    if ($result_id_user > 0) {
-                        while ($user = mysqli_fetch_array($query_id_user)) {
-                    ?>
-                            <option value="<?php echo $user["id_user"]; ?>"><?php echo $user["user"]; ?></option>
-                    <?php
-                        }
-                    }
-                    ?>
-                </select>
 
                 <label for="idnorma">Escoja la Norma</label>
                 <?php

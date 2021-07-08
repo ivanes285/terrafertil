@@ -28,7 +28,6 @@ if (empty($_REQUEST['id'])) {
         while ($data = mysqli_fetch_array($sql)) {
             $idgrupo = $data[0];
             $nombregrupo = $data[1];
-            $idusuario = $data[2];
         }
     } else {
         header('Location: lista_grupo_auditor.php');
@@ -50,7 +49,7 @@ if (empty($_REQUEST['id'])) {
             <h2 style="color: #C82333">¿Está seguro de eliminar el grupo?</h2>
             <p>ID grupo: <span><?php echo $idgrupo; ?></span></p>
             <p>Nombre grupo: <span><?php echo $nombregrupo; ?></span></p>
-            <p>Lider grupo: <span><?php echo $idusuario; ?></span></p>
+            
             <form method="POST" action="">
                 <input type="hidden" name="idgrupo" value="<?php echo  $idgrupo; ?>">
                 <a href="lista_grupo_auditor.php" class="btn_cancel">Cancelar</a>
