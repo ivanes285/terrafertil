@@ -16,7 +16,7 @@ if (!empty($_POST)) {
         $alert = '<p class="msg_save">CREADO CORRECTAMENTE</p>';
     } else {
         
-        $alert = '<p class="msg_error">Error al Registra Proceso</p>' ;
+        $alert = '<p class="msg_error">Error al Registra GRUPO</p>' ;
     }
 }
 
@@ -28,7 +28,7 @@ if (!empty($_POST)) {
 <head>
     <meta charset="UTF-8">
     <?php include "includes/scripts.php"; ?>
-    <title>Grupo Auditor</title>
+    <title>Grupo</title>
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -41,13 +41,13 @@ if (!empty($_POST)) {
     <section id="container">
 
         <div class="form_register">
-            <h1 style="text-align: center">Registro de Grupo de Auditores</h1>
+            <h1 style="text-align: center">Registro de Grupo</h1>
             <hr>
             <div class="alert"><?php echo isset($alert) ? $alert : ''; ?></div>
 
             <form action="" method="POST">
 
-            <label for="nombregrupo">Nombre Grupo de Auditores</label>
+            <label for="nombregrupo">Nombre Grupo</label>
                 <input type="text" name="nombregrupo" id="nombregrupo" placeholder="Ingrese nombre del Grupo" required>
 
 

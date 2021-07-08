@@ -8,12 +8,12 @@
 <head>
 	<meta charset="UTF-8">
 	<?php include "includes/scripts.php";?>
-	<title>Lista de Grupos Auditores</title>
+	<title>Lista de Grupos </title>
 </head>
 <body>
 <?php include "includes/header.php";?>
 	<section id="container">
-    <h1>Lista de Grupos Auditores</h1>
+    <h1>Lista de Grupos </h1>
  <a href="registro_grupo_auditor.php" class="btn_new">Ingresar Grupo</a>
 
 <table>
