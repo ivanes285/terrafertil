@@ -92,12 +92,12 @@ if (!empty($_POST)) {
                 <textarea name="actividad" cols="30" rows="10" placeholder="Ingrese la Actividad"></textarea>
 
 
-                <label for="grupoauditor">Asignar a Grupo</label>
+                <label for="idgrupo">Asignar a Grupo</label>
                 <?php
                 $query_id_user = mysqli_query($conection, "SELECT * FROM grupoauditor");
                 $result_id_user = mysqli_num_rows($query_id_user);
                 ?>
-                <select name="grupoauditor" id="grupoauditor">
+                <select name="idgrupo" id="idgrupo">
                     <?php
                     if ($result_id_user > 0) {
                         while ($grupo = mysqli_fetch_array($query_id_user)) {
