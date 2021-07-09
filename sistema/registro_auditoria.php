@@ -9,25 +9,24 @@ include "../conexion.php";
 if (!empty($_POST)) {
     $alert = '';
 
-
     $codigoauditoria = $_POST['codigoauditoria'];
     $idperiodo = $_POST['tiempoperiodo']; //valor del select que trae datos de la tabla usuario
-    $idgrupo=$_POST['grupoauditor'];
+    $idgrupode=$_POST['detallegrupo'];
     $fechaejecucion=$_POST['fechaejecucion'];
 
     $query = mysqli_query($conection, "SELECT * FROM detalleauditoria WHERE  codigoauditoria='$codigoauditoria' ");
     $result = mysqli_fetch_array($query);
     if ($result > 0) {
-        $alert = '<p class="msg_error">Proceso YA existe !Intente de Nuevo con otro Proceso</p>';
+        $alert = '<p class="msg_error">Proceso YA existe !Intente de Nuevo con una nueva Auditoria</p>';
     } else {
-        $query_insert = mysqli_query($conection, "INSERT INTO detalleauditoria (codigoauditoria,idperiodo,fechaejecucion,idgrupo) VALUES 
-        ('$codigoauditoria',$idperiodo,'$fechaejecucion', $idgrupo)");
+        $query_insert = mysqli_query($conection, "INSERT INTO detalleauditoria (codigoauditoria,idperiodo,fechaejecucion,iddetallegrupo) VALUES 
+        ('$codigoauditoria',$idperiodo,'$fechaejecucion', $idgrupode)");
 
         if ($query_insert) {
             $alert = '<p class="msg_save">CREADO CORRECTAMENTE</p>';
         } else {
 
-            $alert = '<p class="msg_error">Error al Registra Proceso</p>';
+            $alert = '<p class="msg_error">Error al Registrar Auditoria </p>';
         }
     }
 }
@@ -83,15 +82,15 @@ if (!empty($_POST)) {
 
                 <label for="grupoauditor">Grupo de Auditoria</label>
                 <?php
-                $query_id_user = mysqli_query($conection, "SELECT * FROM grupoauditor");
+                $query_id_user = mysqli_query($conection, "SELECT iddetallegrupo,nombregrupo from grupoauditor ga , detallegrupo dg WHERE ga.idgrupo=dg.idgrupo");
                 $result_id_user = mysqli_num_rows($query_id_user);
                 ?>
-                <select name="grupoauditor" id="grupoauditor">
+                <select name="detallegrupo" id="detallegrupo">
                     <?php
                     if ($result_id_user > 0) {
                         while ($grupo = mysqli_fetch_array($query_id_user)) {
                     ?>
-                            <option value="<?php echo $grupo["idgrupo"]; ?>"><?php echo $grupo["nombregrupo"]; ?></option>
+                            <option value="<?php echo $grupo["iddetallegrupo"]; ?>"><?php echo $grupo["nombregrupo"]; ?></option>
                     <?php
                         }
                     }
