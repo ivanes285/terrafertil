@@ -55,11 +55,9 @@ if (!empty($_POST)) {
             <h1 style="text-align: center">Registro de Auditoria</h1>
             <hr>
             <div class="alert"><?php echo isset($alert) ? $alert : ''; ?></div>
-
             <form action="" method="POST">
                 <label for="codigoauditoria">Código Auditoria</label>
                 <input type="text" name="codigoauditoria" id="codigoauditoria" placeholder="Ingrese el código de auditoría" required>
-
                 <label for="tiempoperiodo">Tiempo Periodo</label>
                 <?php
                 $query_id_user = mysqli_query($conection, "SELECT * FROM periodo");
@@ -76,10 +74,8 @@ if (!empty($_POST)) {
                     }
                     ?>
                 </select>
-
                 <label for="fechaejecucion">Fecha de Ejecución</label>
                 <input type="text" name="fechaejecucion" id="fechaejecucion" autocomplete="off">
-
                 <label for="grupoauditor">Grupo de Auditoria</label>
                 <?php
                 $query_id_user = mysqli_query($conection, "SELECT iddetallegrupo,nombregrupo from grupoauditor ga , detallegrupo dg WHERE ga.idgrupo=dg.idgrupo");
@@ -110,5 +106,4 @@ if (!empty($_POST)) {
     </script>
 
 </body>
-
 </html>
