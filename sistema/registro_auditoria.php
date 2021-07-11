@@ -10,7 +10,7 @@ if (!empty($_POST)) {
     $alert = '';
 
     $codigoauditoria = $_POST['codigoauditoria'];
-    $idperiodo = $_POST['tiempoperiodo']; //valor del select que trae datos de la tabla usuario
+    $idperiodo = $_POST['tiempoperiodo']; 
     $idgrupode=$_POST['detallegrupo'];
     $fechaejecucion=$_POST['fechaejecucion'];
 
