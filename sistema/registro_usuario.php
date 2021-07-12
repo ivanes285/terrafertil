@@ -13,7 +13,8 @@ if (!empty($_POST)) {
   $user = $_POST['user'];
   $password = md5($_POST['password']);
   $rol = $_POST['rol'];
-
+  $correo = $_POST['correo'];
+  $estatus =1;
   $query = mysqli_query($conection, " SELECT * FROM usuario  WHERE  user='$user' ");
   $result = mysqli_fetch_array($query);
 
@@ -21,7 +22,7 @@ if (!empty($_POST)) {
     $alert = '<p class="msg_error">!Ya existe un usuario con este nombre INTENTA POR FAVOR CON OTRO</p>';
   } else {
 
-    $query_insert = mysqli_query($conection, "INSERT INTO usuario (user,password,rol) VALUES ('$user','$password','$rol')");
+    $query_insert = mysqli_query($conection, "INSERT INTO usuario (user,password,rol,correo,estatus) VALUES ('$user','$password','$rol','$correo','$estatus')");
 
     if ($query_insert) {
       $alert = '<p class="msg_save">user Creado CORRECTAMENTE</p>';
@@ -59,6 +60,9 @@ if (!empty($_POST)) {
 
         <label for="password">password</label>
         <input type="password" name="password" id="password" placeholder="Ingrese su password " required>
+
+        <label for="correo">correo</label>
+        <input type="text" name="correo" id="correo" placeholder="Ingrese su correo" required>
 
         <label for="rol">Rol</label>
         <?php

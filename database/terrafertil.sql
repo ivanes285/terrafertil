@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-07-2021 a las 00:46:39
+-- Tiempo de generación: 12-07-2021 a las 03:43:16
 -- Versión del servidor: 10.4.18-MariaDB
 -- Versión de PHP: 7.4.16
 
@@ -31,17 +31,18 @@ CREATE TABLE `detalleauditoria` (
   `iddetalleauditoria` int(11) NOT NULL,
   `codigoauditoria` varchar(80) NOT NULL,
   `idperiodo` int(11) NOT NULL,
-  `fechacreacion` date NOT NULL,
+  `fechacreacion` date NOT NULL DEFAULT current_timestamp(),
   `fechaejecucion` date NOT NULL,
-  `iddetallegrupo` int(11) NOT NULL
+  `idgrupo` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `detalleauditoria`
 --
 
-INSERT INTO `detalleauditoria` (`iddetalleauditoria`, `codigoauditoria`, `idperiodo`, `fechacreacion`, `fechaejecucion`, `iddetallegrupo`) VALUES
-(1, 'cod-001', 2, '0000-00-00', '2021-07-15', 1);
+INSERT INTO `detalleauditoria` (`iddetalleauditoria`, `codigoauditoria`, `idperiodo`, `fechacreacion`, `fechaejecucion`, `idgrupo`) VALUES
+(1, 'Cod-9001', 1, '2021-07-11', '2021-07-21', 1),
+(2, 'Cod-9002', 2, '2021-07-11', '2021-07-24', 5);
 
 -- --------------------------------------------------------
 
@@ -50,22 +51,21 @@ INSERT INTO `detalleauditoria` (`iddetalleauditoria`, `codigoauditoria`, `idperi
 --
 
 CREATE TABLE `detallegrupo` (
-  `iddetallegrupo` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
+  `idgrupo` int(11) NOT NULL,
   `idrolauditor` int(11) NOT NULL,
-  `actividadrealizada` varchar(100) NOT NULL,
-  `idgrupo` int(11) NOT NULL
+  `actividadrealizada` varchar(200) NOT NULL,
+  `iddetallegrupo` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `detallegrupo`
 --
 
-INSERT INTO `detallegrupo` (`iddetallegrupo`, `id_user`, `idrolauditor`, `actividadrealizada`, `idgrupo`) VALUES
-(1, 3, 1, 'Lider de la auditoria de la iso 9001', 4),
-(2, 7, 2, 'Auditor secundarios de la auditoria iso 9001', 4),
-(3, 8, 1, 'dddddddddddd', 5),
-(4, 3, 2, 'ffffffffffffffffff', 5);
+INSERT INTO `detallegrupo` (`id_user`, `idgrupo`, `idrolauditor`, `actividadrealizada`, `iddetallegrupo`) VALUES
+(2, 1, 1, 'Es un auditor lider', 1),
+(8, 1, 2, 'Es una auditora secundaria que brinda ayuda al lider auditor', 4),
+(12, 5, 1, 'Auditora lider ', 5);
 
 -- --------------------------------------------------------
 
@@ -84,9 +84,10 @@ CREATE TABLE `grupoauditor` (
 --
 
 INSERT INTO `grupoauditor` (`idgrupo`, `nombregrupo`, `idnorma`) VALUES
-(4, 'GrupoIso9001', 1),
-(5, 'GrupoBasc', 3),
-(6, 'Aux', 5);
+(1, 'GrupoIso9001', 1),
+(3, 'GrupoBRC', 3),
+(4, 'GrupoBpm', 4),
+(5, 'GrupoBasc', 2);
 
 -- --------------------------------------------------------
 
@@ -104,9 +105,10 @@ CREATE TABLE `norma` (
 --
 
 INSERT INTO `norma` (`idnorma`, `nombrenorma`) VALUES
-(3, 'Basc'),
-(5, 'ISO17000'),
-(1, 'ISO9001');
+(1, 'ISO9001'),
+(2, 'Basc'),
+(3, 'Bcr'),
+(4, 'Bpm ');
 
 -- --------------------------------------------------------
 
@@ -116,7 +118,7 @@ INSERT INTO `norma` (`idnorma`, `nombrenorma`) VALUES
 
 CREATE TABLE `periodo` (
   `idperiodo` int(11) NOT NULL,
-  `tiempoperiodo` varchar(100) NOT NULL
+  `tiempoperiodo` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -124,9 +126,9 @@ CREATE TABLE `periodo` (
 --
 
 INSERT INTO `periodo` (`idperiodo`, `tiempoperiodo`) VALUES
-(3, '12 meses'),
 (1, '4 meses '),
-(2, '6 meses ');
+(2, '6 meses'),
+(3, '12 meses');
 
 -- --------------------------------------------------------
 
@@ -136,7 +138,7 @@ INSERT INTO `periodo` (`idperiodo`, `tiempoperiodo`) VALUES
 
 CREATE TABLE `procesos` (
   `idproceso` int(11) NOT NULL,
-  `nombreproceso` varchar(150) NOT NULL,
+  `nombreproceso` varchar(50) NOT NULL,
   `liderproceso` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -145,10 +147,13 @@ CREATE TABLE `procesos` (
 --
 
 INSERT INTO `procesos` (`idproceso`, `nombreproceso`, `liderproceso`) VALUES
-(2, 'Compras', 3),
-(5, 'Ventas', 2),
-(11, 'Recepcion', 7),
-(12, 'Seguridad', 3);
+(1, 'Compras', 2),
+(2, 'Ventas y Mercadeo', 2),
+(3, 'Direccion Estratégica', 3),
+(4, 'Investigacion y Desarrollo ', 4),
+(5, 'Sistema Integrado de gestion, evalacion y mejorami', 11),
+(6, 'Produccion', 12),
+(7, 'Almacenamiento y Logistica', 8);
 
 -- --------------------------------------------------------
 
@@ -159,7 +164,7 @@ INSERT INTO `procesos` (`idproceso`, `nombreproceso`, `liderproceso`) VALUES
 CREATE TABLE `rol` (
   `idrol` int(11) NOT NULL,
   `rol` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `rol`
@@ -199,24 +204,28 @@ CREATE TABLE `usuario` (
   `id_user` int(11) NOT NULL,
   `user` varchar(20) NOT NULL,
   `password` varchar(100) NOT NULL,
-  `correo` varchar(100) NOT NULL,
+  `correo` varchar(50) NOT NULL,
   `rol` int(11) NOT NULL,
-  `estatus` int(11) NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `estatus` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `usuario`
 --
 
 INSERT INTO `usuario` (`id_user`, `user`, `password`, `correo`, `rol`, `estatus`) VALUES
-(1, 'ivan', '102ddaf691e1615d5dacd4c86299bfa4', 'ivanes285@gmail.com', 1, 1),
-(2, 'francis', '102ddaf691e1615d5dacd4c86299bfa4', 'francis@gmail.com', 2, 1),
-(3, 'malcom', '102ddaf691e1615d5dacd4c86299bfa4', 'malcom@gmail.com', 2, 1),
-(4, 'Don Aux', '102ddaf691e1615d5dacd4c86299bfa4', '', 3, 1),
-(5, 'brandon', '102ddaf691e1615d5dacd4c86299bfa4', '', 3, 0),
-(6, 'Ana', '102ddaf691e1615d5dacd4c86299bfa4', '', 2, 0),
-(7, 'hall', '102ddaf691e1615d5dacd4c86299bfa4', '', 2, 1),
-(8, 'ressee', 'sistemas', 'rees@gmail.com', 2, 1);
+(1, 'ivan', '102ddaf691e1615d5dacd4c86299bfa4', 'ialescanov@utn.edu.ec', 1, 1),
+(2, 'malcom', '102ddaf691e1615d5dacd4c86299bfa4', '', 2, 1),
+(3, 'francis', '102ddaf691e1615d5dacd4c86299bfa4', '', 2, 1),
+(4, 'hall', '102ddaf691e1615d5dacd4c86299bfa4', '', 2, 1),
+(5, 'ressee', '102ddaf691e1615d5dacd4c86299bfa4', 'resee', 3, 1),
+(6, 'andy', '102ddaf691e1615d5dacd4c86299bfa4', 'andy@gmail.com', 3, 1),
+(7, 'dewey', '102ddaf691e1615d5dacd4c86299bfa4', 'dewey@gmail.com', 3, 1),
+(8, 'lois', '102ddaf691e1615d5dacd4c86299bfa4', 'lois@gmail.com', 2, 1),
+(9, 'stevie', '102ddaf691e1615d5dacd4c86299bfa4', 'stevie@gmail.com', 3, 1),
+(10, 'craig', '102ddaf691e1615d5dacd4c86299bfa4', 'craig@gmail.com', 3, 1),
+(11, 'lavernia', '102ddaf691e1615d5dacd4c86299bfa4', 'lavernia@gmail.com', 2, 1),
+(12, 'piama', '102ddaf691e1615d5dacd4c86299bfa4', 'piama@gmail.com', 2, 1);
 
 --
 -- Índices para tablas volcadas
@@ -227,9 +236,8 @@ INSERT INTO `usuario` (`id_user`, `user`, `password`, `correo`, `rol`, `estatus`
 --
 ALTER TABLE `detalleauditoria`
   ADD PRIMARY KEY (`iddetalleauditoria`),
-  ADD UNIQUE KEY `codigoauditoria` (`codigoauditoria`),
   ADD KEY `idperiodo` (`idperiodo`),
-  ADD KEY `iddetallegrupo` (`iddetallegrupo`);
+  ADD KEY `idgrupo` (`idgrupo`);
 
 --
 -- Indices de la tabla `detallegrupo`
@@ -237,8 +245,8 @@ ALTER TABLE `detalleauditoria`
 ALTER TABLE `detallegrupo`
   ADD PRIMARY KEY (`iddetallegrupo`),
   ADD KEY `id_user` (`id_user`),
-  ADD KEY `idrolauditor` (`idrolauditor`),
-  ADD KEY `idgrupo` (`idgrupo`);
+  ADD KEY `idgrupo` (`idgrupo`),
+  ADD KEY `idrolauditor` (`idrolauditor`);
 
 --
 -- Indices de la tabla `grupoauditor`
@@ -251,15 +259,13 @@ ALTER TABLE `grupoauditor`
 -- Indices de la tabla `norma`
 --
 ALTER TABLE `norma`
-  ADD PRIMARY KEY (`idnorma`),
-  ADD UNIQUE KEY `nombrenorma` (`nombrenorma`);
+  ADD PRIMARY KEY (`idnorma`);
 
 --
 -- Indices de la tabla `periodo`
 --
 ALTER TABLE `periodo`
-  ADD PRIMARY KEY (`idperiodo`),
-  ADD UNIQUE KEY `tiempoperiodo` (`tiempoperiodo`);
+  ADD PRIMARY KEY (`idperiodo`);
 
 --
 -- Indices de la tabla `procesos`
@@ -295,25 +301,25 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `detalleauditoria`
 --
 ALTER TABLE `detalleauditoria`
-  MODIFY `iddetalleauditoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `iddetalleauditoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `detallegrupo`
 --
 ALTER TABLE `detallegrupo`
-  MODIFY `iddetallegrupo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `iddetallegrupo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `grupoauditor`
 --
 ALTER TABLE `grupoauditor`
-  MODIFY `idgrupo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `idgrupo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `norma`
 --
 ALTER TABLE `norma`
-  MODIFY `idnorma` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `idnorma` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `periodo`
@@ -325,7 +331,7 @@ ALTER TABLE `periodo`
 -- AUTO_INCREMENT de la tabla `procesos`
 --
 ALTER TABLE `procesos`
-  MODIFY `idproceso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `idproceso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `rol`
@@ -343,7 +349,7 @@ ALTER TABLE `rolauditor`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Restricciones para tablas volcadas
@@ -353,22 +359,22 @@ ALTER TABLE `usuario`
 -- Filtros para la tabla `detalleauditoria`
 --
 ALTER TABLE `detalleauditoria`
-  ADD CONSTRAINT `detalleauditoria_ibfk_1` FOREIGN KEY (`idperiodo`) REFERENCES `periodo` (`idperiodo`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `detalleauditoria_ibfk_2` FOREIGN KEY (`iddetallegrupo`) REFERENCES `detallegrupo` (`iddetallegrupo`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `detalleauditoria_ibfk_1` FOREIGN KEY (`idgrupo`) REFERENCES `detallegrupo` (`idgrupo`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `detalleauditoria_ibfk_2` FOREIGN KEY (`idperiodo`) REFERENCES `periodo` (`idperiodo`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `detallegrupo`
 --
 ALTER TABLE `detallegrupo`
-  ADD CONSTRAINT `detallegrupo_ibfk_1` FOREIGN KEY (`idrolauditor`) REFERENCES `rolauditor` (`idrolauditor`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `detallegrupo_ibfk_2` FOREIGN KEY (`idgrupo`) REFERENCES `grupoauditor` (`idgrupo`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `detallegrupo_ibfk_3` FOREIGN KEY (`id_user`) REFERENCES `usuario` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `detallegrupo_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `usuario` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `detallegrupo_ibfk_2` FOREIGN KEY (`idrolauditor`) REFERENCES `rolauditor` (`idrolauditor`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `detallegrupo_ibfk_3` FOREIGN KEY (`idgrupo`) REFERENCES `grupoauditor` (`idgrupo`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `grupoauditor`
 --
 ALTER TABLE `grupoauditor`
-  ADD CONSTRAINT `grupoauditor_ibfk_2` FOREIGN KEY (`idnorma`) REFERENCES `norma` (`idnorma`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `grupoauditor_ibfk_1` FOREIGN KEY (`idnorma`) REFERENCES `norma` (`idnorma`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `procesos`
@@ -380,7 +386,7 @@ ALTER TABLE `procesos`
 -- Filtros para la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  ADD CONSTRAINT `usuario_ibfk_1` FOREIGN KEY (`rol`) REFERENCES `rol` (`idrol`);
+  ADD CONSTRAINT `usuario_ibfk_1` FOREIGN KEY (`rol`) REFERENCES `rol` (`idrol`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

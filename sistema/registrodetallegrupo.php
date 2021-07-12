@@ -6,13 +6,13 @@ if (!empty($_POST)) {
     $alert = '';
 
 
-    $idusername = $_POST['idusuario'];
-    $idrolauditor = $_POST['idrolauditor'];
-    $actividadrealizada = $_POST['actividad'];
+    $iduser = $_POST['idusuario'];
     $idgrupo = $_POST['idgrupo'];
+    $idrolauditor = $_POST['idrolauditor'];
+    $actividadrealizada= $_POST['actividad'];
 
-    $query_insert = mysqli_query($conection, "INSERT INTO detallegrupo (id_user,idrolauditor,actividadrealizada,idgrupo) VALUES 
-    ('$idusername','$idrolauditor','$actividadrealizada','$idgrupo')");
+    $query_insert = mysqli_query($conection, "INSERT INTO detallegrupo (id_user,idgrupo,idrolauditor,actividadrealizada) VALUES 
+    ('$iduser','$idgrupo','$idrolauditor','$actividadrealizada')");
 
     if ($query_insert) {
         $alert = '<p class="msg_save">CREADO CORRECTAMENTE</p>';
@@ -48,6 +48,26 @@ if (!empty($_POST)) {
             <div class="alert"><?php echo isset($alert) ? $alert : ''; ?></div>
 
             <form action="" method="POST">
+
+
+            <label for="idgrupo">Asignar a Grupo</label>
+                <?php
+                $query_id_user = mysqli_query($conection, "SELECT * FROM grupoauditor");
+                $result_id_user = mysqli_num_rows($query_id_user);
+                ?>
+                <select name="idgrupo" id="idgrupo">
+                    <?php
+                    if ($result_id_user > 0) {
+                        while ($grupo = mysqli_fetch_array($query_id_user)) {
+                    ?>
+                            <option value="<?php echo $grupo["idgrupo"]; ?>"><?php echo $grupo["nombregrupo"]; ?></option>
+                    <?php
+                        }
+                    }
+                    ?>
+                </select>
+
+
 
                 <label for="idusuario">Auditor del Grupo</label>
                 <?php
@@ -92,22 +112,6 @@ if (!empty($_POST)) {
                 <textarea name="actividad" cols="30" rows="10" placeholder="Ingrese la Actividad"></textarea>
 
 
-                <label for="idgrupo">Asignar a Grupo</label>
-                <?php
-                $query_id_user = mysqli_query($conection, "SELECT * FROM grupoauditor");
-                $result_id_user = mysqli_num_rows($query_id_user);
-                ?>
-                <select name="idgrupo" id="idgrupo">
-                    <?php
-                    if ($result_id_user > 0) {
-                        while ($grupo = mysqli_fetch_array($query_id_user)) {
-                    ?>
-                            <option value="<?php echo $grupo["idgrupo"]; ?>"><?php echo $grupo["nombregrupo"]; ?></option>
-                    <?php
-                        }
-                    }
-                    ?>
-                </select>
 
                 <input type="submit" value="Registrar" class="btn_save">
             </form>

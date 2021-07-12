@@ -11,15 +11,16 @@ if (!empty($_POST)) {
 
     $codigoauditoria = $_POST['codigoauditoria'];
     $idperiodo = $_POST['tiempoperiodo']; 
-    $idgrupode=$_POST['detallegrupo'];
     $fechaejecucion=$_POST['fechaejecucion'];
+    $idgrupode=$_POST['detallegrupo'];
+    
 
     $query = mysqli_query($conection, "SELECT * FROM detalleauditoria WHERE  codigoauditoria='$codigoauditoria' ");
     $result = mysqli_fetch_array($query);
     if ($result > 0) {
         $alert = '<p class="msg_error">Proceso YA existe !Intente de Nuevo con una nueva Auditoria</p>';
     } else {
-        $query_insert = mysqli_query($conection, "INSERT INTO detalleauditoria (codigoauditoria,idperiodo,fechaejecucion,iddetallegrupo) VALUES 
+        $query_insert = mysqli_query($conection, "INSERT INTO detalleauditoria (codigoauditoria,idperiodo,fechaejecucion,idgrupo) VALUES 
         ('$codigoauditoria',$idperiodo,'$fechaejecucion', $idgrupode)");
 
         if ($query_insert) {
@@ -56,8 +57,10 @@ if (!empty($_POST)) {
             <hr>
             <div class="alert"><?php echo isset($alert) ? $alert : ''; ?></div>
             <form action="" method="POST">
+
                 <label for="codigoauditoria">Código Auditoria</label>
                 <input type="text" name="codigoauditoria" id="codigoauditoria" placeholder="Ingrese el código de auditoría" required>
+
                 <label for="tiempoperiodo">Tiempo Periodo</label>
                 <?php
                 $query_id_user = mysqli_query($conection, "SELECT * FROM periodo");
@@ -74,11 +77,13 @@ if (!empty($_POST)) {
                     }
                     ?>
                 </select>
+
                 <label for="fechaejecucion">Fecha de Ejecución</label>
                 <input type="text" name="fechaejecucion" id="fechaejecucion" autocomplete="off">
+
                 <label for="grupoauditor">Grupo de Auditoria</label>
                 <?php
-                $query_id_user = mysqli_query($conection, "SELECT iddetallegrupo,nombregrupo from grupoauditor ga , detallegrupo dg WHERE ga.idgrupo=dg.idgrupo");
+                $query_id_user = mysqli_query($conection, "SELECT  nombregrupo,iddetallegrupo FROM grupoauditor ga, detallegrupo dg WHERE ga.idgrupo=dg.idgrupo AND dg.idrolauditor=1");
                 $result_id_user = mysqli_num_rows($query_id_user);
                 ?>
                 <select name="detallegrupo" id="detallegrupo">

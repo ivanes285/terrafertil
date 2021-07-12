@@ -20,11 +20,10 @@ include "../conexion.php";
 
 		<table>
 			<tr>
-				<th>ID</th>
 				<th>Nombre Auditor</th>
+				<th>Grupo</th>
 				<th>Rol Auditor</th>
 				<th>Actividad Realizada</th>
-				<th>Grupo</th>
 				<th>Acciones</th>
 
 			</tr>
@@ -42,7 +41,7 @@ include "../conexion.php";
 			$desde = ($pagina - 1) * $por_pagina;
 			$total_paginas = ceil($total_registro / $por_pagina);
 			/*select codigoauditoria, fechaejecucion,nombrenorma from norma n, grupoauditor ga, detalleauditoria da, usuario u where n.idnorma=ga.idnorma and ga.idgrupo=da.idgrupo AND ga.idusuario=u.id_user AND u.id_user=3 */
-			$query = mysqli_query($conection, "SELECT iddetallegrupo,user,rolauditor,actividadrealizada,nombregrupo from detallegrupo d, usuario u , rolauditor ra , grupoauditor g WHERE u.id_user=d.id_user AND ra.idrolauditor=d.idrolauditor AND d.idgrupo=g.idgrupo ORDER BY iddetallegrupo ASC LIMIT $desde,$por_pagina");
+			$query = mysqli_query($conection, "SELECT user,nombregrupo,rolauditor,actividadrealizada,iddetallegrupo from detallegrupo d, usuario u , rolauditor ra , grupoauditor g WHERE u.id_user=d.id_user AND ra.idrolauditor=d.idrolauditor AND d.idgrupo=g.idgrupo ORDER BY nombregrupo ASC LIMIT $desde,$por_pagina");
 
 			mysqli_close($conection);
 			$result = mysqli_num_rows($query);
@@ -55,14 +54,13 @@ include "../conexion.php";
 						<td><?php echo $data[1]; ?></td>
 						<td><?php echo $data[2]; ?></td>
 						<td><?php echo $data[3]; ?></td>
-						<td><?php echo $data[4]; ?></td>
-						
+
 						<td>
-							<a class="link_edit" href="editar_grupo_auditor.php?id=<?php echo $data["idgrupo"]; ?>">Editar</a>
+							<a class="link_edit" href="editar_grupo_auditor.php?id=<?php echo $data["iddetallegrupo"]; ?>">Editar</a>
 
 							<?php if ($_SESSION['rol'] == 1) { ?>
 								|
-								<a class="link_delete" href="eliminar_grupo_auditor.php?id=<?php echo $data["idgrupo"]; ?>">Eliminar</a>
+								<a class="link_delete" href="eliminar_grupo_auditor.php?id=<?php echo $data["iddetallegrupo"]; ?>">Eliminar</a>
 
 							<?php } ?>
 						</td>

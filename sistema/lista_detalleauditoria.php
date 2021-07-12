@@ -43,7 +43,7 @@ include "../conexion.php";
 			$total_paginas = ceil($total_registro / $por_pagina);
 
 
-			$query = mysqli_query($conection, "SELECT iddetalleauditoria,codigoauditoria,tiempoperiodo,nombrenorma, fechacreacion ,fechaejecucion,nombregrupo from detallegrupo dg, periodo p, detalleauditoria da, grupoauditor g, norma n where dg.idgrupo=g.idgrupo and dg.iddetallegrupo=da.iddetallegrupo and p.idperiodo=da.idperiodo and g.idnorma=n.idnorma 	 ORDER BY codigoauditoria ASC LIMIT $desde,$por_pagina");
+			$query = mysqli_query($conection, "SELECT iddetalleauditoria,codigoauditoria,tiempoperiodo,fechacreacion,fechaejecucion,nombrenorma,nombregrupo FROM norma n, grupoauditor ga,detallegrupo dg, detalleauditoria da, periodo p WHERE P.idperiodo=da.idperiodo AND n.idnorma=ga.idnorma AND dg.idgrupo=da.idgrupo and dg.idgrupo=ga.idgrupo AND dg.idrolauditor=1 ORDER BY codigoauditoria ASC LIMIT $desde,$por_pagina");
 
 
 			mysqli_close($conection);
@@ -53,8 +53,6 @@ include "../conexion.php";
 				while ($data = mysqli_fetch_array($query)) {
 			?>
 					<tr>
-
-
 						<td><?php echo $data[1]; ?></td>
 						<td><?php echo $data[2]; ?></td>
 						<td><?php echo $data[3]; ?></td>
@@ -112,3 +110,5 @@ include "../conexion.php";
 </body>
 
 </html>
+
+
