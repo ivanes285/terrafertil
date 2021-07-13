@@ -56,11 +56,11 @@ include "../conexion.php";
 						<td><?php echo $data[3]; ?></td>
 
 						<td>
-							<a class="link_edit" href="editar_grupo_auditor.php?id=<?php echo $data["iddetallegrupo"]; ?>">Editar</a>
+							<a class="link_edit" href="editar_ga.php?id=<?php echo $data["iddetallegrupo"]; ?>">Editar</a>
 
 							<?php if ($_SESSION['rol'] == 1) { ?>
 								|
-								<a class="link_delete" href="eliminar_grupo_auditor.php?id=<?php echo $data["iddetallegrupo"]; ?>">Eliminar</a>
+								<a class="link_delete" href="eliminar_ga.php?id=<?php echo $data["iddetallegrupo"]; ?>">Eliminar</a>
 
 							<?php } ?>
 						</td>

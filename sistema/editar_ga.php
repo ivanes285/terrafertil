@@ -5,13 +5,14 @@ include "../conexion.php";
 
 if (!empty($_POST)) {
     $alert = '';
-    $iddetalleauditoria = $_POST['iddetalleauditoria'];
-    $codigoauditoria = $_POST['codigoauditoria'];
-    $idperiodo = $_POST['tiempoperiodo'];
-    $fechaejecucion = $_POST['fechaejecucion'];
+    $iddetallegrupo = $_POST['iddetallegrupo'];
+    $id_user = $_POST['id_user'];
     $idgrupo = $_POST['grupoauditor'];
+    $idrolauditor = $_POST['rol'];
+    $actividadrealizada= $_POST['actividadrealizada'];
+   
 
-    $query_update = mysqli_query($conection, "UPDATE detalleauditoria SET codigoauditoria='$codigoauditoria',idperiodo=$idperiodo, fechaejecucion='$fechaejecucion', idgrupo=$idgrupo  WHERE iddetalleauditoria=$iddetalleauditoria");
+    $query_update = mysqli_query($conection, "UPDATE detallegrupo SET id_user=$id_user,idgrupo=$idgrupo,idrolauditor=$idrolauditor, actividadrealizada='$actividadrealizada' WHERE iddetallegrupo=$iddetallegrupo");
     if ($query_update) {
         $alert = '<p class="msg_save">PROCESO Actualizado </p>';
     } else {
@@ -20,29 +21,29 @@ if (!empty($_POST)) {
 }
 
 if (empty($_REQUEST['id'])) {
-    header('Location: listar_auditorias.php');
+    header('Location: listadetallegrupo.php');
     mysqli_close($conection);
 }
 
 
-$iddetalleauditoria = $_REQUEST['id'];
-$sql = mysqli_query($conection, "SELECT * FROM detalleauditoria WHERE iddetalleauditoria=$iddetalleauditoria");
+$iddetallegrupo = $_REQUEST['id'];
+$sql = mysqli_query($conection, "SELECT * FROM detallegrupo WHERE iddetallegrupo=$iddetallegrupo");
 
 
 mysqli_close($conection);
 $result_sql = mysqli_num_rows($sql);
 if ($result_sql == 0) {
-    header('Location: listar_auditorias.php');
+    header('Location: listadetallegrupo.php');
 } else {
 
     $option = '';
     while ($data = mysqli_fetch_array($sql)) {
-        $iddetalleauditoria = $data['iddetalleauditoria'];
-        $codigoauditoria = $data['codigoauditoria'];
-        $idperiodo = $data['idperiodo'];
-        $fechaejecucion = $data['fechaejecucion'];
-        $idgrupo = $data['idgrupo'];
-    }
+        $id_user = $data[0];
+        $idgrupo = $data[1];
+        $idrolauditor = $data[2];
+        $actividadrealizada= $data[3];
+        $iddetallegrupo = $data[4];
+   }
 }
 ?>
 
@@ -68,35 +69,50 @@ if ($result_sql == 0) {
             <hr>
             <div class="alert"><?php echo isset($alert) ? $alert : ''; ?></div>
             <form action="" method="POST">
-                <input type="hidden" name="iddetalleauditoria" value="<?php echo $iddetalleauditoria; ?>">
+                <input type="hidden" name="iddetallegrupo" value="<?php echo $iddetallegrupo; ?>">
 
-                <label for="codigoauditoria">Código Auditoria</label>
-                <input type="text" name="codigoauditoria" id="codigoauditoria" placeholder="Ingrese el código de auditoría" required value="<?php echo $codigoauditoria; ?>">
-
-
-                <label for="tiempoperiodo">Tiempo Periodo</label>
+                <label for="id_user">Auditor</label>
                 <?php
                 include "../conexion.php";
-                $query_id_user = mysqli_query($conection, "SELECT * FROM periodo");
+                $query_id_user = mysqli_query($conection, "SELECT * FROM usuario where rol=2");
                 mysqli_close($conection);
                 $result_id_user = mysqli_num_rows($query_id_user);
                 ?>
-                <select name="tiempoperiodo" id="tiempoperiodo">
+                <select name="id_user" id="id_user">
                     <?php
                     if ($result_id_user > 0) {
                         while ($periodo = mysqli_fetch_array($query_id_user)) {
                     ?>
-                            <option value="<?php echo $periodo["idperiodo"]; ?>"><?php echo $periodo["tiempoperiodo"]; ?></option>
+                            <option value="<?php echo $periodo["id_user"]; ?>"><?php echo $periodo["user"]; ?></option>
+                    <?php
+                        }
+                    }
+                    ?>
+                </select>
+                
+                <label for="rol">Rol Auditor</label>
+                <?php
+                include "../conexion.php";
+                $query_id_user = mysqli_query($conection, "SELECT * FROM rolauditor");
+                mysqli_close($conection);
+                $result_id_user = mysqli_num_rows($query_id_user);
+                ?>
+                <select name="rol" id="rol">
+                    <?php
+                    if ($result_id_user > 0) {
+                        while ($periodo = mysqli_fetch_array($query_id_user)) {
+                    ?>
+                            <option value="<?php echo $periodo["idrolauditor"]; ?>"><?php echo $periodo["rolauditor"]; ?></option>
                     <?php
                         }
                     }
                     ?>
                 </select>
 
-                <label for="fechaejecucion">Fecha de Ejecución</label>
-                <input type="text" name="fechaejecucion" id="fechaejecucion" autocomplete="off" value="<?php echo $fechaejecucion; ?>">
+                <label for="actividadrealizada">Actividad Realizada</label>
+                <input type="text" name="actividadrealizada" id="actividadrealizada" autocomplete="off" value="<?php echo $actividadrealizada; ?>">
 
-                <label for="grupoauditor">Grupo Auditor</label>
+                <label for="id_user">Grupo Auditor</label>
                 <?php
                 include "../conexion.php";
                 $query_id_user = mysqli_query($conection, "SELECT * FROM grupoauditor");
@@ -116,19 +132,12 @@ if ($result_sql == 0) {
                 </select>
 
 
-                <a href="lista_detalleauditoria.php" class="btn_cancel">Cancelar</a>
+                <a href="listadetallegrupo.php" class="btn_cancel">Cancelar</a>
                 <input type="submit" value="Actualizar" class="btn_save">
             </form>
         </div>
     </section>
-    <script>
-        $(function() {
-            $("#fechaejecucion").datepicker({
-                dateFormat: "yy-mm-dd",
-                minDate: 0
-            });
-        });
-    </script>
+    
 </body>
 
 </html>
