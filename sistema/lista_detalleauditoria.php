@@ -22,9 +22,9 @@ include "../conexion.php";
 			<tr>
 				<th>Codigo Auditoría</th>
 				<th>Periodo</th>
-				<th>Norma</th>
-				<th>Fecha de Creación</th>
+				<th>Fecha Creacion</th>
 				<th>Fecha de Ejecución</th>
+				<th>Norma</th>
 				<th>Grupo Auditor</th>
 				<th>Acciones</th>
 			</tr>
@@ -59,6 +59,7 @@ include "../conexion.php";
 						<td><?php echo $data[4]; ?></td>
 						<td><?php echo $data[5]; ?></td>
 						<td><?php echo $data[6]; ?></td>
+					
 
 						<td>
 							<a class="link_edit" href="editar_auditoria.php?id=<?php echo $data[0]; ?>">Editar</a>

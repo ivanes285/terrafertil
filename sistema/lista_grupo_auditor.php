@@ -20,7 +20,6 @@
 <tr>
     <th>ID</th>
     <th>Nombre Grupo</th>
-
 	<th>Norma</th>
 	<th>Acciones</th>
 </tr>
@@ -39,9 +38,9 @@ if(empty($_GET['pagina']))
 $desde = ($pagina-1) * $por_pagina;
 $total_paginas = ceil($total_registro / $por_pagina);
 
-//$query = mysqli_query($conection, "SELECT * FROM grupoauditor ORDER BY idgrupo ASC LIMIT $desde,$por_pagina");
+
  $query = mysqli_query($conection, "SELECT g.idgrupo, g.nombregrupo,n.nombrenorma from norma n , grupoauditor g where g.idnorma=n.idnorma ORDER BY idgrupo ASC LIMIT $desde,$por_pagina");
- //$query2 = mysqli_query($conection, "SELECT u.user FROM usuario u INNER JOIN grupoauditor gp where u.id_user=gp.idusuario ORDER BY gp.idgrupo ASC LIMIT $desde,$por_pagina");
+
 mysqli_close($conection);
 $result=mysqli_num_rows($query);
 

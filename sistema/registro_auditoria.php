@@ -14,7 +14,6 @@ if (!empty($_POST)) {
     $fechaejecucion=$_POST['fechaejecucion'];
     $idgrupode=$_POST['detallegrupo'];
     
-
     $query = mysqli_query($conection, "SELECT * FROM detalleauditoria WHERE  codigoauditoria='$codigoauditoria' ");
     $result = mysqli_fetch_array($query);
     if ($result > 0) {
@@ -22,11 +21,11 @@ if (!empty($_POST)) {
     } else {
         $query_insert = mysqli_query($conection, "INSERT INTO detalleauditoria (codigoauditoria,idperiodo,fechaejecucion,idgrupo) VALUES 
         ('$codigoauditoria',$idperiodo,'$fechaejecucion', $idgrupode)");
-
+         
         if ($query_insert) {
             $alert = '<p class="msg_save">CREADO CORRECTAMENTE</p>';
         } else {
-
+           
             $alert = '<p class="msg_error">Error al Registrar Auditoria </p>';
         }
     }
@@ -83,15 +82,17 @@ if (!empty($_POST)) {
 
                 <label for="grupoauditor">Grupo de Auditoria</label>
                 <?php
-                $query_id_user = mysqli_query($conection, "SELECT  nombregrupo,iddetallegrupo FROM grupoauditor ga, detallegrupo dg WHERE ga.idgrupo=dg.idgrupo AND dg.idrolauditor=1");
+                $query_id_user = mysqli_query($conection, "SELECT nombregrupo,dg.idgrupo,iddetallegrupo FROM grupoauditor ga, detallegrupo dg WHERE dg.idgrupo=ga.idgrupo AND dg.idrolauditor=1");
+                
                 $result_id_user = mysqli_num_rows($query_id_user);
+                
                 ?>
                 <select name="detallegrupo" id="detallegrupo">
                     <?php
                     if ($result_id_user > 0) {
                         while ($grupo = mysqli_fetch_array($query_id_user)) {
                     ?>
-                            <option value="<?php echo $grupo["iddetallegrupo"]; ?>"><?php echo $grupo["nombregrupo"]; ?></option>
+                            <option value="<?php echo $grupo["idgrupo"]; ?>"><?php echo $grupo["nombregrupo"]; ?></option>
                     <?php
                         }
                     }
