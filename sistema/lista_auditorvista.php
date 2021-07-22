@@ -49,7 +49,7 @@ $usu = $_SESSION['id_user'];
 
 						<td><?php echo $data[0]; ?></td>
 						<td><?php echo $data[1]; ?></td>
-						<td><a href="lista_pastel.php"><?php echo $data[2]; ?></a></td>
+						<td><a href="https://cutt.ly/tmCfddJ" target="_blank"><?php echo $data[2]; ?></a></td>
 
 					</tr>
 			<?php
