@@ -20,64 +20,56 @@ if (!empty($_POST)) {
     if ($result > 0) {
         $alert = '<p class="msg_error">Proceso YA existe !Intente de Nuevo con una nueva Auditoria</p>';
     } else {
-        //Registro de la Auditoria
+
+        //Consulta pra el Registro de la Auditoria
         $query_insert = mysqli_query($conection, "INSERT INTO detalleauditoria (codigoauditoria,idperiodo,fechaejecucion,idgrupo) VALUES 
         ('$codigoauditoria',$idperiodo,'$fechaejecucion', $idgrupode)");
-        //$ultimoregistro= mysqli_query($conection, "SELECT @@identity AS id");
-        $ultimoregistro = mysqli_query($conection, "SELECT MAX(iddetalleauditoria) FROM detalleauditoria");
-        $num = mysqli_num_rows($ultimoregistro);
 
+
+        //Consulta para determinar el ultimoregistro
+        $sql = mysqli_query($conection, "SELECT MAX(iddetalleauditoria) FROM detalleauditoria");
+        $num = mysqli_num_rows($sql);
         if ($num > 0) {
-            while ($po = mysqli_fetch_array($ultimoregistro)) {
+            while ($po = mysqli_fetch_array($sql)) {
                 $fda = $po[0];
             }
         }
-        $ff = intval($fda);
+        $ultimoregistro = intval($fda); //convierto en entero ya que fda es string
 
 
         //consulta para saber que norma es de la auditoria ingresada
-        
-        $norma = mysqli_query($conection, "SELECT n.idnorma,n.nombrenorma from detalleauditoria da, detallegrupo dg, grupoauditor ga, norma n WHERE n.idnorma=ga.idnorma AND ga.idgrupo=dg.idgrupo AND dg.idgrupo=da.idgrupo AND dg.idrolauditor=1 AND da.iddetalleauditoria=$ff");
-        $numero= mysqli_num_rows($norma);
+        $sqlnorma = mysqli_query($conection, "SELECT n.idnorma,n.nombrenorma from detalleauditoria da, detallegrupo dg, grupoauditor ga, norma n WHERE n.idnorma=ga.idnorma AND ga.idgrupo=dg.idgrupo AND dg.idgrupo=da.idgrupo AND dg.idrolauditor=1 AND da.iddetalleauditoria=$ultimoregistro");
+        $numero = mysqli_num_rows($sqlnorma);
         if ($numero > 0) {
-            while ($periodo = mysqli_fetch_array($norma)) {
-            $gg=$periodo[0];
-         }
+            while ($res = mysqli_fetch_array($sqlnorma)) {
+                $gg = $res[0];
+            }
         }
-        $jj= intval($gg);
+        $norma = intval($gg);  //convierto en entero ya que fda es string
+
         //Consulta para recorrer todas las clausulas de la tabla clausulas cuando norma de clausula sea igual a la norma de detalleauditoria
-        $clausulas = mysqli_query($conection, "SELECT c.idclausula,c.clausula,c.detalleclausula,c.idnorma,c.idproceso from clausula c , detalleauditoria da, detallegrupo dg, grupoauditor ga, norma n WHERE n.idnorma=ga.idnorma AND ga.idgrupo=dg.idgrupo AND dg.idgrupo=da.idgrupo AND n.idnorma=c.idnorma AND dg.idrolauditor=1 AND c.idnorma=$jj");
+        $clausulas = mysqli_query($conection, "SELECT c.idclausula,c.clausula,c.detalleclausula,c.idnorma,c.idproceso from clausula c , detalleauditoria da, detallegrupo dg, grupoauditor ga, norma n WHERE n.idnorma=ga.idnorma AND ga.idgrupo=dg.idgrupo AND dg.idgrupo=da.idgrupo AND n.idnorma=c.idnorma AND dg.idrolauditor=1 AND c.idnorma=$norma AND da.iddetalleauditoria=$ultimoregistro");
         $numeroclausulas = mysqli_num_rows($clausulas);
-        var_dump($clausulas);
+        $con = 1;
+        $array = array();
         if ($numeroclausulas > 0) {
             while ($pe = mysqli_fetch_array($clausulas)) {
-            $pp=$pe[0];
-         }
+                $array[$con] = $pe[0];
+                $con++;
+            }
         }
-        $mm= intval($pp);
-
-
         for ($i = 1; $i <= $numeroclausulas; $i++) {
-            $sqlinsert = mysqli_query($conection, "INSERT INTO detalleclausula (idclausula,iddetalleauditoria) VALUES  ($mm,$ff)");
+            $val = $array[$i];
+            $sqlinsert = mysqli_query($conection, "INSERT INTO detalleclausula (idclausula,iddetalleauditoria) VALUES  ($val,$ultimoregistro)");
         }
-        $numeroclausulas=0;
-        // if ($numeroclausulas > 0) {
-        //     while ($periodo = mysqli_fetch_array($clausulas)) {
-        //         $sqlinsert = mysqli_query($conection, "INSERT INTO detalleclausula (idclausula,iddetalleauditoria) VALUES ($periodo[0],$ultimoregistro)");
-
-        //     }
-        // }
-
 
         if ($query_insert) {
             $alert = '<p class="msg_save">CREADO CORRECTAMENTE</p>';
         } else {
-
             $alert = '<p class="msg_error">Error al Registrar Auditoria </p>';
         }
     }
 }
-
 
 ?>
 
@@ -103,10 +95,8 @@ if (!empty($_POST)) {
             <hr>
             <div class="alert"><?php echo isset($alert) ? $alert : ''; ?></div>
             <form action="" method="POST">
-
                 <label for="codigoauditoria">Código Auditoria</label>
                 <input type="text" name="codigoauditoria" id="codigoauditoria" placeholder="Ingrese el código de auditoría" required>
-
                 <label for="tiempoperiodo">Tiempo Periodo</label>
                 <?php
                 $query_id_user = mysqli_query($conection, "SELECT * FROM periodo");
@@ -115,18 +105,16 @@ if (!empty($_POST)) {
                 <select name="tiempoperiodo" id="tiempoperiodo">
                     <?php
                     if ($result_id_user > 0) {
-                        while ($periodo = mysqli_fetch_array($query_id_user)) {
+                        while ($res = mysqli_fetch_array($query_id_user)) {
                     ?>
-                            <option value="<?php echo $periodo["idperiodo"]; ?>"><?php echo $periodo["tiempoperiodo"]; ?></option>
+                            <option value="<?php echo $res["idperiodo"]; ?>"><?php echo $res["tiempoperiodo"]; ?></option>
                     <?php
                         }
                     }
                     ?>
                 </select>
-
                 <label for="fechaejecucion">Fecha de Ejecución</label>
                 <input type="text" name="fechaejecucion" id="fechaejecucion" autocomplete="off">
-
                 <label for="grupoauditor">Grupo de Auditoria</label>
                 <?php
                 $query_id_user = mysqli_query($conection, "SELECT nombregrupo,dg.idgrupo,iddetallegrupo FROM grupoauditor ga, detallegrupo dg WHERE dg.idgrupo=ga.idgrupo AND dg.idrolauditor=1");

@@ -36,29 +36,22 @@ $usu = $_SESSION['id_user'];
 			}
 			$desde = ($pagina - 1) * $por_pagina;
 			$total_paginas = ceil($total_registro / $por_pagina);
-
-
 			$query = mysqli_query($conection, "SELECT codigoauditoria,fechaejecucion,nombrenorma from norma n, grupoauditor ga, detallegrupo dg, detalleauditoria da WHERE n.idnorma=ga.idnorma and ga.idgrupo=dg.idgrupo AND dg.idgrupo=da.idgrupo AND dg.id_user=$usu ORDER BY codigoauditoria ASC LIMIT $desde,$por_pagina");
 			mysqli_close($conection);
 			$result = mysqli_num_rows($query);
-
 			if ($result > 0) {
 				while ($data = mysqli_fetch_array($query)) {
 			?>
 					<tr>
-
 						<td><?php echo $data[0]; ?></td>
 						<td><?php echo $data[1]; ?></td>
 						<td><a href="https://cutt.ly/tmCfddJ" target="_blank"><?php echo $data[2]; ?></a></td>
-
 					</tr>
 			<?php
 				}
 			}
 			?>
-
 		</table>
-
 		<div class="paginador">
 			<ul>
 				<?php
