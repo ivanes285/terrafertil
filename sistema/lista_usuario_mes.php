@@ -29,7 +29,9 @@ include "../conexion.php";
                 
 			</tr>
 			<?php
+
             $mesactual= date('n');
+			
 			$yearactual=date('Y');
 			//$mesactual= "09";
 			//$yearactual="2020";

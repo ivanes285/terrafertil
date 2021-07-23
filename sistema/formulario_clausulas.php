@@ -1,7 +1,6 @@
 <?php
 session_start();
 include "../conexion.php";
-$usu = $_SESSION['id_user'];
 ?>
 
 <!DOCTYPE html>
@@ -10,18 +9,23 @@ $usu = $_SESSION['id_user'];
 <head>
 	<meta charset="UTF-8">
 	<?php include "includes/scripts.php"; ?>
-	<title>Lista de Auditorias</title>
+	<title>Formulario de Clausulas</title>
 </head>
 
 <body>
 	<?php include "includes/header.php"; ?>
 	<section id="container">
-		<h1>Lista de Auditorias</h1>
+		<h1>Formulario Clausulas</h1>
+
 		<table>
 			<tr>
-				<th>Código de Auditoria</th>
-				<th>Fecha de Ejecución</th>
-				<th>Norma</th>
+				<th>Clausula</th>
+				<th>DetalleClausula</th>
+				<th>Proceso Auditado</th>
+				<th>Parametros de Calificacion</th>
+				<th>Descripcion Incumplimiento</th>
+				<th>Documentacion Soporte</th>
+				<th>EVALUACION</th>
 			</tr>
 			<?php
 
@@ -36,21 +40,38 @@ $usu = $_SESSION['id_user'];
 			}
 			$desde = ($pagina - 1) * $por_pagina;
 			$total_paginas = ceil($total_registro / $por_pagina);
-			$query = mysqli_query($conection, "SELECT codigoauditoria,fechaejecucion,nombrenorma,iddetalleauditoria from norma n, grupoauditor ga, detallegrupo dg, detalleauditoria da WHERE n.idnorma=ga.idnorma and ga.idgrupo=dg.idgrupo AND dg.idgrupo=da.idgrupo AND dg.id_user=$usu ORDER BY codigoauditoria ASC LIMIT $desde,$por_pagina");
-			mysqli_close($conection);
-			$result = mysqli_num_rows($query);
-			if ($result > 0) {
-				while ($data = mysqli_fetch_array($query)) {
+
+
+
+			if (empty($_REQUEST['id'])) {
+				header("location: lista_auditorvista.php");
+				mysqli_close($conection);
+			} else {
+				$iddetallaauditoria = $_REQUEST['id'];
+		
+				$query = mysqli_query($conection, "SELECT c.clausula,c.detalleclausula,p.nombreproceso,dc.parametroscalificacion,dc.desincumplimiento,dc.documentacionsoporte,dc.iddetalleclausula FROM clausula c, detalleclausula dc, procesos p WHERE dc.idclausula=c.idclausula AND p.idproceso=c.idproceso AND dc.iddetalleauditoria=$iddetallaauditoria ORDER BY c.idclausula ASC LIMIT $desde,$por_pagina");
+				$result = mysqli_num_rows($query);
+
+				if ($result > 0) {
+					while ($data = mysqli_fetch_array($query)) {
 			?>
-					<tr>
-						<td><?php echo $data[0]; ?></td>
-						<td><?php echo $data[1]; ?></td>
-						<td><a href="formulario_clausulas.php?id=<?php echo $data[3];?>"><?php echo $data[2];?></a></td>
-					</tr>
+						<tr>
+							<td><?php echo $data[0]; ?></td>
+							<td><?php echo $data[1]; ?></td>
+							<td><?php echo $data[2]; ?></td>
+							<td><?php echo $data[3]; ?></td>
+							<td><?php echo $data[4]; ?></td>
+							<td><?php echo $data[5]; ?></td>
+							<td>
+								<a class="link_edit" href="calificar_clausula.php?id=<?php echo $data[6]; ?>">EVALUAR</a>
+							</td>
+						</tr>
 			<?php
+					}
 				}
 			}
 			?>
+
 		</table>
 		<div class="paginador">
 			<ul>
@@ -80,6 +101,7 @@ $usu = $_SESSION['id_user'];
 				<?php } ?>
 			</ul>
 		</div>
+
 	</section>
 
 </body>

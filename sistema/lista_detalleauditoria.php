@@ -44,8 +44,6 @@ include "../conexion.php";
 
 
 			$query = mysqli_query($conection, "SELECT iddetalleauditoria,codigoauditoria,tiempoperiodo,fechacreacion,fechaejecucion,nombrenorma,nombregrupo FROM norma n, grupoauditor ga,detallegrupo dg, detalleauditoria da, periodo p WHERE P.idperiodo=da.idperiodo AND n.idnorma=ga.idnorma AND dg.idgrupo=da.idgrupo and dg.idgrupo=ga.idgrupo AND dg.idrolauditor=1 ORDER BY codigoauditoria ASC LIMIT $desde,$por_pagina");
-
-
 			mysqli_close($conection);
 			$result = mysqli_num_rows($query);
 

@@ -118,6 +118,7 @@ if (!empty($_POST)) {
         </div>
     </section>
     <script>
+        
         $(document).ready(function() {
             $('#idusuario').select2();
         });
