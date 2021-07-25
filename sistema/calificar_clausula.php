@@ -5,8 +5,6 @@ include "../conexion.php";
 
 if (!empty($_POST)) {
 
-
-
     $iddetalleclausula = $_POST['iddetalleclausula'];
     $parametroscali = $_POST['parametroscali'];
     $docsoporte = $_POST['docsoporte'];
@@ -36,6 +34,7 @@ if (empty($_REQUEST['id'])) {
 }
 
 $iddetalleclausula = $_REQUEST['id'];
+$iddetalleauditoria = $_REQUEST['da'];
 
 $sql = mysqli_query($conection, "SELECT * FROM detalleclausula WHERE iddetalleclausula=$iddetalleclausula");
 
@@ -93,8 +92,9 @@ if ($result_sql == 0) {
                 <input type="text" name="docsoporte" id="docsoporte" placeholder="Ingrese Documentacion Soporte">
 
                 <br />
-                <a href="formulario_clausulas.php" class="btn_save">REGRESAR</a>
-                <input type="submit" value="Evaluar" class="btn_save" onclick="redirecionar()">
+                <a name="se" href="formulario_clausulas.php?id=<?php echo $iddetalleauditoria ?>" class="btn_save">REGRESAR</a>
+                <input type="submit" value="Evaluar" name="prueba" class="btn_save">
+
             </form>
         </div>
     </section>
@@ -110,9 +110,9 @@ if ($result_sql == 0) {
             });
         });
 
-        function redirecionar() {
-            location.href = "formulario_clausulas.php";
-        }
+
+
+        
     </script>
 
 

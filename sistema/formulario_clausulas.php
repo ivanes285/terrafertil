@@ -63,7 +63,7 @@ include "../conexion.php";
 							<td><?php echo $data[4]; ?></td>
 							<td><?php echo $data[5]; ?></td>
 							<td>
-								<a class="link_edit" href="calificar_clausula.php?id=<?php echo $data[6]; ?>">EVALUAR</a>
+								<a class="link_edit" href="calificar_clausula.php?id=<?php echo $data[6]; ?>&da=<?php echo $iddetallaauditoria ?>">EVALUAR</a>
 							</td>
 						</tr>
 			<?php
