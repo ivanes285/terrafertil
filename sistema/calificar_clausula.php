@@ -2,28 +2,33 @@
 session_start();
 include "../conexion.php";
 
-
 if (!empty($_POST)) {
 
-    $iddetalleclausula = $_POST['iddetalleclausula'];
-    $parametroscali = $_POST['parametroscali'];
-    $desincumplimiento = $_POST['desincumplimiento'];
-    $docsoporte = $_POST['docsoporte'];
 
-    
-    if ($parametroscali != "cumple") {
-        $query_update = mysqli_query($conection, "UPDATE detalleclausula SET parametroscalificacion='$parametroscali', desincumplimiento='$desincumplimiento', documentacionsoporte='$docsoporte' WHERE iddetalleclausula=$iddetalleclausula");
+    if (empty($_POST['desincumplimiento'])) {
+        $iddetalleclausula = $_POST['iddetalleclausula'];
+        $parametroscali = $_POST['parametroscali'];
+        $docsoporte = $_POST['docsoporte'];
+
+        $query_update = mysqli_query($conection, "UPDATE detalleclausula SET parametroscalificacion='$parametroscali', documentacionsoporte='$docsoporte' WHERE iddetalleclausula=$iddetalleclausula");
         if ($query_update) {
             $alert = '<p class="msg_save">Clausula Evaluada</p>';
         } else {
             $alert = '<p class="msg_error">Error al Evaluar </p>';
         }
     } else {
-        $query_update = mysqli_query($conection, "UPDATE detalleclausula SET parametroscalificacion='$parametroscali', documentacionsoporte='$docsoporte' WHERE iddetalleclausula=$iddetalleclausula");
-        if ($query_update) {
-            $alert = '<p class="msg_save">Clausula Evaluada</p>';
-        } else {
-            $alert = '<p class="msg_error">Error al Evaluar </p>';
+        $iddetalleclausula = $_POST['iddetalleclausula'];
+        $parametroscali = $_POST['parametroscali'];
+        $desincumplimiento = $_POST['desincumplimiento'];
+        $docsoporte = $_POST['docsoporte'];
+
+        if ($parametroscali != "cumple") {
+            $query_update = mysqli_query($conection, "UPDATE detalleclausula SET parametroscalificacion='$parametroscali', desincumplimiento='$desincumplimiento', documentacionsoporte='$docsoporte' WHERE iddetalleclausula=$iddetalleclausula");
+            if ($query_update) {
+                $alert = '<p class="msg_save">Clausula Evaluada</p>';
+            } else {
+                $alert = '<p class="msg_error">Error al Evaluar </p>';
+            }
         }
     }
 }
@@ -82,7 +87,7 @@ if ($result_sql == 0) {
                 <label for="actividad">Parametros de Calificación</label>
 
                 <select name="parametroscali" id="parametroscali">
-                    
+
                     <option value="cumple" selected>Cumple</option>
                     <option value="noconformidadmayor">No Conformidad Mayor</option>
                     <option value="noconformidadmenor">No confirmidad Menor</option>
@@ -91,35 +96,40 @@ if ($result_sql == 0) {
                 </select>
 
                 <label for="actividad">Descripcion de Incumplimiento</label>
-                <textarea name="desincumplimiento" id="desincumplimiento" disabled cols="30" rows="10" placeholder="Ingrese la Descripcion del Incumplimiento"><?php echo  $desincumplimiento?></textarea>
+                <textarea name="desincumplimiento" id="desincumplimiento" disabled cols="30" rows="10" placeholder="Ingrese la Descripcion del Incumplimiento"><?php echo  $desincumplimiento ?></textarea>
+
+
 
                 <label for="docsoporte">Documentacion Soporte</label>
-                <input type="text" name="docsoporte" id="docsoporte" placeholder="Ingrese Documentacion Soporte" value="<?php echo  $docsoporte?>">
-
+                <input type="text" name="docsoporte" id="docsoporte" placeholder="Ingrese Documentacion Soporte" value="<?php echo  $docsoporte ?>">
                 <br />
                 <a name="se" href="formulario_clausulas.php?id=<?php echo $iddetalleauditoria ?>" class="btn_save">REGRESAR</a>
                 <input type="submit" value="Evaluar" name="prueba" class="btn_save">
-
             </form>
         </div>
     </section>
-
 
     <script type="text/javascript">
         $(function() {
             $("#parametroscali").change(function() {
                 if ($(this).val() === "cumple") {
+                    $("#desincumplimiento").val('');
                     $("#desincumplimiento").prop("disabled", true);
                 } else {
                     $("#desincumplimiento").prop("disabled", false);
                 }
             });
         });
+        $(function() {
+            $("#parametroscali").val('<?php echo $parametroscali; ?>')
+            if ($(this).val() === "cumple") {
+                $("#desincumplimiento").val('');
+                $("#desincumplimiento").prop("disabled", true);
 
-        $(function(){
-        $("#parametroscali").val('<?php echo $parametroscali;?>')
-    });
-    
+            } else {
+                $("#desincumplimiento").prop("disabled", false);
+            }
+        });
     </script>
 </body>
 

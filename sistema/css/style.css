@@ -312,6 +312,12 @@ table td {
     color: #0069D9;
 }
 
+.link_edit_calificado {
+    font-weight: bold;
+    color: #EDF42A;
+}
+
+
 .link_delete {
     font-weight: bold;
     color: #C82333;
