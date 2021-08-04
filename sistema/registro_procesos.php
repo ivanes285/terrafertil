@@ -1,8 +1,8 @@
 <?php
 session_start();
-// if ($_SESSION['rol'] != 1) {
-//     header("location: ./");
-// }
+ if ($_SESSION['rol'] != 1) {
+    header("location: ./");
+}
 
 include "../conexion.php";
 if (!empty($_POST)) {
@@ -14,6 +14,7 @@ if (!empty($_POST)) {
 
     $query = mysqli_query($conection, "SELECT * FROM procesos WHERE  nombreproceso='$nombreproceso' ");
     $result = mysqli_fetch_array($query);
+    
     if ($result > 0) {
         $alert = '<p class="msg_error">Proceso YA existe !Intente de Nuevo con otro Proceso</p>';
     } else {
@@ -63,7 +64,7 @@ if (!empty($_POST)) {
                 <label for="liderproceso">Lider del Proceso</label>
                 <?php
 
-                $query_id_user= mysqli_query($conection, "SELECT * FROM usuario  WHERE rol=2");
+                $query_id_user= mysqli_query($conection, "SELECT * FROM usuario");
                 // mysqli_close($conection);
                 $result_id_user = mysqli_num_rows($query_id_user);
                 ?>
@@ -82,6 +83,12 @@ if (!empty($_POST)) {
             </form>
         </div>
     </section>
-   
+    <script>
+        
+        $(document).ready(function() {
+            $('#liderproceso').select2();
+        });
+    </script>
+
 </body>
 </html>

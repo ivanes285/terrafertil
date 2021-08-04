@@ -41,14 +41,12 @@ include "../conexion.php";
 			$desde = ($pagina - 1) * $por_pagina;
 			$total_paginas = ceil($total_registro / $por_pagina);
 
-
-
 			if (empty($_REQUEST['id'])) {
 				header("location: lista_auditorvista.php");
 				mysqli_close($conection);
 			} else {
 				$iddetallaauditoria = $_REQUEST['id'];
-		
+
 				$query = mysqli_query($conection, "SELECT c.clausula,c.detalleclausula,p.nombreproceso,dc.parametroscalificacion,dc.desincumplimiento,dc.documentacionsoporte,dc.iddetalleclausula FROM clausula c, detalleclausula dc, procesos p WHERE dc.idclausula=c.idclausula AND p.idproceso=c.idproceso AND dc.iddetalleauditoria=$iddetallaauditoria ORDER BY c.idclausula ASC LIMIT $desde,$por_pagina");
 				$result = mysqli_num_rows($query);
 
@@ -62,8 +60,12 @@ include "../conexion.php";
 							<td><?php echo $data[3]; ?></td>
 							<td><?php echo $data[4]; ?></td>
 							<td><?php echo $data[5]; ?></td>
+
 							<td>
-								<a class="link_edit" href="calificar_clausula.php?id=<?php echo $data[6]; ?>&da=<?php echo $iddetallaauditoria ?>">EVALUAR</a>
+								
+									<a class="link_edit" href="calificar_clausula.php?id=<?php echo $data[6]; ?>&da=<?php echo $iddetallaauditoria ?>  ">EVALUAR</a>
+								
+							
 							</td>
 						</tr>
 			<?php
@@ -73,36 +75,38 @@ include "../conexion.php";
 			?>
 
 		</table>
-		<div class="paginador">
-			<ul>
-				<?php
-				if ($pagina != 1) {
-				?>
-					<li><a href="?pagina=<?php echo 1; ?>">|<< /a>
-					</li>
-					<li><a href="?pagina=<?php echo $pagina - 1; ?>">
-							<<< /a>
-					</li>
-				<?php
-				}
-				for ($i = 1; $i <= $total_paginas; $i++) {
-					# code...
-					if ($i == $pagina) {
-						echo '<li class="pageSelected">' . $i . '</li>';
-					} else {
-						echo '<li><a href="?pagina=' . $i . '">' . $i . '</a></li>';
-					}
-				}
+		<div class=" paginador">
+										<ul>
+											<?php
+											if ($pagina != 1) {
+											?>
+												<li><a href="?pagina=<?php echo 1; ?>">|<< /a>
+												</li>
+												<li><a href="?pagina=<?php echo $pagina - 1; ?>">
+														<<< /a>
+												</li>
+											<?php
+											}
+											for ($i = 1; $i <= $total_paginas; $i++) {
+												# code...
+												if ($i == $pagina) {
+													echo '<li class="pageSelected">' . $i . '</li>';
+												} else {
+													echo '<li><a href="?pagina=' . $i . '">' . $i . '</a></li>';
+												}
+											}
 
-				if ($pagina != $total_paginas) {
-				?>
-					<li><a href="?pagina=<?php echo $pagina + 1; ?>">>></a></li>
-					<li><a href="?pagina=<?php echo $total_paginas; ?> ">>|</a></li>
-				<?php } ?>
-			</ul>
-		</div>
+											if ($pagina != $total_paginas) {
+											?>
+												<li><a href="?pagina=<?php echo $pagina + 1; ?>">>></a></li>
+												<li><a href="?pagina=<?php echo $total_paginas; ?> ">>|</a></li>
+											<?php } ?>
+										</ul>
+										</div>
 
 	</section>
+
+
 
 </body>
 

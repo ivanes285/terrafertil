@@ -7,10 +7,11 @@ if (!empty($_POST)) {
 
     $iddetalleclausula = $_POST['iddetalleclausula'];
     $parametroscali = $_POST['parametroscali'];
+    $desincumplimiento = $_POST['desincumplimiento'];
     $docsoporte = $_POST['docsoporte'];
 
-    if (isset($desincumplimiento)) {
-        $desincumplimiento = $_POST['desincumplimiento'];
+    
+    if ($parametroscali != "cumple") {
         $query_update = mysqli_query($conection, "UPDATE detalleclausula SET parametroscalificacion='$parametroscali', desincumplimiento='$desincumplimiento', documentacionsoporte='$docsoporte' WHERE iddetalleclausula=$iddetalleclausula");
         if ($query_update) {
             $alert = '<p class="msg_save">Clausula Evaluada</p>';
@@ -44,7 +45,10 @@ if ($result_sql == 0) {
     header('Location: formulario_clausulas.php');
 } else {
     while ($data = mysqli_fetch_array($sql)) {
-        $iddetalleclausula = $data['iddetalleclausula'];
+        $iddetalleclausula = $data[0];
+        $parametroscali = $data[2];
+        $desincumplimiento = $data[3];
+        $docsoporte = $data[4];
     }
 }
 ?>
@@ -78,18 +82,19 @@ if ($result_sql == 0) {
                 <label for="actividad">Parametros de Calificación</label>
 
                 <select name="parametroscali" id="parametroscali">
+                    
                     <option value="cumple" selected>Cumple</option>
                     <option value="noconformidadmayor">No Conformidad Mayor</option>
                     <option value="noconformidadmenor">No confirmidad Menor</option>
                     <option value="observacion">Observacion</option>
-                    <option value="oportunidad de mejora">Oportunidad de mejora</option>
+                    <option value="oportunidaddemejora">Oportunidad de mejora</option>
                 </select>
 
                 <label for="actividad">Descripcion de Incumplimiento</label>
-                <textarea name="desincumplimiento" id="desincumplimiento" disabled cols="30" rows="10" placeholder="Ingrese la Descripcion del Incumplimiento"></textarea>
+                <textarea name="desincumplimiento" id="desincumplimiento" disabled cols="30" rows="10" placeholder="Ingrese la Descripcion del Incumplimiento"><?php echo  $desincumplimiento?></textarea>
 
                 <label for="docsoporte">Documentacion Soporte</label>
-                <input type="text" name="docsoporte" id="docsoporte" placeholder="Ingrese Documentacion Soporte">
+                <input type="text" name="docsoporte" id="docsoporte" placeholder="Ingrese Documentacion Soporte" value="<?php echo  $docsoporte?>">
 
                 <br />
                 <a name="se" href="formulario_clausulas.php?id=<?php echo $iddetalleauditoria ?>" class="btn_save">REGRESAR</a>
@@ -99,7 +104,8 @@ if ($result_sql == 0) {
         </div>
     </section>
 
-    <script>
+
+    <script type="text/javascript">
         $(function() {
             $("#parametroscali").change(function() {
                 if ($(this).val() === "cumple") {
@@ -110,12 +116,11 @@ if ($result_sql == 0) {
             });
         });
 
-
-
-        
+        $(function(){
+        $("#parametroscali").val('<?php echo $parametroscali;?>')
+    });
+    
     </script>
-
-
 </body>
 
 </html>
