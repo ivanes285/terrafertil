@@ -97,9 +97,6 @@ if ($result_sql == 0) {
 
                 <label for="actividad">Descripcion de Incumplimiento</label>
                 <textarea name="desincumplimiento" id="desincumplimiento" disabled cols="30" rows="10" placeholder="Ingrese la Descripcion del Incumplimiento"><?php echo  $desincumplimiento ?></textarea>
-
-
-
                 <label for="docsoporte">Documentacion Soporte</label>
                 <input type="text" name="docsoporte" id="docsoporte" placeholder="Ingrese Documentacion Soporte" value="<?php echo  $docsoporte ?>">
                 <br />
@@ -125,7 +122,6 @@ if ($result_sql == 0) {
             if ($(this).val() === "cumple") {
                 $("#desincumplimiento").val('');
                 $("#desincumplimiento").prop("disabled", true);
-
             } else {
                 $("#desincumplimiento").prop("disabled", false);
             }
