@@ -24,6 +24,7 @@ include "../conexion.php";
 				<th>Proceso Auditado</th>
 				<th>Parametros de Calificación</th>
 				<th>Descripción Incumplimiento</th>
+				<th>Anexos</th>
 				<th>Documentación Soporte</th>
 				<th>EVALUACIÓN</th>
 			</tr>
@@ -59,6 +60,7 @@ include "../conexion.php";
 							<td><?php echo $data[2]; ?></td>
 							<td><?php echo $data[3]; ?></td>
 							<td><?php echo $data[4]; ?></td>
+							<td><a style="color: #FF1F57; font-weight: bold" href="calificar_clausula.php?id=<?php echo $data[6]; ?>&da=<?php echo $iddetallaauditoria ?> ">Agregar Anexo</a></td>
 							<td><?php echo $data[5]; ?></td>
 
 							<?php

@@ -89,7 +89,7 @@ if ($result_sql == 0) {
                 <textarea name="desincumplimiento" id="desincumplimiento" cols="30" rows="10" placeholder="Descripcion del Incumplimiento"><?php echo  $desincumplimiento ?></textarea>
 
                 <label for="docsoporte">Documentacion Soporte</label>
-                <input type="text" name="docsoporte" id="docsoporte" placeholder="Ingrese Documentacion Soporte" value="<?php echo  $docsoporte ?>">
+                <input type="text" name="docsoporte" id="docsoporte" placeholder="Ingrese Documentacion Soporte" required value="<?php echo  $docsoporte ?>">
 
                 <br />
                 <a name="se" href="formulario_clausulas.php?id=<?php echo $iddetalleauditoria ?>" class="btn_save">REGRESAR</a>
