@@ -61,12 +61,21 @@ include "../conexion.php";
 							<td><?php echo $data[4]; ?></td>
 							<td><?php echo $data[5]; ?></td>
 
-							<td>
-								
-									<a class="link_edit" href="calificar_clausula.php?id=<?php echo $data[6]; ?>&da=<?php echo $iddetallaauditoria ?>  ">EVALUAR</a>
-								
-							
-							</td>
+							<?php
+							if (!isset($data[3])) {
+							?>
+								<td>
+									<a style="color: #FF1F57; font-weight: bold" href="calificar_clausula.php?id=<?php echo $data[6]; ?>&da=<?php echo $iddetallaauditoria ?> ">EVALUAR</a>
+								</td>
+							<?php
+							} else {
+							?>
+								<td>
+									<a style="color: #00CC63; font-weight: bold" href="calificar_clausula.php?id=<?php echo $data[6]; ?>&da=<?php echo $iddetallaauditoria ?> ">EVALUADO</a>
+								</td>
+							<?php
+							}
+							?>
 						</tr>
 			<?php
 					}
@@ -76,33 +85,33 @@ include "../conexion.php";
 
 		</table>
 		<div class=" paginador">
-										<ul>
-											<?php
-											if ($pagina != 1) {
-											?>
-												<li><a href="?pagina=<?php echo 1; ?>">|<< /a>
-												</li>
-												<li><a href="?pagina=<?php echo $pagina - 1; ?>">
-														<<< /a>
-												</li>
-											<?php
-											}
-											for ($i = 1; $i <= $total_paginas; $i++) {
-												# code...
-												if ($i == $pagina) {
-													echo '<li class="pageSelected">' . $i . '</li>';
-												} else {
-													echo '<li><a href="?pagina=' . $i . '">' . $i . '</a></li>';
-												}
-											}
+			<ul>
+				<?php
+				if ($pagina != 1) {
+				?>
+					<li><a href="?pagina=<?php echo 1; ?>">|<< /a>
+					</li>
+					<li><a href="?pagina=<?php echo $pagina - 1; ?>">
+							<<< /a>
+					</li>
+				<?php
+				}
+				for ($i = 1; $i <= $total_paginas; $i++) {
+					# code...
+					if ($i == $pagina) {
+						echo '<li class="pageSelected">' . $i . '</li>';
+					} else {
+						echo '<li><a href="?pagina=' . $i . '">' . $i . '</a></li>';
+					}
+				}
 
-											if ($pagina != $total_paginas) {
-											?>
-												<li><a href="?pagina=<?php echo $pagina + 1; ?>">>></a></li>
-												<li><a href="?pagina=<?php echo $total_paginas; ?> ">>|</a></li>
-											<?php } ?>
-										</ul>
-										</div>
+				if ($pagina != $total_paginas) {
+				?>
+					<li><a href="?pagina=<?php echo $pagina + 1; ?>">>></a></li>
+					<li><a href="?pagina=<?php echo $total_paginas; ?> ">>|</a></li>
+				<?php } ?>
+			</ul>
+		</div>
 
 	</section>
 
