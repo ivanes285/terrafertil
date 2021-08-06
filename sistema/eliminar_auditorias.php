@@ -29,9 +29,9 @@ if (empty($_REQUEST['id'])) {
             $iddetalleauditoria = $data[0];
             $codigoauditoria = $data[1];
             $idperiodo = $data[2];
-            $fechacreacion  = $data[3];
-            $fechaejecucion = $data[4];
-            $idgrupo = $data[5];
+            $fechaejecucion    = $data[3];
+            $idgrupo  = $data[4];
+            $fechacreacion = $data[5];
         }
     } else {
         header('Location: lista_detalleauditoria.php');
@@ -51,11 +51,17 @@ if (empty($_REQUEST['id'])) {
     <section id="container">
         <div class="data_delete">
             <h2 style="color: #C82333">¿Está seguro de eliminar la auditoria?</h2>
-            <p>ID grupo: <span><?php echo $iddetalleauditoria; ?></span></p>
-            <p>ID grupo: <span><?php echo $codigoauditoria; ?></span></p>
-            <p>ID grupo: <span><?php echo $idperiodo; ?></span></p>
-            <p>ID grupo: <span><?php echo $fechacreacion; ?></span></p>
-            <p>ID grupo: <span><?php echo $fechaejecucion; ?></span></p>
+            <p>ID detalle auditoria: <span><?php echo $iddetalleauditoria; ?></span></p>
+            <p>Código de auditoria: <span><?php echo $codigoauditoria; ?></span></p>
+            <?php if ($idperiodo==1){?>
+            <p>Periodo: <span><?php echo '4 meses'; ?></span></p>
+            <?php } else if ($idperiodo==2) { ?>
+            <p>Periodo: <span><?php echo '6 meses'; ?></span></p>
+            <?php } else  if ($idperiodo==3) { ?>
+            <p>Periodo: <span><?php echo '12 meses'; ?></span></p>
+            <?php }?>
+            <p>Fecha de creación: <span><?php echo $fechacreacion; ?></span></p>
+            <p>Fecha de ejecucipon: <span><?php echo $fechaejecucion; ?></span></p>
             <p>ID grupo: <span><?php echo $idgrupo; ?></span></p>
            
             <form method="POST" action="">

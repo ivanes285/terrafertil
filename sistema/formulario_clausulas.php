@@ -22,10 +22,10 @@ include "../conexion.php";
 				<th>Clausula</th>
 				<th>DetalleClausula</th>
 				<th>Proceso Auditado</th>
-				<th>Parametros de Calificacion</th>
-				<th>Descripcion Incumplimiento</th>
-				<th>Documentacion Soporte</th>
-				<th>EVALUACION</th>
+				<th>Parametros de Calificación</th>
+				<th>Descripción Incumplimiento</th>
+				<th>Documentación Soporte</th>
+				<th>EVALUACIÓN</th>
 			</tr>
 			<?php
 

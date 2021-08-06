@@ -2,7 +2,6 @@
 session_start();
 include "../conexion.php";
 
-
 if (!empty($_POST)) {
 
     $iddetalleclausula = $_POST['iddetalleclausula'];
@@ -95,11 +94,9 @@ if ($result_sql == 0) {
                 <br />
                 <a name="se" href="formulario_clausulas.php?id=<?php echo $iddetalleauditoria ?>" class="btn_save">REGRESAR</a>
                 <input type="submit" value="Evaluar" name="prueba" class="btn_save">
-
             </form>
         </div>
     </section>
-
 
     <script type="text/javascript">
         $(function() {
