@@ -65,7 +65,7 @@ if ($result_sql == 0) {
                 <input type="text" name="nombreproceso" id="nombreproceso" placeholder="Ingrese nombre del Proceso" required value="<?php echo $nombreproceso; ?>">
                 <?php
                 include "../conexion.php";
-                $query_pastel = mysqli_query($conection, "SELECT * FROM usuario WHERE rol=2");
+                $query_pastel = mysqli_query($conection, "SELECT * FROM usuario WHERE rol=3");
                 mysqli_close($conection);
                 $result_rol = mysqli_num_rows($query_pastel);
                 ?>

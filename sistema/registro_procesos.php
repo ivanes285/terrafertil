@@ -64,7 +64,7 @@ if (!empty($_POST)) {
                 <label for="liderproceso">Lider del Proceso</label>
                 <?php
 
-                $query_id_user= mysqli_query($conection, "SELECT * FROM usuario");
+                $query_id_user= mysqli_query($conection, "SELECT * FROM usuario WHERE rol=3");
                 // mysqli_close($conection);
                 $result_id_user = mysqli_num_rows($query_id_user);
                 ?>

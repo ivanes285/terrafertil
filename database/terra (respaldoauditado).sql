@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 22-07-2021 a las 05:59:46
+-- Tiempo de generación: 07-08-2021 a las 23:58:14
 -- Versión del servidor: 10.4.20-MariaDB
 -- Versión de PHP: 7.4.21
 
@@ -18,8 +18,21 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `prueba`
+-- Base de datos: `terra`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `anexo`
+--
+
+CREATE TABLE `anexo` (
+  `idanexo` int(11) NOT NULL,
+  `iddetalleclausula` int(11) NOT NULL,
+  `nombre` varchar(100) NOT NULL,
+  `anexo` varchar(700) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -42,7 +55,7 @@ CREATE TABLE `anexoclausula` (
 
 CREATE TABLE `clausula` (
   `idclausula` int(11) NOT NULL,
-  `clausula` varchar(50) NOT NULL,
+  `clausula` varchar(200) NOT NULL,
   `detalleclausula` varchar(2000) NOT NULL,
   `idnorma` int(11) NOT NULL,
   `idproceso` int(11) NOT NULL
@@ -53,13 +66,14 @@ CREATE TABLE `clausula` (
 --
 
 INSERT INTO `clausula` (`idclausula`, `clausula`, `detalleclausula`, `idnorma`, `idproceso`) VALUES
-(1, '4. CONTEXTO DE LA ORGANIZACIÓN', '4.1  COMPRENSIÓN DE LA ORGANIZACIÓN Y SU CONTEXTO\nLa organización debe determinar las cuestiones externas e internas que son pertinentes para su propósito y su dirección estratégica, y que afectan a su capacidad para lograr los resultados previstos de su sistema de gestión de la calidad.', 1, 1),
-(2, '4. CONTEXTO DE LA ORGANIZACIÓN', '4.1  COMPRENSIÓN DE LA ORGANIZACIÓN Y SU CONTEXTO\r\nLa organización debe realizar el seguimiento y la revisión de la información sobre cuestiones externas e internas.\r\n\r\nNota 1. Las cuestiones pueden incluir factores positivos y negativos o condiciones para su consideración\r\nNota 2. La comprensión del contexto externo puede verse facilitada al considerar cuestiones que surgen de los entornos legal, tecnológico, competitivo, de mercado, cultural, social y económico, ya sea internacional, nacional, regional o local.\r\nNota 3. El conocimiento del contexto interno puede verse facilitado al considerar cuestiones relativas a los valores, la cultura, los conocimientos y el desempeño de la organización.', 1, 2),
-(3, '3.2  dfadfldjfad', 'dfadfadfadf gfdgsfgsfd\r\n', 3, 1),
-(4, '5. CONTEXTO DE LA ORGANIZACIÓN', 'dfadfaddfadfdafadfadfad', 1, 1),
-(5, '5. CONTEXTO DE LA ORGANIZACIÓN', 'dfadfdfgd6f15d1f51d21fa5d15f1ad', 1, 2),
-(6, '3.2  BASC', 'FDFAJjld fadf 55258dfadf ', 3, 1),
-(7, '3.2.2  BASC ', 'dfadfadghghf', 3, 2);
+(12, '4.1  COMPRENSIÓN DE LA ORGANIZACIÓN Y SU CONTEXTO', 'La organización debe determinar las cuestiones externas e internas que son pertinentes para su propósito y su dirección estratégica, y que afectan a su capacidad para lograr los resultados previstos de su sistema de gestión de la calidad.', 1, 6),
+(13, '4.1  COMPRENSIÓN DE LA ORGANIZACIÓN Y SU CONTEXTO', 'La organización debe determinar las cuestiones externas e internas que son pertinentes para su propósito y su dirección estratégica, y que afectan a su capacidad para lograr los resultados previstos de su sistema de gestión de la calidad.', 1, 7),
+(16, '4.2 COMPRENSIÓN DE LAS NECESIDADES Y EXPECTATIVAS DE LAS PARTES INTERESADAS', 'Debido a su efecto o efecto potencial en la capacidad de la organización de proporcionar regularmente productos y servicios que satisfagan los requisitos del cliente y los legales y reglamentarios aplicables, la organización debe determinar: a) las partes interesadas que son pertinentes al sistema de gestión de la calidad;\r\nb) los requisitos pertinentes de estas partes interesadas para el sistema de gestión de la calidad.', 1, 6),
+(17, '4.2 COMPRENSIÓN DE LAS NECESIDADES Y EXPECTATIVAS DE LAS PARTES INTERESADAS', 'Debido a su efecto o efecto potencial en la capacidad de la organización de proporcionar regularmente productos y servicios que satisfagan los requisitos del cliente y los legales y reglamentarios aplicables, la organización debe determinar: a) las partes interesadas que son pertinentes al sistema de gestión de la calidad;\r\nb) los requisitos pertinentes de estas partes interesadas para el sistema de gestión de la calidad.', 1, 7),
+(18, '4.3 DETERMINACIÓN DEL ALCANCE DEL SISTEMA DE GESTIÓN DE LA CALIDAD', 'Cuando se determina este alcance, la organización debe considerar:\r\na) las cuestiones externas e internas indicadas en el apartado 4.1;\r\nb) los requisitos de las partes interesadas pertinentes indicados en el apartado 4.2;\r\nc) los productos y servicios de la organización.', 1, 6),
+(19, '4.3 DETERMINACIÓN DEL ALCANCE DEL SISTEMA DE GESTIÓN DE LA CALIDAD', 'Cuando se determina este alcance, la organización debe considerar:\r\na) las cuestiones externas e internas indicadas en el apartado 4.1;\r\nb) los requisitos de las partes interesadas pertinentes indicados en el apartado 4.2;\r\nc) los productos y servicios de la organización.', 1, 7),
+(20, '4.4 SISTEMA DE GESTIÓN DE LA CALIDAD Y SUS PROCESOS', 'La organización debe determinar los procesos necesarios para el sistema de gestión de la calidad y su aplicación a través de la organización, y debe:\r\na) determinar las entradas requeridas y las salidas esperados de estos procesos;\r\nb) determinar la secuencia e interacción de estos procesos;\r\nc) determinar y aplicar los criterios y los métodos (incluyendo el seguimiento, la medición y los indicadores del desempeño relacionados) necesarios para asegurarse la operación eficaz y el control de estos procesos;\r\nd) determinar los recursos necesarios para estos procesos y asegurarse de su disponibilidad;\r\ne) asignar las responsabilidades y autoridades para estos procesos;\r\nf) abordar los riesgos y oportunidades determinados de acuerdo con los requisitos del apartado 6.1;\r\ng) evaluar estos procesos e implementar cualquier cambio necesario para asegurarse de que estos procesos logran los resultados previstos;\r\nh) mejorar los procesos y el sistema de gestión de la calidad.', 1, 6),
+(21, '4.4 SISTEMA DE GESTIÓN DE LA CALIDAD Y SUS PROCESOS', '4.4.2 \r\nEn la medida en que sea necesario, la organización debe:\r\na) mantener información documentada para apoyar la operación de sus procesos;\r\nb) conservar la información documentada para tener la confianza de que los procesos se realizan según lo planificado.', 1, 6);
 
 -- --------------------------------------------------------
 
@@ -81,9 +95,7 @@ CREATE TABLE `detalleauditoria` (
 --
 
 INSERT INTO `detalleauditoria` (`iddetalleauditoria`, `codigoauditoria`, `idperiodo`, `fechaejecucion`, `idgrupo`, `fechacreacion`) VALUES
-(74, 'Cod-9001', 1, '2021-07-22', 1, '2021-07-21'),
-(75, 'Cod-9002', 2, '2021-07-30', 3, '2021-07-21'),
-(77, 'Cod-9004', 1, '2021-07-22', 1, '2021-07-21');
+(95, 'cod2-9001', 1, '2021-08-20', 1, '2021-08-07');
 
 -- --------------------------------------------------------
 
@@ -105,21 +117,14 @@ CREATE TABLE `detalleclausula` (
 --
 
 INSERT INTO `detalleclausula` (`iddetalleclausula`, `idclausula`, `parametroscalificacion`, `desincumplimiento`, `documentacionsoporte`, `iddetalleauditoria`) VALUES
-(44, 5, NULL, NULL, NULL, 74),
-(45, 5, NULL, NULL, NULL, 74),
-(46, 5, NULL, NULL, NULL, 74),
-(47, 5, NULL, NULL, NULL, 74),
-(48, 7, NULL, NULL, NULL, 75),
-(49, 7, NULL, NULL, NULL, 75),
-(50, 7, NULL, NULL, NULL, 75),
-(59, 5, NULL, NULL, NULL, 77),
-(60, 5, NULL, NULL, NULL, 77),
-(61, 5, NULL, NULL, NULL, 77),
-(62, 5, NULL, NULL, NULL, 77),
-(63, 5, NULL, NULL, NULL, 77),
-(64, 5, NULL, NULL, NULL, 77),
-(65, 5, NULL, NULL, NULL, 77),
-(66, 5, NULL, NULL, NULL, 77);
+(139, 12, 'noconformidadmayor', 'prueba', 'prueba', 95),
+(140, 13, 'observacion', 'Prueba01', 'dfadfa', 95),
+(141, 16, 'oportunidaddemejora', 'oportunidad', 'fffffffffffffffffffffffff', 95),
+(142, 17, 'noconformidadmayor', 'fdafad', 'dfad', 95),
+(143, 18, 'cumple', '', 'dfadfad', 95),
+(144, 19, NULL, NULL, NULL, 95),
+(145, 20, NULL, NULL, NULL, 95),
+(146, 21, NULL, NULL, NULL, 95);
 
 -- --------------------------------------------------------
 
@@ -148,7 +153,8 @@ INSERT INTO `detallegrupo` (`id_user`, `idgrupo`, `idrolauditor`, `actividadreal
 (3, 7, 1, 'gfg', 10),
 (3, 4, 1, 'dfdf', 11),
 (5, 4, 2, 'dfdsfdddd', 14),
-(3, 9, 1, 'dfdfa dfadkjfajd ', 15);
+(3, 9, 1, 'dfdfa dfadkjfajd ', 15),
+(6, 1, 2, 'Ella va disque ayudar', 16);
 
 -- --------------------------------------------------------
 
@@ -218,6 +224,21 @@ INSERT INTO `periodo` (`idperiodo`, `tiempoperiodo`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `plandeaccion`
+--
+
+CREATE TABLE `plandeaccion` (
+  `idplandeaccion` int(11) NOT NULL,
+  `iddetalleclausula` int(11) NOT NULL,
+  `consecuencia` varchar(150) NOT NULL,
+  `analisiscausa` varchar(150) NOT NULL,
+  `desarrollométodo` varchar(150) NOT NULL,
+  `causaraiz` varchar(150) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `procesos`
 --
 
@@ -232,8 +253,11 @@ CREATE TABLE `procesos` (
 --
 
 INSERT INTO `procesos` (`idproceso`, `nombreproceso`, `liderproceso`) VALUES
-(1, 'Direccion Estratégica', 5),
-(2, 'Evaluacion y Mejoramiento', 4);
+(3, 'Investigacion y Desarrollo', 10),
+(4, 'Compras', 9),
+(5, 'Produccion', 7),
+(6, 'Evaluacion y Mejoramiento', 4),
+(7, 'Direccion Estrategica', 8);
 
 -- --------------------------------------------------------
 
@@ -298,11 +322,23 @@ INSERT INTO `usuario` (`id_user`, `user`, `password`, `correo`, `rol`, `estatus`
 (2, 'malcom', '102ddaf691e1615d5dacd4c86299bfa4', 'malcom@gmail.com', 2, 1),
 (3, 'francis', '102ddaf691e1615d5dacd4c86299bfa4', 'francis@gmail.com', 2, 1),
 (4, 'lois', '102ddaf691e1615d5dacd4c86299bfa4', 'lois@gmail.com', 3, 1),
-(5, 'hall', '102ddaf691e1615d5dacd4c86299bfa4', 'hall@gmail.com', 2, 1);
+(5, 'hall', '102ddaf691e1615d5dacd4c86299bfa4', 'hall@gmail.com', 2, 1),
+(6, 'daya', '102ddaf691e1615d5dacd4c86299bfa4', 'dayamineral@gmail.com', 2, 1),
+(7, 'anavera', '102ddaf691e1615d5dacd4c86299bfa4', 'anavera@gmail.com', 3, 1),
+(8, 'andy', '102ddaf691e1615d5dacd4c86299bfa4', 'andy@gmail.com', 3, 1),
+(9, 'alex', '102ddaf691e1615d5dacd4c86299bfa4', 'alex@gmail.com', 3, 1),
+(10, 'marianita', '102ddaf691e1615d5dacd4c86299bfa4', 'marianita@gmail.com', 3, 1);
 
 --
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `anexo`
+--
+ALTER TABLE `anexo`
+  ADD PRIMARY KEY (`idanexo`),
+  ADD KEY `iddetalleclausula` (`iddetalleclausula`);
 
 --
 -- Indices de la tabla `anexoclausula`
@@ -364,6 +400,13 @@ ALTER TABLE `periodo`
   ADD PRIMARY KEY (`idperiodo`);
 
 --
+-- Indices de la tabla `plandeaccion`
+--
+ALTER TABLE `plandeaccion`
+  ADD PRIMARY KEY (`idplandeaccion`),
+  ADD KEY `iddetalleclausula` (`iddetalleclausula`);
+
+--
 -- Indices de la tabla `procesos`
 --
 ALTER TABLE `procesos`
@@ -394,6 +437,12 @@ ALTER TABLE `usuario`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `anexo`
+--
+ALTER TABLE `anexo`
+  MODIFY `idanexo` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `anexoclausula`
 --
 ALTER TABLE `anexoclausula`
@@ -403,25 +452,25 @@ ALTER TABLE `anexoclausula`
 -- AUTO_INCREMENT de la tabla `clausula`
 --
 ALTER TABLE `clausula`
-  MODIFY `idclausula` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `idclausula` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT de la tabla `detalleauditoria`
 --
 ALTER TABLE `detalleauditoria`
-  MODIFY `iddetalleauditoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
+  MODIFY `iddetalleauditoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96;
 
 --
 -- AUTO_INCREMENT de la tabla `detalleclausula`
 --
 ALTER TABLE `detalleclausula`
-  MODIFY `iddetalleclausula` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
+  MODIFY `iddetalleclausula` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=147;
 
 --
 -- AUTO_INCREMENT de la tabla `detallegrupo`
 --
 ALTER TABLE `detallegrupo`
-  MODIFY `iddetallegrupo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `iddetallegrupo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de la tabla `grupoauditor`
@@ -442,10 +491,16 @@ ALTER TABLE `periodo`
   MODIFY `idperiodo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT de la tabla `plandeaccion`
+--
+ALTER TABLE `plandeaccion`
+  MODIFY `idplandeaccion` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `procesos`
 --
 ALTER TABLE `procesos`
-  MODIFY `idproceso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idproceso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `rol`
@@ -463,11 +518,17 @@ ALTER TABLE `rolauditor`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `anexo`
+--
+ALTER TABLE `anexo`
+  ADD CONSTRAINT `anexo_ibfk_1` FOREIGN KEY (`iddetalleclausula`) REFERENCES `detalleclausula` (`iddetalleclausula`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `anexoclausula`

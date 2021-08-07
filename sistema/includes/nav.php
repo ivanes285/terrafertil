@@ -41,8 +41,8 @@
 
 				</ul>
 			</li>
-
 		<?php } ?>
+
 		<?php
 		if ($_SESSION['rol'] == 2) {
 		?>
@@ -51,7 +51,23 @@
 				<ul>
 
 					<li><a href="lista_auditorvista.php">Auditorias Pendientes</a></li>
+					<li><a href="lista_auditorvistare.php">Auditorias Realizadas</a></li>
 				</ul>
+				
+			</li>
+		<?php } ?>
+
+		<?php
+		if ($_SESSION['rol'] == 3) {
+		?>
+			<li class="principal">
+				<a href="#">Auditorias</a>
+				<ul>
+
+					<li><a href="lista_auditadovista.php">Auditorias Pendientes</a></li>
+				
+				</ul>
+				
 			</li>
 		<?php } ?>
 
