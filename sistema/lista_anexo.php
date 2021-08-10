@@ -1,7 +1,15 @@
 <?php
 session_start();
 include "../conexion.php";
-$usu = $_SESSION['id_user'];
+
+if (empty($_REQUEST['id'])) {
+	header('Location: formulario_clausulas.php');
+	mysqli_close($conection);
+}
+
+$iddetalleclausula = $_REQUEST['id'];
+$iddetalleauditoria = $_REQUEST['da'];
+
 ?>
 
 <!DOCTYPE html>
@@ -10,25 +18,25 @@ $usu = $_SESSION['id_user'];
 <head>
 	<meta charset="UTF-8">
 	<?php include "includes/scripts.php"; ?>
-	<title>Lista de Auditorias</title>
+	<title>Lista de anexos</title>
 </head>
 
 <body>
 	<?php include "includes/header.php"; ?>
 	<section id="container">
-		<h1>Lista de Auditorias</h1>
+		<h1>Lista de anexos de la clausula id número "<?php echo $iddetalleclausula ?>" </h1>
+		<a href="registro_anexo.php?id=<?php echo $iddetalleclausula ?>&da=<?php echo $iddetalleauditoria ?> " class="btn_new">Agregar Anexo </a>
+		<a style="border: 2px solid #36A152; padding: 6px 60px; color: #ffffff; background-color: #36A152; border-radius: 6px;"  href="formulario_clausulas.php?id=<?php echo $iddetalleauditoria ?>" class="btn_save">Regresar</a>
 		<table>
 			<tr>
-				<th>Código de Auditoria</th>
-				<th>Norma</th>
-				<th>Detalle Clausula</th>
-				<th>Descripción Incumplimiento</th>
-				<th>Plan de Acción</th>
-				
+				<th>Acciones</th>
+				<th>Nombre Anexo</th>
+				<th>Anexo Url</th>
+
 			</tr>
 			<?php
 
-			$sql_registe = mysqli_query($conection, "SELECT COUNT(*) as total_registro FROM detalleauditoria");
+			$sql_registe = mysqli_query($conection, "SELECT COUNT(*) as total_registro FROM anexo WHERE iddetalleclausula=$iddetalleclausula  ");
 			$result_register = mysqli_fetch_array($sql_registe);
 			$total_registro = $result_register['total_registro'];
 			$por_pagina = 10;
@@ -39,18 +47,25 @@ $usu = $_SESSION['id_user'];
 			}
 			$desde = ($pagina - 1) * $por_pagina;
 			$total_paginas = ceil($total_registro / $por_pagina);
-			$query = mysqli_query($conection, "SELECT codigoauditoria,nombrenorma,detalleclausula,desincumplimiento,iddetalleclausula FROM detalleauditoria da, norma n, clausula c,detalleclausula dc ,procesos p WHERE da.iddetalleauditoria=dc.iddetalleauditoria AND c.idclausula=dc.idclausula AND n.idnorma=c.idnorma AND p.idproceso=c.idproceso AND p.liderproceso=$usu AND dc.parametroscalificacion<>'cumple' ORDER BY codigoauditoria ASC LIMIT $desde,$por_pagina");
+
+			$query = mysqli_query($conection, "SELECT * FROM anexo  WHERE iddetalleclausula=$iddetalleclausula  ORDER BY idanexo ASC LIMIT $desde,$por_pagina");
 			mysqli_close($conection);
 			$result = mysqli_num_rows($query);
+
 			if ($result > 0) {
 				while ($data = mysqli_fetch_array($query)) {
 			?>
+
 					<tr>
-						<td><?php echo $data[0]; ?></td>
-						<td><?php echo $data[1]; ?></td>
-						<td><?php echo $data[2]; ?></td>
-						<td><?php echo $data[3]; ?></td>
-						<td><a style="color: #4099BF; font-weight: bold"  href="registro_plandeaccion.php?id=<?php echo $data[4];?>">Agregar Plan</a></td>
+						<td>
+							<a class="link_edit" href="editar_anexo.php?id=<?php echo $data[0]; ?>">Editar</a>
+							<a class="link_delete" href="eliminar_anexo.php?id=<?php echo $data[0]; ?>">Eliminar</a>
+
+						</td>
+			
+						<td><?php echo $data[2];  ?></td>
+						<td><a style="color: #40AEBF;" href="<?php echo $data[3]; ?>"><?php echo $data[3]; ?></a></td>
+
 					</tr>
 			<?php
 				}
@@ -77,7 +92,6 @@ $usu = $_SESSION['id_user'];
 						echo '<li><a href="?pagina=' . $i . '">' . $i . '</a></li>';
 					}
 				}
-
 				if ($pagina != $total_paginas) {
 				?>
 					<li><a href="?pagina=<?php echo $pagina + 1; ?>">>></a></li>
@@ -86,7 +100,6 @@ $usu = $_SESSION['id_user'];
 			</ul>
 		</div>
 	</section>
-
 </body>
 
 </html>

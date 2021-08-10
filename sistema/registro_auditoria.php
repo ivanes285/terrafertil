@@ -21,7 +21,7 @@ if (!empty($_POST)) {
         $alert = '<p class="msg_error">Proceso YA existe !Intente de Nuevo con una nueva Auditoria</p>';
     } else {
 
-        //Consulta pra el Registro de la Auditoria
+        //Consulta para el Registro de la Auditoria
         $query_insert = mysqli_query($conection, "INSERT INTO detalleauditoria (codigoauditoria,idperiodo,fechaejecucion,idgrupo) VALUES 
         ('$codigoauditoria',$idperiodo,'$fechaejecucion', $idgrupode)");
 

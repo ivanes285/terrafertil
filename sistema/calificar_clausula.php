@@ -40,9 +40,9 @@ if ($result_sql == 0) {
     while ($data = mysqli_fetch_array($sql)) {
         $iddetalleclausula = $data[0];
         $parametroscali = $data[2];
-
         $desincumplimiento = $data[3];
         $docsoporte = $data[4];
+      
     }
 }
 ?>
@@ -89,10 +89,12 @@ if ($result_sql == 0) {
                 <textarea name="desincumplimiento" id="desincumplimiento" cols="30" rows="10" placeholder="Descripcion del Incumplimiento"><?php echo  $desincumplimiento ?></textarea>
 
                 <label for="docsoporte">Documentacion Soporte</label>
-                <input type="text" name="docsoporte" id="docsoporte" placeholder="Ingrese Documentacion Soporte" required value="<?php echo  $docsoporte ?>">
+                <textarea name="docsoporte" id="docsoporte" cols="30" rows="10" placeholder="Ingrese Documentacion Soporte" required ><?php echo  $docsoporte  ?></textarea>
+
 
                 <br />
-                <a name="se" href="formulario_clausulas.php?id=<?php echo $iddetalleauditoria ?>" class="btn_save">REGRESAR</a>
+                <br />
+                <a style="border: 2px solid #2e518b; padding: 10px 132px; color: #ffffff; background-color: #1883ba; border-radius: 6px;"  href="formulario_clausulas.php?id=<?php echo $iddetalleauditoria ?>" class="btn_save">Regresar</a>
                 <input type="submit" value="Evaluar" name="prueba" class="btn_save">
             </form>
         </div>
