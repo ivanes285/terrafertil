@@ -1,9 +1,19 @@
 <?php
 session_start();
 include "../conexion.php";
+if ($_SESSION['rol'] != 2) {
+    header("location: ./");
+}
+
+if (empty($_REQUEST['id'])) {
+    header('Location: formulario_clausulas.php');
+    mysqli_close($conection);
+}
+$iddetalleclausula = $_REQUEST['id'];
+$iddetalleauditoria = $_REQUEST['da'];
 
 if (!empty($_POST)) {
-
+    $cadena="";
     $iddetalleclausula = $_POST['iddetalleclausula'];
     $parametroscali = $_POST['parametroscali'];
     $docsoporte = $_POST['docsoporte'];
@@ -16,9 +26,13 @@ if (!empty($_POST)) {
     $query_update = mysqli_query($conection, "UPDATE detalleclausula SET parametroscalificacion='$parametroscali', desincumplimiento='$desincumplimiento', documentacionsoporte='$docsoporte' WHERE iddetalleclausula=$iddetalleclausula");
     if ($query_update) {
         $alert = '<p class="msg_save">Clausula Evaluada</p>';
+        $cadena="formulario_clausulas.php?id=".$iddetalleauditoria;
+        header("location:".$cadena);
     } else {
         $alert = '<p class="msg_error">Error al Evaluar </p>';
     }
+
+
 }
 
 

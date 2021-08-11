@@ -22,6 +22,9 @@ $usu = $_SESSION['id_user'];
 				<th>Código de Auditoria</th>
 				<th>Fecha de Ejecución</th>
 				<th>Norma</th>
+				<th>Avance</th>
+				<th>Avance Porcentaje</th>
+				<th>Acción</th>
 			</tr>
 			<?php
 
@@ -37,15 +40,39 @@ $usu = $_SESSION['id_user'];
 			$desde = ($pagina - 1) * $por_pagina;
 			$total_paginas = ceil($total_registro / $por_pagina);
 			$query = mysqli_query($conection, "SELECT codigoauditoria,fechaejecucion,nombrenorma,iddetalleauditoria from norma n, grupoauditor ga, detallegrupo dg, detalleauditoria da WHERE n.idnorma=ga.idnorma and ga.idgrupo=dg.idgrupo AND dg.idgrupo=da.idgrupo AND dg.id_user=$usu ORDER BY codigoauditoria ASC LIMIT $desde,$por_pagina");
-			mysqli_close($conection);
+
 			$result = mysqli_num_rows($query);
+			$val;
+			$total = 0;
+			$totalres = 0;
+			$porcentaje = 0;
 			if ($result > 0) {
 				while ($data = mysqli_fetch_array($query)) {
 			?>
 					<tr>
 						<td><?php echo $data[0]; ?></td>
 						<td><?php echo $data[1]; ?></td>
-						<td><a href="formulario_clausulas.php?id=<?php echo $data[3];?>"><?php echo $data[2];?></a></td>
+						<td><a href="formulario_clausulas.php?id=<?php echo $data[3]; ?>"><?php echo $data[2]; ?></a></td>
+						<?php
+						$val = $data[2];
+						$con = mysqli_query($conection, "SELECT COUNT(*) as total FROM clausula c,norma n WHERE n.idnorma=c.idnorma AND n.nombrenorma='$val' ");
+						$conres = mysqli_query($conection, "SELECT COUNT(*) as totalre FROM detalleclausula dc , clausula c, norma n WHERE n.idnorma=c.idnorma AND c.idclausula=dc.idclausula AND n.nombrenorma='$val' AND  dc.documentacionsoporte IS NOT NULL;");
+						$result = mysqli_fetch_array($conres);
+						$result_register = mysqli_fetch_array($con);
+						if (isset($result_register)) {
+							$total = $result_register['total'];
+						}
+						if (isset($result)) {
+							$totalres = $result['totalre'];
+						}
+						?>
+						<?php  $porcentaje= ($totalres/$total)*100 ?>
+						<td><?php echo $totalres; ?>/<?php echo $total; ?></td>
+						<td><?php echo $porcentaje; ?>% </td>
+
+						<td>Guardar</td>
+
+
 					</tr>
 			<?php
 				}
@@ -72,7 +99,6 @@ $usu = $_SESSION['id_user'];
 						echo '<li><a href="?pagina=' . $i . '">' . $i . '</a></li>';
 					}
 				}
-
 				if ($pagina != $total_paginas) {
 				?>
 					<li><a href="?pagina=<?php echo $pagina + 1; ?>">>></a></li>
