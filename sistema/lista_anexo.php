@@ -58,8 +58,8 @@ $iddetalleauditoria = $_REQUEST['da'];
 
 					<tr>
 						<td>
-							<a class="link_edit" href="editar_anexo.php?id=<?php echo $data[0]; ?>">Editar</a>
-							<a class="link_delete" href="eliminar_anexo.php?id=<?php echo $data[0]; ?>">Eliminar</a>
+							<a class="link_edit" href="editar_anexo.php?ida=<?php echo $data[0]; ?>&id=<?php echo $iddetalleclausula ?>&da=<?php echo $iddetalleauditoria ?>">Editar</a>
+							<a class="link_delete" href="eliminar_anexo.php?ida=<?php echo $data[0]; ?>&id=<?php echo $iddetalleclausula ?>&da=<?php echo $iddetalleauditoria ?>">Eliminar</a>
 
 						</td>
 			

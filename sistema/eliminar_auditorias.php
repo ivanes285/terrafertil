@@ -66,7 +66,7 @@ if (empty($_REQUEST['id'])) {
            
             <form method="POST" action="">
                 <input type="hidden" name="iddetalleauditoria" value="<?php echo  $codigo; ?>">
-                <a href="lista_detalleauditoria.php" class="btn_cancel">Cancelar</a>
+                <a style="border: 2px solid #2e518b; padding: 10px 132px; color: #ffffff; background-color: #1883ba; border-radius: 6px;" href="lista_detalleauditoria.php" class="btn_cancel">Cancelar</a>
                 <input type="submit" value="Aceptar" class="btn_ok">
             </form>
         </div>

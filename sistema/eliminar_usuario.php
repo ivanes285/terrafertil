@@ -65,7 +65,7 @@ if (empty($_REQUEST['id']) || $_REQUEST['id'] == 1) {
       <p>Rol: <span><?php echo $rol; ?></span></p>
       <form method="POST" action="">
         <input type="hidden" name="id_user" value="<?php echo $idusuario; ?>">
-        <a href="lista_usuario.php" class="btn_cancel">Cancelar</a>
+        <a style="border: 2px solid #2e518b; padding: 10px 132px; color: #ffffff; background-color: #1883ba; border-radius: 6px;" href="lista_usuario.php" class="btn_cancel">Cancelar</a>
         <input type="submit" value="Aceptar" class="btn_ok">
       </form>
     </div>
