@@ -75,8 +75,11 @@ $iddetalleclausula = $_REQUEST['id'];
         <textarea name="desametodo" id="desametodo" cols="30" rows="10" placeholder="Describa el Desarrollo del método"></textarea>
         <br/>
         <br/>
-        <a  style="border: 2px solid #2e518b; padding: 10px 123px; color: #ffffff; background-color: #1883ba; border-radius: 6px;" href="lista_auditadovista.php">REGRESAR</a>
-        <input type="submit" value="Crear Plan de Acción" class="btn_save">
+        <a style="border: 2px solid #2e518b; padding: 10px 123px; color: #ffffff; background-color: #1883ba; border-radius: 6px;" href="lista_auditadovista.php">REGRESAR</a>
+        
+        <a style="border: 2px solid #2e518b; padding: 20px 160px; color: #ffffff; background-color: #1883ba; border-radius: 6px;" href="lista_auditadovista.php">Acciones</a>
+  
+        <input type="submit" value="Guardar" class="btn_save">
 
       </form>
     </div>
