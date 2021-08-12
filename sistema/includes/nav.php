@@ -50,8 +50,8 @@
 				<a href="#">Auditorias</a>
 				<ul>
 
-					<li><a href="lista_auditorvista.php">Auditorias Programadas</a></li>
-					<li><a href="lista_auditorvistare.php">Auditorias Ejecutadas</a></li>
+					<li><a href="lista_auditorvistapro.php">Auditorias Programadas</a></li>
+					<li><a href="lista_auditorvistaeje.php">Auditorias Ejecutadas</a></li>
 				</ul>
 				
 			</li>

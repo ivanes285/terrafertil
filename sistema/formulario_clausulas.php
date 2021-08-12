@@ -43,7 +43,7 @@ include "../conexion.php";
 			$total_paginas = ceil($total_registro / $por_pagina);
 
 			if (empty($_REQUEST['id'])) {
-				header("location: lista_auditorvista.php");
+				header("location: lista_auditorvistapro.php");
 				mysqli_close($conection);
 			} else {
 				$iddetallaauditoria = $_REQUEST['id'];
