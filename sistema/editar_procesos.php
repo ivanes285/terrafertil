@@ -79,7 +79,7 @@ if ($result_sql == 0) {
                     }
                     ?>
                 </select>
-                <a href="listar_procesos.php" class="btn_cancel">Cancelar</a>
+                <center> <a style="border: 2px solid #2e518b;  color: #ffffff; background-color: #1883ba;"  href="listar_procesos.php" class="btn_cancel">Cancelar</a> </center>
                 <input type="submit" value="Actualizar" class="btn_save">
             </form>
         </div>

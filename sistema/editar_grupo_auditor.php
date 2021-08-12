@@ -66,8 +66,8 @@ if ($result_sql == 0) {
                 <input type="hidden" name="idgrupo" value="<?php echo $idgrupo; ?>">
                 <label for="nombregrupo ">Nombre Grupo</label>
                 <input type="text" name="nombregrupo" id="nombregrupo" placeholder="Ingrese nombre del Grupo" required value="<?php echo $nombregrupo; ?>">
-                <a style="border: 2px solid #2e518b; padding: 10px 132px; color: #ffffff; background-color: #1883ba; border-radius: 6px;" href="lista_grupo_auditor.php" class="btn_cancel">Cancelar</a>
-                <input type="submit" value="Actualizar" class="btn_save">   
+                <center><a style="border: 2px solid #2e518b;  color: #ffffff; background-color: #1883ba;" href="lista_grupo_auditor.php" class="btn_cancel">Cancelar</a> </center>
+                <input type="submit" style="border: 2px solid #2e518b;  color: #ffffff; background-color: #04B404; font-size: 17px;" value="Actualizar" class="btn_save">   
             </form>
         </div>
     </section>

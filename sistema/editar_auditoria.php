@@ -116,7 +116,7 @@ if ($result_sql == 0) {
                 </select>
 
 
-                <a style="border: 2px solid #2e518b; padding: 10px 132px; color: #ffffff; background-color: #1883ba; border-radius: 6px;" href="lista_detalleauditoria.php" class="btn_cancel">Cancelar</a>
+                <center><a style="border: 2px solid #2e518b;  color: #ffffff; background-color: #1883ba;" href="lista_detalleauditoria.php" class="btn_cancel">Cancelar</a> </center>
                 <input type="submit" value="Actualizar" class="btn_save">
             </form>
         </div>

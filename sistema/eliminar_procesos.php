@@ -54,8 +54,8 @@ if (empty($_REQUEST['id'])) {
             <p>Lider Proceso: <span><?php echo $liderproceso; ?></span></p>
             <form method="POST" action="">
                 <input type="hidden" name="idproceso" value="<?php echo  $idproceso; ?>">
-                <a style="border: 2px solid #2e518b; padding: 10px 132px; color: #ffffff; background-color: #1883ba; border-radius: 6px;" href="listar_procesos.php" class="btn_cancel">Cancelar</a>
-                <input type="submit" value="Aceptar" class="btn_ok">
+                <center> <a style="border: 2px solid #2e518b;  color: #ffffff; background-color: #1883ba;" href="listar_procesos.php" class="btn_cancel">Cancelar</a> </center>
+                <input type="submit" style="border: 2px solid #2e518b;  color: #ffffff; background-color: #04B404; font-size: 17px;" value="Aceptar" class="btn_ok">
             </form>
         </div>
     </section>

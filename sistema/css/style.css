@@ -42,7 +42,11 @@ h5 {
 h6 {
     font-size: 12px;
 }
-
+a {
+  text-decoration: none;  
+  font-family: Arial, sans-serif;
+  letter-spacing: 1px;
+}
 
 p {
     font-family: Arial, sans-serif;
@@ -790,7 +794,7 @@ table td {
     color: #698084;
 }
 
-
+/*
 .decoration a {
    
     text-decoration: none;
@@ -809,12 +813,13 @@ table td {
   }
 
   .botonn {
-    border: 1px solid #2e518b; /*anchura, estilo y color borde*/
-    padding: 10px; /*espacio alrededor texto*/
-    background-color: #2e518b; /*color botón*/
-    color: #ffffff; /*color texto*/
-    text-decoration: none; /*decoración texto*/
-    text-transform: uppercase; /*capitalización texto*/
-    font-family: 'Helvetica', sans-serif; /*tipografía texto*/
-    border-radius: 50px; /*bordes redondos*/
+    border: 1px solid #2e518b; /*anchura, estilo y color borde
+    padding: 10px; /*espacio alrededor texto
+    background-color: #2e518b; /*color botón
+    color: #ffffff; /*color texto
+    text-decoration: none; /*decoración texto
+    text-transform: uppercase; /*capitalización texto
+    font-family: 'Helvetica', sans-serif; /*tipografía texto
+    border-radius: 50px; /*bordes redondos
     }
+    

@@ -16,7 +16,7 @@ if (!empty($_POST)) {
     $id_anexo = $_POST['idanexo'];
 
     $query_delete = mysqli_query($conection, "DELETE FROM anexo WHERE idanexo = $id_anexo");
-    
+
     mysqli_close($conection);
     if ($query_delete) {
         header("location:".$cadena);
@@ -64,8 +64,8 @@ if (empty($_REQUEST['ida'])) {
             <p>Url Anexo: <span><?php echo $anexo; ?></span></p>
             <form method="POST" action="">
                 <input type="hidden" name="idanexo" value="<?php echo  $id_anexo; ?>">
-                <a style="border: 2px solid #2e518b; padding: 10px 132px; color: #ffffff; background-color: #1883ba; border-radius: 6px;" href=" lista_anexo.php?id=<?php echo $iddetalleclausula ?>&da=<?php echo $iddetalleauditoria ?>" class="btn_cancel">Cancelar</a>
-                <input type="submit" value="Aceptar" class="btn_ok">
+                <center><a style="border: 2px solid #2e518b;  color: #ffffff; background-color: #1883ba;" href=" lista_anexo.php?id=<?php echo $iddetalleclausula ?>&da=<?php echo $iddetalleauditoria ?>" class="btn_cancel">Cancelar</a> </center>
+                <input type="submit" style="border: 2px solid #2e518b;  color: #ffffff; background-color: #04B404; font-size: 17px;" value="Aceptar" class="btn_ok">
          
             </form>
         </div>

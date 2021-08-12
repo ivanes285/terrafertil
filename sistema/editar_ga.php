@@ -132,8 +132,8 @@ if ($result_sql == 0) {
                 </select>
 
 
-                <a style="border: 2px solid #2e518b; padding: 10px 132px; color: #ffffff; background-color: #1883ba; border-radius: 6px;" href="listadetallegrupo.php" class="btn_cancel">Cancelar</a>
-                <input type="submit" value="Actualizar" class="btn_save">
+                <center><a style="border: 2px solid #2e518b;  color: #ffffff; background-color: #1883ba;" href="listadetallegrupo.php" class="btn_cancel">Cancelar</a></center>
+                <input type="submit" style="border: 2px solid #2e518b;  color: #ffffff; background-color: #04B404; font-size: 17px;" value="Actualizar" class="btn_save">
             </form>
         </div>
     </section>

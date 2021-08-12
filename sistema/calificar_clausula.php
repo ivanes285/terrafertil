@@ -108,7 +108,7 @@ if ($result_sql == 0) {
 
                 <br />
                 <br />
-                <a style="border: 2px solid #2e518b; padding: 10px 132px; color: #ffffff; background-color: #1883ba; border-radius: 6px;"  href="formulario_clausulas.php?id=<?php echo $iddetalleauditoria ?>" class="btn_save">Regresar</a>
+                <center><a style="border: 2px solid #2e518b;  color: #ffffff; background-color: #1883ba;"  href="formulario_clausulas.php?id=<?php echo $iddetalleauditoria ?>" class="btn_save">Regresar</a> </center>
                 <input type="submit" value="Evaluar" name="prueba" class="btn_save">
             </form>
         </div>
