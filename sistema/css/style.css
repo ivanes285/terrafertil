@@ -353,14 +353,14 @@ table td {
 
 .btn_cancel,
 .btn_ok {
-    width: 124px;
+    width: 135px;
     background: #478ba2;
     color: #fff;
     display: inline-block;
     padding: 7px;
     border-radius: 7px;
     cursor: pointer;
-    margin: 15px;
+    margin: 20px;
 }
 
 .btn_okk {

@@ -26,7 +26,7 @@ include "sesion.php";
             <div class="modal-content">
           
                 <div class="col-12 user-img">
-                    <img src="estilo/img/user.png" th:src="@{/img/user.png}"/>
+                    <img src="sistema/img/userlogin.png" th:src="@{/img/userlogin.png}"/>
                 </div>
 
                 <form class="col-12" action="" method="post">

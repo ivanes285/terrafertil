@@ -10,7 +10,7 @@ $usu = $_SESSION['id_user'];
 <head>
 	<meta charset="UTF-8">
 	<?php include "includes/scripts.php"; ?>
-	<title>Lista de Incumplimientos </title>
+	<title>Lista de Planes de Acción </title>
 </head>
 
 <body>
@@ -19,12 +19,15 @@ $usu = $_SESSION['id_user'];
 		<h1>Lista de Incumplimientos</h1>
 		<table>
 			<tr>
+				<th>Acciones</th>
 				<th>Código de Auditoria</th>
 				<th>Norma</th>
-				<th>Detalle Clausula</th>
-				<th>Descripción Incumplimiento</th>
-				<th>Plan de Acción</th>
-				
+				<th>Consecuencia</th>
+				<th>Análisis de Causa</th>
+				<th>Desarrollo del Método</th>
+				<th>Descripción Causa Raíz</th>
+				<th>Acciones Propuestas</th>
+
 			</tr>
 			<?php
 
@@ -39,18 +42,25 @@ $usu = $_SESSION['id_user'];
 			}
 			$desde = ($pagina - 1) * $por_pagina;
 			$total_paginas = ceil($total_registro / $por_pagina);
-			$query = mysqli_query($conection, "SELECT codigoauditoria,nombrenorma,detalleclausula,desincumplimiento,iddetalleclausula,c.idclausula FROM detalleauditoria da, norma n, clausula c,detalleclausula dc ,procesos p WHERE da.iddetalleauditoria=dc.iddetalleauditoria AND c.idclausula=dc.idclausula AND n.idnorma=c.idnorma AND p.idproceso=c.idproceso AND p.liderproceso=$usu AND dc.parametroscalificacion<>'cumple' AND dc.planaccion=1 ORDER BY nombrenorma,codigoauditoria ASC LIMIT $desde,$por_pagina");
+			//detalleclausula
+			$query = mysqli_query($conection, "SELECT codigoauditoria,nombrenorma,consecuencia,analisiscausa,desarrollometodo,causaraiz,c.idclausula, pa.idplandeaccion FROM detalleauditoria da, norma n, clausula c,detalleclausula dc ,procesos p , plandeaccion pa WHERE da.iddetalleauditoria=dc.iddetalleauditoria AND c.idclausula=dc.idclausula AND n.idnorma=c.idnorma AND p.idproceso=c.idproceso AND p.liderproceso=$usu AND dc.iddetalleclausula=pa.iddetalleclausula AND dc.parametroscalificacion<>'cumple' AND dc.planaccion=2 ORDER BY nombrenorma,codigoauditoria ASC LIMIT $desde,$por_pagina");
 			mysqli_close($conection);
 			$result = mysqli_num_rows($query);
 			if ($result > 0) {
 				while ($data = mysqli_fetch_array($query)) {
 			?>
 					<tr>
+						<td>
+							<a class="link_edit" href="editar_plan.php?id=<?php echo $data[7]; ?>">Editar</a>
+						</td>
+
 						<td><?php echo $data[0]; ?></td>
 						<td><?php echo $data[1]; ?></td>
 						<td><?php echo $data[2]; ?></td>
 						<td><?php echo $data[3]; ?></td>
-						<td><a style="color: #4099BF; font-weight: bold"  href="registro_plandeaccion.php?id=<?php echo $data[4];?>&ic=<?php echo $data[5];?>">PLAN</a></td>
+						<td><?php echo $data[4]; ?></td>
+						<td><?php echo $data[5]; ?></td>
+						<td><a style="color: #4099BF; font-weight: bold" href="registro_plandeaccion.php?id=<?php echo $data[4]; ?>&ic=<?php echo $data[5]; ?>">Accion Propuesta</a></td>
 					</tr>
 			<?php
 				}

@@ -48,7 +48,7 @@ $usu = $_SESSION['id_user'];
 					<tr>
 						<td><?php echo $data[0]; ?></td>
 						<td><?php echo $data[1]; ?></td>
-						<td><a href="formulario_clausulas.php?id=<?php echo $data[3]; ?>"><?php echo $data[2]; ?></a></td>
+						<td><a style="color: #4099BF; font-weight: bold" href="formulario_clausulas.php?id=<?php echo $data[3]; ?>"><?php echo $data[2]; ?></a></td>
 						<?php
 						$val = $data[2];
 						$idda = $data[3];

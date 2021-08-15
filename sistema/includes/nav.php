@@ -49,9 +49,16 @@
 			<li class="principal">
 				<a href="#">Auditorias</a>
 				<ul>
-
 					<li><a href="lista_auditorvistapro.php">Auditorias Programadas</a></li>
 					<li><a href="lista_auditorvistaeje.php">Auditorias Ejecutadas</a></li>
+				</ul>
+			</li>
+			<li class="principal">
+				<a href="#">Acciones Correctivas</a>
+				<ul>
+
+					<li><a href="lista_auditorvistapro.php">Acciones Pendientes</a></li>
+					<li><a href="lista_auditorvistapro.php">Acciones Cerradas</a></li>
 				</ul>
 				
 			</li>
@@ -61,10 +68,20 @@
 		if ($_SESSION['rol'] == 3) {
 		?>
 			<li class="principal">
-				<a href="#">Auditorias</a>
+				<a href="#">Incumplimientos</a>
 				<ul>
 
-					<li><a href="lista_auditadovista.php">Auditorias Pendientes</a></li>
+					<li><a href="lista_auditadovista.php">Incumplimientos Pendientes</a></li>
+				
+				</ul>
+				
+			</li>
+
+			<li class="principal">
+				<a href="#">Planes</a>
+				<ul>
+
+					<li><a href="lista_planaccion.php">Planes de Acción</a></li>
 				
 				</ul>
 				

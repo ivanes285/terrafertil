@@ -64,7 +64,7 @@ $iddetalleauditoria = $_REQUEST['da'];
 						</td>
 			
 						<td><?php echo $data[2];  ?></td>
-						<td><a style="color: #40AEBF;" href="<?php echo $data[3]; ?>"><?php echo $data[3]; ?></a></td>
+						<td><a style="color: #40AEBF;" target="blank" href="<?php echo $data[3]; ?>"><?php echo $data[3]; ?></a></td>
 
 					</tr>
 			<?php

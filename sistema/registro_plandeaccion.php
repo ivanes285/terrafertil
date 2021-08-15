@@ -5,6 +5,12 @@ if ($_SESSION['rol'] != 3) {
 }
 include "../conexion.php";
 
+if (empty($_REQUEST['ic'])) {
+  header('Location: lista_auditadovista.php');
+  mysqli_close($conection);
+}
+$idclausula = $_REQUEST['ic'];
+
 
 if (!empty($_POST)) {
 
@@ -16,7 +22,9 @@ if (!empty($_POST)) {
 
 
   $query_insert = mysqli_query($conection, "INSERT INTO plandeaccion (iddetalleclausula,consecuencia,analisiscausa,desarrollometodo,causaraiz) VALUES ('$iddetalleclausula','$consecuencia','$analisiscausa','$desametodo','$causaraiz')");
-  if ($query_insert) {
+  $query_update = mysqli_query($conection, "UPDATE detalleclausula SET planaccion=2 WHERE iddetalleclausula=$iddetalleclausula");
+
+  if ($query_insert && $query_update) {
     $alert = '<p class="msg_save">Plan de Accion creado Correctamente</p>';
   } else {
     $alert = '<p class="msg_error">Error al Crear Plan de Acción</p>';
@@ -29,6 +37,7 @@ if (empty($_REQUEST['id'])) {
 }
 
 $iddetalleclausula = $_REQUEST['id'];
+
 
 ?>
 
@@ -55,7 +64,7 @@ $iddetalleclausula = $_REQUEST['id'];
         <input type="hidden" name="iddetalleclausula" value="<?php echo $iddetalleclausula; ?>">
 
         <label for="consecuencia">Consecuencia</label>
-        <textarea name="consecuencia" id="consecuencia" cols="30" rows="10" placeholder="Describa la consecuencia"></textarea>
+        <textarea name="consecuencia" id="consecuencia" cols="30" rows="10" placeholder="Describa la consecuencia" required></textarea>
 
         <label for="actividad">Parametros de Calificación</label>
 
@@ -69,16 +78,14 @@ $iddetalleclausula = $_REQUEST['id'];
 
 
         <label for="descausaraiz">Descripción Causa Raiz</label>
-        <textarea name="descausaraiz" id="descausaraiz" cols="30" rows="10" placeholder="Describa la causa raíz"></textarea>
+        <textarea name="descausaraiz" id="descausaraiz" cols="30" rows="10" placeholder="Describa la causa raíz" required></textarea>
 
         <label for="desametodo">Desarrollo método</label>
-        <textarea name="desametodo" id="desametodo" cols="30" rows="10" placeholder="Describa el Desarrollo del método"></textarea>
+        <textarea name="desametodo" id="desametodo" cols="30" rows="10" placeholder="Describa el Desarrollo del método" required></textarea>
         <br/>
-        <br/>
-        <a style="border: 2px solid #2e518b; padding: 10px 123px; color: #ffffff; background-color: #1883ba; border-radius: 6px;" href="lista_auditadovista.php">REGRESAR</a>
-        
-        <a style="border: 2px solid #2e518b; padding: 20px 160px; color: #ffffff; background-color: #1883ba; border-radius: 6px;" href="lista_auditadovista.php">Acciones</a>
-  
+        <center> <a style="border: 2px solid #2e518b;  color: #ffffff; background-color: #1883ba;" class="btn_cancel" href="lista_auditadovista.php">Regresar</a> </center>
+        <center><a style="border: 2px solid #2e518b;  color: #ffffff; background-color: #BE2929;"  class="btn_cancel" href="lista_auditadovista.php">Acciones Propuestas</a> </center>
+      
         <input type="submit" value="Guardar" class="btn_save">
 
       </form>
