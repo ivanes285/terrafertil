@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 11-08-2021 a las 01:53:43
+-- Tiempo de generación: 15-08-2021 a las 04:13:56
 -- Versión del servidor: 10.4.20-MariaDB
 -- Versión de PHP: 7.4.21
 
@@ -39,10 +39,8 @@ CREATE TABLE `anexo` (
 --
 
 INSERT INTO `anexo` (`idanexo`, `iddetalleclausula`, `nombre`, `anexo`) VALUES
-(1, 147, 'documento pdf', 'https://utneduec.sharepoint.com/sites/CISICCSOFT-T.GRADO1-ABR21.AGO21/Documentos%20compartidos/Forms/AllItems.aspx?e=5%3Ac1c9d051d0544a59b0bfec6df30d84a2&at=9&CT=1625263135101&OR=OWA%2DNT&CID=77e80a37%2D9825%2D0da2%2D74ce%2D4046be93934e&RootFolder=%2Fsites%2FCISICCSOFT%2DT%2EGRADO1%2DABR21%2EAGO21%2FDocumentos%20compartidos%2FGeneral%2FPERFILES%2DTESIS%2DCISIC%2ECSOF%2DABR21%2EAGO21%2FLESCANO%20VASQUEZ%20IVAN%20ALEXANDER&FolderCTID=0x0120002EA6CFDBA8E1E643BFD34A861A356647'),
-(2, 147, 'documento word', 'https://utneduec.sharepoint.com/sites/CISICCSOFT-T.GRADO1-ABR21.AGO21/Documentos%20compartidos/Forms/AllItems.aspx?e=5%3Ac1c9d051d0544a59b0bfec6df30d84a2&at=9&CT=1625263135101&OR=OWA%2DNT&CID=77e80a37%2D9825%2D0da2%2D74ce%2D4046be93934e&RootFolder=%2Fsites%2FCISICCSOFT%2DT%2EGRADO1%2DABR21%2EAGO21%2FDocumentos%20compartidos%2FGeneral%2FPERFILES%2DTESIS%2DCISIC%2ECSOF%2DABR21%2EAGO21%2FLESCANO%20VASQUEZ%20IVAN%20ALEXANDER&FolderCTID=0x0120002EA6CFDBA8E1E643BFD34A861A356647'),
-(5, 147, 'foto', 'https://utneduec.sharepoint.com/sites/CISICCSOFT-T.GRADO1-ABR21.AGO21/Documentos%20compartidos/Forms/AllItems.aspx?e=5%3Ac1c9d051d0544a59b0bfec6df30d84a2&at=9&CT=1625263135101&OR=OWA%2DNT&CID=77e80a37%2D9825%2D0da2%2D74ce%2D4046be93934e&RootFolder=%2Fsites%2FCISICCSOFT%2DT%2EGRADO1%2DABR21%2EAGO21%2FDocumentos%20compartidos%2FGeneral%2FPERFILES%2DTESIS%2DCISIC%2ECSOF%2DABR21%2EAGO21%2FLESCANO%20VASQUEZ%20IVAN%20ALEXANDER&FolderCTID=0x0120002EA6CFDBA8E1E643BFD34A861A356647'),
-(6, 148, 'documento confidencial', 'https://utneduec.sharepoint.com/sites/CISICCSOFT-T.GRADO1-ABR21.AGO21/Documentos%20compartidos/Forms/AllItems.aspx?e=5%3Ac1c9d051d0544a59b0bfec6df30d84a2&at=9&CT=1625263135101&OR=OWA%2DNT&CID=77e80a37%2D9825%2D0da2%2D74ce%2D4046be93934e&RootFolder=%2Fsites%2FCISICCSOFT%2DT%2EGRADO1%2DABR21%2EAGO21%2FDocumentos%20compartidos%2FGeneral%2FPERFILES%2DTESIS%2DCISIC%2ECSOF%2DABR21%2EAGO21%2FLESCANO%20VASQUEZ%20IVAN%20ALEXANDER&FolderCTID=0x0120002EA6CFDBA8E1E643BFD34A861A356647');
+(11, 196, 'Documento pdf', 'https://utneduec.sharepoint.com/sites/CISICCSOFT-T.GRADO1-ABR21.AGO21/Documentos%20compartidos/Forms/AllItems.aspx?e=5%3Ac1c9d051d0544a59b0bfec6df30d84a2&at=9&CT=1625263135101&OR=OWA%2DNT&CID=77e80a37%2D9825%2D0da2%2D74ce%2D4046be93934e&RootFolder=%2Fsites%2FCISICCSOFT%2DT%2EGRADO1%2DABR21%2EAGO21%2FDocumentos%20compartidos%2FGeneral%2FPERFILES%2DTESIS%2DCISIC%2ECSOF%2DABR21%2EAGO21%2FLESCANO%20VASQUEZ%20IVAN%20ALEXANDER&FolderCTID=0x0120002EA6CFDBA8E1E643BFD34A861A356647'),
+(12, 187, 'documento', 'https://utneduec.sharepoint.com/sites/Pasantias854/Documentos%20compartidos/Forms/AllItems.aspx?id=%2Fsites%2FPasantias854%2FDocumentos%20compartidos%2FReuniones%2FRecordings%2FReuni%C3%B3n%20en%20%5FReuniones%5F%2D20210811%5F103952%2DGrabaci%C3%B3n%20de%20la%20reuni%C3%B3n%2Emp4&parent=%2Fsites%2FPasantias854%2FDocumentos%20compartidos%2FReuniones%2FRecordings');
 
 -- --------------------------------------------------------
 
@@ -81,9 +79,16 @@ INSERT INTO `clausula` (`idclausula`, `clausula`, `detalleclausula`, `idnorma`, 
 (16, '4.2 COMPRENSIÓN DE LAS NECESIDADES Y EXPECTATIVAS DE LAS PARTES INTERESADAS', 'Debido a su efecto o efecto potencial en la capacidad de la organización de proporcionar regularmente productos y servicios que satisfagan los requisitos del cliente y los legales y reglamentarios aplicables, la organización debe determinar: a) las partes interesadas que son pertinentes al sistema de gestión de la calidad;\r\nb) los requisitos pertinentes de estas partes interesadas para el sistema de gestión de la calidad.', 1, 6),
 (17, '4.2 COMPRENSIÓN DE LAS NECESIDADES Y EXPECTATIVAS DE LAS PARTES INTERESADAS', 'Debido a su efecto o efecto potencial en la capacidad de la organización de proporcionar regularmente productos y servicios que satisfagan los requisitos del cliente y los legales y reglamentarios aplicables, la organización debe determinar: a) las partes interesadas que son pertinentes al sistema de gestión de la calidad;\r\nb) los requisitos pertinentes de estas partes interesadas para el sistema de gestión de la calidad.', 1, 7),
 (18, '4.3 DETERMINACIÓN DEL ALCANCE DEL SISTEMA DE GESTIÓN DE LA CALIDAD', 'Cuando se determina este alcance, la organización debe considerar:\r\na) las cuestiones externas e internas indicadas en el apartado 4.1;\r\nb) los requisitos de las partes interesadas pertinentes indicados en el apartado 4.2;\r\nc) los productos y servicios de la organización.', 1, 6),
-(19, '4.3 DETERMINACIÓN DEL ALCANCE DEL SISTEMA DE GESTIÓN DE LA CALIDAD', 'Cuando se determina este alcance, la organización debe considerar:\r\na) las cuestiones externas e internas indicadas en el apartado 4.1;\r\nb) los requisitos de las partes interesadas pertinentes indicados en el apartado 4.2;\r\nc) los productos y servicios de la organización.', 1, 7),
+(19, '4.3 DETERMINACIÓN DEL ALCANCE DEL SISTEMA DE GESTIÓN DE LA CALIDAD', 'Cuando se determina este alcance, la organización debe considerar\r\n\r\na) las cuestiones externas e internas indicadas en el apartado 4.1;\r\n\r\nb) los requisitos de las partes interesadas pertinentes indicados en el apartado 4.2;\r\n\r\nc) los productos y servicios de la organización.', 1, 7),
 (20, '4.4 SISTEMA DE GESTIÓN DE LA CALIDAD Y SUS PROCESOS', 'La organización debe determinar los procesos necesarios para el sistema de gestión de la calidad y su aplicación a través de la organización, y debe:\r\na) determinar las entradas requeridas y las salidas esperados de estos procesos;\r\nb) determinar la secuencia e interacción de estos procesos;\r\nc) determinar y aplicar los criterios y los métodos (incluyendo el seguimiento, la medición y los indicadores del desempeño relacionados) necesarios para asegurarse la operación eficaz y el control de estos procesos;\r\nd) determinar los recursos necesarios para estos procesos y asegurarse de su disponibilidad;\r\ne) asignar las responsabilidades y autoridades para estos procesos;\r\nf) abordar los riesgos y oportunidades determinados de acuerdo con los requisitos del apartado 6.1;\r\ng) evaluar estos procesos e implementar cualquier cambio necesario para asegurarse de que estos procesos logran los resultados previstos;\r\nh) mejorar los procesos y el sistema de gestión de la calidad.', 1, 6),
-(21, '4.4 SISTEMA DE GESTIÓN DE LA CALIDAD Y SUS PROCESOS', '4.4.2 \r\nEn la medida en que sea necesario, la organización debe:\r\na) mantener información documentada para apoyar la operación de sus procesos;\r\nb) conservar la información documentada para tener la confianza de que los procesos se realizan según lo planificado.', 1, 6);
+(21, '4.4 SISTEMA DE GESTIÓN DE LA CALIDAD Y SUS PROCESOS', '4.4.2 \r\nEn la medida en que sea necesario, la organización debe:\r\na) mantener información documentada para apoyar la operación de sus procesos;\r\nb) conservar la información documentada para tener la confianza de que los procesos se realizan según lo planificado.', 1, 6),
+(22, '5.1 LIDERAZGO Y COMPROMISO', '\r\nLa alta dirección debe demostrar liderazgo y compromiso con respecto al sistema de gestión de la calidad:\r\na) asumiendo la rendición de cuentas de la eficacia del sistema de gestión de la calidad;', 3, 7),
+(23, '5.1 LIDERAZGO Y COMPROMISO', '\r\nLa alta dirección debe demostrar liderazgo y compromiso con respecto al sistema de gestión de la calidad:\r\na) asumiendo la rendición de cuentas de la eficacia del sistema de gestión de la calidad;', 3, 6),
+(24, '5.1 LIDERAZGO Y COMPROMISO\r\n', 'La alta dirección debe demostrar liderazgo y compromiso con respecto al sistema de gestión de la calidad:\r\na) asumiendo la rendición de cuentas de la eficacia del sistema de gestión de la calidad;', 3, 4),
+(25, '5.1 LIDERAZGO Y COMPROMISO', 'La alta dirección debe demostrar liderazgo y compromiso con respecto al sistema de gestión de la calidad:\r\na) asumiendo la rendición de cuentas de la eficacia del sistema de gestión de la calidad;', 3, 7),
+(30, '8.3.5 Salidas del diseño y desarrollo', 'La organización debe asegurarse de que las salidas del diseño y desarrollo:\r\na) cumplen los requisitos de las entradas; \r\nb) son adecuadas para los procesos posteriores para la provisión de productos y servicios;\r\nc) incluyen o hacen referencia a los requisitos de seguimiento y medición, cuando sea apropiado, y a los criterios de aceptación;\r\nd) especifican las características de los productos y servicios que son esenciales para su propósito previsto y su provisión segura y correcta.\r\n\r\nLa organización debe conservar información documentada sobre las salidas del diseño y desarrollo.', 4, 6),
+(31, '8.3.5 Salidas del diseño y desarrollo\r\n', 'La organización debe asegurarse de que las salidas del diseño y desarrollo:\r\na) cumplen los requisitos de las entradas; \r\nb) son adecuadas para los procesos posteriores para la provisión de productos y servicios;\r\nc) incluyen o hacen referencia a los requisitos de seguimiento y medición, cuando sea apropiado, y a los criterios de aceptación;\r\nd) especifican las características de los productos y servicios que son esenciales para su propósito previsto y su provisión segura y correcta.\r\n\r\nLa organización debe conservar información documentada sobre las salidas del diseño y desarrollo.', 4, 4),
+(32, '8.3.5 Salidas del diseño y desarrollo', 'La organización debe asegurarse de que las salidas del diseño y desarrollo:\r\na) cumplen los requisitos de las entradas; \r\nb) son adecuadas para los procesos posteriores para la provisión de productos y servicios;\r\nc) incluyen o hacen referencia a los requisitos de seguimiento y medición, cuando sea apropiado, y a los criterios de aceptación;\r\nd) especifican las características de los productos y servicios que son esenciales para su propósito previsto y su provisión segura y correcta.\r\n\r\nLa organización debe conservar información documentada sobre las salidas del diseño y desarrollo.', 4, 5);
 
 -- --------------------------------------------------------
 
@@ -97,15 +102,24 @@ CREATE TABLE `detalleauditoria` (
   `idperiodo` int(11) NOT NULL,
   `fechaejecucion` date NOT NULL,
   `idgrupo` int(11) NOT NULL,
-  `fechacreacion` date NOT NULL DEFAULT current_timestamp()
+  `fechacreacion` date NOT NULL DEFAULT current_timestamp(),
+  `estado` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `detalleauditoria`
 --
 
-INSERT INTO `detalleauditoria` (`iddetalleauditoria`, `codigoauditoria`, `idperiodo`, `fechaejecucion`, `idgrupo`, `fechacreacion`) VALUES
-(96, 'Cod-9001', 2, '2021-08-11', 1, '2021-08-09');
+INSERT INTO `detalleauditoria` (`iddetalleauditoria`, `codigoauditoria`, `idperiodo`, `fechaejecucion`, `idgrupo`, `fechacreacion`, `estado`) VALUES
+(100, 'Cod-9001', 1, '2021-08-18', 1, '2021-08-11', 2),
+(101, 'Cod-9002', 1, '2021-08-26', 3, '2021-08-11', 2),
+(102, 'Cod-9003', 1, '2021-08-12', 1, '2021-08-11', 1),
+(103, 'Cod-9004', 1, '2021-08-18', 1, '2021-08-12', 2),
+(104, 'Cod-9005', 1, '2021-08-25', 3, '2021-08-12', 1),
+(105, 'Cod-9008', 1, '2021-08-18', 1, '2021-08-12', 2),
+(106, 'Cod-9006', 1, '2021-08-25', 1, '2021-08-14', 1),
+(107, 'Cod-9007', 1, '2021-08-25', 1, '2021-08-14', 2),
+(109, 'Cod-9009', 1, '2021-08-25', 2, '2021-08-14', 1);
 
 -- --------------------------------------------------------
 
@@ -119,22 +133,74 @@ CREATE TABLE `detalleclausula` (
   `parametroscalificacion` varchar(100) DEFAULT NULL,
   `desincumplimiento` varchar(150) DEFAULT NULL,
   `documentacionsoporte` varchar(150) DEFAULT NULL,
-  `iddetalleauditoria` int(11) NOT NULL
+  `iddetalleauditoria` int(11) NOT NULL,
+  `planaccion` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `detalleclausula`
 --
 
-INSERT INTO `detalleclausula` (`iddetalleclausula`, `idclausula`, `parametroscalificacion`, `desincumplimiento`, `documentacionsoporte`, `iddetalleauditoria`) VALUES
-(147, 12, 'cumple', '', 'fffffffffffffffffffffffff', 96),
-(148, 13, 'noconformidadmayor', 'No conforme', 'No existe documento', 96),
-(149, 16, NULL, NULL, NULL, 96),
-(150, 17, 'observacion', 'no cumple', 'ddddddd', 96),
-(151, 18, NULL, NULL, NULL, 96),
-(152, 19, 'noconformidadmayor', 'esta a prueba para mejorar', 'ggggggggggggggggg', 96),
-(153, 20, 'noconformidadmenor', 'no conforme ', 'siii', 96),
-(154, 21, NULL, NULL, NULL, 96);
+INSERT INTO `detalleclausula` (`iddetalleclausula`, `idclausula`, `parametroscalificacion`, `desincumplimiento`, `documentacionsoporte`, `iddetalleauditoria`, `planaccion`) VALUES
+(175, 12, 'noconformidadmenor', 'df', 'dfad', 100, 1),
+(176, 13, 'noconformidadmayor', 'dfa', 'dfa', 100, 1),
+(177, 16, 'noconformidadmenor', 'sfdfad', 'dfadaf', 100, 1),
+(178, 17, NULL, NULL, NULL, 100, 1),
+(179, 18, NULL, NULL, NULL, 100, 1),
+(180, 19, NULL, NULL, NULL, 100, 1),
+(181, 20, NULL, NULL, NULL, 100, 1),
+(182, 21, NULL, NULL, NULL, 100, 1),
+(183, 22, 'noconformidadmayor', 'sdS', 'sdSd', 101, 2),
+(184, 23, 'observacion', 'sdS', 'SDs', 101, 1),
+(185, 24, 'oportunidaddemejora', 'FADFAD', 'dfadfad', 101, 1),
+(186, 25, NULL, NULL, NULL, 101, 1),
+(187, 12, NULL, NULL, NULL, 102, 1),
+(188, 13, NULL, NULL, NULL, 102, 1),
+(189, 16, 'observacion', 'dfad', 'dfa', 102, 1),
+(190, 17, NULL, NULL, NULL, 102, 1),
+(191, 18, NULL, NULL, NULL, 102, 1),
+(192, 19, NULL, NULL, NULL, 102, 1),
+(193, 20, NULL, NULL, NULL, 102, 1),
+(194, 21, NULL, NULL, NULL, 102, 1),
+(195, 12, NULL, NULL, NULL, 103, 1),
+(196, 13, 'noconformidadmayor', 'gfggf', 'fgsf', 103, 1),
+(197, 16, NULL, NULL, NULL, 103, 1),
+(198, 17, 'noconformidadmenor', 'fgsf', 'fgsf', 103, 1),
+(199, 18, NULL, NULL, NULL, 103, 1),
+(200, 19, 'noconformidadmenor', 'fgs', 'fgsf', 103, 1),
+(201, 20, 'noconformidadmenor', 'fdf', 'dfa', 103, 1),
+(202, 21, NULL, NULL, NULL, 103, 1),
+(203, 22, 'noconformidadmenor', 'df', 'dfa', 104, 2),
+(204, 23, NULL, NULL, NULL, 104, 1),
+(205, 24, NULL, NULL, NULL, 104, 1),
+(206, 25, NULL, NULL, NULL, 104, 1),
+(207, 12, 'noconformidadmenor', 'dfdfa', 'dfadaf', 105, 1),
+(208, 13, NULL, NULL, NULL, 105, 1),
+(209, 16, NULL, NULL, NULL, 105, 1),
+(210, 17, NULL, NULL, NULL, 105, 1),
+(211, 18, NULL, NULL, NULL, 105, 1),
+(212, 19, NULL, NULL, NULL, 105, 1),
+(213, 20, NULL, NULL, NULL, 105, 1),
+(214, 21, NULL, NULL, NULL, 105, 1),
+(215, 12, 'noconformidadmenor', 'fdfdf', 'dfad', 106, 1),
+(216, 13, NULL, NULL, NULL, 106, 1),
+(217, 16, NULL, NULL, NULL, 106, 1),
+(218, 17, NULL, NULL, NULL, 106, 1),
+(219, 18, NULL, NULL, NULL, 106, 1),
+(220, 19, NULL, NULL, NULL, 106, 1),
+(221, 20, NULL, NULL, NULL, 106, 1),
+(222, 21, NULL, NULL, NULL, 106, 1),
+(223, 12, NULL, NULL, NULL, 107, 1),
+(224, 13, 'observacion', 'fdaf', 'dfad', 107, 2),
+(225, 16, NULL, NULL, NULL, 107, 1),
+(226, 17, NULL, NULL, NULL, 107, 1),
+(227, 18, NULL, NULL, NULL, 107, 1),
+(228, 19, NULL, NULL, NULL, 107, 1),
+(229, 20, NULL, NULL, NULL, 107, 1),
+(230, 21, NULL, NULL, NULL, 107, 1),
+(231, 30, NULL, NULL, NULL, 109, 1),
+(232, 31, NULL, NULL, NULL, 109, 1),
+(233, 32, NULL, NULL, NULL, 109, 1);
 
 -- --------------------------------------------------------
 
@@ -251,7 +317,9 @@ CREATE TABLE `plandeaccion` (
 --
 
 INSERT INTO `plandeaccion` (`idplandeaccion`, `iddetalleclausula`, `consecuencia`, `analisiscausa`, `desarrollometodo`, `causaraiz`) VALUES
-(1, 152, 'dfad', 'Pareto', 'dfadfa', 'dfadf');
+(13, 183, 'fdaf', 'Diagrama de Ishkawa', 'dfad', 'dfad'),
+(14, 224, 'fdsf', '5 por que?', 'dfadfa', 'dfad'),
+(15, 203, 'cualquier cosa', 'Diagrama de Ishkawa', 'cualquier cosa', 'cualquier cosa');
 
 -- --------------------------------------------------------
 
@@ -337,7 +405,7 @@ CREATE TABLE `usuario` (
 INSERT INTO `usuario` (`id_user`, `user`, `password`, `correo`, `rol`, `estatus`) VALUES
 (1, 'ivan', '102ddaf691e1615d5dacd4c86299bfa4', 'ialescanov@utn.edu.ec', 1, 1),
 (2, 'malcom', '102ddaf691e1615d5dacd4c86299bfa4', 'malcom@gmail.com', 2, 1),
-(3, 'francis', '102ddaf691e1615d5dacd4c86299bfa4', 'francis@gmail.com', 2, 1),
+(3, 'francis', '102ddaf691e1615d5dacd4c86299bfa4', 'francis@gmail.com', 2, 0),
 (4, 'lois', '102ddaf691e1615d5dacd4c86299bfa4', 'lois@gmail.com', 3, 1),
 (5, 'hall', '102ddaf691e1615d5dacd4c86299bfa4', 'hall@gmail.com', 2, 1),
 (6, 'daya', '102ddaf691e1615d5dacd4c86299bfa4', 'dayamineral@gmail.com', 2, 1),
@@ -457,7 +525,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `anexo`
 --
 ALTER TABLE `anexo`
-  MODIFY `idanexo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `idanexo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `anexoclausula`
@@ -469,19 +537,19 @@ ALTER TABLE `anexoclausula`
 -- AUTO_INCREMENT de la tabla `clausula`
 --
 ALTER TABLE `clausula`
-  MODIFY `idclausula` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `idclausula` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT de la tabla `detalleauditoria`
 --
 ALTER TABLE `detalleauditoria`
-  MODIFY `iddetalleauditoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
+  MODIFY `iddetalleauditoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=110;
 
 --
 -- AUTO_INCREMENT de la tabla `detalleclausula`
 --
 ALTER TABLE `detalleclausula`
-  MODIFY `iddetalleclausula` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=155;
+  MODIFY `iddetalleclausula` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=234;
 
 --
 -- AUTO_INCREMENT de la tabla `detallegrupo`
@@ -511,7 +579,7 @@ ALTER TABLE `periodo`
 -- AUTO_INCREMENT de la tabla `plandeaccion`
 --
 ALTER TABLE `plandeaccion`
-  MODIFY `idplandeaccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idplandeaccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de la tabla `procesos`
@@ -587,6 +655,12 @@ ALTER TABLE `detallegrupo`
 --
 ALTER TABLE `grupoauditor`
   ADD CONSTRAINT `grupoauditor_ibfk_1` FOREIGN KEY (`idnorma`) REFERENCES `norma` (`idnorma`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `plandeaccion`
+--
+ALTER TABLE `plandeaccion`
+  ADD CONSTRAINT `plandeaccion_ibfk_1` FOREIGN KEY (`iddetalleclausula`) REFERENCES `detalleclausula` (`iddetalleclausula`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `procesos`
