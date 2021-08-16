@@ -1,25 +1,24 @@
 <?php
 session_start();
-if ($_SESSION['rol'] != 2) {
-    header("location: ./");
-}
+
 include "../conexion.php";
 
 $cadena="";
 
-$iddetalleclausula = $_REQUEST['id'];
-$iddetalleauditoria = $_REQUEST['da'];
+$idplandeaccion = $_REQUEST['id'];
+
 
 
 if (!empty($_POST)) {
 
-    $id_anexo = $_POST['idanexo'];
-    $nombre=$_POST['nombre'];
-    $anexo=$_POST['anexo'];
-
-        $query_update = mysqli_query($conection, "UPDATE anexo SET nombre='$nombre', anexo='$anexo' WHERE idanexo=$id_anexo");
+    
+    $consecuencia=$_POST['consecuencia'];
+    $analisiscausa=$_POST['analisiscausa'];
+    $desarrollometodo=$_POST['desarrollometodo'];
+    $causaraiz=$_POST['causaraiz'];
+        $query_update = mysqli_query($conection, "UPDATE plandeaccion SET consecuencia='$consecuencia', analisiscausa='$analisiscausa', desarrollometodo='$desarrollometodo',causaraiz='$causaraiz' WHERE idplandeaccion=$idplandeaccion");
         if ($query_update) {
-            $alert = '<p class="msg_save">Anexo Actualizado </p>';
+            $alert = '<p class="msg_save">analisiscausa Actualizado </p>';
         } else {
             $alert = '<p class="msg_error">Error al Actualizar </p>';
         }
@@ -27,27 +26,29 @@ if (!empty($_POST)) {
 
 
 
-if (empty($_REQUEST['ida'])) {
-    $cadena="lista_anexo.php?id=".$iddetalleclausula."&da=".$iddetalleauditoria;
+if (empty($_REQUEST['id'])) {
+    $cadena="lista_planaccion.php";
     header("location:".$cadena);
     mysqli_close($conection);
 }
 
-$id_anexo = $_REQUEST['ida'];
-$sql = mysqli_query($conection, "SELECT * FROM anexo WHERE idanexo=$id_anexo");
+$idplandeaccion = $_REQUEST['id'];
+$sql = mysqli_query($conection, "SELECT * FROM plandeaccion WHERE idplandeaccion=$idplandeaccion");
 
 mysqli_close($conection);
 $result_sql = mysqli_num_rows($sql);
 if ($result_sql == 0) {
-    $cadena="lista_anexo.php?id=".$iddetalleclausula."&da=".$iddetalleauditoria;
+    $cadena="lista_planaccion.php";
     header("location:".$cadena);
 } else {
 
     $option = '';
     while ($data = mysqli_fetch_array($sql)) {
-        $id_anexo = $data['idanexo'];
-        $nombre = $data['nombre'];
-        $anexo = $data['anexo'];
+        $idplandeaccion = $data[0];
+        $consecuencia = $data[2];
+        $analisiscausa = $data[3];
+        $desarrollometodo=$data[4];
+        $causaraiz=$data[4];
     }
 }
 ?>
@@ -57,7 +58,7 @@ if ($result_sql == 0) {
 <head>
     <meta charset="UTF-8">
     <?php include "includes/scripts.php"; ?>
-    <title>Actualizar Anexo</title>
+    <title>Actualizar plan de acción</title>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -66,17 +67,28 @@ if ($result_sql == 0) {
     <?php include "includes/header.php"; ?>
     <section id="container">
         <div class="form_register">
-            <h1 style="text-align: center">Actualizar Anexo</h1>
+            <h1 style="text-align: center">Actualizar Plan Acción</h1>
             <hr>
             <div class="alert"><?php echo isset($alert) ? $alert : ''; ?></div>
             <form action="" method="POST">
-                <input type="hidden" name="idanexo" value="<?php echo $id_anexo; ?>">
-                <label for="nombre">Nombre Anexo</label>
-                <input type="text" name="nombre" id="nombre" placeholder="Ingrese nombre de anexo" required value="<?php echo $nombre; ?>">
-                <label for="nombre">URL Anexo</label>
-                <input type="text" name="anexo" id="anexo" placeholder="Ingrese url de anexo" required value="<?php echo $anexo; ?>">
+                <input type="hidden" name="idplandeaccion" value="<?php echo $data[0]; ?>">
+                <label for="consecuencia">consecuencia </label>
+                <input type="text" name="consecuencia" id="consecuencia" placeholder="Ingrese la consecuencia" required value="<?php echo $consecuencia; ?>">
+                <label for="analisiscausa">Ingrese el análisis causa</label>
+                <label for="actividad">Parametros de Calificación</label>
+                     <select name="analisiscausa" id="analisiscausa">
+                        <option value="5 por que?" selected>5 por que?</option>
+                        <option value="Lluvia de ideas">Lluvia de ideas</option>
+                        <option value="Diagrama de Ishkawa">Diagrama de Ishkawa</option>
+                        <option value="Pareto">Pareto</option>
+                        <option value="Otros">Otros</option>
+                     </select>
+                <label for="desarrollometod">Ingrese el desarrollo del método</label>
+                <input type="text" name="desarrollometodo" id="desarrollometodo" placeholder="Ingrese el desarrollo del método" required value="<?php echo $desarrollometodo; ?>">
+                <label for="analisiscausa">Ingrese la causaraiz</label>
+                <input type="text" name="causaraiz" id="causaraiz" placeholder="Ingrese la causa raíz" required value="<?php echo $causaraiz; ?>">
                 
-                <center><a style="border: 2px solid #2e518b;  color: #ffffff; background-color: #1883ba;" href=" lista_anexo.php?id=<?php echo $iddetalleclausula ?>&da=<?php echo $iddetalleauditoria ?>" class="btn_cancel">Cancelar</a> </center>
+                <center><a style="border: 2px solid #2e518b;  color: #ffffff; background-color: #1883ba;" href="lista_planaccion.php" class="btn_cancel">Cancelar</a> </center>
                 <input type="submit" value="Actualizar" class="btn_save">
             </form>
         </div>

@@ -51,7 +51,7 @@ $usu = $_SESSION['id_user'];
 			?>
 					<tr>
 						<td>
-							<a class="link_edit" href="editar_plan.php?id=<?php echo $data[7]; ?>">Editar</a>
+							<a class="link_edit" href="editar_plan.php?id=<?php echo $data[7];?>">Editar</a>
 						</td>
 
 						<td><?php echo $data[0]; ?></td>
