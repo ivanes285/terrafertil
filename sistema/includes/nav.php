@@ -57,8 +57,8 @@
 				<a href="#">Acciones Correctivas</a>
 				<ul>
 
-					<li><a href="lista_auditorvistapro.php">Acciones Pendientes</a></li>
-					<li><a href="lista_auditorvistapro.php">Acciones Cerradas</a></li>
+					<li><a href="lista_accionespendientes.php">Acciones Pendientes</a></li>
+					<li><a href="lista_accionescerradas.php">Acciones Cerradas</a></li>
 				</ul>
 				
 			</li>

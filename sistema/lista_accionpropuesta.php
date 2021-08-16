@@ -32,13 +32,13 @@ $idplanaccion = $_REQUEST['id'];
 			<tr>
 				<th>Acción Propuesta</th>
 				<th>Responsable</th>
-				<th>Fecha Propuesta Cumplimiento</th>
+				<th>Fecha Propuesta</th>
 				<th>Evidencias</th>
 				<th>Anexo</th>
 				<th>Acciones</th>
 			</tr>
 			<?php
-			$sql_registe = mysqli_query($conection, "SELECT COUNT(*) as total_registro FROM accionespropuestas WHERE idplanaccion=$idplanaccion");
+			$sql_registe = mysqli_query($conection, "SELECT COUNT(*) as total_registro FROM accionespropuestas WHERE idplanaccion=$idplanaccion AND estadover=1");
 			$result_register = mysqli_fetch_array($sql_registe);
 			$total_registro = $result_register['total_registro'];
 			$por_pagina = 10;
@@ -50,7 +50,7 @@ $idplanaccion = $_REQUEST['id'];
 			$desde = ($pagina - 1) * $por_pagina;
 			$total_paginas = ceil($total_registro / $por_pagina);
 
-			$query = mysqli_query($conection, "SELECT idaccionpropuesta,accionpropuesta,responsable,fechapropuesta,evidencia FROM accionespropuestas  WHERE idplanaccion=$idplanaccion  ORDER BY idaccionpropuesta ASC LIMIT $desde,$por_pagina");
+			$query = mysqli_query($conection, "SELECT idaccionpropuesta,accionpropuesta,responsable,fechapropuesta,evidencia FROM accionespropuestas  WHERE idplanaccion=$idplanaccion AND estadover=1 ORDER BY idaccionpropuesta ASC LIMIT $desde,$por_pagina");
 			mysqli_close($conection);
 			$result = mysqli_num_rows($query);
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-08-2021 a las 05:57:39
+-- Tiempo de generación: 16-08-2021 a las 23:57:43
 -- Versión del servidor: 10.4.20-MariaDB
 -- Versión de PHP: 7.4.21
 
@@ -37,15 +37,17 @@ CREATE TABLE `accionespropuestas` (
   `fechacumplimiento` date DEFAULT NULL,
   `status` varchar(20) DEFAULT NULL,
   `motivonoaceptacion` varchar(150) DEFAULT NULL,
-  `eficacia` varchar(100) DEFAULT NULL
+  `eficacia` varchar(100) DEFAULT NULL,
+  `estadover` int(11) DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `accionespropuestas`
 --
 
-INSERT INTO `accionespropuestas` (`idaccionpropuesta`, `idplanaccion`, `accionpropuesta`, `responsable`, `fechapropuesta`, `evidencia`, `fechacumplimiento`, `status`, `motivonoaceptacion`, `eficacia`) VALUES
-(5, 13, 'dsdf', 'Luis', '2021-08-18', 'dfadfadfa', NULL, NULL, NULL, NULL);
+INSERT INTO `accionespropuestas` (`idaccionpropuesta`, `idplanaccion`, `accionpropuesta`, `responsable`, `fechapropuesta`, `evidencia`, `fechacumplimiento`, `status`, `motivonoaceptacion`, `eficacia`, `estadover`) VALUES
+(13, 20, 'Ivan', 'Ivan', '2021-08-19', 'Ivan', '2021-08-18', 'aceptado', '', 'excelente', 2),
+(14, 20, 'don Aux', 'don Aux', '2021-08-18', 'don Aux', NULL, NULL, NULL, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -59,14 +61,6 @@ CREATE TABLE `anexo` (
   `nombre` varchar(100) NOT NULL,
   `anexo` varchar(700) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `anexo`
---
-
-INSERT INTO `anexo` (`idanexo`, `iddetalleclausula`, `nombre`, `anexo`) VALUES
-(11, 196, 'Documento pdf', 'https://utneduec.sharepoint.com/sites/CISICCSOFT-T.GRADO1-ABR21.AGO21/Documentos%20compartidos/Forms/AllItems.aspx?e=5%3Ac1c9d051d0544a59b0bfec6df30d84a2&at=9&CT=1625263135101&OR=OWA%2DNT&CID=77e80a37%2D9825%2D0da2%2D74ce%2D4046be93934e&RootFolder=%2Fsites%2FCISICCSOFT%2DT%2EGRADO1%2DABR21%2EAGO21%2FDocumentos%20compartidos%2FGeneral%2FPERFILES%2DTESIS%2DCISIC%2ECSOF%2DABR21%2EAGO21%2FLESCANO%20VASQUEZ%20IVAN%20ALEXANDER&FolderCTID=0x0120002EA6CFDBA8E1E643BFD34A861A356647'),
-(12, 187, 'documento', 'https://utneduec.sharepoint.com/sites/Pasantias854/Documentos%20compartidos/Forms/AllItems.aspx?id=%2Fsites%2FPasantias854%2FDocumentos%20compartidos%2FReuniones%2FRecordings%2FReuni%C3%B3n%20en%20%5FReuniones%5F%2D20210811%5F103952%2DGrabaci%C3%B3n%20de%20la%20reuni%C3%B3n%2Emp4&parent=%2Fsites%2FPasantias854%2FDocumentos%20compartidos%2FReuniones%2FRecordings');
 
 -- --------------------------------------------------------
 
@@ -137,15 +131,8 @@ CREATE TABLE `detalleauditoria` (
 --
 
 INSERT INTO `detalleauditoria` (`iddetalleauditoria`, `codigoauditoria`, `idperiodo`, `fechaejecucion`, `idgrupo`, `fechacreacion`, `estado`) VALUES
-(100, 'Cod-9001', 1, '2021-08-18', 1, '2021-08-11', 2),
-(101, 'Cod-9002', 1, '2021-08-26', 3, '2021-08-11', 2),
-(102, 'Cod-9003', 1, '2021-08-12', 1, '2021-08-11', 1),
-(103, 'Cod-9004', 1, '2021-08-18', 1, '2021-08-12', 2),
-(104, 'Cod-9005', 1, '2021-08-25', 3, '2021-08-12', 1),
-(105, 'Cod-9008', 1, '2021-08-18', 1, '2021-08-12', 2),
-(106, 'Cod-9006', 1, '2021-08-25', 1, '2021-08-14', 1),
-(107, 'Cod-9007', 1, '2021-08-25', 1, '2021-08-14', 2),
-(109, 'Cod-9009', 1, '2021-08-25', 2, '2021-08-14', 1);
+(112, 'Cod-9001', 3, '2021-08-18', 1, '2021-08-16', 1),
+(113, 'Cod-9002', 2, '2021-08-25', 3, '2021-08-16', 1);
 
 -- --------------------------------------------------------
 
@@ -168,65 +155,18 @@ CREATE TABLE `detalleclausula` (
 --
 
 INSERT INTO `detalleclausula` (`iddetalleclausula`, `idclausula`, `parametroscalificacion`, `desincumplimiento`, `documentacionsoporte`, `iddetalleauditoria`, `planaccion`) VALUES
-(175, 12, 'noconformidadmenor', 'df', 'dfad', 100, 1),
-(176, 13, 'noconformidadmayor', 'dfa', 'dfa', 100, 1),
-(177, 16, 'noconformidadmenor', 'sfdfad', 'dfadaf', 100, 1),
-(178, 17, NULL, NULL, NULL, 100, 1),
-(179, 18, NULL, NULL, NULL, 100, 1),
-(180, 19, NULL, NULL, NULL, 100, 1),
-(181, 20, NULL, NULL, NULL, 100, 1),
-(182, 21, NULL, NULL, NULL, 100, 1),
-(183, 22, 'noconformidadmayor', 'sdS', 'sdSd', 101, 2),
-(184, 23, 'observacion', 'sdS', 'SDs', 101, 1),
-(185, 24, 'oportunidaddemejora', 'FADFAD', 'dfadfad', 101, 1),
-(186, 25, NULL, NULL, NULL, 101, 1),
-(187, 12, NULL, NULL, NULL, 102, 1),
-(188, 13, NULL, NULL, NULL, 102, 1),
-(189, 16, 'observacion', 'dfad', 'dfa', 102, 1),
-(190, 17, NULL, NULL, NULL, 102, 1),
-(191, 18, NULL, NULL, NULL, 102, 1),
-(192, 19, NULL, NULL, NULL, 102, 1),
-(193, 20, NULL, NULL, NULL, 102, 1),
-(194, 21, NULL, NULL, NULL, 102, 1),
-(195, 12, NULL, NULL, NULL, 103, 1),
-(196, 13, 'noconformidadmayor', 'gfggf', 'fgsf', 103, 2),
-(197, 16, NULL, NULL, NULL, 103, 1),
-(198, 17, 'noconformidadmenor', 'fgsf', 'fgsf', 103, 1),
-(199, 18, NULL, NULL, NULL, 103, 1),
-(200, 19, 'noconformidadmenor', 'fgs', 'fgsf', 103, 1),
-(201, 20, 'noconformidadmenor', 'fdf', 'dfa', 103, 1),
-(202, 21, NULL, NULL, NULL, 103, 1),
-(203, 22, 'noconformidadmenor', 'df', 'dfa', 104, 2),
-(204, 23, NULL, NULL, NULL, 104, 1),
-(205, 24, NULL, NULL, NULL, 104, 1),
-(206, 25, NULL, NULL, NULL, 104, 1),
-(207, 12, 'noconformidadmenor', 'dfdfa', 'dfadaf', 105, 1),
-(208, 13, NULL, NULL, NULL, 105, 1),
-(209, 16, NULL, NULL, NULL, 105, 1),
-(210, 17, NULL, NULL, NULL, 105, 1),
-(211, 18, NULL, NULL, NULL, 105, 1),
-(212, 19, NULL, NULL, NULL, 105, 1),
-(213, 20, NULL, NULL, NULL, 105, 1),
-(214, 21, NULL, NULL, NULL, 105, 1),
-(215, 12, 'noconformidadmenor', 'fdfdf', 'dfad', 106, 1),
-(216, 13, NULL, NULL, NULL, 106, 1),
-(217, 16, NULL, NULL, NULL, 106, 1),
-(218, 17, NULL, NULL, NULL, 106, 1),
-(219, 18, NULL, NULL, NULL, 106, 1),
-(220, 19, NULL, NULL, NULL, 106, 1),
-(221, 20, NULL, NULL, NULL, 106, 1),
-(222, 21, NULL, NULL, NULL, 106, 1),
-(223, 12, NULL, NULL, NULL, 107, 1),
-(224, 13, 'observacion', 'fdaf', 'dfad', 107, 2),
-(225, 16, NULL, NULL, NULL, 107, 1),
-(226, 17, NULL, NULL, NULL, 107, 1),
-(227, 18, NULL, NULL, NULL, 107, 1),
-(228, 19, NULL, NULL, NULL, 107, 1),
-(229, 20, NULL, NULL, NULL, 107, 1),
-(230, 21, NULL, NULL, NULL, 107, 1),
-(231, 30, NULL, NULL, NULL, 109, 1),
-(232, 31, NULL, NULL, NULL, 109, 1),
-(233, 32, NULL, NULL, NULL, 109, 1);
+(246, 12, NULL, NULL, NULL, 112, 1),
+(247, 13, NULL, NULL, NULL, 112, 1),
+(248, 16, NULL, NULL, NULL, 112, 1),
+(249, 17, NULL, NULL, NULL, 112, 1),
+(250, 18, NULL, NULL, NULL, 112, 1),
+(251, 19, NULL, NULL, NULL, 112, 1),
+(252, 20, NULL, NULL, NULL, 112, 1),
+(253, 21, NULL, NULL, NULL, 112, 1),
+(254, 22, 'noconformidadmayor', 'No conformidad mayor', 'No conformidad mayor', 113, 2),
+(255, 23, NULL, NULL, NULL, 113, 1),
+(256, 24, NULL, NULL, NULL, 113, 1),
+(257, 25, NULL, NULL, NULL, 113, 1);
 
 -- --------------------------------------------------------
 
@@ -247,16 +187,10 @@ CREATE TABLE `detallegrupo` (
 --
 
 INSERT INTO `detallegrupo` (`id_user`, `idgrupo`, `idrolauditor`, `actividadrealizada`, `iddetallegrupo`) VALUES
-(2, 1, 1, 'lllll', 1),
-(3, 2, 1, 'gggggggggg', 2),
-(5, 3, 1, 'gfgsfgsf', 3),
-(2, 3, 2, 'dfdfad', 4),
-(5, 1, 2, 'dfds', 9),
-(3, 7, 1, 'gfg', 10),
-(3, 4, 1, 'dfdf', 11),
-(5, 4, 2, 'dfdsfdddd', 14),
-(3, 9, 1, 'dfdfa dfadkjfajd ', 15),
-(6, 1, 2, 'Ella va disque ayudar', 16);
+(2, 1, 1, 'Auditor lider ', 17),
+(3, 1, 2, 'Auditor secundario', 18),
+(5, 3, 1, 'lider', 19),
+(11, 3, 2, 'secundario', 20);
 
 -- --------------------------------------------------------
 
@@ -275,12 +209,10 @@ CREATE TABLE `grupoauditor` (
 --
 
 INSERT INTO `grupoauditor` (`idgrupo`, `nombregrupo`, `idnorma`) VALUES
-(1, 'team9001', 1),
+(1, 'GrupoISO9001', 1),
 (2, 'teambcr', 4),
 (3, 'GrupoBasc', 3),
-(4, 'teambpm', 2),
-(7, 'grupoprueba', 3),
-(9, 'GrupoIso9001-02', 1);
+(4, 'teambpm', 2);
 
 -- --------------------------------------------------------
 
@@ -343,10 +275,7 @@ CREATE TABLE `plandeaccion` (
 --
 
 INSERT INTO `plandeaccion` (`idplandeaccion`, `iddetalleclausula`, `consecuencia`, `analisiscausa`, `desarrollometodo`, `causaraiz`) VALUES
-(13, 183, 'Perdida de datos', '5 por que?', 'metodo jajaja', 'no se sabe'),
-(14, 224, 'fdsf', '5 por que?', 'dfadfa', 'dfad'),
-(15, 203, 'cualquier cosa', 'Diagrama de Ishkawa', 'cualquier cosa', 'cualquier cosa'),
-(16, 196, 'dfadfad \r\nfjdlfajd\r\nhdkfadk\r\nhdkfjlad\r\n', 'Otros', 'ddddddddddd\r\nfffffffffff\r\nrrrrrrrrrrrr', 'dfadfad\r\ndfadf\r\ndfadfad');
+(20, 254, 'ggg', 'Lluvia de ideas', 'dgadg', 'gega');
 
 -- --------------------------------------------------------
 
@@ -439,7 +368,8 @@ INSERT INTO `usuario` (`id_user`, `user`, `password`, `correo`, `rol`, `estatus`
 (7, 'anavera', '102ddaf691e1615d5dacd4c86299bfa4', 'anavera@gmail.com', 3, 1),
 (8, 'andy', '102ddaf691e1615d5dacd4c86299bfa4', 'andy@gmail.com', 3, 1),
 (9, 'alex', '102ddaf691e1615d5dacd4c86299bfa4', 'alex@gmail.com', 3, 1),
-(10, 'marianita', '102ddaf691e1615d5dacd4c86299bfa4', 'marianita@gmail.com', 3, 1);
+(10, 'marianita', '102ddaf691e1615d5dacd4c86299bfa4', 'marianita@gmail.com', 3, 1),
+(11, 'yoda', '102ddaf691e1615d5dacd4c86299bfa4', 'alvarez@gmail.com', 2, 1);
 
 --
 -- Índices para tablas volcadas
@@ -559,7 +489,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `accionespropuestas`
 --
 ALTER TABLE `accionespropuestas`
-  MODIFY `idaccionpropuesta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `idaccionpropuesta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de la tabla `anexo`
@@ -583,19 +513,19 @@ ALTER TABLE `clausula`
 -- AUTO_INCREMENT de la tabla `detalleauditoria`
 --
 ALTER TABLE `detalleauditoria`
-  MODIFY `iddetalleauditoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=110;
+  MODIFY `iddetalleauditoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=114;
 
 --
 -- AUTO_INCREMENT de la tabla `detalleclausula`
 --
 ALTER TABLE `detalleclausula`
-  MODIFY `iddetalleclausula` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=234;
+  MODIFY `iddetalleclausula` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=258;
 
 --
 -- AUTO_INCREMENT de la tabla `detallegrupo`
 --
 ALTER TABLE `detallegrupo`
-  MODIFY `iddetallegrupo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `iddetallegrupo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT de la tabla `grupoauditor`
@@ -619,7 +549,7 @@ ALTER TABLE `periodo`
 -- AUTO_INCREMENT de la tabla `plandeaccion`
 --
 ALTER TABLE `plandeaccion`
-  MODIFY `idplandeaccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `idplandeaccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT de la tabla `procesos`
@@ -643,7 +573,7 @@ ALTER TABLE `rolauditor`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Restricciones para tablas volcadas
