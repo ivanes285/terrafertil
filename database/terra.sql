@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 15-08-2021 a las 04:13:56
+-- Tiempo de generación: 16-08-2021 a las 05:57:39
 -- Versión del servidor: 10.4.20-MariaDB
 -- Versión de PHP: 7.4.21
 
@@ -20,6 +20,32 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `terra`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `accionespropuestas`
+--
+
+CREATE TABLE `accionespropuestas` (
+  `idaccionpropuesta` int(11) NOT NULL,
+  `idplanaccion` int(11) NOT NULL,
+  `accionpropuesta` varchar(100) NOT NULL,
+  `responsable` varchar(100) NOT NULL,
+  `fechapropuesta` date NOT NULL,
+  `evidencia` varchar(150) NOT NULL,
+  `fechacumplimiento` date DEFAULT NULL,
+  `status` varchar(20) DEFAULT NULL,
+  `motivonoaceptacion` varchar(150) DEFAULT NULL,
+  `eficacia` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `accionespropuestas`
+--
+
+INSERT INTO `accionespropuestas` (`idaccionpropuesta`, `idplanaccion`, `accionpropuesta`, `responsable`, `fechapropuesta`, `evidencia`, `fechacumplimiento`, `status`, `motivonoaceptacion`, `eficacia`) VALUES
+(5, 13, 'dsdf', 'Luis', '2021-08-18', 'dfadfadfa', NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -45,14 +71,14 @@ INSERT INTO `anexo` (`idanexo`, `iddetalleclausula`, `nombre`, `anexo`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `anexoclausula`
+-- Estructura de tabla para la tabla `anexopropuestas`
 --
 
-CREATE TABLE `anexoclausula` (
-  `idanexo` int(11) NOT NULL,
-  `idclausula` int(11) NOT NULL,
-  `nombreanexo` varchar(100) NOT NULL,
-  `anexoclausula` varchar(200) NOT NULL
+CREATE TABLE `anexopropuestas` (
+  `idanexopropuesta` int(11) NOT NULL,
+  `idaccionpropuesta` int(11) NOT NULL,
+  `nombre` varchar(50) NOT NULL,
+  `anexo` varchar(700) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -163,7 +189,7 @@ INSERT INTO `detalleclausula` (`iddetalleclausula`, `idclausula`, `parametroscal
 (193, 20, NULL, NULL, NULL, 102, 1),
 (194, 21, NULL, NULL, NULL, 102, 1),
 (195, 12, NULL, NULL, NULL, 103, 1),
-(196, 13, 'noconformidadmayor', 'gfggf', 'fgsf', 103, 1),
+(196, 13, 'noconformidadmayor', 'gfggf', 'fgsf', 103, 2),
 (197, 16, NULL, NULL, NULL, 103, 1),
 (198, 17, 'noconformidadmenor', 'fgsf', 'fgsf', 103, 1),
 (199, 18, NULL, NULL, NULL, 103, 1),
@@ -317,9 +343,10 @@ CREATE TABLE `plandeaccion` (
 --
 
 INSERT INTO `plandeaccion` (`idplandeaccion`, `iddetalleclausula`, `consecuencia`, `analisiscausa`, `desarrollometodo`, `causaraiz`) VALUES
-(13, 183, 'fdaf', 'Diagrama de Ishkawa', 'dfad', 'dfad'),
+(13, 183, 'Perdida de datos', '5 por que?', 'metodo jajaja', 'no se sabe'),
 (14, 224, 'fdsf', '5 por que?', 'dfadfa', 'dfad'),
-(15, 203, 'cualquier cosa', 'Diagrama de Ishkawa', 'cualquier cosa', 'cualquier cosa');
+(15, 203, 'cualquier cosa', 'Diagrama de Ishkawa', 'cualquier cosa', 'cualquier cosa'),
+(16, 196, 'dfadfad \r\nfjdlfajd\r\nhdkfadk\r\nhdkfjlad\r\n', 'Otros', 'ddddddddddd\r\nfffffffffff\r\nrrrrrrrrrrrr', 'dfadfad\r\ndfadf\r\ndfadfad');
 
 -- --------------------------------------------------------
 
@@ -419,6 +446,13 @@ INSERT INTO `usuario` (`id_user`, `user`, `password`, `correo`, `rol`, `estatus`
 --
 
 --
+-- Indices de la tabla `accionespropuestas`
+--
+ALTER TABLE `accionespropuestas`
+  ADD PRIMARY KEY (`idaccionpropuesta`),
+  ADD KEY `idplanaccion` (`idplanaccion`);
+
+--
 -- Indices de la tabla `anexo`
 --
 ALTER TABLE `anexo`
@@ -426,11 +460,11 @@ ALTER TABLE `anexo`
   ADD KEY `iddetalleclausula` (`iddetalleclausula`);
 
 --
--- Indices de la tabla `anexoclausula`
+-- Indices de la tabla `anexopropuestas`
 --
-ALTER TABLE `anexoclausula`
-  ADD PRIMARY KEY (`idanexo`),
-  ADD KEY `idclausula` (`idclausula`);
+ALTER TABLE `anexopropuestas`
+  ADD PRIMARY KEY (`idanexopropuesta`),
+  ADD KEY `idaccionpropuesta` (`idaccionpropuesta`);
 
 --
 -- Indices de la tabla `clausula`
@@ -522,16 +556,22 @@ ALTER TABLE `usuario`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `accionespropuestas`
+--
+ALTER TABLE `accionespropuestas`
+  MODIFY `idaccionpropuesta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT de la tabla `anexo`
 --
 ALTER TABLE `anexo`
   MODIFY `idanexo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
--- AUTO_INCREMENT de la tabla `anexoclausula`
+-- AUTO_INCREMENT de la tabla `anexopropuestas`
 --
-ALTER TABLE `anexoclausula`
-  MODIFY `idanexo` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `anexopropuestas`
+  MODIFY `idanexopropuesta` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `clausula`
@@ -579,7 +619,7 @@ ALTER TABLE `periodo`
 -- AUTO_INCREMENT de la tabla `plandeaccion`
 --
 ALTER TABLE `plandeaccion`
-  MODIFY `idplandeaccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `idplandeaccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de la tabla `procesos`
@@ -610,16 +650,22 @@ ALTER TABLE `usuario`
 --
 
 --
+-- Filtros para la tabla `accionespropuestas`
+--
+ALTER TABLE `accionespropuestas`
+  ADD CONSTRAINT `accionespropuestas_ibfk_1` FOREIGN KEY (`idplanaccion`) REFERENCES `plandeaccion` (`idplandeaccion`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Filtros para la tabla `anexo`
 --
 ALTER TABLE `anexo`
   ADD CONSTRAINT `anexo_ibfk_1` FOREIGN KEY (`iddetalleclausula`) REFERENCES `detalleclausula` (`iddetalleclausula`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `anexoclausula`
+-- Filtros para la tabla `anexopropuestas`
 --
-ALTER TABLE `anexoclausula`
-  ADD CONSTRAINT `anexoclausula_ibfk_1` FOREIGN KEY (`idclausula`) REFERENCES `clausula` (`idclausula`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `anexopropuestas`
+  ADD CONSTRAINT `anexopropuestas_ibfk_1` FOREIGN KEY (`idaccionpropuesta`) REFERENCES `accionespropuestas` (`idaccionpropuesta`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `clausula`

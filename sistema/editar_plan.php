@@ -48,7 +48,7 @@ if ($result_sql == 0) {
         $consecuencia = $data[2];
         $analisiscausa = $data[3];
         $desarrollometodo=$data[4];
-        $causaraiz=$data[4];
+        $causaraiz=$data[5];
     }
 }
 ?>
@@ -73,9 +73,10 @@ if ($result_sql == 0) {
             <form action="" method="POST">
                 <input type="hidden" name="idplandeaccion" value="<?php echo $data[0]; ?>">
                 <label for="consecuencia">consecuencia </label>
-                <input type="text" name="consecuencia" id="consecuencia" placeholder="Ingrese la consecuencia" required value="<?php echo $consecuencia; ?>">
+                <textarea name="consecuencia" id="consecuencia" cols="30" rows="10" placeholder="Describa la consecuencia" required><?php echo $consecuencia; ?> </textarea>
+
+                
                 <label for="analisiscausa">Ingrese el análisis causa</label>
-                <label for="actividad">Parametros de Calificación</label>
                      <select name="analisiscausa" id="analisiscausa">
                         <option value="5 por que?" selected>5 por que?</option>
                         <option value="Lluvia de ideas">Lluvia de ideas</option>
@@ -84,11 +85,13 @@ if ($result_sql == 0) {
                         <option value="Otros">Otros</option>
                      </select>
                 <label for="desarrollometod">Ingrese el desarrollo del método</label>
-                <input type="text" name="desarrollometodo" id="desarrollometodo" placeholder="Ingrese el desarrollo del método" required value="<?php echo $desarrollometodo; ?>">
-                <label for="analisiscausa">Ingrese la causaraiz</label>
-                <input type="text" name="causaraiz" id="causaraiz" placeholder="Ingrese la causa raíz" required value="<?php echo $causaraiz; ?>">
-                
-                <center><a style="border: 2px solid #2e518b;  color: #ffffff; background-color: #1883ba;" href="lista_planaccion.php" class="btn_cancel">Cancelar</a> </center>
+                <textarea name="desarrollometodo" id="desarrollometodo" cols="30" rows="10" placeholder="Describa el Desarrollo del método" required><?php echo $desarrollometodo; ?></textarea>
+               
+                <label for="causaraiz">Ingrese la causa raiz</label>
+               
+                <textarea name="causaraiz" id="causaraiz" cols="30" rows="10" placeholder="Describa la causa raíz" required><?php echo $causaraiz; ?></textarea>
+
+                <center><a style="border: 2px solid #2e518b;  color: #ffffff; background-color: #1883ba;" href="lista_planaccion.php" class="btn_cancel">Regresar</a> </center>
                 <input type="submit" value="Actualizar" class="btn_save">
             </form>
         </div>

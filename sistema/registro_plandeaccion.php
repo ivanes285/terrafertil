@@ -47,7 +47,7 @@ $iddetalleclausula = $_REQUEST['id'];
 <head>
   <meta charset="UTF-8">
   <?php include "includes/scripts.php"; ?>
-  <title>Registro de Usuario</title>
+  <title>Registro Plan de Acción</title>
 </head>
 
 <body>
@@ -84,8 +84,6 @@ $iddetalleclausula = $_REQUEST['id'];
         <textarea name="desametodo" id="desametodo" cols="30" rows="10" placeholder="Describa el Desarrollo del método" required></textarea>
         <br/>
         <center> <a style="border: 2px solid #2e518b;  color: #ffffff; background-color: #1883ba;" class="btn_cancel" href="lista_auditadovista.php">Regresar</a> </center>
-        <center><a style="border: 2px solid #2e518b;  color: #ffffff; background-color: #BE2929;"  class="btn_cancel" href="lista_auditadovista.php">Acciones Propuestas</a> </center>
-      
         <input type="submit" value="Guardar" class="btn_save">
 
       </form>

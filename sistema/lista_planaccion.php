@@ -10,13 +10,13 @@ $usu = $_SESSION['id_user'];
 <head>
 	<meta charset="UTF-8">
 	<?php include "includes/scripts.php"; ?>
-	<title>Lista de Planes de Acción </title>
+	<title>Lista Planes de Acción </title>
 </head>
 
 <body>
 	<?php include "includes/header.php"; ?>
 	<section id="container">
-		<h1>Lista de Incumplimientos</h1>
+		<h1>Lista Planes de Acción</h1>
 		<table>
 			<tr>
 				<th>Acciones</th>
@@ -60,7 +60,7 @@ $usu = $_SESSION['id_user'];
 						<td><?php echo $data[3]; ?></td>
 						<td><?php echo $data[4]; ?></td>
 						<td><?php echo $data[5]; ?></td>
-						<td><a style="color: #4099BF; font-weight: bold" href="registro_plandeaccion.php?id=<?php echo $data[4]; ?>&ic=<?php echo $data[5]; ?>">Accion Propuesta</a></td>
+						<td><a style="color: #4099BF; font-weight: bold" href="lista_accionpropuesta.php?id=<?php echo $data[7];?>">Accion Propuesta</a></td>
 					</tr>
 			<?php
 				}
