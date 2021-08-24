@@ -21,8 +21,7 @@ if (empty($_SESSION['activo'])) {
 
 	<div class="modal">
    <div class="bodyModal">
-
-   
+	   
    </div>
 
 	</div>

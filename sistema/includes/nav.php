@@ -51,6 +51,7 @@
 				<ul>
 					<li><a href="lista_auditorvistapro.php">Auditorias Programadas</a></li>
 					<li><a href="lista_auditorvistaeje.php">Auditorias Ejecutadas</a></li>
+					<li><a href="lista_auditorarchivadas.php">Auditorias Archivadas</a></li>
 				</ul>
 			</li>
 			<li class="principal">
@@ -71,7 +72,8 @@
 				<a href="#">Incumplimientos</a>
 				<ul>
 
-					<li><a href="lista_auditadovista.php">Incumplimientos Pendientes</a></li>
+					<li><a href="lista_inclumplimientospe.php">Incumplimientos Pendientes</a></li>
+					<li><a href="lista_inclumplimientospe.php">Incumplimientos Archivados</a></li>
 				
 				</ul>
 				
