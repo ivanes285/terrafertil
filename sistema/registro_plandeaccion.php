@@ -5,11 +5,6 @@ if ($_SESSION['rol'] != 3) {
 }
 include "../conexion.php";
 
-if (empty($_REQUEST['ic'])) {
-  header('Location: lista_auditadovista.php');
-  mysqli_close($conection);
-}
-$idclausula = $_REQUEST['ic'];
 
 
 if (!empty($_POST)) {
@@ -37,7 +32,6 @@ if (empty($_REQUEST['id'])) {
 }
 
 $iddetalleclausula = $_REQUEST['id'];
-
 
 ?>
 
@@ -76,12 +70,13 @@ $iddetalleclausula = $_REQUEST['id'];
           <option value="Otros">Otros</option>
         </select>
 
+        
+        <label for="desametodo">Desarrollo método</label>
+        <textarea name="desametodo" id="desametodo" cols="30" rows="10" placeholder="Describa el Desarrollo del método" required></textarea>
 
         <label for="descausaraiz">Descripción Causa Raiz</label>
         <textarea name="descausaraiz" id="descausaraiz" cols="30" rows="10" placeholder="Describa la causa raíz" required></textarea>
 
-        <label for="desametodo">Desarrollo método</label>
-        <textarea name="desametodo" id="desametodo" cols="30" rows="10" placeholder="Describa el Desarrollo del método" required></textarea>
         <br/>
         <center> <a style="border: 2px solid #2e518b;  color: #ffffff; background-color: #1883ba;" class="btn_cancel" href="lista_auditadovista.php">Regresar</a> </center>
         <input type="submit" value="Guardar" class="btn_save">

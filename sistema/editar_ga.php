@@ -4,7 +4,7 @@ include "../conexion.php";
 
 
 if (!empty($_POST)) {
-    $alert = '';
+
     $iddetallegrupo = $_POST['iddetallegrupo'];
     $id_user = $_POST['id_user'];
     $idgrupo = $_POST['grupoauditor'];
@@ -12,9 +12,9 @@ if (!empty($_POST)) {
     $actividadrealizada= $_POST['actividadrealizada'];
    
 
-    $query_update = mysqli_query($conection, "UPDATE detallegrupo SET id_user=$id_user,idgrupo=$idgrupo,idrolauditor=$idrolauditor, actividadrealizada='$actividadrealizada' WHERE iddetallegrupo=$iddetallegrupo");
+    $query_update = mysqli_query($conection, "UPDATE detallegrupo SET idgrupo=$idgrupo,idrolauditor=$idrolauditor, actividadrealizada='$actividadrealizada' WHERE iddetallegrupo=$iddetallegrupo");
     if ($query_update) {
-        $alert = '<p class="msg_save">PROCESO Actualizado </p>';
+        $alert = '<p class="msg_save">Grupo Actualizado </p>';
     } else {
         $alert = '<p class="msg_error">Error al Actualizar </p>';
     }
@@ -65,7 +65,7 @@ if ($result_sql == 0) {
     <?php include "includes/header.php"; ?>
     <section id="container">
         <div class="form_register">
-            <h1 style="text-align: center">Actualizar Auditoría</h1>
+            <h1 style="text-align: center">Actualizar Grupo</h1>
             <hr>
             <div class="alert"><?php echo isset($alert) ? $alert : ''; ?></div>
             <form action="" method="POST">

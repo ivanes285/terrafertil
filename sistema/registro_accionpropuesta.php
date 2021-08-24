@@ -22,12 +22,12 @@ if (!empty($_POST)) {
     }
 }
 
-if (empty($_REQUEST['id'])) {
-    header('Location: lista_planaccion.php');
+if (empty($_REQUEST['idpa'])) {
+    header('Location: lista_inclumplimientospe.php');
     mysqli_close($conection);
 }
 
-$idplanaccion = $_REQUEST['id'];
+$idplanaccion = $_REQUEST['idpa'];
 ?>
 
 <!DOCTYPE html>

@@ -5,11 +5,13 @@ if ($_SESSION['rol'] != 3) {
     header("location: ./");
 }
 
-if (empty($_REQUEST['id'])) {
+if (empty($_REQUEST['idpa']) ||empty($_REQUEST['id']) ||empty($_REQUEST['ida']) ) {
 	header('Location: lista_planaccion.php');
 	mysqli_close($conection);
 }
-$idplanaccion = $_REQUEST['id'];
+$idplanaccion = $_REQUEST['idpa'];
+$iddetalleclausula = $_REQUEST['id'];
+$iddetalleauditoria = $_REQUEST['ida'];
 ?>
 
 
@@ -20,14 +22,16 @@ $idplanaccion = $_REQUEST['id'];
 	<meta charset="UTF-8">
 	<?php include "includes/scripts.php"; ?>
 	<title>Lista Acciones Propuestas</title>
+	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 </head>
 
 <body>
 	<?php include "includes/header.php"; ?>
 	<section id="container">
-		<h1>Lista de acciones propuestas por el auditado </h1>
+		<h1 style="padding:20px 420px 20px 0px; ">Lista de acciones propuestas por el auditado </h1>
 		<a href="registro_accionpropuesta.php?id=<?php echo $idplanaccion ?>" class="btn_new">Agregar Acción Propuesta</a>
-		<a style="border: 2px solid #36A152; padding: 6px 60px; color: #ffffff; background-color: #36A152; border-radius: 6px;" href="lista_planaccion.php" class="btn_save">Regresar</a>
+		<a style="border: 2px solid #36A152; padding: 10px 30px; color: #ffffff; background-color: #36A152; border-radius: 6px;" href="lista_planaccion.php?id=<?php echo $iddetalleclausula ?> &ida=<?php echo $iddetalleauditoria ?> " class="btn_save"><i class="fas fa-arrow-circle-left"></i> Regresar</a>
+		
 		<table>
 			<tr>
 				<th>Acción Propuesta</th>

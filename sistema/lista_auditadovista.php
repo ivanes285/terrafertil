@@ -11,20 +11,23 @@ $usu = $_SESSION['id_user'];
 	<meta charset="UTF-8">
 	<?php include "includes/scripts.php"; ?>
 	<title>Lista de Incumplimientos </title>
+	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 </head>
 
 <body>
 	<?php include "includes/header.php"; ?>
 	<section id="container">
-		<h1>Lista de Incumplimientos</h1>
+		<h1 style="padding:20px 980px 20px 0px; ">Lista de Incumplimientos</h1>
+		<a style="border: 2px solid #36A152; padding: 10px 60px; color: #ffffff; background-color: #36A152; border-radius: 6px;" href="lista_planaccion.php" class="btn_save"><i class="fas fa-arrow-circle-left"></i> Regresar</a>
+
 		<table>
 			<tr>
-				<th>Código de Auditoria</th>
-				<th>Norma</th>
+				
+				<th>Clausula</th>
 				<th>Detalle Clausula</th>
 				<th>Descripción Incumplimiento</th>
 				<th>Plan de Acción</th>
-				
+
 			</tr>
 			<?php
 
@@ -37,9 +40,20 @@ $usu = $_SESSION['id_user'];
 			} else {
 				$pagina = $_GET['pagina'];
 			}
+
+
+			if (empty($_REQUEST['id'])) {
+				header('Location: lista_inclumplimientospe.php');
+				mysqli_close($conection);
+			}
+
+			$iddetalleauditoria = $_REQUEST['id'];
+
+
 			$desde = ($pagina - 1) * $por_pagina;
 			$total_paginas = ceil($total_registro / $por_pagina);
-			$query = mysqli_query($conection, "SELECT codigoauditoria,nombrenorma,detalleclausula,desincumplimiento,iddetalleclausula,c.idclausula FROM detalleauditoria da, norma n, clausula c,detalleclausula dc ,procesos p WHERE da.iddetalleauditoria=dc.iddetalleauditoria AND c.idclausula=dc.idclausula AND n.idnorma=c.idnorma AND p.idproceso=c.idproceso AND p.liderproceso=$usu AND dc.parametroscalificacion<>'cumple' AND dc.planaccion=1 ORDER BY nombrenorma,codigoauditoria ASC LIMIT $desde,$por_pagina");
+			$query = mysqli_query($conection, "SELECT clausula,detalleclausula,desincumplimiento,iddetalleclausula,dc.planaccion,da.iddetalleauditoria FROM detalleauditoria da, norma n, clausula c,detalleclausula dc ,procesos p WHERE da.iddetalleauditoria=dc.iddetalleauditoria AND c.idclausula=dc.idclausula AND n.idnorma=c.idnorma AND p.idproceso=c.idproceso AND p.liderproceso=$usu AND dc.parametroscalificacion<>'cumple' AND da.iddetalleauditoria=$iddetalleauditoria  ORDER BY nombrenorma,codigoauditoria ASC LIMIT $desde,$por_pagina");
+
 			mysqli_close($conection);
 			$result = mysqli_num_rows($query);
 			if ($result > 0) {
@@ -49,8 +63,17 @@ $usu = $_SESSION['id_user'];
 						<td><?php echo $data[0]; ?></td>
 						<td><?php echo $data[1]; ?></td>
 						<td><?php echo $data[2]; ?></td>
-						<td><?php echo $data[3]; ?></td>
-						<td><a style="color: #4099BF; font-weight: bold"  href="registro_plandeaccion.php?id=<?php echo $data[4];?>&ic=<?php echo $data[5];?>">PLAN</a></td>
+						<?php
+						if ($data[4] == 1) {
+						?>
+							<td><a style="color: #FF1F57; font-weight: bold" href="registro_plandeaccion.php?id=<?php echo $data[3]; ?>&ida=<?php echo $iddetalleauditoria ?> ">PLAN</a></td>
+						<?php
+						} else {
+						?>
+							<td><a style="color: #00CC63; font-weight: bold" href="lista_planaccion.php?id=<?php echo $data[3];?>&ida=<?php echo $iddetalleauditoria ?> ">PLAN</a></td>
+						<?php   	}
+						?>
+
 					</tr>
 			<?php
 				}
