@@ -11,7 +11,7 @@
 </head>
 <body>
 <?php include "includes/header.php";?>
-	<section id="container">
+	    <section id="container">
 	<h1>Bienvenido al sistema</h1>
 	</section>
 
