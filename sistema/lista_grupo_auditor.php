@@ -53,11 +53,11 @@ $result=mysqli_num_rows($query);
     <td><?php echo $data[2];?></td>
 	
     <td>
-        <a class="link_edit" href="editar_grupo_auditor.php?id=<?php echo $data["idgrupo"]; ?>">Editar</a>
+        <a class="link_edit" href="editar_grupo_auditor.php?id=<?php echo $data[0]; ?>">Editar</a>
 	   
 		<?php if ($_SESSION['rol']==1){?>
 		|
-		<a class="link_delete" href="eliminar_grupo_auditor.php?id=<?php echo $data["idgrupo"]; ?>">Eliminar</a>
+		<a class="link_delete" href="eliminar_grupo_auditor.php?id=<?php echo $data[0]; ?>">Eliminar</a>
 		
 	   <?php }?>
     </td>

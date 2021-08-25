@@ -57,7 +57,7 @@ if (empty($_REQUEST['idap'])) {
                 <input type="text" name="anexo"  placeholder="Ingrese la dirección del anexo" required>
                 
                 <br />
-                <center><a style="border: 2px solid #2e518b;  color: #ffffff; background-color: #01A9DB; font-size: 17px;" name="se" href="lista_anexodfsdfds.php?id=<?php echo $iddetalleclausula ?>&da=<?php echo $iddetalleauditoria?>" class="btn_save">REGRESAR</a></center>
+                <center><a style="border: 2px solid #2e518b;  color: #ffffff; background-color: #01A9DB; font-size: 17px;" name="se" href="lista_anexoauditado.php?idap=<?php echo $idaccionpropuesta ?>&idpa=<?php echo $idplanaccion ?>&id=<?php echo $iddetalleclausula ?>&ida=<?php echo $iddetalleauditoria ?>" class="btn_save">REGRESAR</a></center>
                 <input type="submit" value="Guardar Anexo" class="btn_save">
 
             </form>

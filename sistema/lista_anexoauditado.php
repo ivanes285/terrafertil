@@ -25,7 +25,7 @@ $iddetalleauditoria = $_REQUEST['ida'];
 <body>
 	<?php include "includes/header.php"; ?>
 	<section id="container">
-		<h1>Lista de anexos de la acción propuesta "<?php echo $iddetalleclausula ?>" </h1>
+		<h1>Lista de anexos de la acción propuesta "<?php echo $idaccionpropuesta ?>" </h1>
 		<a href="registro_anexoauditado.php?idap=<?php echo $idaccionpropuesta ?>&idpa=<?php echo $idplanaccion ?>&id=<?php echo $iddetalleclausula ?>&ida=<?php echo $iddetalleauditoria ?>" class="btn_new">Agregar Anexo </a>
 		<a style="border: 2px solid #36A152; padding: 6px 60px; color: #ffffff; background-color: #36A152; border-radius: 6px;"  href="lista_accionpropuesta.php?idpa=<?php echo $idplanaccion ?>&id=<?php echo $iddetalleclausula ?>&ida=<?php echo $iddetalleauditoria ?>" class="btn_save">Regresar</a>
 		<table>
@@ -37,7 +37,7 @@ $iddetalleauditoria = $_REQUEST['ida'];
 			</tr>
 			<?php
 
-			$sql_registe = mysqli_query($conection, "SELECT COUNT(*) as total_registro FROM accionespropuestas WHERE idaccion=$iddetalleclausula  ");
+			$sql_registe = mysqli_query($conection, "SELECT COUNT(*) as total_registro FROM anexopropuestas WHERE  idaccionpropuesta=$idaccionpropuesta  ");
 			$result_register = mysqli_fetch_array($sql_registe);
 			$total_registro = $result_register['total_registro'];
 			$por_pagina = 10;
@@ -49,7 +49,7 @@ $iddetalleauditoria = $_REQUEST['ida'];
 			$desde = ($pagina - 1) * $por_pagina;
 			$total_paginas = ceil($total_registro / $por_pagina);
 
-			$query = mysqli_query($conection, "SELECT * FROM anexo  WHERE iddetalleclausula=$iddetalleclausula  ORDER BY idanexo ASC LIMIT $desde,$por_pagina");
+			$query = mysqli_query($conection, "SELECT * FROM anexopropuestas  WHERE idaccionpropuesta=$idaccionpropuesta  ORDER BY idaccionpropuesta ASC LIMIT $desde,$por_pagina");
 			mysqli_close($conection);
 			$result = mysqli_num_rows($query);
 
@@ -59,8 +59,8 @@ $iddetalleauditoria = $_REQUEST['ida'];
 
 					<tr>
 						<td>
-							<a class="link_edit" href="editar_anexo.php?ida=<?php echo $data[0]; ?>&id=<?php echo $iddetalleclausula ?>&da=<?php echo $iddetalleauditoria ?>">Editar</a>
-							<a class="link_delete" href="eliminar_anexo.php?ida=<?php echo $data[0]; ?>&id=<?php echo $iddetalleclausula ?>&da=<?php echo $iddetalleauditoria ?>">Eliminar</a>
+							<a class="link_edit" href="editar_anexoacciones.php?idx=<?php echo $data[0]; ?>&idap=<?php echo $idaccionpropuesta;?>&idpa=<?php echo $idplanaccion;?>&id=<?php echo $iddetalleclausula;?>&ida=<?php echo  $iddetalleauditoria;?>">Editar</a>
+							<a class="link_delete" href="eliminar_anexoacciones.php?idx=<?php echo $data[0]; ?>&idap=<?php echo $idaccionpropuesta;?>&idpa=<?php echo $idplanaccion;?>&id=<?php echo $iddetalleclausula;?>&ida=<?php echo  $iddetalleauditoria;?>">Eliminar</a>
 
 						</td>
 			

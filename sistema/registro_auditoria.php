@@ -133,6 +133,7 @@ if (!empty($_POST)) {
                     }
                     ?>
                 </select>
+                <center><a style="border: 2px solid #2e518b;  color: #ffffff; background-color: #1883ba;" href="lista_detalleauditoria.php" class="btn_cancel">Regresar</a></center>
                 <input type="submit" value="Registrar" class="btn_save">
             </form>
         </div>

@@ -41,7 +41,7 @@ include "../conexion.php";
 			$desde = ($pagina - 1) * $por_pagina;
 			$total_paginas = ceil($total_registro / $por_pagina);
 			/*select codigoauditoria, fechaejecucion,nombrenorma from norma n, grupoauditor ga, detalleauditoria da, usuario u where n.idnorma=ga.idnorma and ga.idgrupo=da.idgrupo AND ga.idusuario=u.id_user AND u.id_user=3 */
-			$query = mysqli_query($conection, "SELECT user,nombregrupo,rolauditor,actividadrealizada,iddetallegrupo from detallegrupo d, usuario u , rolauditor ra , grupoauditor g WHERE u.id_user=d.id_user AND ra.idrolauditor=d.idrolauditor AND d.idgrupo=g.idgrupo ORDER BY nombregrupo ASC LIMIT $desde,$por_pagina");
+			$query = mysqli_query($conection, "SELECT user,nombregrupo,rolauditor,actividadrealizada,iddetallegrupo from detallegrupo d, usuario u , rolauditor ra , grupoauditor g WHERE u.id_user=d.id_user AND ra.idrolauditor=d.idrolauditor AND d.idgrupo=g.idgrupo ORDER BY iddetallegrupo ASC LIMIT $desde,$por_pagina");
 
 			mysqli_close($conection);
 			$result = mysqli_num_rows($query);
