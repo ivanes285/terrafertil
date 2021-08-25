@@ -112,7 +112,7 @@ if (!empty($_POST)) {
                 <textarea name="actividad" cols="30" rows="10" placeholder="Ingrese la Actividad"></textarea>
 
 
-
+                <center><a style="border: 2px solid #2e518b;  color: #ffffff; background-color: #1883ba;" href="listadetallegrupo.php" class="btn_cancel">Regresar</a></center>
                 <input type="submit" value="Registrar" class="btn_save">
             </form>
         </div>

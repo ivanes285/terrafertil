@@ -4,11 +4,11 @@ session_start();
 if ($_SESSION['rol'] != 1) {
     header("location: ./");
 }
-
+$iddetallegrupo = $_REQUEST['id'];
 include "../conexion.php";
 if (!empty($_POST)) {
-    $codigo = $_POST['iddetallegrupo'];
-    $query_delete = mysqli_query($conection, "DELETE FROM detallegrupo WHERE iddetallegrupo = $codigo");
+    
+    $query_delete = mysqli_query($conection, "DELETE FROM detallegrupo WHERE iddetallegrupo = $iddetallegrupo");
     mysqli_close($conection);
     if ($query_delete) {
         header("location: listadetallegrupo.php");
@@ -21,7 +21,7 @@ if (empty($_REQUEST['id'])) {
     mysqli_close($conection);
 } else {
     $codigo = $_REQUEST['id'];
-    $sql = mysqli_query($conection, "SELECT * FROM detallegrupo WHERE iddetallegrupo= $codigo");
+    $sql = mysqli_query($conection, "SELECT * FROM detallegrupo WHERE iddetallegrupo=  $iddetallegrupo");
     mysqli_close($conection);
     $result = mysqli_num_rows($sql);
     if ($result > 0) {

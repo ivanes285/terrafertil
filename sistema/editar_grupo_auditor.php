@@ -2,18 +2,19 @@
 session_start();
 include "../conexion.php";
 
-
+$idgrupo = $_REQUEST['id'];
 if (!empty($_POST)) {
     $alert = '';
-    $idgrupo = $_POST['idgrupo'];
+    
     $nombregrupo = $_POST['nombregrupo'];
+    $idnorma = $_POST['idnorma'];
  
-    $query = mysqli_query($conection, "SELECT * FROM grupoauditor WHERE  nombregrupo='$nombregrupo' ");
+    $query = mysqli_query($conection, "SELECT * FROM grupoauditor WHERE  idgrupo='$nombregrupo' ");
     $result = mysqli_fetch_array($query);
     if ($result > 0) {
         $alert = '<p class="msg_error">Proceso YA existe !Intente de Nuevo con otro Proceso</p>';
     } else {
-        $query_update = mysqli_query($conection, "UPDATE grupoauditor SET nombregrupo='$nombregrupo' WHERE idgrupo=$idgrupo");
+        $query_update = mysqli_query($conection, "UPDATE grupoauditor SET nombregrupo='$nombregrupo',idnorma='$idnorma' WHERE idgrupo=$idgrupo");
         if ($query_update) {
             $alert = '<p class="msg_save">Grupo Actualizado </p>';
         } else {
@@ -39,8 +40,9 @@ if ($result_sql == 0) {
     
     $option = '';
     while ($data = mysqli_fetch_array($sql)) {
-        $idgrupo = $data['idgrupo'];
-        $nombregrupo = $data['nombregrupo'];
+        $idgrupo = $data[0];
+        $nombregrupo = $data[1];
+        $idnorma = $data[2];
     }
 }
 ?>
@@ -63,10 +65,31 @@ if ($result_sql == 0) {
             <hr>
             <div class="alert"><?php echo isset($alert) ? $alert : ''; ?></div>
             <form action="" method="POST">
-                <input type="hidden" name="idgrupo" value="<?php echo $idgrupo; ?>">
                 <label for="nombregrupo ">Nombre Grupo</label>
                 <input type="text" name="nombregrupo" id="nombregrupo" placeholder="Ingrese nombre del Grupo" required value="<?php echo $nombregrupo; ?>">
-                <center><a style="border: 2px solid #2e518b;  color: #ffffff; background-color: #1883ba;" href="lista_grupo_auditor.php" class="btn_cancel">Cancelar</a> </center>
+                <label for="idnorma">Norma</label>
+                <?php
+                include "../conexion.php";
+                $query_id_user = mysqli_query($conection, "SELECT * FROM norma");
+                mysqli_close($conection);
+                $result_id_user = mysqli_num_rows($query_id_user);
+                ?>
+                <select name="idnorma" id="idnorma">
+                    <?php
+                    if ($result_id_user > 0) {
+                        while ($periodo = mysqli_fetch_array($query_id_user)) {
+                    ?>
+                            <option value="<?php echo $periodo["idnorma"]; ?>"><?php echo $periodo["nombrenorma"]; ?></option>
+                    <?php
+                        }
+                    }
+                    ?>
+                </select>
+
+
+
+
+                <center><a style="border: 2px solid #2e518b;  color: #ffffff; background-color: #1883ba;" href="lista_grupo_auditor.php" class="btn_cancel">Regresar</a> </center>
                 <input type="submit" style="border: 2px solid #2e518b;  color: #ffffff; background-color: #04B404; font-size: 17px;" value="Actualizar" class="btn_save">   
             </form>
         </div>

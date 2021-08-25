@@ -65,7 +65,7 @@ if (empty($_REQUEST['idap'])) {
            
             <form method="POST" action="">
             <input type="hidden" name="idaccionpropuesta" value="<?php echo  $idaccionpropuesta; ?>">
-                <center><a style="border: 2px solid #2e518b;  color: #ffffff; background-color: #1883ba;" href="lista_accionpropuesta.php?idpa=<?php echo $idplanaccion ?>&id=<?php echo $iddetalleclausula ?>&ida=<?php echo $iddetalleauditoria ?>" class="btn_cancel">Cancelar</a> </center>
+                <center><a style="border: 2px solid #2e518b;  color: #ffffff; background-color: #1883ba;" href="lista_accionpropuesta.php?idpa=<?php echo $idplanaccion ?>&id=<?php echo $iddetalleclausula ?>&ida=<?php echo $iddetalleauditoria ?>" class="btn_cancel">Regresar</a> </center>
                 <input type="submit" style="border: 2px solid #2e518b;  color: #ffffff; background-color: #04B404; font-size: 17px;" value="Aceptar" class="btn_ok">
             </form>
         </div>
