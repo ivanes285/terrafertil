@@ -77,12 +77,12 @@ $usu = $_SESSION['id_user'];
 							} else {
 							?>
 								<td>
-								<a style="color: #687778; font-weight: bold">GUARDAR</a>
+							
+								<a style="color: #687778; font-weight: bold">	<abbr title="Al menos debe haber una clausula calificada">GUARDAR</abbr></a>
 								</td>
 							<?php
 							}
 							?>
-
 					</tr>
 			<?php
 				}

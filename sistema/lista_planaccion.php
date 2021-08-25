@@ -25,8 +25,13 @@ $iddetalleauditoria = $_REQUEST['ida'];
 <body>
 	<?php include "includes/header.php"; ?>
 	<section id="container">
-		<h1 style="padding:20px 1180px 20px 0px; ">Plan de Acción</h1>
-		<a style="border: 2px solid #36A152; padding: 10px 60px; color: #ffffff; background-color: #36A152; border-radius: 6px;" href="lista_auditadovista.php?id=<?php echo $iddetalleauditoria?>" class="btn_save"><i class="fas fa-arrow-circle-left"></i> Regresar</a>
+
+		<div style="display: flex;  justify-content:space-between; margin: 20px 0px; ">
+		<h1>Plan de Acción</h1>
+		<div style="justify-content:flex-end">
+		<a style="border: 2px solid #36A152;  color: #ffffff; padding:10px 40px; background-color: #36A152; border-radius: 6px;" href="lista_auditadovista.php?id=<?php echo $iddetalleauditoria?>" class="btn_save"><i class="fas fa-arrow-circle-left"></i> Regresar</a>
+		</div>
+		</div>
 
 		<table>
 			<tr>
@@ -61,7 +66,7 @@ $iddetalleauditoria = $_REQUEST['ida'];
 			?>
 					<tr>
 						<td>
-							<a class="link_edit" href="editar_plan.php?id=<?php echo $data[4];?>">Editar</a>
+							<a class="link_edit" href="editar_plan.php?idpa=<?php echo $data[4];?>&id=<?php echo $iddetalleclausula;?>&ida=<?php echo  $iddetalleauditoria ;?>">Editar</a>
 						</td>
 
 						<td><?php echo $data[0]; ?></td>

@@ -5,7 +5,16 @@ include "../conexion.php";
 
 $cadena="";
 
-$idplandeaccion = $_REQUEST['id'];
+if (empty($_REQUEST['idpa']) ||empty($_REQUEST['id']) ||empty($_REQUEST['ida']) ) {
+	header('Location: lista_planaccion.php');
+	mysqli_close($conection);
+}
+
+
+$idplandeaccion = $_REQUEST['idpa'];
+$iddetalleclausula = $_REQUEST['id'];
+$iddetalleauditoria = $_REQUEST['ida'];  
+
 
 
 
@@ -26,13 +35,8 @@ if (!empty($_POST)) {
 
 
 
-if (empty($_REQUEST['id'])) {
-    $cadena="lista_planaccion.php";
-    header("location:".$cadena);
-    mysqli_close($conection);
-}
 
-$idplandeaccion = $_REQUEST['id'];
+$idplandeaccion = $_REQUEST['idpa'];
 $sql = mysqli_query($conection, "SELECT * FROM plandeaccion WHERE idplandeaccion=$idplandeaccion");
 
 mysqli_close($conection);
@@ -91,7 +95,7 @@ if ($result_sql == 0) {
                
                 <textarea name="causaraiz" id="causaraiz" cols="30" rows="10" placeholder="Describa la causa raíz" required><?php echo $causaraiz; ?></textarea>
 
-                <center><a style="border: 2px solid #2e518b;  color: #ffffff; background-color: #1883ba;" href="lista_planaccion.php" class="btn_cancel">Regresar</a> </center>
+                <center><a style="border: 2px solid #2e518b;  color: #ffffff; background-color: #1883ba;" href="lista_planaccion.php?id=<?php echo $iddetalleclausula ?> &ida=<?php echo $iddetalleauditoria ?> " class="btn_cancel">Regresar</a> </center>
                 <input type="submit" value="Actualizar" class="btn_save">
             </form>
         </div>

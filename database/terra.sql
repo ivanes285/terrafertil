@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-08-2021 a las 23:57:43
+-- Tiempo de generación: 24-08-2021 a las 02:53:46
 -- Versión del servidor: 10.4.20-MariaDB
 -- Versión de PHP: 7.4.21
 
@@ -40,14 +40,6 @@ CREATE TABLE `accionespropuestas` (
   `eficacia` varchar(100) DEFAULT NULL,
   `estadover` int(11) DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `accionespropuestas`
---
-
-INSERT INTO `accionespropuestas` (`idaccionpropuesta`, `idplanaccion`, `accionpropuesta`, `responsable`, `fechapropuesta`, `evidencia`, `fechacumplimiento`, `status`, `motivonoaceptacion`, `eficacia`, `estadover`) VALUES
-(13, 20, 'Ivan', 'Ivan', '2021-08-19', 'Ivan', '2021-08-18', 'aceptado', '', 'excelente', 2),
-(14, 20, 'don Aux', 'don Aux', '2021-08-18', 'don Aux', NULL, NULL, NULL, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -131,8 +123,9 @@ CREATE TABLE `detalleauditoria` (
 --
 
 INSERT INTO `detalleauditoria` (`iddetalleauditoria`, `codigoauditoria`, `idperiodo`, `fechaejecucion`, `idgrupo`, `fechacreacion`, `estado`) VALUES
-(112, 'Cod-9001', 3, '2021-08-18', 1, '2021-08-16', 1),
-(113, 'Cod-9002', 2, '2021-08-25', 3, '2021-08-16', 1);
+(119, 'Cod-9001', 1, '2021-08-25', 1, '2021-08-23', 2),
+(120, 'Cod-9002', 1, '2021-08-25', 3, '2021-08-23', 2),
+(121, 'Cod-9003', 2, '2021-08-26', 1, '2021-08-23', 1);
 
 -- --------------------------------------------------------
 
@@ -155,18 +148,26 @@ CREATE TABLE `detalleclausula` (
 --
 
 INSERT INTO `detalleclausula` (`iddetalleclausula`, `idclausula`, `parametroscalificacion`, `desincumplimiento`, `documentacionsoporte`, `iddetalleauditoria`, `planaccion`) VALUES
-(246, 12, NULL, NULL, NULL, 112, 1),
-(247, 13, NULL, NULL, NULL, 112, 1),
-(248, 16, NULL, NULL, NULL, 112, 1),
-(249, 17, NULL, NULL, NULL, 112, 1),
-(250, 18, NULL, NULL, NULL, 112, 1),
-(251, 19, NULL, NULL, NULL, 112, 1),
-(252, 20, NULL, NULL, NULL, 112, 1),
-(253, 21, NULL, NULL, NULL, 112, 1),
-(254, 22, 'noconformidadmayor', 'No conformidad mayor', 'No conformidad mayor', 113, 2),
-(255, 23, NULL, NULL, NULL, 113, 1),
-(256, 24, NULL, NULL, NULL, 113, 1),
-(257, 25, NULL, NULL, NULL, 113, 1);
+(289, 12, 'noconformidadmenor', 'fdsfad', 'fdfad', 119, 1),
+(290, 13, NULL, NULL, NULL, 119, 1),
+(291, 16, 'noconformidadmayor', 'dfad', 'dfad', 119, 2),
+(292, 17, NULL, NULL, NULL, 119, 1),
+(293, 18, NULL, NULL, NULL, 119, 1),
+(294, 19, NULL, NULL, NULL, 119, 1),
+(295, 20, 'noconformidadmayor', 'dfad', 'adfad', 119, 2),
+(296, 21, NULL, NULL, NULL, 119, 1),
+(297, 22, 'observacion', 'dfadfa', 'dfadfa', 120, 1),
+(298, 23, 'noconformidadmenor', 'fdfad', 'dfadfa', 120, 1),
+(299, 24, NULL, NULL, NULL, 120, 1),
+(300, 25, NULL, NULL, NULL, 120, 1),
+(301, 12, NULL, NULL, NULL, 121, 1),
+(302, 13, NULL, NULL, NULL, 121, 1),
+(303, 16, NULL, NULL, NULL, 121, 1),
+(304, 17, NULL, NULL, NULL, 121, 1),
+(305, 18, NULL, NULL, NULL, 121, 1),
+(306, 19, NULL, NULL, NULL, 121, 1),
+(307, 20, NULL, NULL, NULL, 121, 1),
+(308, 21, NULL, NULL, NULL, 121, 1);
 
 -- --------------------------------------------------------
 
@@ -187,10 +188,10 @@ CREATE TABLE `detallegrupo` (
 --
 
 INSERT INTO `detallegrupo` (`id_user`, `idgrupo`, `idrolauditor`, `actividadrealizada`, `iddetallegrupo`) VALUES
-(2, 1, 1, 'Auditor lider ', 17),
-(3, 1, 2, 'Auditor secundario', 18),
-(5, 3, 1, 'lider', 19),
-(11, 3, 2, 'secundario', 20);
+(2, 1, 1, 'dfadfad', 27),
+(3, 1, 2, 'dfadfa', 28),
+(2, 3, 1, 'dfadfa', 29),
+(6, 3, 2, '', 30);
 
 -- --------------------------------------------------------
 
@@ -210,7 +211,7 @@ CREATE TABLE `grupoauditor` (
 
 INSERT INTO `grupoauditor` (`idgrupo`, `nombregrupo`, `idnorma`) VALUES
 (1, 'GrupoISO9001', 1),
-(2, 'teambcr', 4),
+(2, 'teambrc', 4),
 (3, 'GrupoBasc', 3),
 (4, 'teambpm', 2);
 
@@ -275,7 +276,8 @@ CREATE TABLE `plandeaccion` (
 --
 
 INSERT INTO `plandeaccion` (`idplandeaccion`, `iddetalleclausula`, `consecuencia`, `analisiscausa`, `desarrollometodo`, `causaraiz`) VALUES
-(20, 254, 'ggg', 'Lluvia de ideas', 'dgadg', 'gega');
+(24, 295, 'dafda', 'Diagrama de Ishkawa', 'dfdfd', 'fdfdfd'),
+(25, 291, 'FDFD', 'Lluvia de ideas', 'DFADFA', 'DFADFAD');
 
 -- --------------------------------------------------------
 
@@ -362,7 +364,7 @@ INSERT INTO `usuario` (`id_user`, `user`, `password`, `correo`, `rol`, `estatus`
 (1, 'ivan', '102ddaf691e1615d5dacd4c86299bfa4', 'ialescanov@utn.edu.ec', 1, 1),
 (2, 'malcom', '102ddaf691e1615d5dacd4c86299bfa4', 'malcom@gmail.com', 2, 1),
 (3, 'francis', '102ddaf691e1615d5dacd4c86299bfa4', 'francis@gmail.com', 2, 0),
-(4, 'lois', '102ddaf691e1615d5dacd4c86299bfa4', 'lois@gmail.com', 3, 1),
+(4, 'lois', '102ddaf691e1615d5dacd4c86299bfa4', 'lois@gmail.com', 3, 0),
 (5, 'hall', '102ddaf691e1615d5dacd4c86299bfa4', 'hall@gmail.com', 2, 1),
 (6, 'daya', '102ddaf691e1615d5dacd4c86299bfa4', 'dayamineral@gmail.com', 2, 1),
 (7, 'anavera', '102ddaf691e1615d5dacd4c86299bfa4', 'anavera@gmail.com', 3, 1),
@@ -489,7 +491,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `accionespropuestas`
 --
 ALTER TABLE `accionespropuestas`
-  MODIFY `idaccionpropuesta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `idaccionpropuesta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT de la tabla `anexo`
@@ -513,19 +515,19 @@ ALTER TABLE `clausula`
 -- AUTO_INCREMENT de la tabla `detalleauditoria`
 --
 ALTER TABLE `detalleauditoria`
-  MODIFY `iddetalleauditoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=114;
+  MODIFY `iddetalleauditoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=122;
 
 --
 -- AUTO_INCREMENT de la tabla `detalleclausula`
 --
 ALTER TABLE `detalleclausula`
-  MODIFY `iddetalleclausula` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=258;
+  MODIFY `iddetalleclausula` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=309;
 
 --
 -- AUTO_INCREMENT de la tabla `detallegrupo`
 --
 ALTER TABLE `detallegrupo`
-  MODIFY `iddetallegrupo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `iddetallegrupo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT de la tabla `grupoauditor`
@@ -549,7 +551,7 @@ ALTER TABLE `periodo`
 -- AUTO_INCREMENT de la tabla `plandeaccion`
 --
 ALTER TABLE `plandeaccion`
-  MODIFY `idplandeaccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `idplandeaccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT de la tabla `procesos`

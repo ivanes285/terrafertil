@@ -6,6 +6,7 @@ $usu = $_SESSION['id_user'];
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<?php include "includes/scripts.php"; ?>
@@ -22,6 +23,9 @@ $usu = $_SESSION['id_user'];
 				<th>Fecha de Ejecución</th>
 				<th>Norma</th>
 				<th>Avance</th>
+				<th>No Conformidades</th>
+				<th>Cirre NC</th>
+				<th>Archivar</th>
 			</tr>
 			<?php
 			$sql_registe = mysqli_query($conection, "SELECT COUNT(*) as total_registro FROM detalleauditoria");
@@ -38,10 +42,10 @@ $usu = $_SESSION['id_user'];
 			$query = mysqli_query($conection, "SELECT codigoauditoria,fechaejecucion,nombrenorma,iddetalleauditoria from norma n, grupoauditor ga, detallegrupo dg, detalleauditoria da WHERE n.idnorma=ga.idnorma and ga.idgrupo=dg.idgrupo AND dg.idgrupo=da.idgrupo AND dg.id_user=$usu AND da.estado=2 ORDER BY codigoauditoria ASC LIMIT $desde,$por_pagina");
 			$result = mysqli_num_rows($query);
 			$val;
-			$ida=0;
+			$ida = 0;
 			$total = 0;
 			$totalres = 0;
-		
+
 			if ($result > 0) {
 				while ($data = mysqli_fetch_array($query)) {
 			?>
@@ -54,18 +58,32 @@ $usu = $_SESSION['id_user'];
 						$idda = $data[3];
 						$con = mysqli_query($conection, "SELECT COUNT(*) as total FROM clausula c,norma n WHERE n.idnorma=c.idnorma AND n.nombrenorma='$val' ");
 						$conres = mysqli_query($conection, "SELECT COUNT(*) as totalre FROM detalleclausula dc , clausula c, norma n, detalleauditoria da WHERE n.idnorma=c.idnorma AND c.idclausula=dc.idclausula AND n.nombrenorma='$val' AND da.iddetalleauditoria=dc.iddetalleauditoria AND dc.iddetalleauditoria=$idda AND dc.documentacionsoporte IS NOT NULL;");
+						$numacc = mysqli_query($conection, "SELECT COUNT(*) AS totalin  FROM detalleauditoria da, norma n, clausula c,detalleclausula dc ,procesos p WHERE da.iddetalleauditoria=dc.iddetalleauditoria AND c.idclausula=dc.idclausula AND n.idnorma=c.idnorma AND p.idproceso=c.idproceso AND dc.parametroscalificacion<>'cumple' AND da.iddetalleauditoria=$data[3] ");
+						$num = mysqli_query($conection, "SELECT COUNT(*) AS totalplanes  FROM detalleauditoria da, norma n, clausula c,detalleclausula dc ,procesos p WHERE da.iddetalleauditoria=dc.iddetalleauditoria AND c.idclausula=dc.idclausula AND n.idnorma=c.idnorma AND p.idproceso=c.idproceso AND dc.parametroscalificacion<>'cumple'  AND da.iddetalleauditoria=$data[3]  AND dc.planaccion=2   ");
+
+                        
+						$numacciones = mysqli_fetch_array($numacc);
 						$result = mysqli_fetch_array($conres);
 						$result_register = mysqli_fetch_array($con);
+						$numplan=mysqli_fetch_array($num);
 						if (isset($result_register)) {
 							$total = $result_register['total'];
 						}
 						if (isset($result)) {
 							$totalres = $result['totalre'];
 						}
+						if (isset($numacciones)) {
+							$totalplan= $numacciones['totalin'];
+						}
+						if (isset($numplan)) {
+							$totalplanes= $numplan['totalplanes'];
+						}
 						?>
-					
 						<td><?php echo $totalres; ?>/<?php echo $total; ?></td>
+						<td><a style="color: #4099BF; font-weight: bold" href="lista_noconformidades.php?id=<?php echo $data[3]; ?>">Visualizar</a></td>
 						
+						<td><?php echo $totalplanes; ?>/<?php echo $totalplan; ?></td>
+				
 					</tr>
 			<?php
 				}
@@ -101,4 +119,5 @@ $usu = $_SESSION['id_user'];
 		</div>
 	</section>
 </body>
+
 </html>

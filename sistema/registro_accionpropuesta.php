@@ -66,9 +66,9 @@ $idplanaccion = $_REQUEST['idpa'];
                 <input type="text" name="fechapropuesta" id="fechapropuesta" autocomplete="off">
                 <label for="evidencia">Evidencias</label>
                 <textarea name="evidencia" id="evidencia" cols="30" rows="10" placeholder="Describa la evidencia" required></textarea>
-                
                 <br />
-                <center> <a style="border: 2px solid #2e518b;  color: #ffffff; background-color: #1883ba;" class="btn_cancel" href="lista_accionpropuesta.php?id=<?php echo $idplanaccion ?>">Regresar</a> </center>
+                <br />
+                <a style="border: 2px solid #36A152;  color: #ffffff; padding:10px 132px; background-color: #36A152; border-radius: 6px;" class="btn_save1" href="lista_accionpropuesta.php?id=<?php echo $idplanaccion ?>">Regresar</a> 
                 <input type="submit" value="Guardar" class="btn_save">
 
             </form>

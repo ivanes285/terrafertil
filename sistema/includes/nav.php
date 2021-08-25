@@ -54,15 +54,7 @@
 					<li><a href="lista_auditorarchivadas.php">Auditorias Archivadas</a></li>
 				</ul>
 			</li>
-			<li class="principal">
-				<a href="#">Acciones Correctivas</a>
-				<ul>
-
-					<li><a href="lista_accionespendientes.php">Acciones Pendientes</a></li>
-					<li><a href="lista_accionescerradas.php">Acciones Cerradas</a></li>
-				</ul>
-				
-			</li>
+			
 		<?php } ?>
 
 		<?php
@@ -74,19 +66,9 @@
 
 					<li><a href="lista_inclumplimientospe.php">Incumplimientos Pendientes</a></li>
 					<li><a href="lista_inclumplimientospe.php">Incumplimientos Archivados</a></li>
-				
-				</ul>
-				
-			</li>
 
-			<li class="principal">
-				<a href="#">Planes</a>
-				<ul>
-
-					<li><a href="lista_planaccion.php">Planes de Acción</a></li>
-				
 				</ul>
-				
+
 			</li>
 		<?php } ?>
 

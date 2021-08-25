@@ -30,10 +30,17 @@ $iddetalleauditoria = $_REQUEST['ida'];
 <body>
 	<?php include "includes/header.php"; ?>
 	<section id="container">
-		<h1 style="padding:20px 420px 20px 0px; ">Lista de acciones propuestas por el auditado </h1>
-		<a href="registro_accionpropuesta.php?idpa=<?php echo $idplanaccion ?>" class="btn_new">Agregar Acción Propuesta</a>
-		<a style="border: 2px solid #36A152; padding: 10px 30px; color: #ffffff; background-color: #36A152; border-radius: 6px;" href="lista_planaccion.php?id=<?php echo $iddetalleclausula ?> &ida=<?php echo $iddetalleauditoria ?> " class="btn_save"><i class="fas fa-arrow-circle-left"></i> Regresar</a>
-		
+
+		<div style="display: flex;  justify-content:space-between; margin: 20px 0px; ">
+		<h1>Lista de acciones propuestas por el Auditado </h1>
+		<div style="justify-content:flex-end">
+		<a style="border: 2px solid #0069D9;  color: #ffffff; background-color: #0069D9; border-radius: 6px;" href="registro_accionpropuesta.php?idpa=<?php echo $idplanaccion ?>" class="btn_save">Agregar Acción Propuesta</a>
+		<a style="border: 2px solid #36A152;  color: #ffffff; padding:10px 40px; background-color: #36A152; border-radius: 6px;" href="lista_planaccion.php?id=<?php echo $iddetalleclausula ?> &ida=<?php echo $iddetalleauditoria ?> " class="btn_save"><i class="fas fa-arrow-circle-left"></i> Regresar</a>
+	    </div>
+		</div>
+
+
+
 		<table>
 			<tr>
 				<th>Acción Propuesta</th>

@@ -4,7 +4,17 @@ include "../conexion.php";
 if ($_SESSION['rol'] != 2) {
     header("location: ./");
 }
-$usu = $_SESSION['id_user'];
+
+
+if (empty($_REQUEST['idpa'])||empty($_REQUEST['id'])||empty($_REQUEST['ida'])) {
+	header("location: lista_auditorvistaeje.php");
+	mysqli_close($conection);
+} else {
+	$idplanaccion = $_REQUEST['idpa'];
+	$iddetalleclausula = $_REQUEST['id'];
+    $iddetalleauditoria = $_REQUEST['ida'];
+}
+
 ?>
 
 
@@ -15,15 +25,25 @@ $usu = $_SESSION['id_user'];
 	<meta charset="UTF-8">
 	<?php include "includes/scripts.php"; ?>
 	<title>Lista Acciones Pendientes</title>
+	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
 </head>
 
 <body>
 	<?php include "includes/header.php"; ?>
 	<section id="container">
-		<h1>Lista Acciones Pendientes </h1>
+		<div style="display: flex;  justify-content:space-between; margin: 20px 0px; ">
+			<h1>Lista Acciones Pendientes</h1>
+			<div style="justify-content:flex-start">
+				<a style="border: 2px solid #36A152;  color: #ffffff; padding:10px 40px; background-color: #36A152; border-radius: 6px;" href="lista_planesauditado.php?id=<?php echo $iddetalleclausula ?>&ida=<?php echo $iddetalleauditoria ?>"  class="btn_save"><i class="fas fa-arrow-circle-left"></i> Regresar</a>
+			</div>
+		</div>
+
+
 		<table>
 			<tr>
 		    	<th>Codigo Auditoria</th>
+				<th>Proceso</th>
 				<th>Acción Propuesta</th>
 				<th>Responsable</th>
 				<th>Fecha Propuesta</th>
@@ -49,7 +69,7 @@ $usu = $_SESSION['id_user'];
 			$total_paginas = ceil($total_registro / $por_pagina);
 
 
-			$query = mysqli_query($conection, "SELECT codigoauditoria,accionpropuesta,responsable,fechapropuesta,evidencia,fechacumplimiento,status,motivonoaceptacion,eficacia,idaccionpropuesta from norma n, grupoauditor ga, detallegrupo dg, detalleauditoria da, detalleclausula dc , plandeaccion pa , accionespropuestas ap WHERE n.idnorma=ga.idnorma and ga.idgrupo=dg.idgrupo AND dg.idgrupo=da.idgrupo AND dc.iddetalleauditoria=da.iddetalleauditoria AND   dc.iddetalleclausula=pa.iddetalleclausula AND pa.idplandeaccion=ap.idplanaccion AND dg.id_user=$usu AND estadover=1  ORDER BY idaccionpropuesta ASC LIMIT $desde,$por_pagina");
+			$query = mysqli_query($conection, "SELECT DISTINCT codigoauditoria,nombreproceso,accionpropuesta,responsable,fechapropuesta,evidencia,fechacumplimiento,status,motivonoaceptacion,eficacia,idaccionpropuesta FROM norma n, grupoauditor ga, detallegrupo dg, detalleauditoria da,clausula c, detalleclausula dc , plandeaccion pa , accionespropuestas ap , procesos p WHERE n.idnorma=ga.idnorma and ga.idgrupo=dg.idgrupo AND dg.idgrupo=da.idgrupo AND dc.iddetalleauditoria=da.iddetalleauditoria AND   dc.iddetalleclausula=pa.iddetalleclausula AND pa.idplandeaccion=ap.idplanaccion AND ap.idplanaccion=$idplanaccion  AND dc.idclausula=c.idclausula AND c.idproceso=p.idproceso AND pa.idplandeaccion=ap.idplanaccion AND estadover=1  ORDER BY idaccionpropuesta ASC LIMIT $desde,$por_pagina");
 			mysqli_close($conection);
 			$result = mysqli_num_rows($query);
 
@@ -63,22 +83,23 @@ $usu = $_SESSION['id_user'];
 						<td><?php echo $data[2];  ?></td>
 						<td><?php echo $data[3];  ?></td>
 						<td><?php echo $data[4];  ?></td>
-						<td><a style="color: #FF1F57; font-weight: bold" href="lista_anexopropuesto.php?id=<?php echo $data[0]; ?>">Ver</a></td>
 						<td><?php echo $data[5];  ?></td>
+						<td><a style="color: #FF1F57; font-weight: bold" href="lista_anexopropuesto.php?id=<?php echo $data[10]; ?>">Ver</a></td>
 						<td><?php echo $data[6];  ?></td>
 						<td><?php echo $data[7];  ?></td>
 						<td><?php echo $data[8];  ?></td>
+						<td><?php echo $data[9];  ?></td>
 						<?php
-							if (!isset($data[6])) {
+							if (!isset($data[7])) {
 							?>
 								<td>
-									<a style="color: #FF1F57; font-weight: bold" href="calificar_accionespendientes.php?id=<?php echo $data[9]; ?>">EVALUAR</a>
+									<a style="color: #FF1F57; font-weight: bold" href="calificar_accionespendientes.php?id=<?php echo $idplanaccion; ?>&idpa=<?php echo $data[10]; ?>  " >EVALUAR</a>
 								</td>
 							<?php
 							} else {
 							?>
 								<td>
-									<a style="color: #00CC63; font-weight: bold" href="calificar_accionespendientes.php?id=<?php echo $data[9]; ?> ">EVALUADO</a>
+									<a style="color: #00CC63; font-weight: bold" href="calificar_accionespendientes.php?id=<?php echo $data[10]; ?> ">EVALUADO</a>
 								</td>
 							<?php
 							}

@@ -46,12 +46,12 @@ if (!empty($_POST)) {
 }
 
 
-if (empty($_REQUEST['id'])) {
+if (empty($_REQUEST['id']) || empty($_REQUEST['idpa'])) {
     header('Location: lista_accionespendientes.php');
     mysqli_close($conection);
 }
-
-$idaccionpropuesta = $_REQUEST['id'];
+$idplanaccion= $_REQUEST['id'];
+$idaccionpropuesta = $_REQUEST['idpa'];
 
 $sql = mysqli_query($conection, "SELECT * FROM accionespropuestas WHERE idaccionpropuesta=$idaccionpropuesta");
 
@@ -118,8 +118,9 @@ if ($result_sql == 0) {
                 </select>
 
                 <br />
-                <center><a style="border: 2px solid #2e518b;  color: #ffffff; background-color: #1883ba;" href="lista_accionespendientes.php" class="btn_cancel">Regresar</a> </center>
-
+                
+                <br />
+                <a style="border: 2px solid #218838;  color: #ffffff; padding:10px 135px; background-color: #218838; border-radius: 6px;" class="btn_save1" href="lista_accionespendientes.php?id=<?php echo $idplanaccion ?>">Regresar</a> 
                 <input type="submit" value="Evaluar" name="prueba" class="btn_save">
             </form>
         </div>

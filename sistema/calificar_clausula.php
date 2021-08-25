@@ -24,6 +24,10 @@ if (!empty($_POST)) {
     }
 
     $query_update = mysqli_query($conection, "UPDATE detalleclausula SET parametroscalificacion='$parametroscali', desincumplimiento='$desincumplimiento', documentacionsoporte='$docsoporte' WHERE iddetalleclausula=$iddetalleclausula");
+    if($parametroscali=='cumple'){
+      $query_update_planaccion = mysqli_query($conection, "UPDATE detalleclausula SET planaccion=1 WHERE iddetalleclausula=$iddetalleclausula");
+    }
+  
     if ($query_update) {
         $alert = '<p class="msg_save">Clausula Evaluada</p>';
         $cadena="formulario_clausulas.php?id=".$iddetalleauditoria;
