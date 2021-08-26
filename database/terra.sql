@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-08-2021 a las 02:53:46
+-- Tiempo de generación: 27-08-2021 a las 01:37:40
 -- Versión del servidor: 10.4.20-MariaDB
 -- Versión de PHP: 7.4.21
 
@@ -41,6 +41,18 @@ CREATE TABLE `accionespropuestas` (
   `estadover` int(11) DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Volcado de datos para la tabla `accionespropuestas`
+--
+
+INSERT INTO `accionespropuestas` (`idaccionpropuesta`, `idplanaccion`, `accionpropuesta`, `responsable`, `fechapropuesta`, `evidencia`, `fechacumplimiento`, `status`, `motivonoaceptacion`, `eficacia`, `estadover`) VALUES
+(25, 31, 'ggggg', 'ALEX', '2021-08-26', 'gggggggg', '2021-08-27', 'aceptado', '', 'bueno', 2),
+(26, 31, 'hhhhhh', 'ANDY', '2021-08-25', 'hhhhhhhhhh', '2021-08-27', 'no aceptado', 'dfadfadfa', '', 1),
+(27, 33, 'hhhhhhh', 'ALEX', '2021-08-26', 'hhhhhhhhhh', '2021-08-27', 'aceptado', '', 'regular', 2),
+(28, 33, 'gggggggg', 'ANDY', '2021-08-26', 'ggggggg', '2021-08-27', 'aceptado', '', 'excelente', 2),
+(29, 33, 'ddddd', 'ALEX', '2021-08-27', 'ddddd', '2021-08-27', 'no aceptado', 'No cumple a tiempo', '', 2),
+(30, 34, 'HHHHH', 'Luis', '2021-08-28', 'HHHHHHHHH', NULL, NULL, NULL, NULL, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -54,6 +66,15 @@ CREATE TABLE `anexo` (
   `anexo` varchar(700) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Volcado de datos para la tabla `anexo`
+--
+
+INSERT INTO `anexo` (`idanexo`, `iddetalleclausula`, `nombre`, `anexo`) VALUES
+(13, 301, 'Documento pdf', 'https://utneduec.sharepoint.com/sites/CISICCSOFT-T.GRADO1-ABR21.AGO21/Documentos%20compartidos/Forms/AllItems.aspx?e=5%3Ac1c9d051d0544a59b0bfec6df30d84a2&at=9&CT=1625263135101&OR=OWA%2DNT&CID=77e80a37%2D9825%2D0da2%2D74ce%2D4046be93934e&RootFolder=%2Fsites%2FCISICCSOFT%2DT%2EGRADO1%2DABR21%2EAGO21%2FDocumentos%20compartidos%2FGeneral%2FPERFILES%2DTESIS%2DCISIC%2ECSOF%2DABR21%2EAGO21%2FLESCANO%20VASQUEZ%20IVAN%20ALEXANDER&FolderCTID=0x0120002EA6CFDBA8E1E643BFD34A861A356647'),
+(14, 301, 'foto', 'https://utneduec.sharepoint.com/sites/CISICCSOFT-T.GRADO1-ABR21.AGO21/Documentos%20compartidos/Forms/AllItems.aspx?e=5%3Ac1c9d051d0544a59b0bfec6df30d84a2&at=9&CT=1625263135101&OR=OWA%2DNT&CID=77e80a37%2D9825%2D0da2%2D74ce%2D4046be93934e&RootFolder=%2Fsites%2FCISICCSOFT%2DT%2EGRADO1%2DABR21%2EAGO21%2FDocumentos%20compartidos%2FGeneral%2FPERFILES%2DTESIS%2DCISIC%2ECSOF%2DABR21%2EAGO21%2FLESCANO%20VASQUEZ%20IVAN%20ALEXANDER&FolderCTID=0x0120002EA6CFDBA8E1E643BFD34A861A356647'),
+(15, 301, 'ivan', 'https://utneduec.sharepoint.com/sites/CISICCSOFT-T.GRADO1-ABR21.AGO21/Documentos%20compartidos/Forms/AllItems.aspx?e=5%3Ac1c9d051d0544a59b0bfec6df30d84a2&at=9&CT=1625263135101&OR=OWA%2DNT&CID=77e80a37%2D9825%2D0da2%2D74ce%2D4046be93934e&RootFolder=%2Fsites%2FCISICCSOFT%2DT%2EGRADO1%2DABR21%2EAGO21%2FDocumentos%20compartidos%2FGeneral%2FPERFILES%2DTESIS%2DCISIC%2ECSOF%2DABR21%2EAGO21%2FLESCANO%20VASQUEZ%20IVAN%20ALEXANDER&FolderCTID=0x0120002EA6CFDBA8E1E643BFD34A861A356647');
+
 -- --------------------------------------------------------
 
 --
@@ -66,6 +87,15 @@ CREATE TABLE `anexopropuestas` (
   `nombre` varchar(50) NOT NULL,
   `anexo` varchar(700) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `anexopropuestas`
+--
+
+INSERT INTO `anexopropuestas` (`idanexopropuesta`, `idaccionpropuesta`, `nombre`, `anexo`) VALUES
+(1, 27, 'Documento pdf', 'https://utneduec.sharepoint.com/sites/CISICCSOFT-T.GRADO1-ABR21.AGO21/Documentos%20compartidos/Forms/AllItems.aspx?e=5%3Ac1c9d051d0544a59b0bfec6df30d84a2&at=9&CT=1625263135101&OR=OWA%2DNT&CID=77e80a37%2D9825%2D0da2%2D74ce%2D4046be93934e&RootFolder=%2Fsites%2FCISICCSOFT%2DT%2EGRADO1%2DABR21%2EAGO21%2FDocumentos%20compartidos%2FGeneral%2FPERFILES%2DTESIS%2DCISIC%2ECSOF%2DABR21%2EAGO21%2FLESCANO%20VASQUEZ%20IVAN%20ALEXANDER&FolderCTID=0x0120002EA6CFDBA8E1E643BFD34A861A356647'),
+(2, 27, 'fotoddd', 'https://utneduec.sharepoint.com/sites/CISICCSOFT-T.GRADO1-ABR21.AGO21/Documentos%20compartidos/Forms/AllItems.aspx?e=5%3Ac1c9d051d0544a59b0bfec6df30d84a2&at=9&CT=1625263135101&OR=OWA%2DNT&CID=77e80a37%2D9825%2D0da2%2D74ce%2D4046be93934e&RootFolder=%2Fsites%2FCISICCSOFT%2DT%2EGRADO1%2DABR21%2EAGO21%2FDocumentos%20compartidos%2FGeneral%2FPERFILES%2DTESIS%2DCISIC%2ECSOF%2DABR21%2EAGO21%2FLESCANO%20VASQUEZ%20IVAN%20ALEXANDER&FolderCTID=0x0120002EA6CFDBA8E1E643BFD34A861A356647'),
+(3, 30, 'Documento pdf', 'https://utneduec.sharepoint.com/sites/CISICCSOFT-T.GRADO1-ABR21.AGO21/Documentos%20compartidos/Forms/AllItems.aspx?e=5%3Ac1c9d051d0544a59b0bfec6df30d84a2&at=9&CT=1625263135101&OR=OWA%2DNT&CID=77e80a37%2D9825%2D0da2%2D74ce%2D4046be93934e&RootFolder=%2Fsites%2FCISICCSOFT%2DT%2EGRADO1%2DABR21%2EAGO21%2FDocumentos%20compartidos%2FGeneral%2FPERFILES%2DTESIS%2DCISIC%2ECSOF%2DABR21%2EAGO21%2FLESCANO%20VASQUEZ%20IVAN%20ALEXANDER&FolderCTID=0x0120002EA6CFDBA8E1E643BFD34A861A356647');
 
 -- --------------------------------------------------------
 
@@ -88,7 +118,7 @@ CREATE TABLE `clausula` (
 INSERT INTO `clausula` (`idclausula`, `clausula`, `detalleclausula`, `idnorma`, `idproceso`) VALUES
 (12, '4.1  COMPRENSIÓN DE LA ORGANIZACIÓN Y SU CONTEXTO', 'La organización debe determinar las cuestiones externas e internas que son pertinentes para su propósito y su dirección estratégica, y que afectan a su capacidad para lograr los resultados previstos de su sistema de gestión de la calidad.', 1, 6),
 (13, '4.1  COMPRENSIÓN DE LA ORGANIZACIÓN Y SU CONTEXTO', 'La organización debe determinar las cuestiones externas e internas que son pertinentes para su propósito y su dirección estratégica, y que afectan a su capacidad para lograr los resultados previstos de su sistema de gestión de la calidad.', 1, 7),
-(16, '4.2 COMPRENSIÓN DE LAS NECESIDADES Y EXPECTATIVAS DE LAS PARTES INTERESADAS', 'Debido a su efecto o efecto potencial en la capacidad de la organización de proporcionar regularmente productos y servicios que satisfagan los requisitos del cliente y los legales y reglamentarios aplicables, la organización debe determinar: a) las partes interesadas que son pertinentes al sistema de gestión de la calidad;\r\nb) los requisitos pertinentes de estas partes interesadas para el sistema de gestión de la calidad.', 1, 6),
+(16, 'DIFERENCIADOR COMPRENSIÓN DE LAS NECESIDADES Y EXPECTATIVAS DE LAS PARTES INTERESADAS', 'Debido a su efecto o efecto potencial en la capacidad de la organización de proporcionar regularmente productos y servicios que satisfagan los requisitos del cliente y los legales y reglamentarios aplicables, la organización debe determinar: a) las partes interesadas que son pertinentes al sistema de gestión de la calidad;\r\nb) los requisitos pertinentes de estas partes interesadas para el sistema de gestión de la calidad.', 1, 6),
 (17, '4.2 COMPRENSIÓN DE LAS NECESIDADES Y EXPECTATIVAS DE LAS PARTES INTERESADAS', 'Debido a su efecto o efecto potencial en la capacidad de la organización de proporcionar regularmente productos y servicios que satisfagan los requisitos del cliente y los legales y reglamentarios aplicables, la organización debe determinar: a) las partes interesadas que son pertinentes al sistema de gestión de la calidad;\r\nb) los requisitos pertinentes de estas partes interesadas para el sistema de gestión de la calidad.', 1, 7),
 (18, '4.3 DETERMINACIÓN DEL ALCANCE DEL SISTEMA DE GESTIÓN DE LA CALIDAD', 'Cuando se determina este alcance, la organización debe considerar:\r\na) las cuestiones externas e internas indicadas en el apartado 4.1;\r\nb) los requisitos de las partes interesadas pertinentes indicados en el apartado 4.2;\r\nc) los productos y servicios de la organización.', 1, 6),
 (19, '4.3 DETERMINACIÓN DEL ALCANCE DEL SISTEMA DE GESTIÓN DE LA CALIDAD', 'Cuando se determina este alcance, la organización debe considerar\r\n\r\na) las cuestiones externas e internas indicadas en el apartado 4.1;\r\n\r\nb) los requisitos de las partes interesadas pertinentes indicados en el apartado 4.2;\r\n\r\nc) los productos y servicios de la organización.', 1, 7),
@@ -125,7 +155,7 @@ CREATE TABLE `detalleauditoria` (
 INSERT INTO `detalleauditoria` (`iddetalleauditoria`, `codigoauditoria`, `idperiodo`, `fechaejecucion`, `idgrupo`, `fechacreacion`, `estado`) VALUES
 (119, 'Cod-9001', 1, '2021-08-25', 1, '2021-08-23', 2),
 (120, 'Cod-9002', 1, '2021-08-25', 3, '2021-08-23', 2),
-(121, 'Cod-9003', 2, '2021-08-26', 1, '2021-08-23', 1);
+(121, 'Cod-9003', 2, '2021-08-26', 1, '2021-08-23', 3);
 
 -- --------------------------------------------------------
 
@@ -140,34 +170,35 @@ CREATE TABLE `detalleclausula` (
   `desincumplimiento` varchar(150) DEFAULT NULL,
   `documentacionsoporte` varchar(150) DEFAULT NULL,
   `iddetalleauditoria` int(11) NOT NULL,
-  `planaccion` int(11) NOT NULL DEFAULT 1
+  `planaccion` int(11) NOT NULL DEFAULT 1,
+  `estadoplan` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `detalleclausula`
 --
 
-INSERT INTO `detalleclausula` (`iddetalleclausula`, `idclausula`, `parametroscalificacion`, `desincumplimiento`, `documentacionsoporte`, `iddetalleauditoria`, `planaccion`) VALUES
-(289, 12, 'noconformidadmenor', 'fdsfad', 'fdfad', 119, 1),
-(290, 13, NULL, NULL, NULL, 119, 1),
-(291, 16, 'noconformidadmayor', 'dfad', 'dfad', 119, 2),
-(292, 17, NULL, NULL, NULL, 119, 1),
-(293, 18, NULL, NULL, NULL, 119, 1),
-(294, 19, NULL, NULL, NULL, 119, 1),
-(295, 20, 'noconformidadmayor', 'dfad', 'adfad', 119, 2),
-(296, 21, NULL, NULL, NULL, 119, 1),
-(297, 22, 'observacion', 'dfadfa', 'dfadfa', 120, 1),
-(298, 23, 'noconformidadmenor', 'fdfad', 'dfadfa', 120, 1),
-(299, 24, NULL, NULL, NULL, 120, 1),
-(300, 25, NULL, NULL, NULL, 120, 1),
-(301, 12, NULL, NULL, NULL, 121, 1),
-(302, 13, NULL, NULL, NULL, 121, 1),
-(303, 16, NULL, NULL, NULL, 121, 1),
-(304, 17, NULL, NULL, NULL, 121, 1),
-(305, 18, NULL, NULL, NULL, 121, 1),
-(306, 19, NULL, NULL, NULL, 121, 1),
-(307, 20, NULL, NULL, NULL, 121, 1),
-(308, 21, NULL, NULL, NULL, 121, 1);
+INSERT INTO `detalleclausula` (`iddetalleclausula`, `idclausula`, `parametroscalificacion`, `desincumplimiento`, `documentacionsoporte`, `iddetalleauditoria`, `planaccion`, `estadoplan`) VALUES
+(289, 12, 'noconformidadmenor', 'hola hola hola hola hola y no hace las cosas bien , haciendo que se pierda tiempo y dinero', 'fdfad', 119, 2, 1),
+(290, 13, 'noconformidadmayor', 'dfdsfadf', 'dfad', 119, 1, 1),
+(291, 16, 'cumple', '', 'dfaddfad', 119, 1, 1),
+(292, 17, 'noconformidadmenor', 'dfadf', 'adfad', 119, 1, 1),
+(293, 18, 'noconformidadmenor', 'dfad', 'adfad', 119, 2, 2),
+(294, 19, 'cumple', '', 'dfad', 119, 1, 1),
+(295, 20, 'noconformidadmayor', 'dfad', 'adfad', 119, 2, 1),
+(296, 21, 'noconformidadmenor', 'dfad', 'adfad', 119, 1, 1),
+(297, 22, 'observacion', 'dfadfa', 'dfadfa', 120, 1, 1),
+(298, 23, 'noconformidadmenor', 'fdfad', 'dfadfa', 120, 1, 1),
+(299, 24, NULL, NULL, NULL, 120, 1, 1),
+(300, 25, NULL, NULL, NULL, 120, 1, 1),
+(301, 12, 'noconformidadmenor', 'fdfdas', 'dfad', 121, 2, 2),
+(302, 13, NULL, NULL, NULL, 121, 1, 1),
+(303, 16, NULL, NULL, NULL, 121, 1, 1),
+(304, 17, NULL, NULL, NULL, 121, 1, 1),
+(305, 18, NULL, NULL, NULL, 121, 1, 1),
+(306, 19, NULL, NULL, NULL, 121, 1, 1),
+(307, 20, NULL, NULL, NULL, 121, 1, 1),
+(308, 21, NULL, NULL, NULL, 121, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -276,8 +307,10 @@ CREATE TABLE `plandeaccion` (
 --
 
 INSERT INTO `plandeaccion` (`idplandeaccion`, `iddetalleclausula`, `consecuencia`, `analisiscausa`, `desarrollometodo`, `causaraiz`) VALUES
-(24, 295, 'dafda', 'Diagrama de Ishkawa', 'dfdfd', 'fdfdfd'),
-(25, 291, 'FDFD', 'Lluvia de ideas', 'DFADFA', 'DFADFAD');
+(31, 293, 'aaaaaaa', '5 por que?', 'aaaaaa', 'aaaaaaaaa'),
+(32, 289, 'bbbbbbbbbb', 'Lluvia de ideas', 'bbbbbbbbbbb', 'bbbbbbbbbbbb'),
+(33, 301, 'ccccccc', 'Diagrama de Ishkawa', 'ccccccccc', 'ccccccccccccc'),
+(34, 295, 'dfadf', 'Lluvia de ideas', 'dfad', 'dfad');
 
 -- --------------------------------------------------------
 
@@ -364,7 +397,7 @@ INSERT INTO `usuario` (`id_user`, `user`, `password`, `correo`, `rol`, `estatus`
 (1, 'ivan', '102ddaf691e1615d5dacd4c86299bfa4', 'ialescanov@utn.edu.ec', 1, 1),
 (2, 'malcom', '102ddaf691e1615d5dacd4c86299bfa4', 'malcom@gmail.com', 2, 1),
 (3, 'francis', '102ddaf691e1615d5dacd4c86299bfa4', 'francis@gmail.com', 2, 0),
-(4, 'lois', '102ddaf691e1615d5dacd4c86299bfa4', 'lois@gmail.com', 3, 0),
+(4, 'lois', '102ddaf691e1615d5dacd4c86299bfa4', 'lois@gmail.com', 3, 1),
 (5, 'hall', '102ddaf691e1615d5dacd4c86299bfa4', 'hall@gmail.com', 2, 1),
 (6, 'daya', '102ddaf691e1615d5dacd4c86299bfa4', 'dayamineral@gmail.com', 2, 1),
 (7, 'anavera', '102ddaf691e1615d5dacd4c86299bfa4', 'anavera@gmail.com', 3, 1),
@@ -491,19 +524,19 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `accionespropuestas`
 --
 ALTER TABLE `accionespropuestas`
-  MODIFY `idaccionpropuesta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `idaccionpropuesta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT de la tabla `anexo`
 --
 ALTER TABLE `anexo`
-  MODIFY `idanexo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `idanexo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de la tabla `anexopropuestas`
 --
 ALTER TABLE `anexopropuestas`
-  MODIFY `idanexopropuesta` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idanexopropuesta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `clausula`
@@ -527,7 +560,7 @@ ALTER TABLE `detalleclausula`
 -- AUTO_INCREMENT de la tabla `detallegrupo`
 --
 ALTER TABLE `detallegrupo`
-  MODIFY `iddetallegrupo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `iddetallegrupo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT de la tabla `grupoauditor`
@@ -551,7 +584,7 @@ ALTER TABLE `periodo`
 -- AUTO_INCREMENT de la tabla `plandeaccion`
 --
 ALTER TABLE `plandeaccion`
-  MODIFY `idplandeaccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `idplandeaccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT de la tabla `procesos`
