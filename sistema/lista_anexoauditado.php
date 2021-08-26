@@ -9,7 +9,8 @@ if (empty($_REQUEST['idap'])) {
 $idaccionpropuesta = $_REQUEST['idap'];
 $idplanaccion = $_REQUEST['idpa'];
 $iddetalleclausula = $_REQUEST['id'];
-$iddetalleauditoria = $_REQUEST['ida'];  
+$iddetalleauditoria = $_REQUEST['ida'];
+$estado = $_REQUEST['es'];
 
 ?>
 
@@ -20,33 +21,33 @@ $iddetalleauditoria = $_REQUEST['ida'];
 	<meta charset="UTF-8">
 	<?php include "includes/scripts.php"; ?>
 	<title>Lista de anexos</title>
-	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 </head>
 
 <body>
 	<?php include "includes/header.php"; ?>
 	<section id="container">
-		
+
 		<div style="display: flex;  justify-content:space-between; margin: 20px 0px; ">
-		<h1>Lista de anexos de la acción propuesta "<?php echo $idaccionpropuesta ?>"</h1>
-		<div style="justify-content:flex-end">
-		<a style="border: 2px solid #0069D9;  color: #ffffff; background-color: #0069D9; border-radius: 6px;" href="registro_anexoauditado.php?idap=<?php echo $idaccionpropuesta ?>&idpa=<?php echo $idplanaccion ?>&id=<?php echo $iddetalleclausula ?>&ida=<?php echo $iddetalleauditoria ?>" class="btn_save" >Agregar Anexo</a>
-		<a style="border: 2px solid #36A152;  color: #ffffff; padding:10px 40px; background-color: #36A152; border-radius: 6px;"  href="lista_accionpropuesta.php?idpa=<?php echo $idplanaccion ?>&id=<?php echo $iddetalleclausula ?>&ida=<?php echo $iddetalleauditoria ?>" class="btn_save"><i class="fas fa-arrow-circle-left"></i> Regresar</a>
-	    </div>
+			<h1>Lista de anexos de la acción propuesta "<?php echo $idaccionpropuesta ?>"</h1>
+			<div style="justify-content:flex-end">
+
+				<?php if ($estado != 3) { ?>
+					<a style="border: 2px solid #0069D9;  color: #ffffff; background-color: #0069D9; border-radius: 6px;" href="registro_anexoauditado.php?idap=<?php echo $idaccionpropuesta ?>&idpa=<?php echo $idplanaccion ?>&id=<?php echo $iddetalleclausula ?>&ida=<?php echo $iddetalleauditoria ?>" class="btn_save">Agregar Anexo</a>
+				<?php
+				}  ?>
+
+				<a style="border: 2px solid #36A152;  color: #ffffff; padding:10px 40px; background-color: #36A152; border-radius: 6px;" href="lista_accionpropuesta.php?idpa=<?php echo $idplanaccion ?>&id=<?php echo $iddetalleclausula ?>&ida=<?php echo $iddetalleauditoria ?>&es=<?php echo $estado ?>" class="btn_save"><i class="fas fa-arrow-circle-left"></i> Regresar</a>
+			</div>
 		</div>
-		
-		
-		
-		
+
 		<table>
 			<tr>
 				<th>Acciones</th>
 				<th>Nombre Anexo</th>
 				<th>Anexo Url</th>
-
 			</tr>
 			<?php
-
 			$sql_registe = mysqli_query($conection, "SELECT COUNT(*) as total_registro FROM anexopropuestas WHERE  idaccionpropuesta=$idaccionpropuesta  ");
 			$result_register = mysqli_fetch_array($sql_registe);
 			$total_registro = $result_register['total_registro'];
@@ -68,12 +69,21 @@ $iddetalleauditoria = $_REQUEST['ida'];
 			?>
 
 					<tr>
-						<td>
-							<a class="link_edit" href="editar_anexoacciones.php?idx=<?php echo $data[0]; ?>&idap=<?php echo $idaccionpropuesta;?>&idpa=<?php echo $idplanaccion;?>&id=<?php echo $iddetalleclausula;?>&ida=<?php echo  $iddetalleauditoria;?>">Editar</a>
-							<a class="link_delete" href="eliminar_anexoacciones.php?idx=<?php echo $data[0]; ?>&idap=<?php echo $idaccionpropuesta;?>&idpa=<?php echo $idplanaccion;?>&id=<?php echo $iddetalleclausula;?>&ida=<?php echo  $iddetalleauditoria;?>">Eliminar</a>
 
-						</td>
-			
+
+						<?php if ($estado == 3) { ?>
+
+							<td style="text-align: center; color: #687778;"><abbr title="Ya no puede editar este Plan">Editar Elimar</abbr></td>
+						<?php 	} else { ?>
+
+							<td>
+								<a class="link_edit" href="editar_anexoacciones.php?idx=<?php echo $data[0]; ?>&idap=<?php echo $idaccionpropuesta; ?>&idpa=<?php echo $idplanaccion; ?>&id=<?php echo $iddetalleclausula; ?>&ida=<?php echo  $iddetalleauditoria; ?>">Editar</a>
+								<a class="link_delete" href="eliminar_anexoacciones.php?idx=<?php echo $data[0]; ?>&idap=<?php echo $idaccionpropuesta; ?>&idpa=<?php echo $idplanaccion; ?>&id=<?php echo $iddetalleclausula; ?>&ida=<?php echo  $iddetalleauditoria; ?>">Eliminar</a>
+
+							</td>
+						<?php
+						} ?>
+
 						<td><?php echo $data[2];  ?></td>
 						<td><a style="color: #40AEBF;" target="blank" href="<?php echo $data[3]; ?>"><?php echo $data[3]; ?></a></td>
 

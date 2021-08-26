@@ -19,7 +19,7 @@ $iddetalleauditoria = $_REQUEST['ida'];
 	<meta charset="UTF-8">
 	<?php include "includes/scripts.php"; ?>
 	<title> Plan de Acción </title>
-	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 </head>
 
 <body>
@@ -27,10 +27,10 @@ $iddetalleauditoria = $_REQUEST['ida'];
 	<section id="container">
 
 		<div style="display: flex;  justify-content:space-between; margin: 20px 0px; ">
-		<h1>Plan de Acción</h1>
-		<div style="justify-content:flex-end">
-		<a style="border: 2px solid #36A152;  color: #ffffff; padding:10px 40px; background-color: #36A152; border-radius: 6px;" href="lista_auditadovista.php?id=<?php echo $iddetalleauditoria?>" class="btn_save"><i class="fas fa-arrow-circle-left"></i> Regresar</a>
-		</div>
+			<h1>Plan de Acción</h1>
+			<div style="justify-content:flex-end">
+				<a style="border: 2px solid #36A152;  color: #ffffff; padding:10px 40px; background-color: #36A152; border-radius: 6px;" href="lista_auditadovista.php?id=<?php echo $iddetalleauditoria ?>" class="btn_save"><i class="fas fa-arrow-circle-left"></i> Regresar</a>
+			</div>
 		</div>
 
 		<table>
@@ -57,23 +57,30 @@ $iddetalleauditoria = $_REQUEST['ida'];
 			$desde = ($pagina - 1) * $por_pagina;
 			$total_paginas = ceil($total_registro / $por_pagina);
 			//detalleclausula
-		
-			$query = mysqli_query($conection, "SELECT codigoauditoria,clausula,detalleclausula,causaraiz, pa.idplandeaccion FROM detalleauditoria da, norma n, clausula c,detalleclausula dc ,procesos p , plandeaccion pa WHERE da.iddetalleauditoria=dc.iddetalleauditoria AND c.idclausula=dc.idclausula AND n.idnorma=c.idnorma AND p.idproceso=c.idproceso AND p.liderproceso=$usu AND dc.iddetalleclausula=pa.iddetalleclausula AND dc.parametroscalificacion<>'cumple' AND dc.planaccion=2 AND pa.iddetalleclausula=$iddetalleclausula ORDER BY nombrenorma,codigoauditoria ASC LIMIT $desde,$por_pagina");
+
+			$query = mysqli_query($conection, "SELECT codigoauditoria,clausula,detalleclausula,causaraiz, pa.idplandeaccion,estado FROM detalleauditoria da, norma n, clausula c,detalleclausula dc ,procesos p , plandeaccion pa WHERE da.iddetalleauditoria=dc.iddetalleauditoria AND c.idclausula=dc.idclausula AND n.idnorma=c.idnorma AND p.idproceso=c.idproceso AND p.liderproceso=$usu AND dc.iddetalleclausula=pa.iddetalleclausula AND dc.parametroscalificacion<>'cumple' AND dc.planaccion=2 AND pa.iddetalleclausula=$iddetalleclausula ORDER BY nombrenorma,codigoauditoria ASC LIMIT $desde,$por_pagina");
 			mysqli_close($conection);
 			$result = mysqli_num_rows($query);
 			if ($result > 0) {
 				while ($data = mysqli_fetch_array($query)) {
 			?>
 					<tr>
-						<td>
-							<a class="link_edit" href="editar_plan.php?idpa=<?php echo $data[4];?>&id=<?php echo $iddetalleclausula;?>&ida=<?php echo  $iddetalleauditoria ;?>">Editar</a>
-						</td>
+						<?php if ($data[5] == 3) { ?>
+							
+							<td style="text-align: center; color: #687778;"><abbr title="Ya no puede editar este Plan">Editar</abbr></td>
+						<?php 	} else { ?>
+
+							<td>
+								<a class="link_edit" href="editar_plan.php?idpa=<?php echo $data[4]; ?>&id=<?php echo $iddetalleclausula; ?>&ida=<?php echo  $iddetalleauditoria; ?>">Editar</a>
+							</td>
+						<?php
+						} ?>
 
 						<td><?php echo $data[0]; ?></td>
 						<td><?php echo $data[1]; ?></td>
 						<td><?php echo $data[2]; ?></td>
 						<td><?php echo $data[3]; ?></td>
-						<td><a style="color: #4099BF; font-weight: bold" href="lista_accionpropuesta.php?idpa=<?php echo $data[4];?>&id=<?php echo $iddetalleclausula;?>&ida=<?php echo  $iddetalleauditoria ;?>">Accion Propuesta</a></td>
+						<td><a style="color: #4099BF; font-weight: bold" href="lista_accionpropuesta.php?idpa=<?php echo $data[4]; ?>&id=<?php echo $iddetalleclausula; ?>&ida=<?php echo  $iddetalleauditoria; ?>&es=<?php echo  $data[5] ;?>">Accion Propuesta</a></td>
 					</tr>
 			<?php
 				}

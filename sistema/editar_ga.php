@@ -8,14 +8,22 @@ if (!empty($_POST)) {
     $id_user = $_POST['id_user'];
     $idgrupo = $_POST['grupoauditor'];
     $idrolauditor = $_POST['rol'];
-    $actividadrealizada= $_POST['actividadrealizada'];
-   
+    $actividadrealizada = $_POST['actividadrealizada'];
 
-    $query_update = mysqli_query($conection, "UPDATE detallegrupo SET id_user=$id_user, idgrupo=$idgrupo,idrolauditor=$idrolauditor, actividadrealizada='$actividadrealizada' WHERE iddetallegrupo=$iddetallegrupo");
-    if ($query_update) {
-        $alert = '<p class="msg_save">Grupo Actualizado </p>';
+
+    $query = mysqli_query($conection, "SELECT * FROM detallegrupo  WHERE  idgrupo=$idgrupo AND idrolauditor=$idrolauditor");
+    $result = mysqli_fetch_array($query);
+
+    if ($result > 0) {
+        $alert = '<p class="msg_error">!Ya existe un Lider para este Grupo, ingresa un auditor secundario</p>';
     } else {
-        $alert = '<p class="msg_error">Error al Actualizar </p>';
+
+        $query_update = mysqli_query($conection, "UPDATE detallegrupo SET id_user=$id_user, idgrupo=$idgrupo,idrolauditor=$idrolauditor, actividadrealizada='$actividadrealizada' WHERE iddetallegrupo=$iddetallegrupo");
+        if ($query_update) {
+            $alert = '<p class="msg_save">Grupo Actualizado </p>';
+        } else {
+            $alert = '<p class="msg_error">Error al Actualizar </p>';
+        }
     }
 }
 
@@ -40,9 +48,9 @@ if ($result_sql == 0) {
         $id_user = $data[0];
         $idgrupo = $data[1];
         $idrolauditor = $data[2];
-        $actividadrealizada= $data[3];
+        $actividadrealizada = $data[3];
         $iddetallegrupo = $data[4];
-   }
+    }
 }
 ?>
 
@@ -126,15 +134,25 @@ if ($result_sql == 0) {
                 <label for="actividadrealizada">Actividad Realizada</label>
                 <input type="text" name="actividadrealizada" id="actividadrealizada" autocomplete="off" value="<?php echo $actividadrealizada; ?>">
 
-                
-
-
                 <center><a style="border: 2px solid #2e518b;  color: #ffffff; background-color: #1883ba;" href="listadetallegrupo.php" class="btn_cancel">Regresar</a></center>
                 <input type="submit" style="border: 2px solid #2e518b;  color: #ffffff; background-color: #04B404; font-size: 17px;" value="Actualizar" class="btn_save">
             </form>
         </div>
     </section>
-    
+    <script type="text/javascript">
+        $(function() {
+            $("#id_user").val('<?php echo $id_user; ?>')
+        });
+        $(function() {
+            $("#grupoauditor").val('<?php echo $idgrupo; ?>')
+        });
+
+        $(function() {
+            $("#rol").val('<?php echo $idrolauditor ; ?>')
+        });
+    </script>
+
+
 </body>
 
 </html>

@@ -4,22 +4,27 @@ session_start();
 include "../conexion.php";
 if (!empty($_POST)) {
     $alert = '';
-
-
     $iduser = $_POST['idusuario'];
     $idgrupo = $_POST['idgrupo'];
     $idrolauditor = $_POST['idrolauditor'];
     $actividadrealizada= $_POST['actividad'];
 
-    $query_insert = mysqli_query($conection, "INSERT INTO detallegrupo (id_user,idgrupo,idrolauditor,actividadrealizada) VALUES 
-    ('$iduser','$idgrupo','$idrolauditor','$actividadrealizada')");
 
-    if ($query_insert) {
-        $alert = '<p class="msg_save">CREADO CORRECTAMENTE</p>';
+    $query = mysqli_query($conection, "SELECT * FROM detallegrupo  WHERE  idgrupo=$idgrupo AND idrolauditor=$idrolauditor");
+    $result = mysqli_fetch_array($query);
+  
+    if ($result > 0) {
+      $alert = '<p class="msg_error">!Ya existe un Lider para este Grupo, ingresa un auditor secundario</p>';
     } else {
-
-        $alert = '<p class="msg_error">Error al Registrar GRUPO AUDITORES</p>';
+        $query_insert = mysqli_query($conection, "INSERT INTO detallegrupo (id_user,idgrupo,idrolauditor,actividadrealizada) VALUES 
+        ('$iduser','$idgrupo','$idrolauditor','$actividadrealizada')");
+        if ($query_insert) {
+            $alert = '<p class="msg_save">CREADO CORRECTAMENTE</p>';
+        } else {
+            $alert = '<p class="msg_error">Error al Registrar GRUPO AUDITORES</p>';
+        }
     }
+
 }
 
 ?>

@@ -26,7 +26,7 @@ $usu = $_SESSION['id_user'];
 				<th>Avance</th>
 				<th>No Conformidades</th>
 				<th>Cierre NC</th>
-				<th style="text-align:center">Archivar</th>
+				<th style="text-align:center">Archivar Auditoría</th>
 			</tr>
 			<?php
 			$sql_registe = mysqli_query($conection, "SELECT COUNT(*) as total_registro FROM detalleauditoria");

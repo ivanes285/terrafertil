@@ -65,7 +65,7 @@
 				<ul>
 
 					<li><a href="lista_inclumplimientospe.php">Incumplimientos Pendientes</a></li>
-					<li><a href="lista_inclumplimientospe.php">Incumplimientos Archivados</a></li>
+					<li><a href="lista_inclumplimientosarchi.php">Incumplimientos Archivados</a></li>
 
 				</ul>
 

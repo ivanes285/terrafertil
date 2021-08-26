@@ -128,6 +128,16 @@ if ($result_sql == 0) {
                 minDate: 0
             });
         });
+
+        $(function() {
+            $("#tiempoperiodo").val('<?php echo  $idperiodo; ?>')
+        });
+        $(function() {
+            $("#grupoauditor").val('<?php echo $idgrupo; ?>')
+        });
+
+
+
     </script>
 </body>
 

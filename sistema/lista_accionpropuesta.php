@@ -2,10 +2,10 @@
 session_start();
 include "../conexion.php";
 if ($_SESSION['rol'] != 3) {
-    header("location: ./");
+	header("location: ./");
 }
 
-if (empty($_REQUEST['idpa']) ||empty($_REQUEST['id']) ||empty($_REQUEST['ida']) ) {
+if (empty($_REQUEST['idpa']) || empty($_REQUEST['id']) || empty($_REQUEST['ida'])) {
 	header('Location: lista_planaccion.php');
 	mysqli_close($conection);
 }
@@ -13,7 +13,8 @@ if (empty($_REQUEST['idpa']) ||empty($_REQUEST['id']) ||empty($_REQUEST['ida']) 
 
 $idplanaccion = $_REQUEST['idpa'];
 $iddetalleclausula = $_REQUEST['id'];
-$iddetalleauditoria = $_REQUEST['ida'];  
+$iddetalleauditoria = $_REQUEST['ida'];
+$estado = $_REQUEST['es'];
 ?>
 
 
@@ -24,7 +25,7 @@ $iddetalleauditoria = $_REQUEST['ida'];
 	<meta charset="UTF-8">
 	<?php include "includes/scripts.php"; ?>
 	<title>Lista Acciones Propuestas</title>
-	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 </head>
 
 <body>
@@ -32,11 +33,16 @@ $iddetalleauditoria = $_REQUEST['ida'];
 	<section id="container">
 
 		<div style="display: flex;  justify-content:space-between; margin: 20px 0px; ">
-		<h1>Lista de acciones propuestas por el Auditado </h1>
-		<div style="justify-content:flex-end">
-		<a style="border: 2px solid #0069D9;  color: #ffffff; background-color: #0069D9; border-radius: 6px;" href="registro_accionpropuesta.php?idpa=<?php echo $idplanaccion ?>" class="btn_save">Agregar Acción Propuesta</a>
-		<a style="border: 2px solid #36A152;  color: #ffffff; padding:10px 40px; background-color: #36A152; border-radius: 6px;" href="lista_planaccion.php?id=<?php echo $iddetalleclausula ?> &ida=<?php echo $iddetalleauditoria ?> " class="btn_save"><i class="fas fa-arrow-circle-left"></i> Regresar</a>
-	    </div>
+			<h1>Lista de acciones propuestas por el Auditado </h1>
+			<div style="justify-content:flex-end">
+
+				<?php if ($estado != 3) { ?>
+					<a style="border: 2px solid #0069D9;  color: #ffffff; background-color: #0069D9; border-radius: 6px;" href="registro_accionpropuesta.php?idpa=<?php echo $idplanaccion ?>" class="btn_save">Agregar Acción Propuesta</a>
+				<?php
+				}  ?>
+
+				<a style="border: 2px solid #36A152;  color: #ffffff; padding:10px 40px; background-color: #36A152; border-radius: 6px;" href="lista_planaccion.php?id=<?php echo $iddetalleclausula ?> &ida=<?php echo $iddetalleauditoria ?> &es=<?php echo $estado ?> " class="btn_save"><i class="fas fa-arrow-circle-left"></i> Regresar</a>
+			</div>
 		</div>
 
 
@@ -48,10 +54,11 @@ $iddetalleauditoria = $_REQUEST['ida'];
 				<th>Fecha Propuesta</th>
 				<th>Evidencias</th>
 				<th>Anexo</th>
+				<th style="text-align:center">Estatus</th>
 				<th>Acciones</th>
 			</tr>
 			<?php
-			$sql_registe = mysqli_query($conection, "SELECT COUNT(*) as total_registro FROM accionespropuestas WHERE idplanaccion=$idplanaccion AND estadover=1");
+			$sql_registe = mysqli_query($conection, "SELECT COUNT(*) as total_registro FROM accionespropuestas WHERE idplanaccion=$idplanaccion ");
 			$result_register = mysqli_fetch_array($sql_registe);
 			$total_registro = $result_register['total_registro'];
 			$por_pagina = 10;
@@ -63,7 +70,7 @@ $iddetalleauditoria = $_REQUEST['ida'];
 			$desde = ($pagina - 1) * $por_pagina;
 			$total_paginas = ceil($total_registro / $por_pagina);
 
-			$query = mysqli_query($conection, "SELECT idaccionpropuesta,accionpropuesta,responsable,fechapropuesta,evidencia FROM accionespropuestas  WHERE idplanaccion=$idplanaccion AND estadover=1 ORDER BY idaccionpropuesta ASC LIMIT $desde,$por_pagina");
+			$query = mysqli_query($conection, "SELECT idaccionpropuesta,accionpropuesta,responsable,fechapropuesta,evidencia,status FROM accionespropuestas  WHERE idplanaccion=$idplanaccion ORDER BY idaccionpropuesta ASC LIMIT $desde,$por_pagina");
 			mysqli_close($conection);
 			$result = mysqli_num_rows($query);
 
@@ -76,12 +83,43 @@ $iddetalleauditoria = $_REQUEST['ida'];
 						<td><?php echo $data[2];  ?></td>
 						<td><?php echo $data[3];  ?></td>
 						<td><?php echo $data[4];  ?></td>
-						<td><a style="color: #FF1F57; font-weight: bold" href="lista_anexoauditado.php?idap=<?php echo $data[0];?>&idpa=<?php echo $idplanaccion;?>&id=<?php echo $iddetalleclausula;?>&ida=<?php echo  $iddetalleauditoria ;?>">Agregar Anexo</a></td>
 
-						<td>
-							<a class="link_edit" href="editar_accionpropuesta.php?idap=<?php echo $data[0];?>&idpa=<?php echo $idplanaccion;?>&id=<?php echo $iddetalleclausula;?>&ida=<?php echo  $iddetalleauditoria ;?>">Editar</a>
-							<a class="link_delete" href="eliminar_accionespropuestas.php?idap=<?php echo $data[0];?>&idpa=<?php echo $idplanaccion;?>&id=<?php echo $iddetalleclausula;?>&ida=<?php echo  $iddetalleauditoria ;?>">Eliminar</a>
-						</td>
+						<?php if ($estado == 3) { ?>
+							<td><a style="color: #4099BF; font-weight: bold" href="lista_anexoauditado.php?idap=<?php echo $data[0]; ?>&idpa=<?php echo $idplanaccion; ?>&id=<?php echo $iddetalleclausula; ?>&ida=<?php echo  $iddetalleauditoria; ?>&es=<?php echo  $estado ?> ">Ver</a></td>
+						<?php
+						} else { ?>
+							<td><a style="color: #FF1F57; font-weight: bold" href="lista_anexoauditado.php?idap=<?php echo $data[0]; ?>&idpa=<?php echo $idplanaccion; ?>&id=<?php echo $iddetalleclausula; ?>&ida=<?php echo  $iddetalleauditoria; ?>&es=<?php echo  $estado ?> ">Agregar </a></td>
+						<?php
+						} ?>
+
+						<?php
+						if ($data[5] == "aceptado") { ?>
+							<td style="background-color: #00CC63; color: #FFFFFF; font-weight: bold; text-align:center; "><?php echo $data[5];  ?></td>
+						<?php
+						} else if (!isset($data[5]) || $data[5] == null) { ?>
+							<td><?php echo $data[5]; ?></td>
+						<?php
+						} else { ?>
+							<td style="background-color: #FF1F57; color:#FFFFFF; font-weight: bold; text-align:center;"><?php echo $data[5];  ?></td>
+						<?php
+						}
+						?>
+
+						<?php if ($estado == 3) { ?>
+							<td>
+								<a style="text-align: center; color: #687778;"><abbr title="Ya no puede editar o eliminar este Plan">Editar Eliminar</abbr></a>
+
+							</td>
+						<?php
+						} else { ?>
+							<td>
+								<a class="link_edit" href="editar_accionpropuesta.php?idap=<?php echo $data[0]; ?>&idpa=<?php echo $idplanaccion; ?>&id=<?php echo $iddetalleclausula; ?>&ida=<?php echo  $iddetalleauditoria; ?>">Editar</a>
+								<a class="link_delete" href="eliminar_accionespropuestas.php?idap=<?php echo $data[0]; ?>&idpa=<?php echo $idplanaccion; ?>&id=<?php echo $iddetalleclausula; ?>&ida=<?php echo  $iddetalleauditoria; ?>">Eliminar</a>
+							</td>
+						<?php
+						}
+						?>
+
 
 					</tr>
 			<?php

@@ -85,15 +85,18 @@ if ($result_sql == 0) {
                     }
                     ?>
                 </select>
-
-
-
-
                 <center><a style="border: 2px solid #2e518b;  color: #ffffff; background-color: #1883ba;" href="lista_grupo_auditor.php" class="btn_cancel">Regresar</a> </center>
                 <input type="submit" style="border: 2px solid #2e518b;  color: #ffffff; background-color: #04B404; font-size: 17px;" value="Actualizar" class="btn_save">   
             </form>
         </div>
     </section>
+    <script type="text/javascript">
+        $(function() {
+            $("#idnorma").val('<?php echo $idnorma; ?>')
+        });
+    </script>
+
+
 </body>
 
 </html>

@@ -15,7 +15,7 @@ if (!empty($_SESSION['activo'])) {
             $user = mysqli_real_escape_string($conection, $_POST['user']); // usuario de la base 
             $password = md5 (mysqli_real_escape_string($conection, $_POST['password'])); //password de la base de 
             
-            $query = mysqli_query($conection, "SELECT * FROM usuario  WHERE  user='$user' AND password= '$password'"); //consulta
+            $query = mysqli_query($conection, "SELECT * FROM usuario  WHERE  user='$user' AND password= '$password' AND estatus=1"); //consulta
             mysqli_close($conection);
             $result = mysqli_num_rows($query);
 
@@ -28,8 +28,9 @@ if (!empty($_SESSION['activo'])) {
                 header('location: sistema/');
             
             } else {
+                
                 $alert = ' <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                El usuario o clave son incorrectos
+                El usuario o clave son incorrectos 
                 <button style="text-align: right" type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span></button> </div>';
                 session_destroy();
@@ -39,5 +40,4 @@ if (!empty($_SESSION['activo'])) {
 
     }
 }
-
 ?>
