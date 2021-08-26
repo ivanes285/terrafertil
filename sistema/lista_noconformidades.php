@@ -31,6 +31,7 @@ $usu = $_SESSION['id_user'];
 				<th>Detalle Clausula</th>
 				<th>Descripción Incumplimiento</th>
 				<th>Plan de Acción</th>
+				<th>Estado Plan</th>
 
 			</tr>
 			<?php
@@ -56,7 +57,7 @@ $usu = $_SESSION['id_user'];
 
 			$desde = ($pagina - 1) * $por_pagina;
 			$total_paginas = ceil($total_registro / $por_pagina);
-			$query = mysqli_query($conection, "SELECT clausula,detalleclausula,desincumplimiento,iddetalleclausula,dc.planaccion,da.iddetalleauditoria,nombreproceso,user FROM detalleauditoria da, norma n, clausula c,detalleclausula dc ,procesos p, usuario u  WHERE da.iddetalleauditoria=dc.iddetalleauditoria AND c.idclausula=dc.idclausula AND n.idnorma=c.idnorma AND p.idproceso=c.idproceso AND p.liderproceso=u.id_user AND dc.parametroscalificacion<>'cumple' AND da.iddetalleauditoria=$iddetalleauditoria ORDER BY nombreproceso DESC LIMIT $desde,$por_pagina");
+			$query = mysqli_query($conection, "SELECT clausula,detalleclausula,desincumplimiento,iddetalleclausula,dc.planaccion,da.iddetalleauditoria,nombreproceso,user,dc.estadoplan FROM detalleauditoria da, norma n, clausula c,detalleclausula dc ,procesos p, usuario u  WHERE da.iddetalleauditoria=dc.iddetalleauditoria AND c.idclausula=dc.idclausula AND n.idnorma=c.idnorma AND p.idproceso=c.idproceso AND p.liderproceso=u.id_user AND dc.parametroscalificacion<>'cumple' AND da.iddetalleauditoria=$iddetalleauditoria ORDER BY nombreproceso,iddetalleclausula ASC LIMIT $desde,$por_pagina");
 
 			mysqli_close($conection);
 			$result = mysqli_num_rows($query);
@@ -67,8 +68,12 @@ $usu = $_SESSION['id_user'];
 						<td><?php echo $data[6]; ?></td>
 						<td><?php echo $data[7]; ?></td>
 						<td><?php echo $data[0]; ?></td>
-						<td><?php echo $data[1]; ?></td>
-						<td><?php echo $data[2]; ?></td>
+						<?php
+						$text = str_replace(["\n"], "<br/>", $data[1]);
+						?>
+
+						<td style="text-align:justify"><?php echo $text ?></td>
+						<td style="text-align:center"><?php echo $data[2]; ?></td>
 
 						<?php
 						if ($data[4] == 1) {
@@ -81,8 +86,25 @@ $usu = $_SESSION['id_user'];
 						} else {
 						?>
 							<td><a style="color: #00CC63; font-weight: bold" href="lista_planesauditado.php?id=<?php echo $data[3]; ?>&ida=<?php echo $iddetalleauditoria ?> ">PLAN</a></td>
-						<?php   	}
+						<?php
+						}
 						?>
+
+						<?php
+						if ($data[4] == 2 && $data[8] == 2) {
+						?>
+							<td style="font-size: 35px; text-align: center; color: #687778;"><abbr title="El plan está cerrado"><i class="fas fa-lock"></i></abbr></td>
+						<?php
+						} else if ($data[4] == 2 && $data[8] == 1) {
+						?>
+							<td style="font-size: 35px; text-align: center; color: #33BDCA;"><a style="color: #33BDCA; font-weight: bold" href="estadoplan.php?id=<?php echo $data[3]; ?>"><i class="fas fa-lock-open"></i></a> </td>
+						<?php
+						} else { ?>
+							<td style="font-size: 35px; text-align: center; color: #33BDCA;"><a style="color: #C95E7D; font-weight: bold" href="#"><abbr title="No existe un plan y no puede cerrarlo"><i class="fas fa-lock-open"></i></a> </td>
+						<?php
+						}
+						?>
+
 
 					</tr>
 			<?php

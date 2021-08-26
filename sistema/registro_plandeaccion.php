@@ -76,9 +76,9 @@ $iddetalleclausula = $_REQUEST['id'];
 
         <label for="descausaraiz">Descripción Causa Raiz</label>
         <textarea name="descausaraiz" id="descausaraiz" cols="30" rows="10" placeholder="Describa la causa raíz" required></textarea>
-
+        <br />
         <br/>
-        <center> <a style="border: 2px solid #2e518b;  color: #ffffff; background-color: #1883ba;" class="btn_cancel" href="lista_auditadovista.php">Regresar</a> </center>
+        <a style="border: 2px solid #36A152;  color: #ffffff; padding:10px 132px; background-color: #36A152; border-radius: 6px;" class="btn_save1" href="lista_auditadovista.php">Regresar</a> 
         <input type="submit" value="Guardar" class="btn_save">
 
       </form>

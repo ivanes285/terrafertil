@@ -20,14 +20,24 @@ $iddetalleauditoria = $_REQUEST['ida'];
 	<meta charset="UTF-8">
 	<?php include "includes/scripts.php"; ?>
 	<title>Lista de anexos</title>
+	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 </head>
 
 <body>
 	<?php include "includes/header.php"; ?>
 	<section id="container">
-		<h1>Lista de anexos de la acción propuesta "<?php echo $idaccionpropuesta ?>" </h1>
-		<a href="registro_anexoauditado.php?idap=<?php echo $idaccionpropuesta ?>&idpa=<?php echo $idplanaccion ?>&id=<?php echo $iddetalleclausula ?>&ida=<?php echo $iddetalleauditoria ?>" class="btn_new">Agregar Anexo </a>
-		<a style="border: 2px solid #36A152; padding: 6px 60px; color: #ffffff; background-color: #36A152; border-radius: 6px;"  href="lista_accionpropuesta.php?idpa=<?php echo $idplanaccion ?>&id=<?php echo $iddetalleclausula ?>&ida=<?php echo $iddetalleauditoria ?>" class="btn_save">Regresar</a>
+		
+		<div style="display: flex;  justify-content:space-between; margin: 20px 0px; ">
+		<h1>Lista de anexos de la acción propuesta "<?php echo $idaccionpropuesta ?>"</h1>
+		<div style="justify-content:flex-end">
+		<a style="border: 2px solid #0069D9;  color: #ffffff; background-color: #0069D9; border-radius: 6px;" href="registro_anexoauditado.php?idap=<?php echo $idaccionpropuesta ?>&idpa=<?php echo $idplanaccion ?>&id=<?php echo $iddetalleclausula ?>&ida=<?php echo $iddetalleauditoria ?>" class="btn_save" >Agregar Anexo</a>
+		<a style="border: 2px solid #36A152;  color: #ffffff; padding:10px 40px; background-color: #36A152; border-radius: 6px;"  href="lista_accionpropuesta.php?idpa=<?php echo $idplanaccion ?>&id=<?php echo $iddetalleclausula ?>&ida=<?php echo $iddetalleauditoria ?>" class="btn_save"><i class="fas fa-arrow-circle-left"></i> Regresar</a>
+	    </div>
+		</div>
+		
+		
+		
+		
 		<table>
 			<tr>
 				<th>Acciones</th>

@@ -9,6 +9,7 @@ if (empty($_REQUEST['id'])) {
 
 $iddetalleclausula = $_REQUEST['id'];
 $iddetalleauditoria = $_REQUEST['da'];
+$estado = $_REQUEST['ide'];
 
 ?>
 
@@ -28,14 +29,13 @@ $iddetalleauditoria = $_REQUEST['da'];
 		<div style="display: flex;  justify-content:space-between; margin: 20px 0px; ">
 		<h1>Lista de anexos de la clausula id número "<?php echo $iddetalleclausula ?>" </h1>
 		<div style="justify-content:flex-end">
-		<a style="border: 2px solid #0069D9;  color: #ffffff; background-color: #0069D9; border-radius: 6px;" href="registro_anexo.php?id=<?php echo $iddetalleclausula ?>&da=<?php echo $iddetalleauditoria ?> " class="btn_save">Agregar Anexo</a>
-		<a style="border: 2px solid #36A152;  color: #ffffff; padding:10px 40px; background-color: #36A152; border-radius: 6px;" href="formulario_clausulas.php?id=<?php echo $iddetalleauditoria ?>" class="btn_save"><i class="fas fa-arrow-circle-left"></i> Regresar</a>
+		<a style="border: 2px solid #36A152;  color: #ffffff; padding:10px 40px; background-color: #36A152; border-radius: 6px;" href="formulario_clausulasarchivadas.php?id=<?php echo $iddetalleauditoria?>&ide=<?php echo $estado ?>" class="btn_save"><i class="fas fa-arrow-circle-left"></i> Regresar</a>
 	    </div>
 		</div>
 	
 		<table>
 			<tr>
-				<th>Acciones</th>
+
 				<th>Nombre Anexo</th>
 				<th>Anexo Url</th>
 
@@ -63,12 +63,7 @@ $iddetalleauditoria = $_REQUEST['da'];
 			?>
 
 					<tr>
-						<td>
-							<a class="link_edit" href="editar_anexo.php?ida=<?php echo $data[0]; ?>&id=<?php echo $iddetalleclausula ?>&da=<?php echo $iddetalleauditoria ?>">Editar</a>
-							<a class="link_delete" href="eliminar_anexo.php?ida=<?php echo $data[0]; ?>&id=<?php echo $iddetalleclausula ?>&da=<?php echo $iddetalleauditoria ?>">Eliminar</a>
-
-						</td>
-			
+					
 						<td><?php echo $data[2];  ?></td>
 						<td><a style="color: #40AEBF;" target="blank" href="<?php echo $data[3]; ?>"><?php echo $data[3]; ?></a></td>
 

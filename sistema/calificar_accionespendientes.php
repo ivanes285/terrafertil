@@ -120,7 +120,7 @@ if ($result_sql == 0) {
                 <br />
                 
                 <br />
-                <a style="border: 2px solid #218838;  color: #ffffff; padding:10px 135px; background-color: #218838; border-radius: 6px;" class="btn_save1" href="lista_accionespendientes.php?id=<?php echo $idplanaccion ?>">Regresar</a> 
+                <a style="border: 2px solid #218838;  color: #ffffff; padding:10px 132px; background-color: #218838; border-radius: 6px;" class="btn_save1" href="lista_accionespendientes.php?id=<?php echo $idplanaccion ?>">Regresar</a> 
                 <input type="submit" value="Evaluar" name="prueba" class="btn_save">
             </form>
         </div>

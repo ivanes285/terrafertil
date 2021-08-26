@@ -9,13 +9,14 @@ include "../conexion.php";
 <head>
 	<meta charset="UTF-8">
 	<?php include "includes/scripts.php"; ?>
-	<title>Formulario de Clausulas</title>
+	<title>Formulario de Clausulas Archivadas</title>
+	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 </head>
 
 <body>
 	<?php include "includes/header.php"; ?>
 	<section id="container">
-		<h1>Formulario Clausulas</h1>
+		<h1>Formulario Clausulas Archivadas</h1>
 
 		<table>
 			<tr>
@@ -42,11 +43,12 @@ include "../conexion.php";
 			$desde = ($pagina - 1) * $por_pagina;
 			$total_paginas = ceil($total_registro / $por_pagina);
 
-			if (empty($_REQUEST['id'])) {
+			if (empty($_REQUEST['id']) || empty($_REQUEST['ide'])) {
 				header("location: lista_auditorvistapro.php");
 				mysqli_close($conection);
 			} else {
 				$iddetallaauditoria = $_REQUEST['id'];
+				$estado = $_REQUEST['ide'];
 
 				$query = mysqli_query($conection, "SELECT c.clausula,c.detalleclausula,p.nombreproceso,dc.parametroscalificacion,dc.desincumplimiento,dc.documentacionsoporte,dc.iddetalleclausula FROM clausula c, detalleclausula dc, procesos p WHERE dc.idclausula=c.idclausula AND p.idproceso=c.idproceso AND dc.iddetalleauditoria=$iddetallaauditoria ORDER BY c.idclausula ASC LIMIT $desde,$por_pagina");
 				$result = mysqli_num_rows($query);
@@ -63,20 +65,20 @@ include "../conexion.php";
 							<td><?php echo $data[2]; ?></td>
 							<td><?php echo $data[3]; ?></td>
 							<td><?php echo $data[4]; ?></td>
-							<td><a style="color: #FF1F57; font-weight: bold" href="lista_anexo.php?id=<?php echo $data[6]; ?>&da=<?php echo $iddetallaauditoria ?> ">Agregar Anexo</a></td>
+							<td><a style="color: #4099BF; font-weight: bold" href="lista_anexoarchivados.php?id=<?php echo $data[6]; ?>&da=<?php echo $iddetallaauditoria ?>&ide=<?php echo $estado ?> "><i class="fas fa-folder-open"></i> Ver</a></td>
 							<td><?php echo $data[5]; ?></td>
 
 							<?php
 							if (!isset($data[3])) {
 							?>
 								<td>
-									<a style="color: #FF1F57; font-weight: bold" href="calificar_clausula.php?id=<?php echo $data[6]; ?>&da=<?php echo $iddetallaauditoria ?> ">EVALUAR</a>
+									<a style="color: #FF1F57; font-weight: bold">EVALUAR</a>
 								</td>
 							<?php
 							} else {
 							?>
 								<td>
-									<a style="color: #00CC63; font-weight: bold" href="calificar_clausula.php?id=<?php echo $data[6]; ?>&da=<?php echo $iddetallaauditoria ?> ">EVALUADO</a>
+									<a style="color: #00CC63; font-weight: bold ">EVALUADO</a>
 								</td>
 							<?php
 							}

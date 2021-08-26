@@ -73,8 +73,13 @@ if ($result_sql == 0) {
                 <input type="text" name="fechapropuesta" id="fechapropuesta" autocomplete="off" value="<?php echo $fechapropuesta; ?>">
                 <label for="evidencia">Evidencias</label>
                 <textarea name="evidencia"  cols="30" rows="10" placeholder="Ingrese la evidencia" required><?php echo $evidencia; ?></textarea>
-                <center> <a style="border: 2px solid #2e518b;  color: #ffffff; background-color: #1883ba;"  href="lista_accionpropuesta.php?idpa=<?php echo $idplanaccion ?>&id=<?php echo $iddetalleclausula ?>&ida=<?php echo $iddetalleauditoria ?>" class="btn_cancel">Regresar</a> </center>
-                <input type="submit" value="Actualizar" class="btn_save">
+                <br />
+                <br />
+                <a style="border: 2px solid #36A152;  color: #ffffff; padding:10px 132px; background-color: #36A152; border-radius: 6px;" class="btn_save1"  href="lista_accionpropuesta.php?idpa=<?php echo $idplanaccion ?>&id=<?php echo $iddetalleclausula ?>&ida=<?php echo $iddetalleauditoria ?>">Regresar</a> 
+                <input type="submit" value="Guardar" class="btn_save">
+
+
+
             </form>
         </div>
     </section>
