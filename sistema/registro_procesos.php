@@ -79,7 +79,10 @@ if (!empty($_POST)) {
                     }
                     ?>
                 </select>
-                <input type="submit" value="Registrar" class="btn_save">
+                <br>
+                <br>
+                 <a style="border: 2px solid #36A152;  color: #ffffff; padding:10px 132px; background-color: #36A152; border-radius: 6px;" class="btn_save1" href="listar_procesos.php">Regresar</a> 
+                 <input type="submit" value="Registrar" class="btn_save">
             </form>
         </div>
     </section>

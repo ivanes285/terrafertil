@@ -47,7 +47,7 @@ $usu = $_SESSION['id_user'];
 					<tr>
 						<td><?php echo $data[0]; ?></td>
 						<td><?php echo $data[1]; ?></td>
-						<td><a style="color: #4099BF; font-weight: bold" href="lista_auditadovista.php?id=<?php echo $data[3]; ?>"><?php echo $data[2]; ?></a></td>
+						<td><a style="color: #4099BF; font-weight: bold" href="lista_auditadovista.php?ida=<?php echo $data[3]; ?>"><?php echo $data[2]; ?></a></td>
 						
 					
 					</tr>

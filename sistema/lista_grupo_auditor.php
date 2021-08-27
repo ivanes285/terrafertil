@@ -9,12 +9,19 @@
 	<meta charset="UTF-8">
 	<?php include "includes/scripts.php";?>
 	<title>Lista de Grupos </title>
+	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 </head>
 <body>
 <?php include "includes/header.php";?>
 	<section id="container">
-    <h1>Lista de Grupos </h1>
- <a href="registro_grupo_auditor.php" class="btn_new">Ingresar Grupo</a>
+    
+
+ <div style="display: flex;  justify-content:space-between; margin: 20px 0px; ">
+		<h1>Lista de Grupos</h1>
+		<div style="justify-content:flex-end">
+		<a style="border: 2px solid #0069D9;  color: #ffffff; background-color: #0069D9; border-radius: 6px;" href="registro_grupo_auditor.php" class="btn_save">Ingresar Grupo</a>
+	    </div>
+		</div>
 
 <table>
 <tr>

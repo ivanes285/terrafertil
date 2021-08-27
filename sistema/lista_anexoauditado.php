@@ -33,10 +33,9 @@ $estado = $_REQUEST['es'];
 			<div style="justify-content:flex-end">
 
 				<?php if ($estado != 3) { ?>
-					<a style="border: 2px solid #0069D9;  color: #ffffff; background-color: #0069D9; border-radius: 6px;" href="registro_anexoauditado.php?idap=<?php echo $idaccionpropuesta ?>&idpa=<?php echo $idplanaccion ?>&id=<?php echo $iddetalleclausula ?>&ida=<?php echo $iddetalleauditoria ?>" class="btn_save">Agregar Anexo</a>
+					<a style="border: 2px solid #0069D9;  color: #ffffff; background-color: #0069D9; border-radius: 6px;" href="registro_anexoauditado.php?idap=<?php echo $idaccionpropuesta ?>&idpa=<?php echo $idplanaccion ?>&id=<?php echo $iddetalleclausula ?>&ida=<?php echo $iddetalleauditoria ?>&es=<?php echo $estado?>" class="btn_save">Agregar Anexo</a>
 				<?php
 				}  ?>
-
 				<a style="border: 2px solid #36A152;  color: #ffffff; padding:10px 40px; background-color: #36A152; border-radius: 6px;" href="lista_accionpropuesta.php?idpa=<?php echo $idplanaccion ?>&id=<?php echo $iddetalleclausula ?>&ida=<?php echo $iddetalleauditoria ?>&es=<?php echo $estado ?>" class="btn_save"><i class="fas fa-arrow-circle-left"></i> Regresar</a>
 			</div>
 		</div>
@@ -77,8 +76,8 @@ $estado = $_REQUEST['es'];
 						<?php 	} else { ?>
 
 							<td>
-								<a class="link_edit" href="editar_anexoacciones.php?idx=<?php echo $data[0]; ?>&idap=<?php echo $idaccionpropuesta; ?>&idpa=<?php echo $idplanaccion; ?>&id=<?php echo $iddetalleclausula; ?>&ida=<?php echo  $iddetalleauditoria; ?>">Editar</a>
-								<a class="link_delete" href="eliminar_anexoacciones.php?idx=<?php echo $data[0]; ?>&idap=<?php echo $idaccionpropuesta; ?>&idpa=<?php echo $idplanaccion; ?>&id=<?php echo $iddetalleclausula; ?>&ida=<?php echo  $iddetalleauditoria; ?>">Eliminar</a>
+								<a class="link_edit" href="editar_anexoacciones.php?idx=<?php echo $data[0]; ?>&idap=<?php echo $idaccionpropuesta; ?>&idpa=<?php echo $idplanaccion; ?>&id=<?php echo $iddetalleclausula; ?>&ida=<?php echo  $iddetalleauditoria; ?>&es=<?php echo $estado ?>">Editar</a>
+								<a class="link_delete" href="eliminar_anexoacciones.php?idx=<?php echo $data[0]; ?>&idap=<?php echo $idaccionpropuesta; ?>&idpa=<?php echo $idplanaccion; ?>&id=<?php echo $iddetalleclausula; ?>&ida=<?php echo  $iddetalleauditoria; ?>&es=<?php echo $estado ?>">Eliminar</a>
 
 							</td>
 						<?php

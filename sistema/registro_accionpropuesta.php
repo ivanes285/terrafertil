@@ -6,9 +6,13 @@ if ($_SESSION['rol'] != 3) {
 
 include "../conexion.php";
 
+$idplanaccion = $_REQUEST['idpa'];
+$iddetalleclausula = $_REQUEST['id'];
+$iddetalleauditoria = $_REQUEST['ida'];
+$estado = $_REQUEST['es'];
 if (!empty($_POST)) {
 
-    $idplanaccion = $_POST['idplanaccion'];
+    
     $accionpropuesta = $_POST['accionpropuesta'];
     $responsable = $_POST['responsable'];
     $fechapropuesta = $_POST['fechapropuesta'];
@@ -27,7 +31,7 @@ if (empty($_REQUEST['idpa'])) {
     mysqli_close($conection);
 }
 
-$idplanaccion = $_REQUEST['idpa'];
+
 ?>
 
 <!DOCTYPE html>
@@ -68,7 +72,7 @@ $idplanaccion = $_REQUEST['idpa'];
                 <textarea name="evidencia" id="evidencia" cols="30" rows="10" placeholder="Describa la evidencia" required></textarea>
                 <br />
                 <br />
-                <a style="border: 2px solid #36A152;  color: #ffffff; padding:10px 132px; background-color: #36A152; border-radius: 6px;" class="btn_save1" href="lista_accionpropuesta.php?id=<?php echo $idplanaccion ?>">Regresar</a> 
+                <a style="border: 2px solid #36A152;  color: #ffffff; padding:10px 132px; background-color: #36A152; border-radius: 6px;" class="btn_save1" href="lista_accionpropuesta.php?idpa=<?php echo $idplanaccion; ?>&id=<?php echo $iddetalleclausula; ?>&ida=<?php echo $iddetalleauditoria; ?>&es=<?php echo $estado; ?>">Regresar</a> 
                 <input type="submit" value="Guardar" class="btn_save">
 
             </form>

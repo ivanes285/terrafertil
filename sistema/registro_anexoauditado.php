@@ -9,6 +9,7 @@ $idaccionpropuesta = $_REQUEST['idap'];
 $idplanaccion = $_REQUEST['idpa'];
 $iddetalleclausula = $_REQUEST['id'];
 $iddetalleauditoria = $_REQUEST['ida'];
+$estado = $_REQUEST['es'];
 
 if (!empty($_POST)) {
     $idaccionpropuesta = $_POST['idaccionpropuesta'];
@@ -58,7 +59,7 @@ if (empty($_REQUEST['idap'])) {
 
                 <br />
                 <br />
-                <a style="border: 2px solid #36A152;  color: #ffffff; padding:10px 132px; background-color: #36A152; border-radius: 6px;" class="btn_save1" href="lista_anexoauditado.php?idap=<?php echo $idaccionpropuesta ?>&idpa=<?php echo $idplanaccion ?>&id=<?php echo $iddetalleclausula ?>&ida=<?php echo $iddetalleauditoria ?>">Regresar</a>
+                <a style="border: 2px solid #36A152;  color: #ffffff; padding:10px 132px; background-color: #36A152; border-radius: 6px;" class="btn_save1" href="lista_anexoauditado.php?idap=<?php echo $idaccionpropuesta ?>&idpa=<?php echo $idplanaccion ?>&id=<?php echo $iddetalleclausula ?>&ida=<?php echo $iddetalleauditoria ?>&es=<?php echo $estado?>">Regresar</a>
                 <input type="submit" value="Guardar Anexo" class="btn_save">
             </form>
         </div>

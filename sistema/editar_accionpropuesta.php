@@ -1,10 +1,16 @@
 <?php
+
 session_start();
+if ($_SESSION['rol'] != 3) {
+    header("location: ./");
+}
+
 include "../conexion.php";
     $idaccionpropuesta = $_REQUEST['idap'];
     $idplanaccion = $_REQUEST['idpa'];
     $iddetalleclausula = $_REQUEST['id'];
     $iddetalleauditoria = $_REQUEST['ida'];
+    $estado= $_REQUEST['es'];
 
 if (!empty($_POST)) {
     $accionpropuesta = $_POST['accionpropuesta'];
@@ -26,8 +32,6 @@ if (empty($_REQUEST['idap'])) {
     header("location:".$cadena);
     mysqli_close($conection);
 }
-
-$idaccionpropuesta = $_REQUEST['idap'];
 $sql = mysqli_query($conection, "SELECT * FROM accionespropuestas WHERE idaccionpropuesta=$idaccionpropuesta");
 
 mysqli_close($conection);
@@ -64,7 +68,6 @@ if ($result_sql == 0) {
             <hr>
             <div class="alert"><?php echo isset($alert) ? $alert : ''; ?></div>
             <form action="" method="POST">
-                <input type="hidden" name="idaccionpropuesta" value="<?php echo $idaccionpropuesta; ?>">
                 <label for="accionpropuesta">Acción propuesta</label>
                 <textarea name="accionpropuesta"  cols="30" rows="10" placeholder="Ingrese la acción propuesta" required><?php echo $accionpropuesta; ?></textarea>
                 <label for="responsable">Responsable</label>
@@ -75,7 +78,7 @@ if ($result_sql == 0) {
                 <textarea name="evidencia"  cols="30" rows="10" placeholder="Ingrese la evidencia" required><?php echo $evidencia; ?></textarea>
                 <br />
                 <br />
-                <a style="border: 2px solid #36A152;  color: #ffffff; padding:10px 132px; background-color: #36A152; border-radius: 6px;" class="btn_save1"  href="lista_accionpropuesta.php?idpa=<?php echo $idplanaccion ?>&id=<?php echo $iddetalleclausula ?>&ida=<?php echo $iddetalleauditoria ?>">Regresar</a> 
+                <a style="border: 2px solid #36A152;  color: #ffffff; padding:10px 132px; background-color: #36A152; border-radius: 6px;" class="btn_save1"  href="lista_accionpropuesta.php?idpa=<?php echo $idplanaccion; ?>&id=<?php echo $iddetalleclausula; ?>&ida=<?php echo $iddetalleauditoria; ?>&es=<?php echo $estado; ?>">Regresar</a> 
                 <input type="submit" value="Guardar" class="btn_save">
 
 

@@ -5,11 +5,12 @@ if ($_SESSION['rol'] != 3) {
 }
 include "../conexion.php";
 
-
+$iddetalleauditoria = $_REQUEST['ida'];
+$iddetalleclausula = $_REQUEST["id"];
 
 if (!empty($_POST)) {
 
-  $iddetalleclausula = $_POST["iddetalleclausula"];
+ 
   $consecuencia = $_POST["consecuencia"];
   $analisiscausa = $_POST["analisiscausa"];
   $desametodo = $_POST["desametodo"];
@@ -30,8 +31,6 @@ if (empty($_REQUEST['id'])) {
   header('Location: lista_auditadovista.php');
   mysqli_close($conection);
 }
-
-$iddetalleclausula = $_REQUEST['id'];
 
 ?>
 
@@ -78,7 +77,7 @@ $iddetalleclausula = $_REQUEST['id'];
         <textarea name="descausaraiz" id="descausaraiz" cols="30" rows="10" placeholder="Describa la causa raíz" required></textarea>
         <br />
         <br/>
-        <a style="border: 2px solid #36A152;  color: #ffffff; padding:10px 132px; background-color: #36A152; border-radius: 6px;" class="btn_save1" href="lista_auditadovista.php">Regresar</a> 
+        <a style="border: 2px solid #36A152;  color: #ffffff; padding:10px 132px; background-color: #36A152; border-radius: 6px;" class="btn_save1" href="lista_auditadovista.php?ida=<?php echo $iddetalleauditoria ?>">Regresar</a> 
         <input type="submit" value="Guardar" class="btn_save">
 
       </form>

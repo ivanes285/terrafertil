@@ -81,7 +81,8 @@ if ($result_sql == 0) {
                     }
                     ?>
                 </select>
-                <center> <a style="border: 2px solid #2e518b;  color: #ffffff; background-color: #1883ba;"  href="listar_procesos.php" class="btn_cancel">Regresar</a> </center>
+                <br>
+                 <a style="border: 2px solid #36A152;  color: #ffffff; padding:10px 132px; background-color: #36A152; border-radius: 6px;" class="btn_save1" href="listar_procesos.php">Regresar</a> 
                 <input type="submit" value="Actualizar" class="btn_save">
             </form>
         </div>

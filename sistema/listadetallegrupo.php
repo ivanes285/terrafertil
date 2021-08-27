@@ -10,13 +10,19 @@ include "../conexion.php";
 	<meta charset="UTF-8">
 	<?php include "includes/scripts.php"; ?>
 	<title>Lista de Auditores</title>
+	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 </head>
 
 <body>
 	<?php include "includes/header.php"; ?>
 	<section id="container">
+			
+		<div style="display: flex;  justify-content:space-between; margin: 20px 0px; ">
 		<h1>Lista de Auditores</h1>
-		<a href="registrodetallegrupo.php" class="btn_new">Ingresar Auditor </a>
+		<div style="justify-content:flex-end">
+		<a style="border: 2px solid #0069D9;  color: #ffffff; background-color: #0069D9; border-radius: 6px;" href="registrodetallegrupo.php" class="btn_save">Ingresar Auditor</a>
+	    </div>
+		</div>
 
 		<table>
 			<tr>

@@ -25,9 +25,9 @@ if (!empty($_POST)) {
     $query_insert = mysqli_query($conection, "INSERT INTO usuario (user,password,rol,correo,estatus) VALUES ('$user','$password','$rol','$correo','$estatus')");
 
     if ($query_insert) {
-      $alert = '<p class="msg_save">user Creado CORRECTAMENTE</p>';
+      $alert = '<p class="msg_save">Usuario creado correctamente</p>';
     } else {
-      $alert = '<p class="msg_error">Error al Crear user</p>';
+      $alert = '<p class="msg_error">Error al crear usuario</p>';
     }
   }
 }
@@ -83,7 +83,10 @@ if (!empty($_POST)) {
           }
           ?>
         </select>
+        <br>
+        <a style="border: 2px solid #36A152;  color: #ffffff; padding:10px 132px; background-color: #36A152; border-radius: 6px;" class="btn_save1" href="lista_usuario.php">Regresar</a> 
         <input type="submit" value="Crear Usuario" class="btn_save">
+        
 
       </form>
     </div>

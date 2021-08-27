@@ -52,8 +52,8 @@ if (empty($_REQUEST['id'])) {
             
             <form method="POST" action="">
                 <input type="hidden" name="idgrupo" value="<?php echo  $idgrupo; ?>">
-                <center><a style="border: 2px solid #2e518b;  color: #ffffff; background-color: #1883ba;" href="lista_grupo_auditor.php" class="btn_cancel">Cancelar</a> </center>
-                <input type="submit" style="border: 2px solid #2e518b;  color: #ffffff; background-color: #04B404; font-size: 17px;" value="Aceptar" class="btn_ok">
+                <center><a style="border: 2px solid #2e518b;  color: #ffffff; background-color:#04B404;" href="lista_grupo_auditor.php" class="btn_cancel">Regresar</a> </center>
+                <input type="submit" style="border: 2px solid #2e518b;  color: #ffffff; background-color: #1883ba; font-size: 17px;" value="Aceptar" class="btn_ok">
             </form>
         </div>
     </section>

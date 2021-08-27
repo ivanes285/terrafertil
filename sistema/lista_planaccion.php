@@ -29,7 +29,7 @@ $iddetalleauditoria = $_REQUEST['ida'];
 		<div style="display: flex;  justify-content:space-between; margin: 20px 0px; ">
 			<h1>Plan de Acción</h1>
 			<div style="justify-content:flex-end">
-				<a style="border: 2px solid #36A152;  color: #ffffff; padding:10px 40px; background-color: #36A152; border-radius: 6px;" href="lista_auditadovista.php?id=<?php echo $iddetalleauditoria ?>" class="btn_save"><i class="fas fa-arrow-circle-left"></i> Regresar</a>
+				<a style="border: 2px solid #36A152;  color: #ffffff; padding:10px 40px; background-color: #36A152; border-radius: 6px;" href="lista_auditadovista.php?ida=<?php echo $iddetalleauditoria ?>" class="btn_save"><i class="fas fa-arrow-circle-left"></i> Regresar</a>
 			</div>
 		</div>
 

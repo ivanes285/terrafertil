@@ -46,12 +46,12 @@ $usu = $_SESSION['id_user'];
 			}
 
 
-			if (empty($_REQUEST['id'])) {
+			if (empty($_REQUEST['ida'])) {
 				header('Location: lista_inclumplimientospe.php');
 				mysqli_close($conection);
 			}
 
-			$iddetalleauditoria = $_REQUEST['id'];
+			$iddetalleauditoria = $_REQUEST['ida'];
 
 
 			$desde = ($pagina - 1) * $por_pagina;

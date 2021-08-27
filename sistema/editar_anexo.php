@@ -74,9 +74,9 @@ if ($result_sql == 0) {
                 <label for="nombre">Nombre Anexo</label>
                 <input type="text" name="nombre" id="nombre" placeholder="Ingrese nombre de anexo" required value="<?php echo $nombre; ?>">
                 <label for="nombre">URL Anexo</label>
-                <input type="text" name="anexo" id="anexo" placeholder="Ingrese url de anexo" required value="<?php echo $anexo; ?>">
-                
-                <center><a style="border: 2px solid #2e518b;  color: #ffffff; background-color: #1883ba;" href=" lista_anexo.php?id=<?php echo $iddetalleclausula ?>&da=<?php echo $iddetalleauditoria ?>" class="btn_cancel">Cancelar</a> </center>
+                <input type="text" name="anexo" id="anexo" placeholder="Ingrese url de anexo" required value="<?php echo $anexo; ?>"> 
+                <br>
+                <a style="border: 2px solid #36A152;  color: #ffffff; padding:10px 132px; background-color: #36A152; border-radius: 6px;" class="btn_save1" href="lista_anexo.php?id=<?php echo $iddetalleclausula ?>&da=<?php echo $iddetalleauditoria ?>">Regresar</a> 
                 <input type="submit" value="Actualizar" class="btn_save">
             </form>
         </div>

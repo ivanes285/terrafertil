@@ -109,10 +109,9 @@ if ($result_sql == 0) {
                 <label for="docsoporte">Documentacion Soporte</label>
                 <textarea name="docsoporte" id="docsoporte" cols="30" rows="10" placeholder="Ingrese Documentacion Soporte" required ><?php echo  $docsoporte  ?></textarea>
 
-
-                <br />
-                <br />
-                <center><a style="border: 2px solid #2e518b;  color: #ffffff; background-color: #1883ba;"  href="formulario_clausulas.php?id=<?php echo $iddetalleauditoria ?>" class="btn_save">Regresar</a> </center>
+                <br>
+                <br>
+                <a style="border: 2px solid #36A152;  color: #ffffff; padding:10px 132px; background-color: #36A152; border-radius: 6px;" class="btn_save1" href="formulario_clausulas.php?id=<?php echo $iddetalleauditoria ?>">Regresar</a> 
                 <input type="submit" value="Evaluar" name="prueba" class="btn_save">
             </form>
         </div>

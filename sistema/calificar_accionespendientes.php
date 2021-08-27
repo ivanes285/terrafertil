@@ -4,15 +4,21 @@ include "../conexion.php";
 if ($_SESSION['rol'] != 2) {
     header("location: ./");
 }
-if (empty($_REQUEST['id'])) {
+if (empty($_REQUEST['idap'])) {
     header('Location: lista_accionespendientes.php');
     mysqli_close($conection);
 }
 
 
+$idplanaccion= $_REQUEST['idpa'];
+$iddetalleclausula = $_REQUEST['id'];
+$iddetalleauditoria = $_REQUEST['ida'];
+$idaccionpropuesta = $_REQUEST['idap'];
+
+$cadena="lista_accionespendientes.php?idpa=".$idplanaccion."&id=".$iddetalleclausula."&ida=".$iddetalleauditoria;
+
 if (!empty($_POST)) {
-    
-    $idaccionpropuesta = $_POST['idaccionpropuesta'];
+
     $fechacumplimiento  = $_POST['fechacumplimiento'];
     $status  = $_POST['status'];
   
@@ -38,20 +44,15 @@ if (!empty($_POST)) {
     
     if ($query_update) {
         $alert = '<p class="msg_save">Acción Propuesta Evaluada</p>';
-      
-        header("location: lista_accionespendientes.php");
+        header("location:".$cadena);
     } else {
         $alert = '<p class="msg_error">Error al Evaluar </p>';
     }
 }
-
-
-if (empty($_REQUEST['id']) || empty($_REQUEST['idpa'])) {
+if (empty($_REQUEST['idap'])) {
     header('Location: lista_accionespendientes.php');
     mysqli_close($conection);
 }
-$idplanaccion= $_REQUEST['id'];
-$idaccionpropuesta = $_REQUEST['idpa'];
 
 $sql = mysqli_query($conection, "SELECT * FROM accionespropuestas WHERE idaccionpropuesta=$idaccionpropuesta");
 
@@ -59,7 +60,7 @@ mysqli_close($conection);
 $status = "";
 $result_sql = mysqli_num_rows($sql);
 if ($result_sql == 0) {
-    header('Location: lista_accionespendientes.php');
+    header("location:".$cadena);
 } else {
     while ($data = mysqli_fetch_array($sql)) {
         $fechacumplimiento = $data[6];
@@ -95,8 +96,6 @@ if ($result_sql == 0) {
 
             <form action="" method="POST">
 
-                <input type="hidden" name="idaccionpropuesta" value="<?php echo $idaccionpropuesta; ?>">
-
                 <label for="fechacumplimiento">Fecha Cumplimiento</label>
                 <input type="text" name="fechacumplimiento" id="fechacumplimiento" autocomplete="off" value="<?php echo $fechacumplimiento; ?>">
 
@@ -120,7 +119,7 @@ if ($result_sql == 0) {
                 <br />
                 
                 <br />
-                <a style="border: 2px solid #218838;  color: #ffffff; padding:10px 132px; background-color: #218838; border-radius: 6px;" class="btn_save1" href="lista_accionespendientes.php?id=<?php echo $idplanaccion ?>">Regresar</a> 
+                <a style="border: 2px solid #218838;  color: #ffffff; padding:10px 132px; background-color: #218838; border-radius: 6px;" class="btn_save1" href="lista_accionespendientes.php?idpa=<?php echo $idplanaccion ?>&id=<?php echo $iddetalleclausula ?>&ida=<?php echo $iddetalleauditoria ?>">Regresar</a> 
                 <input type="submit" value="Evaluar" name="prueba" class="btn_save">
             </form>
         </div>

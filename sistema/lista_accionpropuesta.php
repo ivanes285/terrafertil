@@ -37,7 +37,7 @@ $estado = $_REQUEST['es'];
 			<div style="justify-content:flex-end">
 
 				<?php if ($estado != 3) { ?>
-					<a style="border: 2px solid #0069D9;  color: #ffffff; background-color: #0069D9; border-radius: 6px;" href="registro_accionpropuesta.php?idpa=<?php echo $idplanaccion ?>" class="btn_save">Agregar Acción Propuesta</a>
+					<a style="border: 2px solid #0069D9;  color: #ffffff; background-color: #0069D9; border-radius: 6px;" href="registro_accionpropuesta.php?idpa=<?php echo $idplanaccion; ?>&id=<?php echo $iddetalleclausula; ?>&ida=<?php echo $iddetalleauditoria; ?>&es=<?php echo $estado; ?>" class="btn_save">Agregar Acción Propuesta</a>
 				<?php
 				}  ?>
 
@@ -113,8 +113,8 @@ $estado = $_REQUEST['es'];
 						<?php
 						} else { ?>
 							<td>
-								<a class="link_edit" href="editar_accionpropuesta.php?idap=<?php echo $data[0]; ?>&idpa=<?php echo $idplanaccion; ?>&id=<?php echo $iddetalleclausula; ?>&ida=<?php echo  $iddetalleauditoria; ?>">Editar</a>
-								<a class="link_delete" href="eliminar_accionespropuestas.php?idap=<?php echo $data[0]; ?>&idpa=<?php echo $idplanaccion; ?>&id=<?php echo $iddetalleclausula; ?>&ida=<?php echo  $iddetalleauditoria; ?>">Eliminar</a>
+								<a class="link_edit" href="editar_accionpropuesta.php?idap=<?php echo $data[0]; ?>&idpa=<?php echo $idplanaccion; ?>&id=<?php echo $iddetalleclausula; ?>&ida=<?php echo  $iddetalleauditoria; ?>&es=<?php echo $estado; ?>">Editar</a>
+								<a class="link_delete" href="eliminar_accionespropuestas.php?idap=<?php echo $data[0]; ?>&idpa=<?php echo $idplanaccion; ?>&id=<?php echo $iddetalleclausula; ?>&ida=<?php echo  $iddetalleauditoria; ?>&es=<?php echo $estado; ?>">Eliminar</a>
 							</td>
 						<?php
 						}

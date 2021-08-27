@@ -7,11 +7,12 @@ if ($_SESSION['rol'] != 3) {
 $idaccionpropuesta = $_REQUEST['idap'];
 $idplanaccion = $_REQUEST['idpa'];
 $iddetalleclausula = $_REQUEST['id'];
-$iddetalleauditoria = $_REQUEST['ida'];  
+$iddetalleauditoria = $_REQUEST['ida']; 
+$estado= $_REQUEST['es']; 
 include "../conexion.php";
 if (!empty($_POST)) {
     
-    $cadena="lista_accionpropuesta.php?idpa=".$idplanaccion."&id=".$iddetalleclausula."&ida=".$iddetalleauditoria;
+    $cadena="lista_accionpropuesta.php?idpa=".$idplanaccion."&id=".$iddetalleclausula."&ida=".$iddetalleauditoria."&es=".$estado;
     $query_delete = mysqli_query($conection, "DELETE FROM accionespropuestas WHERE idaccionpropuesta = $idaccionpropuesta");
     mysqli_close($conection);
     if ($query_delete) {
@@ -65,8 +66,8 @@ if (empty($_REQUEST['idap'])) {
            
             <form method="POST" action="">
             <input type="hidden" name="idaccionpropuesta" value="<?php echo  $idaccionpropuesta; ?>">
-                <center><a style="border: 2px solid #2e518b;  color: #ffffff; background-color: #1883ba;" href="lista_accionpropuesta.php?idpa=<?php echo $idplanaccion ?>&id=<?php echo $iddetalleclausula ?>&ida=<?php echo $iddetalleauditoria ?>" class="btn_cancel">Regresar</a> </center>
-                <input type="submit" style="border: 2px solid #2e518b;  color: #ffffff; background-color: #04B404; font-size: 17px;" value="Aceptar" class="btn_ok">
+                <center><a style="border: 2px solid #2e518b;  color: #ffffff; background-color: #04B404;" href="lista_accionpropuesta.php?idpa=<?php echo $idplanaccion ?>&id=<?php echo $iddetalleclausula ?>&ida=<?php echo $iddetalleauditoria ?>&es=<?php echo $estado; ?>" class="btn_cancel">Regresar</a> </center>
+                <input type="submit" style="border: 2px solid #2e518b;  color: #ffffff; background-color:  #1883ba; font-size: 17px;" value="Aceptar" class="btn_ok">
             </form>
         </div>
     </section>

@@ -82,7 +82,7 @@ if (empty($_REQUEST['idpa']) || empty($_REQUEST['id']) || empty($_REQUEST['ida']
 						<td><?php echo $data[3];  ?></td>
 						<td><?php echo $data[4];  ?></td>
 						<td><?php echo $data[5];  ?></td>
-						<td><a style="color: #4099BF; font-weight: bold" href="lista_anexopropuesto.php?id=<?php echo $data[10]; ?>">Ver</a></td>
+						<td><a style="color: #4099BF; font-weight: bold" href="lista_anexoauditado.php?idap=<?php echo $data[10]; ?>&idpa=<?php echo $idplanaccion; ?>&id=<?php echo $iddetalleclausula; ?>&ida=<?php echo  $iddetalleauditoria;?>&es=<?php echo  $data[11];?>">Ver</a></td>
 						<td><?php echo $data[6];  ?></td>
 						<?php
 						if ($data[7] == "aceptado") { ?>
@@ -117,13 +117,13 @@ if (empty($_REQUEST['idpa']) || empty($_REQUEST['id']) || empty($_REQUEST['ida']
 							if (!isset($data[7])) {
 							?>
 								<td>
-									<a style="color: #FF1F57; font-weight: bold" href="calificar_accionespendientes.php?id=<?php echo $idplanaccion; ?>&idpa=<?php echo $data[10]; ?>  ">EVALUAR</a>
+									<a style="color: #FF1F57; font-weight: bold" href="calificar_accionespendientes.php?idap=<?php echo $data[10]; ?>&idpa=<?php echo $idplanaccion; ?>&id=<?php echo $iddetalleclausula; ?>&ida=<?php echo $iddetalleauditoria; ?> ">EVALUAR</a>
 								</td>
 							<?php
 							} else {
 							?>
 								<td>
-									<a style="color: #00CC63; font-weight: bold" href="calificar_accionespendientes.php?id=<?php echo $idplanaccion; ?>&idpa=<?php echo $data[10]; ?>">EVALUADO</a>
+									<a style="color: #00CC63; font-weight: bold" href="calificar_accionespendientes.php?idap=<?php echo $data[10]; ?>&idpa=<?php echo $idplanaccion; ?>&id=<?php echo $iddetalleclausula; ?>&ida=<?php echo $iddetalleauditoria; ?>">EVALUADO</a>
 								</td>
 						<?php
 							}
