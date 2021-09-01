@@ -8,15 +8,20 @@ include "../conexion.php";
 
 $usu = $_SESSION['id_user'];
 
+$iddetalleauditoria = $_REQUEST['ida'];
 if (!empty($_POST)) {
 
   $iddetalleclausula = $_POST['iddetalleclausula'];
 
   $query_delete = mysqli_query($conection, "UPDATE detalleclausula SET estadoplan=2 WHERE iddetalleclausula = $iddetalleclausula");
   mysqli_close($conection);
+
+
+  $cadena=" lista_noconformidades.php?id=".$iddetalleauditoria;
+  
   if ($query_delete) {
  
-    header('Location: lista_noconformidades.php');
+    header("Location:".$cadena);
   } else {
     $alert = '<p class="msg_error">Error al Cerrar el PLAN </p>';
   }
@@ -24,12 +29,12 @@ if (!empty($_POST)) {
 
 
 if (empty($_REQUEST['id'])) {
-
-  header('Location: lista_noconformidades.php');
+  header("Location:".$cadena);
   mysqli_close($conection);
 } else {
 
   $iddetalleclausula = $_REQUEST['id'];
+
   
   $sql = mysqli_query($conection, "SELECT consecuencia, analisiscausa,desarrollometodo,causaraiz FROM plandeaccion pa, detalleclausula dc WHERE pa.iddetalleclausula=dc.iddetalleclausula AND pa.iddetalleclausula=$iddetalleclausula; ");
   mysqli_close($conection);
@@ -45,7 +50,7 @@ if (empty($_REQUEST['id'])) {
       $causaraiz=$data[3];
     }
   } else {
-    header('Location: lista_noconformidades.php');
+    header("Location:".$cadena);
   }
 }
 ?>
@@ -71,7 +76,8 @@ if (empty($_REQUEST['id'])) {
       <p>Causa Raíz: <span><?php echo $causaraiz; ?></span></p>
       <form method="POST" action="">
         <input type="hidden" name="iddetalleclausula" value="<?php echo $iddetalleclausula; ?>">
-        <center><a style="border: 2px solid #2e518b;  color: #ffffff; background-color: #1883ba;" href="lista_noconformidades.php" class="btn_cancel">Regresar</a> </center>
+      
+        <center><a style="border: 2px solid #2e518b;  color: #ffffff; background-color: #1883ba;" href="lista_noconformidades.php?id=<?php echo $iddetalleauditoria; ?>" class="btn_cancel">Regresar</a> </center>
         <input type="submit" style="border: 2px solid #2e518b;  color: #ffffff; background-color: #04B404; font-size: 17px;" value="Cerrar Plan" class="btn_ok">
       </form>
     </div>

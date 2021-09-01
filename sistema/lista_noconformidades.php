@@ -125,7 +125,7 @@ $usu = $_SESSION['id_user'];
 						<?php
 						} else if ($data[4] == 2 && $data[8] == 1 && $totalacciones >0 && ($totalacciones==$totalcali)) {
 						?>
-							<td style="font-size: 35px; text-align: center; color: #33BDCA;"><a style="color: #33BDCA; font-weight: bold" href="estadoplan.php?id=<?php echo $data[3]; ?>"><abbr title="Quieres Cerrar el Plan ?"><i class="fas fa-lock-open"></i></abbr></a></td>
+							<td style="font-size: 35px; text-align: center; color: #33BDCA;"><a style="color: #33BDCA; font-weight: bold" href="estadoplan.php?id=<?php echo $data[3]; ?>&ida=<?php echo $iddetalleauditoria ?>"><abbr title="Quieres Cerrar el Plan ?"><i class="fas fa-lock-open"></i></abbr></a></td>
 						<?php
 						} else { ?>
 							<td style="font-size: 35px; text-align: center; color: #33BDCA;"><a style="color: #C95E7D; font-weight: bold" href="#"><abbr title="No existe un plan, no tiene acciones propuestas, o no están calificadas las acciones"><i class="fas fa-lock-open"></i></abbr> </a></td>
