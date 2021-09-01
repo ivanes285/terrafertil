@@ -78,10 +78,10 @@ $estado = $_REQUEST['ide'];
 				<?php
 				if ($pagina != 1) {
 				?>
-					<li><a href="?pagina=<?php echo 1; ?>">|<< /a>
+					<li><a href="?pagina=<?php echo 1; ?>">|<</a>
 					</li>
 					<li><a href="?pagina=<?php echo $pagina - 1; ?>">
-							<<< /a>
+							<<</a>
 					</li>
 				<?php
 				}

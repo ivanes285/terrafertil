@@ -798,6 +798,14 @@ table td {
     color: #698084;
 }
 
+
+
+.fondo body {
+    background-color: #0069d9 ;
+}
+
+
+
 /*
 .decoration a {
    
@@ -827,3 +835,5 @@ table td {
     border-radius: 50px; /*bordes redondos
     }
     
+*/
+

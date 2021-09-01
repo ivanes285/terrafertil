@@ -59,12 +59,15 @@ $usu = $_SESSION['id_user'];
 			$total_paginas = ceil($total_registro / $por_pagina);
 			$query = mysqli_query($conection, "SELECT clausula,detalleclausula,desincumplimiento,iddetalleclausula,dc.planaccion,da.iddetalleauditoria,nombreproceso,user,dc.estadoplan FROM detalleauditoria da, norma n, clausula c,detalleclausula dc ,procesos p, usuario u  WHERE da.iddetalleauditoria=dc.iddetalleauditoria AND c.idclausula=dc.idclausula AND n.idnorma=c.idnorma AND p.idproceso=c.idproceso AND p.liderproceso=u.id_user AND dc.parametroscalificacion<>'cumple' AND da.iddetalleauditoria=$iddetalleauditoria ORDER BY nombreproceso,iddetalleclausula ASC LIMIT $desde,$por_pagina");
 
-			mysqli_close($conection);
 			$result = mysqli_num_rows($query);
+
+
+
 			if ($result > 0) {
 				while ($data = mysqli_fetch_array($query)) {
 			?>
 					<tr>
+
 						<td><?php echo $data[6]; ?></td>
 						<td><?php echo $data[7]; ?></td>
 						<td><?php echo $data[0]; ?></td>
@@ -91,21 +94,44 @@ $usu = $_SESSION['id_user'];
 						?>
 
 						<?php
-						if ($data[4] == 2 && $data[8] == 2) {
+						//--------------------------------------------//
+						$sqlnorma = mysqli_query($conection, "SELECT idplandeaccion FROM plandeaccion WHERE iddetalleclausula =$data[3]");
+						$numero = mysqli_num_rows($sqlnorma);
+						if ($numero > 0) {
+							while ($res = mysqli_fetch_array($sqlnorma)) {
+								$gg = $res[0];
+							}
+						}
+						$idplandeaccion = intval($gg);  //convierto en entero ya que fda es string
+						//---------------------------------------------//
+
+						$numacc = mysqli_query($conection, "SELECT COUNT(*) AS total  FROM accionespropuestas WHERE idplanaccion=$idplandeaccion");
+						$numacciones = mysqli_fetch_array($numacc);
+						if (isset($numacciones)) {
+							$totalacciones = $numacciones['total'];
+						}
+
+						
+						$numa = mysqli_query($conection, "SELECT COUNT(*) AS total  FROM accionespropuestas WHERE idplanaccion=$idplandeaccion AND status IS NOT NULL");
+						$numaccion = mysqli_fetch_array($numa);
+						if (isset($numaccion)) {
+							$totalcali = $numaccion['total'];
+						}
+						?>
+						<?php
+						if ($data[4] == 2 && $data[8] == 2 ) {
 						?>
 							<td style="font-size: 35px; text-align: center; color: #687778;"><abbr title="El plan está cerrado"><i class="fas fa-lock"></i></abbr></td>
 						<?php
-						} else if ($data[4] == 2 && $data[8] == 1) {
+						} else if ($data[4] == 2 && $data[8] == 1 && $totalacciones >0 && ($totalacciones==$totalcali)) {
 						?>
-							<td style="font-size: 35px; text-align: center; color: #33BDCA;"><a style="color: #33BDCA; font-weight: bold" href="estadoplan.php?id=<?php echo $data[3]; ?>"><i class="fas fa-lock-open"></i></a> </td>
+							<td style="font-size: 35px; text-align: center; color: #33BDCA;"><a style="color: #33BDCA; font-weight: bold" href="estadoplan.php?id=<?php echo $data[3]; ?>"><abbr title="Quieres Cerrar el Plan ?"><i class="fas fa-lock-open"></i></abbr></a></td>
 						<?php
 						} else { ?>
-							<td style="font-size: 35px; text-align: center; color: #33BDCA;"><a style="color: #C95E7D; font-weight: bold" href="#"><abbr title="No existe un plan y no puede cerrarlo"><i class="fas fa-lock-open"></i></a> </td>
+							<td style="font-size: 35px; text-align: center; color: #33BDCA;"><a style="color: #C95E7D; font-weight: bold" href="#"><abbr title="No existe un plan, no tiene acciones propuestas, o no están calificadas las acciones"><i class="fas fa-lock-open"></i></abbr> </a></td>
 						<?php
 						}
 						?>
-
-
 					</tr>
 			<?php
 				}

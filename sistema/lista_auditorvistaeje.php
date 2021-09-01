@@ -29,7 +29,7 @@ $usu = $_SESSION['id_user'];
 				<th style="text-align:center">Archivar Auditoría</th>
 			</tr>
 			<?php
-			$sql_registe = mysqli_query($conection, "SELECT COUNT(*) as total_registro FROM detalleauditoria");
+			$sql_registe = mysqli_query($conection, "SELECT COUNT(*) as total_registro FROM detalleauditoria WHERE estado=2");
 			$result_register = mysqli_fetch_array($sql_registe);
 			$total_registro = $result_register['total_registro'];
 			$por_pagina = 10;
@@ -109,10 +109,10 @@ $usu = $_SESSION['id_user'];
 				<?php
 				if ($pagina != 1) {
 				?>
-					<li><a href="?pagina=<?php echo 1; ?>">|<< /a>
+					<li><a href="?pagina=<?php echo 1; ?>">|<</a>
 					</li>
 					<li><a href="?pagina=<?php echo $pagina - 1; ?>">
-							<<< /a>
+							<<</a>
 					</li>
 				<?php
 				}

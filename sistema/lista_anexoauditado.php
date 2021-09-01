@@ -6,11 +6,22 @@ if (empty($_REQUEST['idap'])) {
 	header('Location: lista_accionpropuesta.php');
 	mysqli_close($conection);
 }
+$usu = $_SESSION['id_user'];
 $idaccionpropuesta = $_REQUEST['idap'];
 $idplanaccion = $_REQUEST['idpa'];
 $iddetalleclausula = $_REQUEST['id'];
 $iddetalleauditoria = $_REQUEST['ida'];
 $estado = $_REQUEST['es'];
+
+$sql = mysqli_query($conection, "SELECT rol FROM usuario WHERE id_user=$usu");
+$num = mysqli_num_rows($sql);
+if ($num > 0) {
+	while ($po = mysqli_fetch_array($sql)) {
+		$fda = $po[0];
+	}
+}
+$rolusuario = intval($fda); //convierto en entero ya que fda es string
+
 
 ?>
 
@@ -32,11 +43,19 @@ $estado = $_REQUEST['es'];
 			<h1>Lista de anexos de la acción propuesta "<?php echo $idaccionpropuesta ?>"</h1>
 			<div style="justify-content:flex-end">
 
-				<?php if ($estado != 3) { ?>
-					<a style="border: 2px solid #0069D9;  color: #ffffff; background-color: #0069D9; border-radius: 6px;" href="registro_anexoauditado.php?idap=<?php echo $idaccionpropuesta ?>&idpa=<?php echo $idplanaccion ?>&id=<?php echo $iddetalleclausula ?>&ida=<?php echo $iddetalleauditoria ?>&es=<?php echo $estado?>" class="btn_save">Agregar Anexo</a>
+				<?php if ($estado != 3 && $rolusuario != 2) { ?>
+					<a style="border: 2px solid #0069D9;  color: #ffffff; background-color: #0069D9; border-radius: 6px;" href="registro_anexoauditado.php?idap=<?php echo $idaccionpropuesta ?>&idpa=<?php echo $idplanaccion ?>&id=<?php echo $iddetalleclausula ?>&ida=<?php echo $iddetalleauditoria ?>&es=<?php echo $estado ?>" class="btn_save">Agregar Anexo</a>
 				<?php
 				}  ?>
-				<a style="border: 2px solid #36A152;  color: #ffffff; padding:10px 40px; background-color: #36A152; border-radius: 6px;" href="lista_accionpropuesta.php?idpa=<?php echo $idplanaccion ?>&id=<?php echo $iddetalleclausula ?>&ida=<?php echo $iddetalleauditoria ?>&es=<?php echo $estado ?>" class="btn_save"><i class="fas fa-arrow-circle-left"></i> Regresar</a>
+
+				<?php if ($rolusuario != 2) { ?>
+					<a style="border: 2px solid #36A152;  color: #ffffff; padding:10px 40px; background-color: #36A152; border-radius: 6px;" href="lista_accionpropuesta.php?idpa=<?php echo $idplanaccion ?>&id=<?php echo $iddetalleclausula ?>&ida=<?php echo $iddetalleauditoria ?>&es=<?php echo $estado ?>" class="btn_save"><i class="fas fa-arrow-circle-left"></i> Regresar</a>
+				<?php
+				} else { ?>
+					<a style="border: 2px solid #36A152;  color: #ffffff; padding:10px 40px; background-color: #36A152; border-radius: 6px;" href="lista_accionespendientes.php?idpa=<?php echo $idplanaccion ?>&id=<?php echo $iddetalleclausula ?>&ida=<?php echo $iddetalleauditoria ?>" class="btn_save"><i class="fas fa-arrow-circle-left"></i> Regresar</a>
+				<?php
+				}
+				?>
 			</div>
 		</div>
 
@@ -60,6 +79,7 @@ $estado = $_REQUEST['es'];
 			$total_paginas = ceil($total_registro / $por_pagina);
 
 			$query = mysqli_query($conection, "SELECT * FROM anexopropuestas  WHERE idaccionpropuesta=$idaccionpropuesta  ORDER BY idaccionpropuesta ASC LIMIT $desde,$por_pagina");
+			
 			mysqli_close($conection);
 			$result = mysqli_num_rows($query);
 
@@ -70,7 +90,7 @@ $estado = $_REQUEST['es'];
 					<tr>
 
 
-						<?php if ($estado == 3) { ?>
+						<?php if ($estado == 3 ||  $rolusuario == 2) { ?>
 
 							<td style="text-align: center; color: #687778;"><abbr title="Ya no puede editar este Plan">Editar Elimar</abbr></td>
 						<?php 	} else { ?>

@@ -1,6 +1,13 @@
 <?php
 session_start();
 include "../conexion.php";
+
+if (empty($_REQUEST['id'])) {
+	header("location: lista_auditorvistapro.php");
+	
+} else {
+	$iddetallaauditoria = $_REQUEST['id'];
+}
 ?>
 
 <!DOCTYPE html>
@@ -30,10 +37,10 @@ include "../conexion.php";
 			</tr>
 			<?php
 
-			$sql_registe = mysqli_query($conection, "SELECT COUNT(*) as total_registro FROM detalleauditoria");
+			$sql_registe = mysqli_query($conection, "SELECT COUNT(*) as total_registro  FROM clausula c, detalleclausula dc, procesos p WHERE dc.idclausula=c.idclausula AND p.idproceso=c.idproceso AND dc.iddetalleauditoria=$iddetallaauditoria;");
 			$result_register = mysqli_fetch_array($sql_registe);
 			$total_registro = $result_register['total_registro'];
-			$por_pagina = 10;
+			$por_pagina =500;
 			if (empty($_GET['pagina'])) {
 				$pagina = 1;
 			} else {
@@ -94,10 +101,10 @@ include "../conexion.php";
 				<?php
 				if ($pagina != 1) {
 				?>
-					<li><a href="?pagina=<?php echo 1; ?>">|<< /a>
+					<li><a href="?pagina=<?php echo 1; ?>">|<</a>
 					</li>
 					<li><a href="?pagina=<?php echo $pagina - 1; ?>">
-							<<< /a>
+							<<</a>
 					</li>
 				<?php
 				}

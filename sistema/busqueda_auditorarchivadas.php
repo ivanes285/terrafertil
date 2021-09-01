@@ -17,10 +17,17 @@ $usu = $_SESSION['id_user'];
 <body>
 	<?php include "includes/header.php"; ?>
 	<section id="container">
-		<h1>Lista de Auditorias Archivadas</h1>
-		<form action="busqueda_auditorarchivadas.php" class="form_search">
-		<input style="width:150px" type="text" name="busqueda" id="busqueda" placeholder="Ingresa búsqueda">
-		<input type="submit" value="Buscar" class="btn_search">
+
+		<?php
+		$busqueda=strtolower($_REQUEST['busqueda']);
+		if(empty($busqueda)){
+			header("Location: lista_auditorarchivadas.php");
+		}
+		?>
+		<h1>Auditorias Encontradas</h1>
+		<form action="" class="form_search">
+			<input style="width:150px" type="text" name="busqueda" id="busqueda" placeholder="Ingresa búsqueda" value="<?php echo $busqueda?>">
+			<input type="submit" value="Buscar" class="btn_search">
 		</form>
 
 		<table style="margin-top: 20px;">
@@ -34,10 +41,24 @@ $usu = $_SESSION['id_user'];
 
 			</tr>
 			<?php
-			$sql_registe = mysqli_query($conection, "SELECT COUNT(*) as total_registro FROM norma n, grupoauditor ga, detallegrupo dg, detalleauditoria da WHERE n.idnorma=ga.idnorma and ga.idgrupo=dg.idgrupo AND dg.idgrupo=da.idgrupo AND dg.id_user=$usu AND da.estado=3 ");
+			$norma='';
+            if($busqueda=="iso9001"){
+            $norma= " OR n.idnorma LIKE '%1%' ";
+			}else if($busqueda=="bpm"){
+				$norma= " OR  n.idnorma LIKE '%2%' ";
+			}else if($busqueda=="basc"){
+				$norma= " OR  n.idnorma LIKE '%3%' ";
+			}else if($busqueda=="brc"){
+				$norma= " OR n.idnorma LIKE '%4%' ";
+			}
+			
+
+			$sql_registe = mysqli_query($conection, "SELECT COUNT(*) as total_registro FROM norma n, grupoauditor ga, detallegrupo dg, detalleauditoria da WHERE (codigoauditoria LIKE '%$busqueda%' OR fechaejecucion LIKE '%$busqueda%' $norma) AND n.idnorma=ga.idnorma and ga.idgrupo=dg.idgrupo AND dg.idgrupo=da.idgrupo AND dg.id_user=$usu AND da.estado=3");
+			$val= mysqli_num_rows($sql_registe);
+			
 			$result_register = mysqli_fetch_array($sql_registe);
 			$total_registro = $result_register['total_registro'];
-			$por_pagina = 15;
+			$por_pagina =15;
 			if (empty($_GET['pagina'])) {
 				$pagina = 1;
 			} else {
@@ -45,7 +66,10 @@ $usu = $_SESSION['id_user'];
 			}
 			$desde = ($pagina - 1) * $por_pagina;
 			$total_paginas = ceil($total_registro / $por_pagina);
-			$query = mysqli_query($conection, "SELECT codigoauditoria,fechaejecucion,nombrenorma,iddetalleauditoria,estado from norma n, grupoauditor ga, detallegrupo dg, detalleauditoria da WHERE n.idnorma=ga.idnorma and ga.idgrupo=dg.idgrupo AND dg.idgrupo=da.idgrupo AND dg.id_user=$usu AND da.estado=3 ORDER BY codigoauditoria DESC LIMIT $desde,$por_pagina");
+		
+		
+		$query = mysqli_query($conection, "SELECT codigoauditoria,fechaejecucion,nombrenorma,iddetalleauditoria,estado from norma n, grupoauditor ga, detallegrupo dg, detalleauditoria da WHERE (codigoauditoria LIKE '%$busqueda%' OR fechaejecucion LIKE '%$busqueda%' $norma) AND
+			n.idnorma=ga.idnorma and ga.idgrupo=dg.idgrupo AND dg.idgrupo=da.idgrupo AND dg.id_user=$usu AND da.estado=3 ORDER BY codigoauditoria DESC LIMIT $desde,$por_pagina");
 			$result = mysqli_num_rows($query);
 			$val;
 			$ida = 0;
@@ -102,9 +126,9 @@ $usu = $_SESSION['id_user'];
 				<?php
 				if ($pagina != 1) {
 				?>
-					<li><a href="?pagina=<?php echo 1; ?>">|<</a>
+					<li><a href="?pagina=<?php echo 1; ?>&busqueda=<?php echo $busqueda; ?>">|<</a>
 					</li>
-					<li><a href="?pagina=<?php echo $pagina - 1; ?>">
+					<li><a href="?pagina=<?php echo $pagina - 1; ?>&busqueda=<?php echo $busqueda; ?>">
 							<<</a>
 					</li>
 				<?php
@@ -114,13 +138,13 @@ $usu = $_SESSION['id_user'];
 					if ($i == $pagina) {
 						echo '<li class="pageSelected">' . $i . '</li>';
 					} else {
-						echo '<li><a href="?pagina=' . $i . '">' . $i . '</a></li>';
+						echo '<li><a href="?pagina=' . $i . '&busqueda='.$busqueda.'">' . $i . '</a></li>';
 					}
 				}
 				if ($pagina != $total_paginas) {
 				?>
-					<li><a href="?pagina=<?php echo $pagina + 1; ?>">>></a></li>
-					<li><a href="?pagina=<?php echo $total_paginas; ?> ">>|</a></li>
+					<li><a href="?pagina=<?php echo $pagina + 1; ?>&busqueda=<?php echo $busqueda; ?>">>></a></li>
+					<li><a href="?pagina=<?php echo $total_paginas; ?>&busqueda=<?php echo $busqueda; ?> ">>|</a></li>
 				<?php } ?>
 			</ul>
 		</div>
