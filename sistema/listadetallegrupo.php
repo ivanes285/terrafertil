@@ -38,7 +38,7 @@ include "../conexion.php";
 			$sql_registe = mysqli_query($conection, "SELECT COUNT(*) as total_registro FROM detallegrupo");
 			$result_register = mysqli_fetch_array($sql_registe);
 			$total_registro = $result_register['total_registro'];
-			$por_pagina =10;
+			$por_pagina =15;
 			if (empty($_GET['pagina'])) {
 				$pagina = 1;
 			} else {
@@ -47,7 +47,7 @@ include "../conexion.php";
 			$desde = ($pagina - 1) * $por_pagina;
 			$total_paginas = ceil($total_registro / $por_pagina);
 			/*select codigoauditoria, fechaejecucion,nombrenorma from norma n, grupoauditor ga, detalleauditoria da, usuario u where n.idnorma=ga.idnorma and ga.idgrupo=da.idgrupo AND ga.idusuario=u.id_user AND u.id_user=3 */
-			$query = mysqli_query($conection, "SELECT user,nombregrupo,rolauditor,actividadrealizada,iddetallegrupo from detallegrupo d, usuario u , rolauditor ra , grupoauditor g WHERE u.id_user=d.id_user AND ra.idrolauditor=d.idrolauditor AND d.idgrupo=g.idgrupo ORDER BY iddetallegrupo ASC LIMIT $desde,$por_pagina");
+			$query = mysqli_query($conection, "SELECT user,nombregrupo,rolauditor,actividadrealizada,iddetallegrupo from detallegrupo d, usuario u , rolauditor ra , grupoauditor g WHERE u.id_user=d.id_user AND ra.idrolauditor=d.idrolauditor AND d.idgrupo=g.idgrupo ORDER BY d.idgrupo,ra.idrolauditor ASC LIMIT $desde,$por_pagina");
 
 			mysqli_close($conection);
 			$result = mysqli_num_rows($query);

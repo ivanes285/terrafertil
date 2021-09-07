@@ -34,7 +34,7 @@ include "../conexion.php";
 			$sql_registe = mysqli_query($conection, "SELECT COUNT(*) as total_registro FROM usuario WHERE estatus = 1 ");
 			$result_register = mysqli_fetch_array($sql_registe);
 			$total_registro = $result_register['total_registro'];
-			$por_pagina = 10;
+			$por_pagina = 15;
 			if (empty($_GET['pagina'])) {
 				$pagina = 1;
 			} else {

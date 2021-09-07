@@ -97,6 +97,7 @@ $usu = $_SESSION['id_user'];
 						//--------------------------------------------//
 						$sqlnorma = mysqli_query($conection, "SELECT idplandeaccion FROM plandeaccion WHERE iddetalleclausula =$data[3]");
 						$numero = mysqli_num_rows($sqlnorma);
+						$gg=0;
 						if ($numero > 0) {
 							while ($res = mysqli_fetch_array($sqlnorma)) {
 								$gg = $res[0];

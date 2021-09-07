@@ -4,17 +4,23 @@ session_start();
 include "../conexion.php";
 if (!empty($_POST)) {
     $alert = '';
+
     $iduser = $_POST['idusuario'];
     $idgrupo = $_POST['idgrupo'];
     $idrolauditor = $_POST['idrolauditor'];
-    $actividadrealizada= $_POST['actividad'];
+    $actividadrealizada = $_POST['actividad'];
 
 
-    $query = mysqli_query($conection, "SELECT * FROM detallegrupo  WHERE  idgrupo=$idgrupo AND idrolauditor=$idrolauditor");
-    $result = mysqli_fetch_array($query);
-  
-    if ($result > 0) {
-      $alert = '<p class="msg_error">!Ya existe un Lider para este Grupo, ingresa un auditor secundario</p>';
+   // $query = mysqli_query($conection, "SELECT * FROM detallegrupo  WHERE  idgrupo=$idgrupo AND idrolauditor=1");
+   // $result = mysqli_fetch_array($query);
+
+
+    $sql_registe = mysqli_query($conection, "SELECT COUNT(*) as total_registro FROM detallegrupo  WHERE  idgrupo=$idgrupo AND idrolauditor=1");
+    $result_register = mysqli_fetch_array($sql_registe);
+    $total_registro = $result_register['total_registro'];
+
+    if ($total_registro==1 && $idrolauditor == 1 ) {
+        $alert = '<p class="msg_error">!Ya existe un Lider para este Grupo, ingresa un auditor secundario</p>';
     } else {
         $query_insert = mysqli_query($conection, "INSERT INTO detallegrupo (id_user,idgrupo,idrolauditor,actividadrealizada) VALUES 
         ('$iduser','$idgrupo','$idrolauditor','$actividadrealizada')");
@@ -24,7 +30,6 @@ if (!empty($_POST)) {
             $alert = '<p class="msg_error">Error al Registrar GRUPO AUDITORES</p>';
         }
     }
-
 }
 
 ?>
@@ -55,7 +60,7 @@ if (!empty($_POST)) {
             <form action="" method="POST">
 
 
-            <label for="idgrupo">Asignar a Grupo</label>
+                <label for="idgrupo">Asignar a Grupo</label>
                 <?php
                 $query_id_user = mysqli_query($conection, "SELECT * FROM grupoauditor");
                 $result_id_user = mysqli_num_rows($query_id_user);
@@ -97,13 +102,13 @@ if (!empty($_POST)) {
 
                 <label for="idrolauditor">Rol Auditor</label>
                 <?php
-                $query_id_user = mysqli_query($conection, "SELECT * FROM rolauditor");
-                $result_id_user = mysqli_num_rows($query_id_user);
+                $query = mysqli_query($conection, "SELECT * FROM rolauditor");
+                $result_id_user = mysqli_num_rows($query);
                 ?>
                 <select name="idrolauditor" id="idrolauditor">
                     <?php
                     if ($result_id_user > 0) {
-                        while ($rol = mysqli_fetch_array($query_id_user)) {
+                        while ($rol = mysqli_fetch_array($query)) {
                     ?>
                             <option value="<?php echo $rol["idrolauditor"]; ?>"><?php echo $rol["rolauditor"]; ?></option>
                     <?php
@@ -117,13 +122,12 @@ if (!empty($_POST)) {
                 <textarea name="actividad" cols="30" rows="10" placeholder="Ingrese la Actividad"></textarea>
                 <br>
                 <br>
-                <a style="border: 2px solid #36A152;  color: #ffffff; padding:10px 132px; background-color: #36A152; border-radius: 6px;" class="btn_save1" href="listadetallegrupo.php">Regresar</a> 
+                <a style="border: 2px solid #36A152;  color: #ffffff; padding:10px 132px; background-color: #36A152; border-radius: 6px;" class="btn_save1" href="listadetallegrupo.php">Regresar</a>
                 <input type="submit" value="Registrar" class="btn_save">
             </form>
         </div>
     </section>
     <script>
-        
         $(document).ready(function() {
             $('#idusuario').select2();
         });

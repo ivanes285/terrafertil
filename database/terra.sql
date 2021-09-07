@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 27-08-2021 a las 01:37:40
+-- Tiempo de generación: 07-09-2021 a las 03:26:21
 -- Versión del servidor: 10.4.20-MariaDB
 -- Versión de PHP: 7.4.21
 
@@ -41,18 +41,6 @@ CREATE TABLE `accionespropuestas` (
   `estadover` int(11) DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Volcado de datos para la tabla `accionespropuestas`
---
-
-INSERT INTO `accionespropuestas` (`idaccionpropuesta`, `idplanaccion`, `accionpropuesta`, `responsable`, `fechapropuesta`, `evidencia`, `fechacumplimiento`, `status`, `motivonoaceptacion`, `eficacia`, `estadover`) VALUES
-(25, 31, 'ggggg', 'ALEX', '2021-08-26', 'gggggggg', '2021-08-27', 'aceptado', '', 'bueno', 2),
-(26, 31, 'hhhhhh', 'ANDY', '2021-08-25', 'hhhhhhhhhh', '2021-08-27', 'no aceptado', 'dfadfadfa', '', 1),
-(27, 33, 'hhhhhhh', 'ALEX', '2021-08-26', 'hhhhhhhhhh', '2021-08-27', 'aceptado', '', 'regular', 2),
-(28, 33, 'gggggggg', 'ANDY', '2021-08-26', 'ggggggg', '2021-08-27', 'aceptado', '', 'excelente', 2),
-(29, 33, 'ddddd', 'ALEX', '2021-08-27', 'ddddd', '2021-08-27', 'no aceptado', 'No cumple a tiempo', '', 2),
-(30, 34, 'HHHHH', 'Luis', '2021-08-28', 'HHHHHHHHH', NULL, NULL, NULL, NULL, 1);
-
 -- --------------------------------------------------------
 
 --
@@ -66,15 +54,6 @@ CREATE TABLE `anexo` (
   `anexo` varchar(700) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Volcado de datos para la tabla `anexo`
---
-
-INSERT INTO `anexo` (`idanexo`, `iddetalleclausula`, `nombre`, `anexo`) VALUES
-(13, 301, 'Documento pdf', 'https://utneduec.sharepoint.com/sites/CISICCSOFT-T.GRADO1-ABR21.AGO21/Documentos%20compartidos/Forms/AllItems.aspx?e=5%3Ac1c9d051d0544a59b0bfec6df30d84a2&at=9&CT=1625263135101&OR=OWA%2DNT&CID=77e80a37%2D9825%2D0da2%2D74ce%2D4046be93934e&RootFolder=%2Fsites%2FCISICCSOFT%2DT%2EGRADO1%2DABR21%2EAGO21%2FDocumentos%20compartidos%2FGeneral%2FPERFILES%2DTESIS%2DCISIC%2ECSOF%2DABR21%2EAGO21%2FLESCANO%20VASQUEZ%20IVAN%20ALEXANDER&FolderCTID=0x0120002EA6CFDBA8E1E643BFD34A861A356647'),
-(14, 301, 'foto', 'https://utneduec.sharepoint.com/sites/CISICCSOFT-T.GRADO1-ABR21.AGO21/Documentos%20compartidos/Forms/AllItems.aspx?e=5%3Ac1c9d051d0544a59b0bfec6df30d84a2&at=9&CT=1625263135101&OR=OWA%2DNT&CID=77e80a37%2D9825%2D0da2%2D74ce%2D4046be93934e&RootFolder=%2Fsites%2FCISICCSOFT%2DT%2EGRADO1%2DABR21%2EAGO21%2FDocumentos%20compartidos%2FGeneral%2FPERFILES%2DTESIS%2DCISIC%2ECSOF%2DABR21%2EAGO21%2FLESCANO%20VASQUEZ%20IVAN%20ALEXANDER&FolderCTID=0x0120002EA6CFDBA8E1E643BFD34A861A356647'),
-(15, 301, 'ivan', 'https://utneduec.sharepoint.com/sites/CISICCSOFT-T.GRADO1-ABR21.AGO21/Documentos%20compartidos/Forms/AllItems.aspx?e=5%3Ac1c9d051d0544a59b0bfec6df30d84a2&at=9&CT=1625263135101&OR=OWA%2DNT&CID=77e80a37%2D9825%2D0da2%2D74ce%2D4046be93934e&RootFolder=%2Fsites%2FCISICCSOFT%2DT%2EGRADO1%2DABR21%2EAGO21%2FDocumentos%20compartidos%2FGeneral%2FPERFILES%2DTESIS%2DCISIC%2ECSOF%2DABR21%2EAGO21%2FLESCANO%20VASQUEZ%20IVAN%20ALEXANDER&FolderCTID=0x0120002EA6CFDBA8E1E643BFD34A861A356647');
-
 -- --------------------------------------------------------
 
 --
@@ -87,15 +66,6 @@ CREATE TABLE `anexopropuestas` (
   `nombre` varchar(50) NOT NULL,
   `anexo` varchar(700) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `anexopropuestas`
---
-
-INSERT INTO `anexopropuestas` (`idanexopropuesta`, `idaccionpropuesta`, `nombre`, `anexo`) VALUES
-(1, 27, 'Documento pdf', 'https://utneduec.sharepoint.com/sites/CISICCSOFT-T.GRADO1-ABR21.AGO21/Documentos%20compartidos/Forms/AllItems.aspx?e=5%3Ac1c9d051d0544a59b0bfec6df30d84a2&at=9&CT=1625263135101&OR=OWA%2DNT&CID=77e80a37%2D9825%2D0da2%2D74ce%2D4046be93934e&RootFolder=%2Fsites%2FCISICCSOFT%2DT%2EGRADO1%2DABR21%2EAGO21%2FDocumentos%20compartidos%2FGeneral%2FPERFILES%2DTESIS%2DCISIC%2ECSOF%2DABR21%2EAGO21%2FLESCANO%20VASQUEZ%20IVAN%20ALEXANDER&FolderCTID=0x0120002EA6CFDBA8E1E643BFD34A861A356647'),
-(2, 27, 'fotoddd', 'https://utneduec.sharepoint.com/sites/CISICCSOFT-T.GRADO1-ABR21.AGO21/Documentos%20compartidos/Forms/AllItems.aspx?e=5%3Ac1c9d051d0544a59b0bfec6df30d84a2&at=9&CT=1625263135101&OR=OWA%2DNT&CID=77e80a37%2D9825%2D0da2%2D74ce%2D4046be93934e&RootFolder=%2Fsites%2FCISICCSOFT%2DT%2EGRADO1%2DABR21%2EAGO21%2FDocumentos%20compartidos%2FGeneral%2FPERFILES%2DTESIS%2DCISIC%2ECSOF%2DABR21%2EAGO21%2FLESCANO%20VASQUEZ%20IVAN%20ALEXANDER&FolderCTID=0x0120002EA6CFDBA8E1E643BFD34A861A356647'),
-(3, 30, 'Documento pdf', 'https://utneduec.sharepoint.com/sites/CISICCSOFT-T.GRADO1-ABR21.AGO21/Documentos%20compartidos/Forms/AllItems.aspx?e=5%3Ac1c9d051d0544a59b0bfec6df30d84a2&at=9&CT=1625263135101&OR=OWA%2DNT&CID=77e80a37%2D9825%2D0da2%2D74ce%2D4046be93934e&RootFolder=%2Fsites%2FCISICCSOFT%2DT%2EGRADO1%2DABR21%2EAGO21%2FDocumentos%20compartidos%2FGeneral%2FPERFILES%2DTESIS%2DCISIC%2ECSOF%2DABR21%2EAGO21%2FLESCANO%20VASQUEZ%20IVAN%20ALEXANDER&FolderCTID=0x0120002EA6CFDBA8E1E643BFD34A861A356647');
 
 -- --------------------------------------------------------
 
@@ -116,21 +86,31 @@ CREATE TABLE `clausula` (
 --
 
 INSERT INTO `clausula` (`idclausula`, `clausula`, `detalleclausula`, `idnorma`, `idproceso`) VALUES
-(12, '4.1  COMPRENSIÓN DE LA ORGANIZACIÓN Y SU CONTEXTO', 'La organización debe determinar las cuestiones externas e internas que son pertinentes para su propósito y su dirección estratégica, y que afectan a su capacidad para lograr los resultados previstos de su sistema de gestión de la calidad.', 1, 6),
-(13, '4.1  COMPRENSIÓN DE LA ORGANIZACIÓN Y SU CONTEXTO', 'La organización debe determinar las cuestiones externas e internas que son pertinentes para su propósito y su dirección estratégica, y que afectan a su capacidad para lograr los resultados previstos de su sistema de gestión de la calidad.', 1, 7),
-(16, 'DIFERENCIADOR COMPRENSIÓN DE LAS NECESIDADES Y EXPECTATIVAS DE LAS PARTES INTERESADAS', 'Debido a su efecto o efecto potencial en la capacidad de la organización de proporcionar regularmente productos y servicios que satisfagan los requisitos del cliente y los legales y reglamentarios aplicables, la organización debe determinar: a) las partes interesadas que son pertinentes al sistema de gestión de la calidad;\r\nb) los requisitos pertinentes de estas partes interesadas para el sistema de gestión de la calidad.', 1, 6),
-(17, '4.2 COMPRENSIÓN DE LAS NECESIDADES Y EXPECTATIVAS DE LAS PARTES INTERESADAS', 'Debido a su efecto o efecto potencial en la capacidad de la organización de proporcionar regularmente productos y servicios que satisfagan los requisitos del cliente y los legales y reglamentarios aplicables, la organización debe determinar: a) las partes interesadas que son pertinentes al sistema de gestión de la calidad;\r\nb) los requisitos pertinentes de estas partes interesadas para el sistema de gestión de la calidad.', 1, 7),
-(18, '4.3 DETERMINACIÓN DEL ALCANCE DEL SISTEMA DE GESTIÓN DE LA CALIDAD', 'Cuando se determina este alcance, la organización debe considerar:\r\na) las cuestiones externas e internas indicadas en el apartado 4.1;\r\nb) los requisitos de las partes interesadas pertinentes indicados en el apartado 4.2;\r\nc) los productos y servicios de la organización.', 1, 6),
-(19, '4.3 DETERMINACIÓN DEL ALCANCE DEL SISTEMA DE GESTIÓN DE LA CALIDAD', 'Cuando se determina este alcance, la organización debe considerar\r\n\r\na) las cuestiones externas e internas indicadas en el apartado 4.1;\r\n\r\nb) los requisitos de las partes interesadas pertinentes indicados en el apartado 4.2;\r\n\r\nc) los productos y servicios de la organización.', 1, 7),
-(20, '4.4 SISTEMA DE GESTIÓN DE LA CALIDAD Y SUS PROCESOS', 'La organización debe determinar los procesos necesarios para el sistema de gestión de la calidad y su aplicación a través de la organización, y debe:\r\na) determinar las entradas requeridas y las salidas esperados de estos procesos;\r\nb) determinar la secuencia e interacción de estos procesos;\r\nc) determinar y aplicar los criterios y los métodos (incluyendo el seguimiento, la medición y los indicadores del desempeño relacionados) necesarios para asegurarse la operación eficaz y el control de estos procesos;\r\nd) determinar los recursos necesarios para estos procesos y asegurarse de su disponibilidad;\r\ne) asignar las responsabilidades y autoridades para estos procesos;\r\nf) abordar los riesgos y oportunidades determinados de acuerdo con los requisitos del apartado 6.1;\r\ng) evaluar estos procesos e implementar cualquier cambio necesario para asegurarse de que estos procesos logran los resultados previstos;\r\nh) mejorar los procesos y el sistema de gestión de la calidad.', 1, 6),
-(21, '4.4 SISTEMA DE GESTIÓN DE LA CALIDAD Y SUS PROCESOS', '4.4.2 \r\nEn la medida en que sea necesario, la organización debe:\r\na) mantener información documentada para apoyar la operación de sus procesos;\r\nb) conservar la información documentada para tener la confianza de que los procesos se realizan según lo planificado.', 1, 6),
-(22, '5.1 LIDERAZGO Y COMPROMISO', '\r\nLa alta dirección debe demostrar liderazgo y compromiso con respecto al sistema de gestión de la calidad:\r\na) asumiendo la rendición de cuentas de la eficacia del sistema de gestión de la calidad;', 3, 7),
-(23, '5.1 LIDERAZGO Y COMPROMISO', '\r\nLa alta dirección debe demostrar liderazgo y compromiso con respecto al sistema de gestión de la calidad:\r\na) asumiendo la rendición de cuentas de la eficacia del sistema de gestión de la calidad;', 3, 6),
-(24, '5.1 LIDERAZGO Y COMPROMISO\r\n', 'La alta dirección debe demostrar liderazgo y compromiso con respecto al sistema de gestión de la calidad:\r\na) asumiendo la rendición de cuentas de la eficacia del sistema de gestión de la calidad;', 3, 4),
-(25, '5.1 LIDERAZGO Y COMPROMISO', 'La alta dirección debe demostrar liderazgo y compromiso con respecto al sistema de gestión de la calidad:\r\na) asumiendo la rendición de cuentas de la eficacia del sistema de gestión de la calidad;', 3, 7),
-(30, '8.3.5 Salidas del diseño y desarrollo', 'La organización debe asegurarse de que las salidas del diseño y desarrollo:\r\na) cumplen los requisitos de las entradas; \r\nb) son adecuadas para los procesos posteriores para la provisión de productos y servicios;\r\nc) incluyen o hacen referencia a los requisitos de seguimiento y medición, cuando sea apropiado, y a los criterios de aceptación;\r\nd) especifican las características de los productos y servicios que son esenciales para su propósito previsto y su provisión segura y correcta.\r\n\r\nLa organización debe conservar información documentada sobre las salidas del diseño y desarrollo.', 4, 6),
-(31, '8.3.5 Salidas del diseño y desarrollo\r\n', 'La organización debe asegurarse de que las salidas del diseño y desarrollo:\r\na) cumplen los requisitos de las entradas; \r\nb) son adecuadas para los procesos posteriores para la provisión de productos y servicios;\r\nc) incluyen o hacen referencia a los requisitos de seguimiento y medición, cuando sea apropiado, y a los criterios de aceptación;\r\nd) especifican las características de los productos y servicios que son esenciales para su propósito previsto y su provisión segura y correcta.\r\n\r\nLa organización debe conservar información documentada sobre las salidas del diseño y desarrollo.', 4, 4),
-(32, '8.3.5 Salidas del diseño y desarrollo', 'La organización debe asegurarse de que las salidas del diseño y desarrollo:\r\na) cumplen los requisitos de las entradas; \r\nb) son adecuadas para los procesos posteriores para la provisión de productos y servicios;\r\nc) incluyen o hacen referencia a los requisitos de seguimiento y medición, cuando sea apropiado, y a los criterios de aceptación;\r\nd) especifican las características de los productos y servicios que son esenciales para su propósito previsto y su provisión segura y correcta.\r\n\r\nLa organización debe conservar información documentada sobre las salidas del diseño y desarrollo.', 4, 5);
+(33, '4.1  COMPRENSIÓN DE LA ORGANIZACIÓN Y SU CONTEXTO', 'La organización debe determinar las cuestiones externas e internas que son pertinentes para su propósito y su dirección estratégica, y que afectan a su capacidad para lograr los resultados previstos de su sistema de gestión de la calidad.', 1, 8),
+(34, '4.1  COMPRENSIÓN DE LA ORGANIZACIÓN Y SU CONTEXTO', 'La organización debe realizar el seguimiento y la revisión de la información sobre cuestiones externas e internas.\r\n\r\nNota 1. Las cuestiones pueden incluir factores positivos y negativos o condiciones para su consideración\r\nNota 2. La comprensión del contexto externo puede verse facilitada al considerar cuestiones que surgen de los entornos legal, tecnológico, competitivo, de mercado, cultural, social y económico, ya sea internacional, nacional, regional o local.\r\nNota 3. El conocimiento del contexto interno puede verse facilitado al considerar cuestiones relativas a los valores, la cultura, los conocimientos y el desempeño de la organización.', 1, 8),
+(35, '4.2 COMPRENSIÓN DE LAS NECESIDADES Y EXPECTATIVAS DE LAS PARTES INTERESADAS', 'Debido a su efecto o efecto potencial en la capacidad de la organización de proporcionar regularmente productos y servicios que satisfagan los requisitos del cliente y los legales y reglamentarios aplicables, la organización debe determinar: a) las partes interesadas que son pertinentes al sistema de gestión de la calidad;\r\nb) los requisitos pertinentes de estas partes interesadas para el sistema de gestión de la calidad.', 1, 8),
+(36, '4.2 COMPRENSIÓN DE LAS NECESIDADES Y EXPECTATIVAS DE LAS PARTES INTERESADAS', 'La organización debe realizar el seguimiento y la revisión de la información sobre estas partes interesadas y sus requisitos pertinentes.', 1, 9),
+(37, '4.3 DETERMINACIÓN DEL ALCANCE DEL SISTEMA DE GESTIÓN DE LA CALIDAD', 'La organización debe determinar los límites y la aplicabilidad del sistema de gestión de la calidad para establecer su alcance.', 1, 9),
+(38, '4.3 DETERMINACIÓN DEL ALCANCE DEL SISTEMA DE GESTIÓN DE LA CALIDAD', 'Cuando se determina este alcance, la organización debe considerar:\r\na) las cuestiones externas e internas indicadas en el apartado 4.1;\r\nb) los requisitos de las partes interesadas pertinentes indicados en el apartado 4.2;\r\nc) los productos y servicios de la organización.', 1, 11),
+(39, '4.3 DETERMINACIÓN DEL ALCANCE DEL SISTEMA DE GESTIÓN DE LA CALIDAD', 'La organización debe aplicar todos los requisitos de esta Norma Internacional si son aplicables en el alcance determinado de su sistema de gestión de la calidad.\r\n', 1, 11),
+(40, '4.3 DETERMINACIÓN DEL ALCANCE DEL SISTEMA DE GESTIÓN DE LA CALIDAD', 'El alcance del sistema de gestión de la calidad de la organización debe estar disponible y mantenerse como información documentada. El alcance debe establecer los tipos de productos y servicios cubiertos, y proporcionar la justificación para cualquier requisito de esta Norma Internacional que la organización determine que no es aplicable para el alcance de su sistema de gestión de la calidad.\r\n', 1, 13),
+(41, '4.3 DETERMINACIÓN DEL ALCANCE DEL SISTEMA DE GESTIÓN DE LA CALIDAD', 'La conformidad con esta Norma Internacional sólo se puede declarar si los requisitos determinados como no aplicables no afectan a la capacidad o a la responsabilidad de la organización de asegurarse de la conformidad de sus productos y servicios y del aumento de la satisfacción del cliente.\r\n', 1, 13),
+(42, '5.1 LIDERAZGO Y COMPROMISO', '\"5.1.1 Generalidades\r\nLa alta dirección debe demostrar liderazgo y compromiso con respecto al sistema de gestión de la calidad:\r\na) asumiendo la rendición de cuentas de la eficacia del sistema de gestión de la calidad;\"\r\n', 2, 8),
+(43, '5.1 LIDERAZGO Y COMPROMISO', 'b) asegurándose de que se establezcan la política de la calidad y los objetivos de la calidad para el sistema de gestión de la calidad, y que éstos sean compatibles con el contexto y la dirección estratégica de la organización;\r\n', 2, 8),
+(44, '5.1 LIDERAZGO Y COMPROMISO', 'c) asegurándose de la integración de los requisitos del sistema de gestión de la calidad en los procesos de negocio de la organización;\r\n', 2, 12),
+(45, '5.1 LIDERAZGO Y COMPROMISO', 'd) promoviendo el uso del enfoque a procesos y el pensamiento basado en riesgos;\r\n', 2, 10),
+(46, '5.1 LIDERAZGO Y COMPROMISO', 'e) asegurándose de que los recursos necesarios para el sistema de gestión de la calidad estén disponibles;\r\n', 2, 9),
+(47, '5.1 LIDERAZGO Y COMPROMISO', 'f) comunicando la importancia de una gestión de la calidad eficaz y conforme con los requisitos del sistema de gestión de la calidad;\r\n', 2, 10),
+(48, '6.2 OBJETIVOS DE LA CALIDAD Y PLANIFICACIÓN PARA LOGRARLOS', '\"6.2.1 \r\nLa organización debe establecer objetivos de la calidad para las funciones y niveles pertinentes y los procesos necesarios para el sistema de gestión de la calidad.\"\r\n', 3, 8),
+(49, '6.2 OBJETIVOS DE LA CALIDAD Y PLANIFICACIÓN PARA LOGRARLOS', '\"Los objetivos de la calidad deben:\r\na) ser coherentes con la política de la calidad;\r\nb) ser medibles;\r\nc) tener en cuenta los requisitos aplicables;\r\nd) ser pertinentes para la conformidad de los productos y servicios y para el aumento de la satisfacción del cliente;\r\ne) ser objeto de seguimiento;\r\nf) comunicarse;\r\ng) actualizarse, según corresponda.\"\r\n', 3, 8),
+(50, '6.2 OBJETIVOS DE LA CALIDAD Y PLANIFICACIÓN PARA LOGRARLOS', 'La organización debe mantener información documentada sobre los objetivos de la calidad.\r\n', 3, 11),
+(51, '6.2 OBJETIVOS DE LA CALIDAD Y PLANIFICACIÓN PARA LOGRARLOS', '\"6.2.2 \r\nAl planificar cómo lograr sus objetivos de la calidad, la organización debe determinar:\r\na) qué se va a hacer;\r\nb) qué recursos se requerirán;\r\nc) quién será responsable;\r\nd) cuándo se finalizará;\r\ne) cómo se evaluarán los resultados.\"\r\n', 3, 11),
+(52, '8.2 REQUISITOS PARA LOS PRODUCTOS Y SERVICIOS', '\"8.2.1 Comunicación con el cliente\r\nLa comunicación con los clientes debe incluir: \r\na) proporcionar la información relativa a los productos y servicios;\r\nb) tratar las consultas, los contratos o los pedidos, incluyendo los cambios;\r\nc) obtener la retroalimentación de los clientes relativa a los productos y servicios, incluyendo las quejas de los clientes;\r\nd) manipular o controlar la propiedad del cliente;\r\ne) establecer los requisitos específicos para las acciones de contingencia, cuando sea pertinente.\"\r\n', 4, 13),
+(53, '8.2 REQUISITOS PARA LOS PRODUCTOS Y SERVICIOS', '\"8.2.2 Determinación de los requisitos relacionados con los productos y servicios\r\nCuando se determinan los requisitos para los productos y servicios que se van a ofrecer a los clientes, la organización debe asegurarse de que:\r\na) los requisitos para los productos y servicios se definen, incluyendo:\r\n    1) cualquier requisito legal y reglamentario aplicable;\r\n    2) aquellos considerados necesarios por la organización;\r\nb) la organización puede cumplir con las declaraciones acerca de los productos y servicios que ofrece.\"\r\n', 4, 12),
+(54, '8.2 REQUISITOS PARA LOS PRODUCTOS Y SERVICIOS', '\"8.2.3 Revisión de los requisitos para los productos y servicios\r\n\r\n8.2.3.1 \r\nLa organización debe asegurarse de que tiene la capacidad de cumplir los requisitos para los productos y servicios que se van a ofrecer a los clientes. La organización debe llevar a cabo una revisión antes de comprometerse a suministrar productos y servicios a un cliente, para incluir:\r\na) los requisitos especificados por el cliente, incluyendo los requisitos para las actividades de entrega y las posteriores a la misma;\r\nb) los requisitos no establecidos por el cliente, pero necesarios para el uso especificado o previsto, cuando sea conocido;\r\nc) los requisitos especificados por la organización;\r\nd) los requisitos legales y reglamentarios aplicables a los productos y servicios;\r\ne) las diferencias existentes entre los requisitos de contrato o pedido y los expresados previamente.\"\r\n', 4, 11),
+(55, '8.2 REQUISITOS PARA LOS PRODUCTOS Y SERVICIOS', 'La organización debe asegurarse de que se resuelven las diferencias existentes entre los requisitos del contrato o pedido y los expresados previamente.\r\n', 4, 11),
+(56, '8.2 REQUISITOS PARA LOS PRODUCTOS Y SERVICIOS', 'La organización debe confirmar los requisitos del cliente antes de la aceptación, cuando el cliente no proporcione una declaración documentada de sus requisitos.\r\n', 4, 10),
+(57, '8.2 REQUISITOS PARA LOS PRODUCTOS Y SERVICIOS', '\"8.2.3.2 \r\nLa organización debe conservar la información documentada, cuando sea aplicable:\r\na) sobre los resultados de la revisión;\r\nb) sobre cualquier requisito nuevo para los productos y servicios.\"\r\n', 4, 11);
 
 -- --------------------------------------------------------
 
@@ -153,9 +133,10 @@ CREATE TABLE `detalleauditoria` (
 --
 
 INSERT INTO `detalleauditoria` (`iddetalleauditoria`, `codigoauditoria`, `idperiodo`, `fechaejecucion`, `idgrupo`, `fechacreacion`, `estado`) VALUES
-(119, 'Cod-9001', 1, '2021-08-25', 1, '2021-08-23', 2),
-(120, 'Cod-9002', 1, '2021-08-25', 3, '2021-08-23', 2),
-(121, 'Cod-9003', 2, '2021-08-26', 1, '2021-08-23', 3);
+(130, 'Cod-9001', 1, '2021-09-23', 11, '2021-09-01', 3),
+(131, 'Cod-9002', 2, '2021-09-09', 12, '2021-09-01', 3),
+(132, 'Cod-9003', 2, '2021-09-16', 14, '2021-09-01', 3),
+(133, 'Cod-9004', 2, '2021-09-17', 11, '2021-09-01', 1);
 
 -- --------------------------------------------------------
 
@@ -179,26 +160,34 @@ CREATE TABLE `detalleclausula` (
 --
 
 INSERT INTO `detalleclausula` (`iddetalleclausula`, `idclausula`, `parametroscalificacion`, `desincumplimiento`, `documentacionsoporte`, `iddetalleauditoria`, `planaccion`, `estadoplan`) VALUES
-(289, 12, 'noconformidadmenor', 'hola hola hola hola hola y no hace las cosas bien , haciendo que se pierda tiempo y dinero', 'fdfad', 119, 2, 1),
-(290, 13, 'noconformidadmayor', 'dfdsfadf', 'dfad', 119, 1, 1),
-(291, 16, 'cumple', '', 'dfaddfad', 119, 1, 1),
-(292, 17, 'noconformidadmenor', 'dfadf', 'adfad', 119, 1, 1),
-(293, 18, 'noconformidadmenor', 'dfad', 'adfad', 119, 2, 2),
-(294, 19, 'cumple', '', 'dfad', 119, 1, 1),
-(295, 20, 'noconformidadmayor', 'dfad', 'adfad', 119, 2, 1),
-(296, 21, 'noconformidadmenor', 'dfad', 'adfad', 119, 1, 1),
-(297, 22, 'observacion', 'dfadfa', 'dfadfa', 120, 1, 1),
-(298, 23, 'noconformidadmenor', 'fdfad', 'dfadfa', 120, 1, 1),
-(299, 24, NULL, NULL, NULL, 120, 1, 1),
-(300, 25, NULL, NULL, NULL, 120, 1, 1),
-(301, 12, 'noconformidadmenor', 'fdfdas', 'dfad', 121, 2, 2),
-(302, 13, NULL, NULL, NULL, 121, 1, 1),
-(303, 16, NULL, NULL, NULL, 121, 1, 1),
-(304, 17, NULL, NULL, NULL, 121, 1, 1),
-(305, 18, NULL, NULL, NULL, 121, 1, 1),
-(306, 19, NULL, NULL, NULL, 121, 1, 1),
-(307, 20, NULL, NULL, NULL, 121, 1, 1),
-(308, 21, NULL, NULL, NULL, 121, 1, 1);
+(345, 33, 'noconformidadmayor', 'dfadf', 'dfad', 130, 1, 1),
+(346, 34, 'noconformidadmayor', 'dfadf', 'gfgdgd', 130, 1, 1),
+(347, 35, 'noconformidadmayor', 'dfadf', 'dfadfadfa', 130, 1, 1),
+(348, 36, 'noconformidadmenor', 'dfadfa', 'dffga3', 130, 1, 1),
+(349, 37, 'noconformidadmenor', 'fjkdsghire', 'egegegegge', 130, 1, 1),
+(350, 38, 'oportunidaddemejora', 'efefr3434', '3434gdg', 130, 1, 1),
+(351, 39, 'oportunidaddemejora', 'grtrg', 'rgdgrdg', 130, 1, 1),
+(352, 40, 'oportunidaddemejora', 'rgrgdsg', 'rsgsrgdsg', 130, 1, 1),
+(353, 41, 'noconformidadmayor', 'rgdg', 'rdgrsd', 130, 1, 1),
+(354, 48, NULL, NULL, NULL, 131, 1, 1),
+(355, 49, NULL, NULL, NULL, 131, 1, 1),
+(356, 50, NULL, NULL, NULL, 131, 1, 1),
+(357, 51, NULL, NULL, NULL, 131, 1, 1),
+(358, 52, NULL, NULL, NULL, 132, 1, 1),
+(359, 53, NULL, NULL, NULL, 132, 1, 1),
+(360, 54, NULL, NULL, NULL, 132, 1, 1),
+(361, 55, NULL, NULL, NULL, 132, 1, 1),
+(362, 56, NULL, NULL, NULL, 132, 1, 1),
+(363, 57, NULL, NULL, NULL, 132, 1, 1),
+(364, 33, NULL, NULL, NULL, 133, 1, 1),
+(365, 34, NULL, NULL, NULL, 133, 1, 1),
+(366, 35, NULL, NULL, NULL, 133, 1, 1),
+(367, 36, NULL, NULL, NULL, 133, 1, 1),
+(368, 37, NULL, NULL, NULL, 133, 1, 1),
+(369, 38, NULL, NULL, NULL, 133, 1, 1),
+(370, 39, NULL, NULL, NULL, 133, 1, 1),
+(371, 40, NULL, NULL, NULL, 133, 1, 1),
+(372, 41, NULL, NULL, NULL, 133, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -219,10 +208,18 @@ CREATE TABLE `detallegrupo` (
 --
 
 INSERT INTO `detallegrupo` (`id_user`, `idgrupo`, `idrolauditor`, `actividadrealizada`, `iddetallegrupo`) VALUES
-(2, 1, 1, 'dfadfad', 27),
-(3, 1, 2, 'dfadfa', 28),
-(2, 3, 1, 'dfadfa', 29),
-(6, 3, 2, '', 30);
+(18, 11, 1, 'Auditor Lider ', 37),
+(19, 11, 2, 'auditor secundario', 38),
+(22, 11, 2, 'dfadfa', 39),
+(25, 12, 1, 'djfad', 40),
+(29, 12, 2, 'dfadfa', 41),
+(30, 12, 2, 'dfadfa', 46),
+(22, 12, 2, 'dfadfa', 47),
+(26, 11, 2, 'dfadfad', 48),
+(22, 14, 1, 'dfadfa', 49),
+(18, 14, 2, 'dfadfa', 50),
+(26, 14, 2, 'dfadfad', 51),
+(18, 12, 2, 'dfadfad', 52);
 
 -- --------------------------------------------------------
 
@@ -241,10 +238,14 @@ CREATE TABLE `grupoauditor` (
 --
 
 INSERT INTO `grupoauditor` (`idgrupo`, `nombregrupo`, `idnorma`) VALUES
-(1, 'GrupoISO9001', 1),
-(2, 'teambrc', 4),
-(3, 'GrupoBasc', 3),
-(4, 'teambpm', 2);
+(11, 'GrupoIso9001', 1),
+(12, 'GrupoBasc', 3),
+(13, 'GrupoIso9001Team2', 1),
+(14, 'GrupoBrc', 4),
+(15, 'GrupoBpm', 2),
+(16, 'GrupoBascTeam2', 3),
+(17, 'GrupoBrcTeam2', 4),
+(18, 'GrupoBpmTeam2', 2);
 
 -- --------------------------------------------------------
 
@@ -302,16 +303,6 @@ CREATE TABLE `plandeaccion` (
   `causaraiz` varchar(150) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Volcado de datos para la tabla `plandeaccion`
---
-
-INSERT INTO `plandeaccion` (`idplandeaccion`, `iddetalleclausula`, `consecuencia`, `analisiscausa`, `desarrollometodo`, `causaraiz`) VALUES
-(31, 293, 'aaaaaaa', '5 por que?', 'aaaaaa', 'aaaaaaaaa'),
-(32, 289, 'bbbbbbbbbb', 'Lluvia de ideas', 'bbbbbbbbbbb', 'bbbbbbbbbbbb'),
-(33, 301, 'ccccccc', 'Diagrama de Ishkawa', 'ccccccccc', 'ccccccccccccc'),
-(34, 295, 'dfadf', 'Lluvia de ideas', 'dfad', 'dfad');
-
 -- --------------------------------------------------------
 
 --
@@ -329,11 +320,12 @@ CREATE TABLE `procesos` (
 --
 
 INSERT INTO `procesos` (`idproceso`, `nombreproceso`, `liderproceso`) VALUES
-(3, 'Investigacion y Desarrollo', 10),
-(4, 'Compras', 9),
-(5, 'Produccion', 7),
-(6, 'Evaluacion y Mejoramiento', 4),
-(7, 'Direccion Estrategica', 8);
+(8, 'Evaluacion y Mejoramiento', 20),
+(9, 'Direccion Estratégica', 21),
+(10, 'Produccion', 23),
+(11, 'Compras', 24),
+(12, 'Sistema Integrado de gestion, evalacion y mejorami', 28),
+(13, 'Ventas', 27);
 
 -- --------------------------------------------------------
 
@@ -395,16 +387,19 @@ CREATE TABLE `usuario` (
 
 INSERT INTO `usuario` (`id_user`, `user`, `password`, `correo`, `rol`, `estatus`) VALUES
 (1, 'ivan', '102ddaf691e1615d5dacd4c86299bfa4', 'ialescanov@utn.edu.ec', 1, 1),
-(2, 'malcom', '102ddaf691e1615d5dacd4c86299bfa4', 'malcom@gmail.com', 2, 1),
-(3, 'francis', '102ddaf691e1615d5dacd4c86299bfa4', 'francis@gmail.com', 2, 0),
-(4, 'lois', '102ddaf691e1615d5dacd4c86299bfa4', 'lois@gmail.com', 3, 1),
-(5, 'hall', '102ddaf691e1615d5dacd4c86299bfa4', 'hall@gmail.com', 2, 1),
-(6, 'daya', '102ddaf691e1615d5dacd4c86299bfa4', 'dayamineral@gmail.com', 2, 1),
-(7, 'anavera', '102ddaf691e1615d5dacd4c86299bfa4', 'anavera@gmail.com', 3, 1),
-(8, 'andy', '102ddaf691e1615d5dacd4c86299bfa4', 'andy@gmail.com', 3, 1),
-(9, 'alex', '102ddaf691e1615d5dacd4c86299bfa4', 'alex@gmail.com', 3, 1),
-(10, 'marianita', '102ddaf691e1615d5dacd4c86299bfa4', 'marianita@gmail.com', 3, 1),
-(11, 'yoda', '102ddaf691e1615d5dacd4c86299bfa4', 'alvarez@gmail.com', 2, 1);
+(18, 'malcom', '102ddaf691e1615d5dacd4c86299bfa4', 'malcom@gmail.com', 2, 1),
+(19, 'hall', '102ddaf691e1615d5dacd4c86299bfa4', 'hall@gmail.com', 2, 1),
+(20, 'lois', '102ddaf691e1615d5dacd4c86299bfa4', 'lois@gmail.com', 3, 1),
+(21, 'andy', '102ddaf691e1615d5dacd4c86299bfa4', 'andy@gmail.com', 3, 1),
+(22, 'francis', '102ddaf691e1615d5dacd4c86299bfa4', 'francis@gmail.com', 2, 1),
+(23, 'anavera', '102ddaf691e1615d5dacd4c86299bfa4', 'anavera@gmail.com', 3, 1),
+(24, 'reese', '102ddaf691e1615d5dacd4c86299bfa4', 'reese@gmail.com', 3, 1),
+(25, 'daya', '102ddaf691e1615d5dacd4c86299bfa4', 'daya@gmail.com', 2, 1),
+(26, 'jesy', '102ddaf691e1615d5dacd4c86299bfa4', 'jesy@gmail.com', 2, 1),
+(27, 'marianita', '102ddaf691e1615d5dacd4c86299bfa4', 'marianita@gmail.com', 3, 1),
+(28, 'brandon', '102ddaf691e1615d5dacd4c86299bfa4', 'brandon@gmail.com', 3, 1),
+(29, 'terra', '102ddaf691e1615d5dacd4c86299bfa4', 'terra@gmail.com', 2, 1),
+(30, 'harold', '102ddaf691e1615d5dacd4c86299bfa4', 'harold@gmail.com', 2, 1);
 
 --
 -- Índices para tablas volcadas
@@ -524,49 +519,49 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `accionespropuestas`
 --
 ALTER TABLE `accionespropuestas`
-  MODIFY `idaccionpropuesta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `idaccionpropuesta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT de la tabla `anexo`
 --
 ALTER TABLE `anexo`
-  MODIFY `idanexo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `idanexo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT de la tabla `anexopropuestas`
 --
 ALTER TABLE `anexopropuestas`
-  MODIFY `idanexopropuesta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idanexopropuesta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `clausula`
 --
 ALTER TABLE `clausula`
-  MODIFY `idclausula` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `idclausula` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
 -- AUTO_INCREMENT de la tabla `detalleauditoria`
 --
 ALTER TABLE `detalleauditoria`
-  MODIFY `iddetalleauditoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=122;
+  MODIFY `iddetalleauditoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=134;
 
 --
 -- AUTO_INCREMENT de la tabla `detalleclausula`
 --
 ALTER TABLE `detalleclausula`
-  MODIFY `iddetalleclausula` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=309;
+  MODIFY `iddetalleclausula` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=373;
 
 --
 -- AUTO_INCREMENT de la tabla `detallegrupo`
 --
 ALTER TABLE `detallegrupo`
-  MODIFY `iddetallegrupo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `iddetallegrupo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT de la tabla `grupoauditor`
 --
 ALTER TABLE `grupoauditor`
-  MODIFY `idgrupo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `idgrupo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT de la tabla `norma`
@@ -584,13 +579,13 @@ ALTER TABLE `periodo`
 -- AUTO_INCREMENT de la tabla `plandeaccion`
 --
 ALTER TABLE `plandeaccion`
-  MODIFY `idplandeaccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `idplandeaccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT de la tabla `procesos`
 --
 ALTER TABLE `procesos`
-  MODIFY `idproceso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `idproceso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `rol`
@@ -608,7 +603,7 @@ ALTER TABLE `rolauditor`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- Restricciones para tablas volcadas

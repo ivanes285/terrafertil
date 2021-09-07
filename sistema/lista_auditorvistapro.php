@@ -25,7 +25,7 @@ $usu = $_SESSION['id_user'];
 				<th>Acción</th>
 			</tr>
 			<?php
-			$sql_registe = mysqli_query($conection, "SELECT COUNT(*) as total_registro FROM detalleauditoria WHERE estado=1");
+			$sql_registe = mysqli_query($conection, "SELECT COUNT(*) as total_registro FROM detalleauditoria");
 			$result_register = mysqli_fetch_array($sql_registe);
 			$total_registro = $result_register['total_registro'];
 			$por_pagina = 10;
@@ -36,7 +36,7 @@ $usu = $_SESSION['id_user'];
 			}
 			$desde = ($pagina - 1) * $por_pagina;
 			$total_paginas = ceil($total_registro / $por_pagina);
-			$query = mysqli_query($conection, "SELECT DISTINCT codigoauditoria,fechaejecucion,nombrenorma,iddetalleauditoria from norma n, grupoauditor ga, detallegrupo dg, detalleauditoria da, usuario u WHERE n.idnorma=ga.idnorma and u.id_user=dg.id_user AND ga.idgrupo=dg.idgrupo AND dg.idgrupo=da.idgrupo AND dg.id_user=2 AND da.estado=1 ORDER BY codigoauditoria ASC LIMIT $desde,$por_pagina");
+			$query = mysqli_query($conection, "SELECT DISTINCT codigoauditoria,fechaejecucion,nombrenorma,iddetalleauditoria from norma n, grupoauditor ga, detallegrupo dg, detalleauditoria da, usuario u WHERE n.idnorma=ga.idnorma and u.id_user=dg.id_user AND ga.idgrupo=dg.idgrupo AND dg.idgrupo=da.idgrupo AND dg.id_user=$usu AND da.estado=1 ORDER BY codigoauditoria ASC LIMIT $desde,$por_pagina");
 			$result = mysqli_num_rows($query);
 			$val;
 			$ida=0;
