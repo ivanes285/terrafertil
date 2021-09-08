@@ -32,10 +32,10 @@
 </tr>
  <?php
 
-$sql_registe = mysqli_query($conection,"SELECT COUNT(*) as total_registro FROM grupoauditor");
+$sql_registe = mysqli_query($conection,"SELECT COUNT(*) as total_registro from norma n , grupoauditor g where g.idnorma=n.idnorma");
 $result_register = mysqli_fetch_array($sql_registe);
 $total_registro = $result_register['total_registro'];
-$por_pagina = 10;
+$por_pagina = 15;
 if(empty($_GET['pagina']))
 {
     $pagina = 1;

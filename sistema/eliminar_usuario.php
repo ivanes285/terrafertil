@@ -60,7 +60,7 @@ if (empty($_REQUEST['id']) || $_REQUEST['id'] == 1) {
   <?php include "includes/header.php"; ?>
   <section id="container">
     <div class="data_delete">
-      <h2 style="color: #C82333">¿Está seguro de eliminar este registro?</h2>
+      <h2 style="color: #C82333">¿Está seguro que desea cambiar el estado de este usuario a "Inhactivo"?</h2>
       <p>Nombre: <span><?php echo $usuario; ?></span></p>
       <p>Rol: <span><?php echo $rol; ?></span></p>
       <form method="POST" action="">

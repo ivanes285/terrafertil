@@ -66,19 +66,9 @@ $rolusuario = intval($fda); //convierto en entero ya que fda es string
 				<th>Anexo Url</th>
 			</tr>
 			<?php
-			$sql_registe = mysqli_query($conection, "SELECT COUNT(*) as total_registro FROM anexopropuestas WHERE  idaccionpropuesta=$idaccionpropuesta  ");
-			$result_register = mysqli_fetch_array($sql_registe);
-			$total_registro = $result_register['total_registro'];
-			$por_pagina = 10;
-			if (empty($_GET['pagina'])) {
-				$pagina = 1;
-			} else {
-				$pagina = $_GET['pagina'];
-			}
-			$desde = ($pagina - 1) * $por_pagina;
-			$total_paginas = ceil($total_registro / $por_pagina);
+			
 
-			$query = mysqli_query($conection, "SELECT * FROM anexopropuestas  WHERE idaccionpropuesta=$idaccionpropuesta  ORDER BY idaccionpropuesta ASC LIMIT $desde,$por_pagina");
+			$query = mysqli_query($conection, "SELECT * FROM anexopropuestas  WHERE idaccionpropuesta=$idaccionpropuesta  ORDER BY idaccionpropuesta");
 			
 			mysqli_close($conection);
 			$result = mysqli_num_rows($query);
@@ -92,7 +82,7 @@ $rolusuario = intval($fda); //convierto en entero ya que fda es string
 
 						<?php if ($estado == 3 ||  $rolusuario == 2) { ?>
 
-							<td style="text-align: center; color: #687778;"><abbr title="Ya no puede editar este Plan">Editar Elimar</abbr></td>
+							<td style="color: #687778;"><abbr title="Ya no puede editar este Plan">Editar Eliminar</abbr></td>
 						<?php 	} else { ?>
 
 							<td>
@@ -112,33 +102,7 @@ $rolusuario = intval($fda); //convierto en entero ya que fda es string
 			}
 			?>
 		</table>
-		<div class="paginador">
-			<ul>
-				<?php
-				if ($pagina != 1) {
-				?>
-					<li><a href="?pagina=<?php echo 1; ?>">|<< /a>
-					</li>
-					<li><a href="?pagina=<?php echo $pagina - 1; ?>">
-							<<< /a>
-					</li>
-				<?php
-				}
-				for ($i = 1; $i <= $total_paginas; $i++) {
-					# code...
-					if ($i == $pagina) {
-						echo '<li class="pageSelected">' . $i . '</li>';
-					} else {
-						echo '<li><a href="?pagina=' . $i . '">' . $i . '</a></li>';
-					}
-				}
-				if ($pagina != $total_paginas) {
-				?>
-					<li><a href="?pagina=<?php echo $pagina + 1; ?>">>></a></li>
-					<li><a href="?pagina=<?php echo $total_paginas; ?> ">>|</a></li>
-				<?php } ?>
-			</ul>
-		</div>
+		
 	</section>
 </body>
 

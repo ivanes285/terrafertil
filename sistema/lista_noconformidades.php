@@ -2,6 +2,24 @@
 session_start();
 include "../conexion.php";
 $usu = $_SESSION['id_user'];
+
+if (empty($_REQUEST['id'])) {
+	header('Location: lista_auditorvistaeje.php');
+}
+$iddetalleauditoria = $_REQUEST['id'];
+$estado;
+$query2 = mysqli_query($conection, "SELECT estado FROM detalleauditoria WHERE iddetalleauditoria= $iddetalleauditoria");
+			
+			$result2 = mysqli_num_rows($query2);
+			if ($result2 > 0) {
+				while ($data2 = mysqli_fetch_array($query2)) {
+				$estado=$data2[0];
+			?>
+			
+					
+			<?php
+				}
+			}
 ?>
 
 <!DOCTYPE html>
@@ -20,7 +38,17 @@ $usu = $_SESSION['id_user'];
 		<div style="display: flex;  justify-content:space-between; margin: 20px 0px; ">
 			<h1>Lista de Incumplimientos</h1>
 			<div style="justify-content:flex-start">
+			<?php
+			if($estado==2)
+			{
+			?>
 				<a style="border: 2px solid #36A152;  color: #ffffff; padding:10px 40px; background-color: #36A152; border-radius: 6px;" href="lista_auditorvistaeje.php" class="btn_save"><i class="fas fa-arrow-circle-left"></i> Regresar</a>
+			<?php }
+			else 
+			{
+			?>
+				<a style="border: 2px solid #36A152;  color: #ffffff; padding:10px 40px; background-color: #36A152; border-radius: 6px;" href="lista_auditorarchivadas.php" class="btn_save"><i class="fas fa-arrow-circle-left"></i> Regresar</a>
+				<?php }	?>
 			</div>
 		</div>
 		<table>
@@ -36,28 +64,12 @@ $usu = $_SESSION['id_user'];
 			</tr>
 			<?php
 
-			$sql_registe = mysqli_query($conection, "SELECT COUNT(*) as total_registro FROM detalleauditoria");
-			$result_register = mysqli_fetch_array($sql_registe);
-			$total_registro = $result_register['total_registro'];
-			$por_pagina = 10;
-			if (empty($_GET['pagina'])) {
-				$pagina = 1;
-			} else {
-				$pagina = $_GET['pagina'];
-			}
+		
 
+			
 
-			if (empty($_REQUEST['id'])) {
-				header('Location: lista_auditorvistaeje.php');
-				mysqli_close($conection);
-			}
-
-			$iddetalleauditoria = $_REQUEST['id'];
-
-
-			$desde = ($pagina - 1) * $por_pagina;
-			$total_paginas = ceil($total_registro / $por_pagina);
-			$query = mysqli_query($conection, "SELECT clausula,detalleclausula,desincumplimiento,iddetalleclausula,dc.planaccion,da.iddetalleauditoria,nombreproceso,user,dc.estadoplan FROM detalleauditoria da, norma n, clausula c,detalleclausula dc ,procesos p, usuario u  WHERE da.iddetalleauditoria=dc.iddetalleauditoria AND c.idclausula=dc.idclausula AND n.idnorma=c.idnorma AND p.idproceso=c.idproceso AND p.liderproceso=u.id_user AND dc.parametroscalificacion<>'cumple' AND da.iddetalleauditoria=$iddetalleauditoria ORDER BY nombreproceso,iddetalleclausula ASC LIMIT $desde,$por_pagina");
+			
+			$query = mysqli_query($conection, "SELECT clausula,detalleclausula,desincumplimiento,iddetalleclausula,dc.planaccion,da.iddetalleauditoria,nombreproceso,user,dc.estadoplan FROM detalleauditoria da, norma n, clausula c,detalleclausula dc ,procesos p, usuario u  WHERE da.iddetalleauditoria=dc.iddetalleauditoria AND c.idclausula=dc.idclausula AND n.idnorma=c.idnorma AND p.idproceso=c.idproceso AND p.liderproceso=u.id_user AND dc.parametroscalificacion<>'cumple' AND da.iddetalleauditoria=$iddetalleauditoria ORDER BY nombreproceso,iddetalleclausula");
 
 			$result = mysqli_num_rows($query);
 
@@ -139,34 +151,7 @@ $usu = $_SESSION['id_user'];
 			}
 			?>
 		</table>
-		<div class="paginador">
-			<ul>
-				<?php
-				if ($pagina != 1) {
-				?>
-					<li><a href="?pagina=<?php echo 1; ?>">|<< /a>
-					</li>
-					<li><a href="?pagina=<?php echo $pagina - 1; ?>">
-							<<< /a>
-					</li>
-				<?php
-				}
-				for ($i = 1; $i <= $total_paginas; $i++) {
-					# code...
-					if ($i == $pagina) {
-						echo '<li class="pageSelected">' . $i . '</li>';
-					} else {
-						echo '<li><a href="?pagina=' . $i . '">' . $i . '</a></li>';
-					}
-				}
-
-				if ($pagina != $total_paginas) {
-				?>
-					<li><a href="?pagina=<?php echo $pagina + 1; ?>">>></a></li>
-					<li><a href="?pagina=<?php echo $total_paginas; ?> ">>|</a></li>
-				<?php } ?>
-			</ul>
-		</div>
+		
 	</section>
 
 </body>

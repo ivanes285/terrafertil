@@ -23,10 +23,10 @@ $usu = $_SESSION['id_user'];
 				<th>Norma</th>
 			</tr>
 			<?php
-			$sql_registe = mysqli_query($conection, "SELECT COUNT(*) as total_registro FROM detalleauditoria");
+			$sql_registe = mysqli_query($conection, "SELECT COUNT(DISTINCT codigoauditoria,fechaejecucion,nombrenorma,da.iddetalleauditoria) as total_registro FROM detalleauditoria da, norma n, clausula c,detalleclausula dc ,procesos p WHERE da.iddetalleauditoria=dc.iddetalleauditoria AND c.idclausula=dc.idclausula AND n.idnorma=c.idnorma AND p.idproceso=c.idproceso AND p.liderproceso=$usu AND da.estado=2");
 			$result_register = mysqli_fetch_array($sql_registe);
 			$total_registro = $result_register['total_registro'];
-			$por_pagina = 10;
+			$por_pagina = 15;
 			if (empty($_GET['pagina'])) {
 				$pagina = 1;
 			} else {

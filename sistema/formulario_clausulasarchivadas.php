@@ -31,18 +31,7 @@ include "../conexion.php";
 			</tr>
 			<?php
 
-			$sql_registe = mysqli_query($conection, "SELECT COUNT(*) as total_registro FROM detalleauditoria");
-			$result_register = mysqli_fetch_array($sql_registe);
-			$total_registro = $result_register['total_registro'];
-			$por_pagina = 500;
-			if (empty($_GET['pagina'])) {
-				$pagina = 1;
-			} else {
-				$pagina = $_GET['pagina'];
-			}
-			$desde = ($pagina - 1) * $por_pagina;
-			$total_paginas = ceil($total_registro / $por_pagina);
-
+			
 			if (empty($_REQUEST['id']) || empty($_REQUEST['ide'])) {
 				header("location: lista_auditorvistapro.php");
 				mysqli_close($conection);
@@ -50,7 +39,7 @@ include "../conexion.php";
 				$iddetallaauditoria = $_REQUEST['id'];
 				$estado = $_REQUEST['ide'];
 
-				$query = mysqli_query($conection, "SELECT c.clausula,c.detalleclausula,p.nombreproceso,dc.parametroscalificacion,dc.desincumplimiento,dc.documentacionsoporte,dc.iddetalleclausula FROM clausula c, detalleclausula dc, procesos p WHERE dc.idclausula=c.idclausula AND p.idproceso=c.idproceso AND dc.iddetalleauditoria=$iddetallaauditoria ORDER BY c.idclausula ASC LIMIT $desde,$por_pagina");
+				$query = mysqli_query($conection, "SELECT c.clausula,c.detalleclausula,p.nombreproceso,dc.parametroscalificacion,dc.desincumplimiento,dc.documentacionsoporte,dc.iddetalleclausula FROM clausula c, detalleclausula dc, procesos p WHERE dc.idclausula=c.idclausula AND p.idproceso=c.idproceso AND dc.iddetalleauditoria=$iddetallaauditoria ORDER BY c.idclausula");
 				$result = mysqli_num_rows($query);
 
 				if ($result > 0) {
@@ -91,34 +80,7 @@ include "../conexion.php";
 			?>
 
 		</table>
-		<div class=" paginador">
-			<ul>
-				<?php
-				if ($pagina != 1) {
-				?>
-					<li><a href="?pagina=<?php echo 1; ?>">|<< /a>
-					</li>
-					<li><a href="?pagina=<?php echo $pagina - 1; ?>">
-							<<< /a>
-					</li>
-				<?php
-				}
-				for ($i = 1; $i <= $total_paginas; $i++) {
-					# code...
-					if ($i == $pagina) {
-						echo '<li class="pageSelected">' . $i . '</li>';
-					} else {
-						echo '<li><a href="?pagina=' . $i . '">' . $i . '</a></li>';
-					}
-				}
-
-				if ($pagina != $total_paginas) {
-				?>
-					<li><a href="?pagina=<?php echo $pagina + 1; ?>">>></a></li>
-					<li><a href="?pagina=<?php echo $total_paginas; ?> ">>|</a></li>
-				<?php } ?>
-			</ul>
-		</div>
+		
 
 	</section>
 

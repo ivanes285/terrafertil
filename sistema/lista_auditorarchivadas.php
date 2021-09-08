@@ -38,7 +38,7 @@ $usu = $_SESSION['id_user'];
 			$sql_registe = mysqli_query($conection, "SELECT COUNT(*) as total_registro FROM norma n, grupoauditor ga, detallegrupo dg, detalleauditoria da WHERE n.idnorma=ga.idnorma and ga.idgrupo=dg.idgrupo AND dg.idgrupo=da.idgrupo AND dg.id_user=$usu AND da.estado=3 ");
 			$result_register = mysqli_fetch_array($sql_registe);
 			$total_registro = $result_register['total_registro'];
-			$por_pagina = 15;
+			$por_pagina =15;
 			if (empty($_GET['pagina'])) {
 				$pagina = 1;
 			} else {

@@ -58,7 +58,7 @@ $usu = $_SESSION['id_user'];
 			
 			$result_register = mysqli_fetch_array($sql_registe);
 			$total_registro = $result_register['total_registro'];
-			$por_pagina =15;
+			$por_pagina =2;
 			if (empty($_GET['pagina'])) {
 				$pagina = 1;
 			} else {
@@ -69,7 +69,7 @@ $usu = $_SESSION['id_user'];
 		
 		
 		$query = mysqli_query($conection, "SELECT codigoauditoria,fechaejecucion,nombrenorma,iddetalleauditoria,estado from norma n, grupoauditor ga, detallegrupo dg, detalleauditoria da WHERE (codigoauditoria LIKE '%$busqueda%' OR fechaejecucion LIKE '%$busqueda%' $norma) AND
-			n.idnorma=ga.idnorma and ga.idgrupo=dg.idgrupo AND dg.idgrupo=da.idgrupo AND dg.id_user=$usu AND da.estado=3 ORDER BY codigoauditoria DESC LIMIT $desde,$por_pagina");
+			n.idnorma=ga.idnorma and ga.idgrupo=dg.idgrupo AND dg.idgrupo=da.idgrupo AND dg.id_user=$usu AND da.estado=3 ORDER BY codigoauditoria ASC LIMIT $desde,$por_pagina");
 			$result = mysqli_num_rows($query);
 			$val;
 			$ida = 0;

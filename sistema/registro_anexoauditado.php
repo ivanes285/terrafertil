@@ -55,7 +55,7 @@ if (empty($_REQUEST['idap'])) {
                 <input type="text" name="nombre" placeholder="Ingrese el nombre del anexo" required>
 
                 <label for="user">Anexo URL</label>
-                <input type="text" name="anexo" placeholder="Ingrese la dirección del anexo" required>
+                <input type="text" name="anexo" placeholder="Ingrese la dirección del anexo (Debe incluir: https://)" required>
 
                 <br />
                 <br />

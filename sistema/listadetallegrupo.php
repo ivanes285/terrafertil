@@ -35,7 +35,7 @@ include "../conexion.php";
 			</tr>
 			<?php
 
-			$sql_registe = mysqli_query($conection, "SELECT COUNT(*) as total_registro FROM detallegrupo");
+			$sql_registe = mysqli_query($conection, "SELECT COUNT(*) as total_registro from detallegrupo d, usuario u , rolauditor ra , grupoauditor g WHERE u.id_user=d.id_user AND ra.idrolauditor=d.idrolauditor AND d.idgrupo=g.idgrupo");
 			$result_register = mysqli_fetch_array($sql_registe);
 			$total_registro = $result_register['total_registro'];
 			$por_pagina =15;

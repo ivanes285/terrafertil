@@ -111,7 +111,7 @@ if ($result_sql == 0) {
 
                 <label for="eficacia" >Eficacia</label>
                 <select name="eficacia" id="eficacia" required >
-                    <option value="excelente">Exelente</option>
+                    <option value="excelente">Excelente</option>
                     <option value="bueno">Bueno</option>
                     <option value="regular">Regular</option>
                 </select>

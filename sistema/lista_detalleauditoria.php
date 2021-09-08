@@ -35,10 +35,10 @@ include "../conexion.php";
 			</tr>
 			<?php
 
-			$sql_registe = mysqli_query($conection, "SELECT COUNT(*) as total_registro FROM detalleauditoria");
+			$sql_registe = mysqli_query($conection, "SELECT COUNT(*) as total_registro FROM norma n, grupoauditor ga,detallegrupo dg, detalleauditoria da, periodo p WHERE P.idperiodo=da.idperiodo AND n.idnorma=ga.idnorma AND dg.idgrupo=da.idgrupo and dg.idgrupo=ga.idgrupo AND dg.idrolauditor=1");
 			$result_register = mysqli_fetch_array($sql_registe);
 			$total_registro = $result_register['total_registro'];
-			$por_pagina = 10;
+			$por_pagina = 15;
 			if (empty($_GET['pagina'])) {
 				$pagina = 1;
 			} else {

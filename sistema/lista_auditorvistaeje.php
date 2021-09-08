@@ -29,10 +29,10 @@ $usu = $_SESSION['id_user'];
 				<th style="text-align:center">Archivar Auditoría</th>
 			</tr>
 			<?php
-			$sql_registe = mysqli_query($conection, "SELECT COUNT(*) as total_registro FROM detalleauditoria WHERE estado=2");
+			$sql_registe = mysqli_query($conection, "SELECT COUNT(*) as total_registro from norma n, grupoauditor ga, detallegrupo dg, detalleauditoria da WHERE n.idnorma=ga.idnorma and ga.idgrupo=dg.idgrupo AND dg.idgrupo=da.idgrupo AND dg.id_user=$usu AND da.estado=2");
 			$result_register = mysqli_fetch_array($sql_registe);
 			$total_registro = $result_register['total_registro'];
-			$por_pagina = 10;
+			$por_pagina = 15;
 			if (empty($_GET['pagina'])) {
 				$pagina = 1;
 			} else {

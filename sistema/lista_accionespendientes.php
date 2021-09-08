@@ -55,20 +55,10 @@ if (empty($_REQUEST['idpa']) || empty($_REQUEST['id']) || empty($_REQUEST['ida']
 				<th>Evaluar</th>
 			</tr>
 			<?php
-			$sql_registe = mysqli_query($conection, "SELECT COUNT(*) as total_registro FROM accionespropuestas");
-			$result_register = mysqli_fetch_array($sql_registe);
-			$total_registro = $result_register['total_registro'];
-			$por_pagina = 10;
-			if (empty($_GET['pagina'])) {
-				$pagina = 1;
-			} else {
-				$pagina = $_GET['pagina'];
-			}
-			$desde = ($pagina - 1) * $por_pagina;
-			$total_paginas = ceil($total_registro / $por_pagina);
+			
 
 
-			$query = mysqli_query($conection, "SELECT DISTINCT codigoauditoria,nombreproceso,accionpropuesta,responsable,fechapropuesta,evidencia,fechacumplimiento,status,motivonoaceptacion,eficacia,idaccionpropuesta,estado FROM norma n, grupoauditor ga, detallegrupo dg, detalleauditoria da,clausula c, detalleclausula dc , plandeaccion pa , accionespropuestas ap , procesos p WHERE n.idnorma=ga.idnorma and ga.idgrupo=dg.idgrupo AND dg.idgrupo=da.idgrupo AND dc.iddetalleauditoria=da.iddetalleauditoria AND   dc.iddetalleclausula=pa.iddetalleclausula AND pa.idplandeaccion=ap.idplanaccion AND ap.idplanaccion=$idplanaccion  AND dc.idclausula=c.idclausula AND c.idproceso=p.idproceso AND pa.idplandeaccion=ap.idplanaccion ORDER BY idaccionpropuesta ASC LIMIT $desde,$por_pagina");
+			$query = mysqli_query($conection, "SELECT DISTINCT codigoauditoria,nombreproceso,accionpropuesta,responsable,fechapropuesta,evidencia,fechacumplimiento,status,motivonoaceptacion,eficacia,idaccionpropuesta,estado FROM norma n, grupoauditor ga, detallegrupo dg, detalleauditoria da,clausula c, detalleclausula dc , plandeaccion pa , accionespropuestas ap , procesos p WHERE n.idnorma=ga.idnorma and ga.idgrupo=dg.idgrupo AND dg.idgrupo=da.idgrupo AND dc.iddetalleauditoria=da.iddetalleauditoria AND   dc.iddetalleclausula=pa.iddetalleclausula AND pa.idplandeaccion=ap.idplanaccion AND ap.idplanaccion=$idplanaccion  AND dc.idclausula=c.idclausula AND c.idproceso=p.idproceso AND pa.idplandeaccion=ap.idplanaccion ORDER BY idaccionpropuesta");
 			mysqli_close($conection);
 			$result = mysqli_num_rows($query);
 
@@ -135,33 +125,7 @@ if (empty($_REQUEST['idpa']) || empty($_REQUEST['id']) || empty($_REQUEST['ida']
 			}
 			?>
 		</table>
-		<div class="paginador">
-			<ul>
-				<?php
-				if ($pagina != 1) {
-				?>
-					<li><a href="?pagina=<?php echo 1; ?>">|<</a>
-					</li>
-					<li><a href="?pagina=<?php echo $pagina - 1; ?>">
-							<<</a>
-					</li>
-				<?php
-				}
-				for ($i = 1; $i <= $total_paginas; $i++) {
-					# code...
-					if ($i == $pagina) {
-						echo '<li class="pageSelected">' . $i . '</li>';
-					} else {
-						echo '<li><a href="?pagina=' . $i . '">' . $i . '</a></li>';
-					}
-				}
-				if ($pagina != $total_paginas) {
-				?>
-					<li><a href="?pagina=<?php echo $pagina + 1; ?>">>></a></li>
-					<li><a href="?pagina=<?php echo $total_paginas; ?> ">>|</a></li>
-				<?php } ?>
-			</ul>
-		</div>
+		
 	</section>
 </body>
 

@@ -34,7 +34,7 @@ include "../conexion.php";
 			$sql_registe = mysqli_query($conection, "SELECT COUNT(*) as total_registro FROM usuario WHERE estatus = 1 ");
 			$result_register = mysqli_fetch_array($sql_registe);
 			$total_registro = $result_register['total_registro'];
-			$por_pagina = 15;
+			$por_pagina = 14;
 			if (empty($_GET['pagina'])) {
 				$pagina = 1;
 			} else {
@@ -59,7 +59,7 @@ include "../conexion.php";
 							<!--$data["id_user"] != 1   -->
 							<?php if ($data["id_user"] != 1) { ?>
 								|
-								<a class="link_delete" href="eliminar_usuario.php?id=<?php echo $data["id_user"]; ?>">Eliminar</a>
+								<a class="link_delete" href="eliminar_usuario.php?id=<?php echo $data["id_user"]; ?>">Inhabilitar</a>
 							<?php } ?>
 						</td>
 					</tr>
@@ -75,8 +75,7 @@ include "../conexion.php";
 				?>
 					<li><a href="?pagina=<?php echo 1; ?>">|<</a>
 					</li>
-					<li><a href="?pagina=<?php echo $pagina - 1; ?>">
-							<<</a>
+					<li><a href="?pagina=<?php echo $pagina - 1; ?>"><<</a>
 					</li>
 				<?php
 				}

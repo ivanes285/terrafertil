@@ -52,7 +52,7 @@ $iddetalleauditoria = $_REQUEST['da'];
                 <input type="text" name="nombre"  placeholder="Ingrese el nombre del anexo" required>
 
                 <label for="user">Anexo URL</label>
-                <input type="text" name="anexo"  placeholder="Ingrese la dirección del anexo" required>
+                <input type="text" name="anexo"  placeholder="Ingrese la dirección del anexo (Debe incluir: https://)" required>
                 
                 <br>
                 <a style="border: 2px solid #36A152;  color: #ffffff; padding:10px 132px; background-color: #36A152; border-radius: 6px;" class="btn_save1" href="lista_anexo.php?id=<?php echo $iddetalleclausula ?>&da=<?php echo $iddetalleauditoria?>">Regresar</a> 

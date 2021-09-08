@@ -75,7 +75,7 @@ if ($result_sql == 0) {
                 <label for="nombre">Nombre Anexo</label>
                 <input type="text" name="nombre" id="nombre" placeholder="Ingrese nombre de anexo" required value="<?php echo $nombre; ?>">
                 <label for="nombre">URL Anexo</label>
-                <input type="text" name="anexo" id="anexo" placeholder="Ingrese url de anexo" required value="<?php echo $anexo; ?>">
+                <input type="text" name="anexo" id="anexo" placeholder="Ingrese url de anexo (Debe incluir: https://)" required value="<?php echo $anexo; ?>">
                 
                 <br>
         <a style="border: 2px solid #36A152;  color: #ffffff; padding:10px 132px; background-color: #36A152; border-radius: 6px;" class="btn_save1" href="lista_anexoauditado.php?idap=<?php echo $idaccionpropuesta ?>&idpa=<?php echo $idplanaccion ?>&id=<?php echo $iddetalleclausula ?>&ida=<?php echo $iddetalleauditoria ?>&es=<?php echo $estado?>">Regresar</a> 
