@@ -89,7 +89,7 @@ $usu = $_SESSION['id_user'];
 						<td><?php echo $totalres; ?>/<?php echo $total; ?></td>
 						<td><a style="color: #4099BF; font-weight: bold" href="lista_noconformidades.php?id=<?php echo $data[3]; ?>"><i class="fas fa-folder-open"></i> Visualizar</a></td>
 						<td><?php echo $totalplanes; ?>/<?php echo $totalplan; ?></td>
-						<td style="font-size: 40px; text-align: center; color: #343A40"><a style="color: #343A40; font-weight: bold" href="estadoplan.php?id=<?php echo $data[3]; ?>&ida=<?php echo $iddetalleauditoria ?>"><abbr title="Observar informe final "><i class="far fa-file-pdf"></i></abbr></a></td>
+						<td style="font-size: 40px; text-align: center; color: #343A40"><a style="color: #343A40; font-weight: bold" href="app/index.php?id=<?php echo $data[3]; ?>" target="_blank"><abbr title="Observar informe final "><i class="far fa-file-pdf"></i></abbr></a></td>
 					</tr>
 			<?php
 				}
