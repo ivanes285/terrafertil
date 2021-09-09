@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-09-2021 a las 03:26:21
+-- Tiempo de generación: 09-09-2021 a las 03:26:43
 -- Versión del servidor: 10.4.20-MariaDB
 -- Versión de PHP: 7.4.21
 
@@ -41,6 +41,32 @@ CREATE TABLE `accionespropuestas` (
   `estadover` int(11) DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Volcado de datos para la tabla `accionespropuestas`
+--
+
+INSERT INTO `accionespropuestas` (`idaccionpropuesta`, `idplanaccion`, `accionpropuesta`, `responsable`, `fechapropuesta`, `evidencia`, `fechacumplimiento`, `status`, `motivonoaceptacion`, `eficacia`, `estadover`) VALUES
+(41, 44, 'plan01 accion01', 'RAUL', '2021-09-23', 'fOTO01', '2021-09-15', 'aceptado', '', 'bueno', 2),
+(42, 44, 'plan01 accion02', 'Pedro', '2021-09-24', 'pdf', '2021-09-29', 'aceptado', '', 'excelente', 2),
+(43, 44, 'plan01 accion03', 'Maria', '2021-09-10', 'WORD', '2021-09-23', 'aceptado', '', 'bueno', 2),
+(44, 45, 'plan02 accion01', 'ALEX', '2021-09-10', 'PDF', '2021-09-16', 'aceptado', '', 'excelente', 2),
+(45, 45, 'plan02 accion02', 'ANDY', '2021-09-23', 'DFADF', '2021-09-22', 'aceptado', '', 'bueno', 2),
+(46, 46, 'plan03 accion01', 'Luis', '2021-09-23', 'WORD', '2021-09-10', 'aceptado', '', 'regular', 2),
+(47, 46, 'plan03 accion02', 'HARRY', '2021-09-17', 'pdf', '2021-09-22', 'aceptado', '', 'bueno', 2),
+(48, 46, 'plan03 accion03', 'HERMAYONI', '2021-09-24', 'DOCUMENTO', '2021-09-22', 'aceptado', '', 'bueno', 2),
+(49, 47, 'Plan01 Accion01', 'GRIFINDOR', '2021-09-16', 'FFF', '2021-09-16', 'aceptado', '', 'bueno', 2),
+(50, 47, 'Plan01 Accion02', 'SLIDERIN', '2021-09-23', 'GG', '2021-09-23', 'aceptado', '', 'regular', 2),
+(51, 48, 'Plan02 Accion01', 'HAFHULPOF', '2021-09-16', 'TT', '2021-09-09', 'aceptado', '', 'excelente', 2),
+(52, 48, 'pedro picapiedra', 'OCTOPUS x2', '2021-09-18', 'RRddd', '2021-09-16', 'aceptado', '', 'bueno', 2),
+(53, 49, 'Plan02 Accion01', 'SNAPE', '2021-09-11', 'UU', '2021-09-18', 'no aceptado', 'Porque no cumple', '', 1),
+(54, 49, 'Plan02 Accion02', 'DONBULDORT', '2021-09-16', 'EE', '2021-09-22', 'aceptado', '', 'bueno', 2),
+(55, 50, 'Plan02 Accion01', 'OCTAVIO', '2021-09-22', 'TT', '2021-09-10', 'aceptado', '', 'excelente', 2),
+(56, 50, 'Plan02 Accion02', 'OTTO', '2021-09-23', 'hh', '2021-09-16', 'aceptado', '', 'bueno', 2),
+(57, 51, 'plan01 accion01', 'MERY JAIN', '2021-09-09', 'HH', '2021-09-22', 'aceptado', '', 'regular', 2),
+(58, 51, 'plan01 accion02', 'HULK', '2021-09-24', 'KK', '2021-09-09', 'aceptado', '', 'bueno', 2),
+(59, 52, 'plan02 accion01', 'JACK SPARROW', '2021-09-16', 'JJ', '2021-09-22', 'aceptado', '', 'excelente', 2),
+(60, 52, 'plan02 accion02', 'LORO', '2021-09-25', 'YY', '2021-09-15', 'aceptado', '', 'bueno', 2);
+
 -- --------------------------------------------------------
 
 --
@@ -66,6 +92,14 @@ CREATE TABLE `anexopropuestas` (
   `nombre` varchar(50) NOT NULL,
   `anexo` varchar(700) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `anexopropuestas`
+--
+
+INSERT INTO `anexopropuestas` (`idanexopropuesta`, `idaccionpropuesta`, `nombre`, `anexo`) VALUES
+(10, 41, 'Documento pdf', 'https://utneduec.sharepoint.com/sites/CISICCSOFT-T.GRADO1-ABR21.AGO21/Documentos%20compartidos/Forms/AllItems.aspx?e=5%3Ac1c9d051d0544a59b0bfec6df30d84a2&at=9&CT=1625263135101&OR=OWA%2DNT&CID=77e80a37%2D9825%2D0da2%2D74ce%2D4046be93934e&RootFolder=%2Fsites%2FCISICCSOFT%2DT%2EGRADO1%2DABR21%2EAGO21%2FDocumentos%20compartidos%2FGeneral%2FPERFILES%2DTESIS%2DCISIC%2ECSOF%2DABR21%2EAGO21%2FLESCANO%20VASQUEZ%20IVAN%20ALEXANDER&FolderCTID=0x0120002EA6CFDBA8E1E643BFD34A861A356647'),
+(11, 42, 'pastel de almendras', 'https://utneduec.sharepoint.com/sites/CISICCSOFT-T.GRADO1-ABR21.AGO21/Documentos%20compartidos/Forms/AllItems.aspx?e=5%3Ac1c9d051d0544a59b0bfec6df30d84a2&at=9&CT=1625263135101&OR=OWA%2DNT&CID=77e80a37%2D9825%2D0da2%2D74ce%2D4046be93934e&RootFolder=%2Fsites%2FCISICCSOFT%2DT%2EGRADO1%2DABR21%2EAGO21%2FDocumentos%20compartidos%2FGeneral%2FPERFILES%2DTESIS%2DCISIC%2ECSOF%2DABR21%2EAGO21%2FLESCANO%20VASQUEZ%20IVAN%20ALEXANDER&FolderCTID=0x0120002EA6CFDBA8E1E643BFD34A861A356647');
 
 -- --------------------------------------------------------
 
@@ -134,8 +168,8 @@ CREATE TABLE `detalleauditoria` (
 
 INSERT INTO `detalleauditoria` (`iddetalleauditoria`, `codigoauditoria`, `idperiodo`, `fechaejecucion`, `idgrupo`, `fechacreacion`, `estado`) VALUES
 (130, 'Cod-9001', 1, '2021-09-23', 11, '2021-09-01', 3),
-(131, 'Cod-9002', 2, '2021-09-09', 12, '2021-09-01', 3),
-(132, 'Cod-9003', 2, '2021-09-16', 14, '2021-09-01', 3),
+(131, 'Cod-9002', 2, '2021-09-09', 12, '2021-09-01', 1),
+(132, 'Cod-9003', 2, '2021-09-16', 14, '2021-09-01', 1),
 (133, 'Cod-9004', 2, '2021-09-17', 11, '2021-09-01', 1);
 
 -- --------------------------------------------------------
@@ -160,15 +194,15 @@ CREATE TABLE `detalleclausula` (
 --
 
 INSERT INTO `detalleclausula` (`iddetalleclausula`, `idclausula`, `parametroscalificacion`, `desincumplimiento`, `documentacionsoporte`, `iddetalleauditoria`, `planaccion`, `estadoplan`) VALUES
-(345, 33, 'noconformidadmayor', 'dfadf', 'dfad', 130, 1, 1),
-(346, 34, 'noconformidadmayor', 'dfadf', 'gfgdgd', 130, 1, 1),
-(347, 35, 'noconformidadmayor', 'dfadf', 'dfadfadfa', 130, 1, 1),
-(348, 36, 'noconformidadmenor', 'dfadfa', 'dffga3', 130, 1, 1),
-(349, 37, 'noconformidadmenor', 'fjkdsghire', 'egegegegge', 130, 1, 1),
-(350, 38, 'oportunidaddemejora', 'efefr3434', '3434gdg', 130, 1, 1),
-(351, 39, 'oportunidaddemejora', 'grtrg', 'rgdgrdg', 130, 1, 1),
-(352, 40, 'oportunidaddemejora', 'rgrgdsg', 'rsgsrgdsg', 130, 1, 1),
-(353, 41, 'noconformidadmayor', 'rgdg', 'rdgrsd', 130, 1, 1),
+(345, 33, 'No Conformidad Mayor', 'dfadf', 'dfad', 130, 2, 2),
+(346, 34, 'No Conformidad Mayor', 'dfadf', 'gfgdgd', 130, 2, 2),
+(347, 35, 'Observación', 'dfadf', 'dfadfadfa', 130, 2, 2),
+(348, 36, 'No Conformidad Menor', 'dfadfa', 'dffga3', 130, 2, 2),
+(349, 37, 'No Conformidad Menor', 'fjkdsghire', 'egegegegge', 130, 2, 2),
+(350, 38, 'Oportunidad de Mejora', 'efefr3434', '3434gdg', 130, 2, 2),
+(351, 39, 'Oportunidad de Mejora', 'grtrg', 'rgdgrdg', 130, 2, 2),
+(352, 40, 'Observación', 'rgrgdsg', 'rsgsrgdsg', 130, 2, 2),
+(353, 41, 'No Conformidad Mayor', 'rgdg', 'rdgrsd', 130, 2, 2),
 (354, 48, NULL, NULL, NULL, 131, 1, 1),
 (355, 49, NULL, NULL, NULL, 131, 1, 1),
 (356, 50, NULL, NULL, NULL, 131, 1, 1),
@@ -302,6 +336,21 @@ CREATE TABLE `plandeaccion` (
   `desarrollometodo` varchar(300) NOT NULL,
   `causaraiz` varchar(150) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `plandeaccion`
+--
+
+INSERT INTO `plandeaccion` (`idplandeaccion`, `iddetalleclausula`, `consecuencia`, `analisiscausa`, `desarrollometodo`, `causaraiz`) VALUES
+(44, 347, 'Plan01', '5 por que', 'Plan01', 'Plan01'),
+(45, 346, 'plan02', 'Lluvia de ideas', 'plan02', 'plan02'),
+(46, 345, 'plan03', 'Diagrama de Ishkawa', 'plan03', 'plan03'),
+(47, 351, 'Plan01', '5 por que', 'Plan01', 'Plan01'),
+(48, 350, 'Plan02', 'Diagrama de Ishkawa', 'Plan01', 'Plan01'),
+(49, 349, 'Plan01', 'Pareto', 'Plan01', 'Plan01'),
+(50, 348, 'Plan02', 'Diagrama de Ishkawa', 'Plan02', 'Plan02'),
+(51, 353, 'plan01', 'Pareto', 'plan01', 'plan01'),
+(52, 352, 'plan02', 'Pareto', 'plan02', 'plan02');
 
 -- --------------------------------------------------------
 
@@ -519,7 +568,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `accionespropuestas`
 --
 ALTER TABLE `accionespropuestas`
-  MODIFY `idaccionpropuesta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `idaccionpropuesta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
 -- AUTO_INCREMENT de la tabla `anexo`
@@ -531,7 +580,7 @@ ALTER TABLE `anexo`
 -- AUTO_INCREMENT de la tabla `anexopropuestas`
 --
 ALTER TABLE `anexopropuestas`
-  MODIFY `idanexopropuesta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `idanexopropuesta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `clausula`
@@ -579,7 +628,7 @@ ALTER TABLE `periodo`
 -- AUTO_INCREMENT de la tabla `plandeaccion`
 --
 ALTER TABLE `plandeaccion`
-  MODIFY `idplandeaccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `idplandeaccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT de la tabla `procesos`
