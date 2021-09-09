@@ -63,12 +63,6 @@ include "../conexion.php";
 
 						<td>
 							<a class="link_edit" href="editar_procesos.php?id=<?php echo $data[0]; ?>">Editar</a>
-
-							<?php if ($_SESSION['rol'] == 1) { ?>
-								|
-								<a class="link_delete" href="eliminar_procesos.php?id=<?php echo $data[0]; ?>">Eliminar</a>
-
-							<?php } ?>
 						</td>
 					</tr>
 			<?php

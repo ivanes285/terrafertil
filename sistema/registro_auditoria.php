@@ -115,9 +115,10 @@ if (!empty($_POST)) {
                 </select>
                 <label for="fechaejecucion">Fecha de Ejecución</label>
                 <input type="text" name="fechaejecucion" id="fechaejecucion" autocomplete="off">
+
                 <label for="grupoauditor">Grupo de Auditoria</label>
                 <?php
-                $query_id_user = mysqli_query($conection, "SELECT nombregrupo,dg.idgrupo,iddetallegrupo FROM grupoauditor ga, detallegrupo dg WHERE dg.idgrupo=ga.idgrupo AND dg.idrolauditor=1");
+                $query_id_user = mysqli_query($conection, "SELECT nombregrupo,dg.idgrupo,iddetallegrupo FROM grupoauditor ga, detallegrupo dg WHERE dg.idgrupo=ga.idgrupo AND dg.idrolauditor=1 AND dg.activo=1");
 
                 $result_id_user = mysqli_num_rows($query_id_user);
 

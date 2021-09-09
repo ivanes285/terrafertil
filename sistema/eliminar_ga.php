@@ -7,8 +7,8 @@ if ($_SESSION['rol'] != 1) {
 $iddetallegrupo = $_REQUEST['id'];
 include "../conexion.php";
 if (!empty($_POST)) {
-    
-    $query_delete = mysqli_query($conection, "DELETE FROM detallegrupo WHERE iddetallegrupo = $iddetallegrupo");
+  
+    $query_delete = mysqli_query($conection, "UPDATE detallegrupo set activo=0 WHERE iddetallegrupo = $iddetallegrupo");
     mysqli_close($conection);
     if ($query_delete) {
         header("location: listadetallegrupo.php");

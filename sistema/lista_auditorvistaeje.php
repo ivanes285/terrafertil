@@ -88,7 +88,7 @@ $usu = $_SESSION['id_user'];
 						<?php
 						if ($totalplanes == $totalplan) {
 						?>
-							<td style="font-size: 35px; text-align: center; color: #33BDCA;"><a style="color: #33BDCA; font-weight: bold" href="archivar_auditoria.php?id=<?php echo $data[3]; ?>"><i class="fas fa-file-download"></i></a> </td>
+							<td style="font-size: 35px; text-align: center; color: #33BDCA;"><a style="color: #33BDCA; font-weight: bold" href="archivar_auditoria.php?id=<?php echo $data[3]; ?>"><abbr title="Ya puede archivar la auditoría"><i class="fas fa-file-download"></i></abbr></a> </td>
 						<?php
 						} else {
 						?>

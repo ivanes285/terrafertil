@@ -8,7 +8,7 @@ if ($_SESSION['rol'] != 1) {
 include "../conexion.php";
 if (!empty($_POST)) {
     $idgrupo = $_POST['idgrupo'];
-    $query_delete = mysqli_query($conection, "DELETE FROM grupoauditor WHERE idgrupo = $idgrupo");
+    $query_delete = mysqli_query($conection, "UPDATE grupoauditor set activo=0 WHERE idgrupo = $idgrupo");
     mysqli_close($conection);
     if ($query_delete) {
         header("location: lista_grupo_auditor.php");
@@ -47,6 +47,7 @@ if (empty($_REQUEST['id'])) {
     <section id="container">
         <div class="data_delete">
             <h2 style="color: #C82333">¿Está seguro de eliminar el grupo?</h2>
+            
             <p>ID grupo: <span><?php echo $idgrupo; ?></span></p>
             <p>Nombre grupo: <span><?php echo $nombregrupo; ?></span></p>
             

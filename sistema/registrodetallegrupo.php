@@ -62,7 +62,7 @@ if (!empty($_POST)) {
 
                 <label for="idgrupo">Asignar a Grupo</label>
                 <?php
-                $query_id_user = mysqli_query($conection, "SELECT * FROM grupoauditor");
+                $query_id_user = mysqli_query($conection, "SELECT * FROM grupoauditor WHERE activo=1");
                 $result_id_user = mysqli_num_rows($query_id_user);
                 ?>
                 <select name="idgrupo" id="idgrupo">

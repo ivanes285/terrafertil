@@ -46,7 +46,7 @@ $desde = ($pagina-1) * $por_pagina;
 $total_paginas = ceil($total_registro / $por_pagina);
 
 
- $query = mysqli_query($conection, "SELECT g.idgrupo, g.nombregrupo,n.nombrenorma from norma n , grupoauditor g where g.idnorma=n.idnorma ORDER BY idgrupo ASC LIMIT $desde,$por_pagina");
+ $query = mysqli_query($conection, "SELECT g.idgrupo, g.nombregrupo,n.nombrenorma from norma n , grupoauditor g where g.idnorma=n.idnorma  AND g.activo=1 ORDER BY idgrupo ASC LIMIT $desde,$por_pagina");
 
 mysqli_close($conection);
 $result=mysqli_num_rows($query);

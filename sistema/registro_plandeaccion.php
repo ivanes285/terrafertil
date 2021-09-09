@@ -7,7 +7,7 @@ include "../conexion.php";
 
 $iddetalleauditoria = $_REQUEST['ida'];
 $iddetalleclausula = $_REQUEST["id"];
-
+$cadena="";
 if (!empty($_POST)) {
 
   $consecuencia = $_POST["consecuencia"];
@@ -19,7 +19,8 @@ if (!empty($_POST)) {
   $query_update = mysqli_query($conection, "UPDATE detalleclausula SET planaccion=2 WHERE iddetalleclausula=$iddetalleclausula");
 
   if ($query_insert && $query_update) {
-    $alert = '<p class="msg_save">Plan de Accion creado Correctamente</p>';
+    $cadena="lista_auditadovista.php?ida=".$iddetalleauditoria;
+    header("location:".$cadena);
   } else {
     $alert = '<p class="msg_error">Error al Crear Plan de Acción</p>';
   }
@@ -57,14 +58,16 @@ if (empty($_REQUEST['id'])) {
 
         <label for="actividad">Parametros de Calificación</label>
         <div style="display: flex; justify-content: space-evenly; ">
+
           <select name="analisiscausa" id="analisiscausa" onchange="obtenerdocumento();" required>
-            <option value="5 por que" selected >5 por que?</option>
+
+            <option value="5 por que" selected>5 por que?</option>
             <option value="Lluvia de ideas">Lluvia de ideas</option>
             <option value="Diagrama de Ishkawa">Diagrama de Ishkawa</option>
             <option value="Pareto">Pareto</option>
             <option value="Otros">Otros</option>
           </select>
-          <a target="_blank" style="font-size: 30px; text-align: right; padding-left: 10px;" id="descargarcausa" href="./archivos/5porque.png"><abbr id="texto" title="Descargue un ejemplo 5 por que"><i id="icono" class="fas fa-cloud-download-alt"></i></abbr> </a>
+          <a target="_blank" style="font-size: 30px; text-align: right; padding-left: 10px;" id="descargarcausa" href="./archivos/5porque.png"><abbr id="texto" title="Descargue un ejemplo 5 por que"><i class="fas fa-cloud-download-alt"></i></abbr> </a>
         </div>
 
         <label for="desametodo">Desarrollo método</label>
@@ -84,10 +87,9 @@ if (empty($_REQUEST['id'])) {
       let ruta = document.getElementById("analisiscausa");
       let documento = ruta.value;
       var input = document.getElementById("descargarcausa");
-      let icono = document.getElementById("icono");
       let texto = document.getElementById("texto");
-   
-      console.log(documento);
+
+
       if (documento == "5 por que") {
         input.href = "./archivos/5porque.png";
       } else if (documento == "Lluvia de ideas") {
@@ -97,14 +99,10 @@ if (empty($_REQUEST['id'])) {
       } else if (documento == "Pareto") {
         input.href = "./archivos/pareto.png";
       } else if (documento == "Otros") {
-        input.removeAttribute("href");
+        input.href = "./archivos/arboldeproblemas.png";
       }
+      texto.title = `Visualiza un ejemplo de ${documento}`;
 
-      if(documento == "Otros"){
-        texto.title="No hay archivo para descargar";
-      }else{
-        texto.title=`Visualiza un ejemplo de ${documento}`;
-      }
 
     }
   </script>

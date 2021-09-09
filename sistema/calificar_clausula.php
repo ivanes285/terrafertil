@@ -96,10 +96,10 @@ if ($result_sql == 0) {
                 <select name="parametroscali" id="parametroscali">
 
                     <option value="cumple" selected>Cumple</option>
-                    <option value="noconformidadmayor">No Conformidad Mayor</option>
-                    <option value="noconformidadmenor">No confirmidad Menor</option>
-                    <option value="observacion">Observacion</option>
-                    <option value="oportunidaddemejora">Oportunidad de mejora</option>
+                    <option value="No Conformidad Mayor">No Conformidad Mayor</option>
+                    <option value="No Conformidad Menor">No Conformidad Menor</option>
+                    <option value="Observación">Observación</option>
+                    <option value="Oportunidad de Mejora">Oportunidad de Mejora</option>
                 </select>
 
 

@@ -185,11 +185,21 @@ table tfoot tr td:first-child {
 footer {
   color: #777777;
   width: 100%;
-  height: 30px;
+  height: 35px;
   position: absolute;
   bottom: 0;
   border-top: 1px solid #AAAAAA;
-  padding: 8px 0;
+  padding: 8px ;
   text-align: center;
+
 }
 
+.centrar{
+  display: flex;
+  width: 90%;
+ 
+}
+.centrar p{
+  text-justify: auto;
+ 
+}
