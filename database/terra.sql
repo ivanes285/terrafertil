@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-09-2021 a las 03:26:43
+-- Tiempo de generación: 10-09-2021 a las 19:02:06
 -- Versión del servidor: 10.4.20-MariaDB
 -- Versión de PHP: 7.4.21
 
@@ -65,7 +65,14 @@ INSERT INTO `accionespropuestas` (`idaccionpropuesta`, `idplanaccion`, `accionpr
 (57, 51, 'plan01 accion01', 'MERY JAIN', '2021-09-09', 'HH', '2021-09-22', 'aceptado', '', 'regular', 2),
 (58, 51, 'plan01 accion02', 'HULK', '2021-09-24', 'KK', '2021-09-09', 'aceptado', '', 'bueno', 2),
 (59, 52, 'plan02 accion01', 'JACK SPARROW', '2021-09-16', 'JJ', '2021-09-22', 'aceptado', '', 'excelente', 2),
-(60, 52, 'plan02 accion02', 'LORO', '2021-09-25', 'YY', '2021-09-15', 'aceptado', '', 'bueno', 2);
+(60, 52, 'plan02 accion02', 'LORO', '2021-09-25', 'YY', '2021-09-15', 'aceptado', '', 'bueno', 2),
+(61, 53, 'Plan 01 Acion01', 'ALEX', '2021-09-24', 'foto', '2021-09-22', 'no aceptado', 'dfadfa', '', 1),
+(62, 53, 'Plan 01 Acion02', 'ANDY', '2021-09-17', 'fadfad', '2021-09-30', 'aceptado', '', 'excelente', 2),
+(63, 54, 'Plan 01 accion 01', 'Pedro', '2021-09-16', 'dfadfad', '2021-09-16', 'aceptado', '', 'bueno', 2),
+(64, 54, 'Plan 01 accion 02', 'Ivan', '2021-09-24', 'cfdsfasd', '2021-09-23', 'aceptado', '', 'regular', 2),
+(65, 55, 'Plan 02 accion 01', 'Luis', '2021-09-23', 'jflkadjfad', '2021-09-17', 'aceptado', '', 'excelente', 2),
+(66, 55, 'Plan 02 accion 02', 'DON AUX', '2021-09-15', 'bvbv', '2021-09-25', 'aceptado', '', 'excelente', 2),
+(67, 56, ' Plan 02 accion 01', 'Katherine', '2021-09-24', 'fadfad', '2021-09-24', 'aceptado', '', 'bueno', 2);
 
 -- --------------------------------------------------------
 
@@ -99,7 +106,10 @@ CREATE TABLE `anexopropuestas` (
 
 INSERT INTO `anexopropuestas` (`idanexopropuesta`, `idaccionpropuesta`, `nombre`, `anexo`) VALUES
 (10, 41, 'Documento pdf', 'https://utneduec.sharepoint.com/sites/CISICCSOFT-T.GRADO1-ABR21.AGO21/Documentos%20compartidos/Forms/AllItems.aspx?e=5%3Ac1c9d051d0544a59b0bfec6df30d84a2&at=9&CT=1625263135101&OR=OWA%2DNT&CID=77e80a37%2D9825%2D0da2%2D74ce%2D4046be93934e&RootFolder=%2Fsites%2FCISICCSOFT%2DT%2EGRADO1%2DABR21%2EAGO21%2FDocumentos%20compartidos%2FGeneral%2FPERFILES%2DTESIS%2DCISIC%2ECSOF%2DABR21%2EAGO21%2FLESCANO%20VASQUEZ%20IVAN%20ALEXANDER&FolderCTID=0x0120002EA6CFDBA8E1E643BFD34A861A356647'),
-(11, 42, 'pastel de almendras', 'https://utneduec.sharepoint.com/sites/CISICCSOFT-T.GRADO1-ABR21.AGO21/Documentos%20compartidos/Forms/AllItems.aspx?e=5%3Ac1c9d051d0544a59b0bfec6df30d84a2&at=9&CT=1625263135101&OR=OWA%2DNT&CID=77e80a37%2D9825%2D0da2%2D74ce%2D4046be93934e&RootFolder=%2Fsites%2FCISICCSOFT%2DT%2EGRADO1%2DABR21%2EAGO21%2FDocumentos%20compartidos%2FGeneral%2FPERFILES%2DTESIS%2DCISIC%2ECSOF%2DABR21%2EAGO21%2FLESCANO%20VASQUEZ%20IVAN%20ALEXANDER&FolderCTID=0x0120002EA6CFDBA8E1E643BFD34A861A356647');
+(11, 42, 'pastel de almendras', 'https://utneduec.sharepoint.com/sites/CISICCSOFT-T.GRADO1-ABR21.AGO21/Documentos%20compartidos/Forms/AllItems.aspx?e=5%3Ac1c9d051d0544a59b0bfec6df30d84a2&at=9&CT=1625263135101&OR=OWA%2DNT&CID=77e80a37%2D9825%2D0da2%2D74ce%2D4046be93934e&RootFolder=%2Fsites%2FCISICCSOFT%2DT%2EGRADO1%2DABR21%2EAGO21%2FDocumentos%20compartidos%2FGeneral%2FPERFILES%2DTESIS%2DCISIC%2ECSOF%2DABR21%2EAGO21%2FLESCANO%20VASQUEZ%20IVAN%20ALEXANDER&FolderCTID=0x0120002EA6CFDBA8E1E643BFD34A861A356647'),
+(12, 61, 'Documento pdf', 'https://utneduec.sharepoint.com/sites/CISICCSOFT-T.GRADO1-ABR21.AGO21/Documentos%20compartidos/Forms/AllItems.aspx?e=5%3Ac1c9d051d0544a59b0bfec6df30d84a2&at=9&CT=1625263135101&OR=OWA%2DNT&CID=77e80a37%2D9825%2D0da2%2D74ce%2D4046be93934e&RootFolder=%2Fsites%2FCISICCSOFT%2DT%2EGRADO1%2DABR21%2EAGO21%2FDocumentos%20compartidos%2FGeneral%2FPERFILES%2DTESIS%2DCISIC%2ECSOF%2DABR21%2EAGO21%2FLESCANO%20VASQUEZ%20IVAN%20ALEXANDER&FolderCTID=0x0120002EA6CFDBA8E1E643BFD34A861A356647'),
+(13, 61, 'foto', 'https://utneduec.sharepoint.com/sites/CISICCSOFT-T.GRADO1-ABR21.AGO21/Documentos%20compartidos/Forms/AllItems.aspx?e=5%3Ac1c9d051d0544a59b0bfec6df30d84a2&at=9&CT=1625263135101&OR=OWA%2DNT&CID=77e80a37%2D9825%2D0da2%2D74ce%2D4046be93934e&RootFolder=%2Fsites%2FCISICCSOFT%2DT%2EGRADO1%2DABR21%2EAGO21%2FDocumentos%20compartidos%2FGeneral%2FPERFILES%2DTESIS%2DCISIC%2ECSOF%2DABR21%2EAGO21%2FLESCANO%20VASQUEZ%20IVAN%20ALEXANDER&FolderCTID=0x0120002EA6CFDBA8E1E643BFD34A861A356647'),
+(14, 62, 'Documento pdf accion 02', 'https://bit.ly/2VPOJc8');
 
 -- --------------------------------------------------------
 
@@ -167,10 +177,10 @@ CREATE TABLE `detalleauditoria` (
 --
 
 INSERT INTO `detalleauditoria` (`iddetalleauditoria`, `codigoauditoria`, `idperiodo`, `fechaejecucion`, `idgrupo`, `fechacreacion`, `estado`) VALUES
-(130, 'Cod-9001', 1, '2021-09-23', 11, '2021-09-01', 3),
+(130, 'Cod-9001', 1, '2021-09-23', 11, '2021-09-01', 2),
 (131, 'Cod-9002', 2, '2021-09-09', 12, '2021-09-01', 1),
-(132, 'Cod-9003', 2, '2021-09-16', 14, '2021-09-01', 1),
-(133, 'Cod-9004', 2, '2021-09-17', 11, '2021-09-01', 1);
+(133, 'Cod-9004', 2, '2021-09-17', 11, '2021-09-01', 1),
+(136, 'Cod-4001', 3, '2021-09-23', 19, '2021-09-10', 3);
 
 -- --------------------------------------------------------
 
@@ -207,12 +217,6 @@ INSERT INTO `detalleclausula` (`iddetalleclausula`, `idclausula`, `parametroscal
 (355, 49, NULL, NULL, NULL, 131, 1, 1),
 (356, 50, NULL, NULL, NULL, 131, 1, 1),
 (357, 51, NULL, NULL, NULL, 131, 1, 1),
-(358, 52, NULL, NULL, NULL, 132, 1, 1),
-(359, 53, NULL, NULL, NULL, 132, 1, 1),
-(360, 54, NULL, NULL, NULL, 132, 1, 1),
-(361, 55, NULL, NULL, NULL, 132, 1, 1),
-(362, 56, NULL, NULL, NULL, 132, 1, 1),
-(363, 57, NULL, NULL, NULL, 132, 1, 1),
 (364, 33, NULL, NULL, NULL, 133, 1, 1),
 (365, 34, NULL, NULL, NULL, 133, 1, 1),
 (366, 35, NULL, NULL, NULL, 133, 1, 1),
@@ -221,7 +225,13 @@ INSERT INTO `detalleclausula` (`iddetalleclausula`, `idclausula`, `parametroscal
 (369, 38, NULL, NULL, NULL, 133, 1, 1),
 (370, 39, NULL, NULL, NULL, 133, 1, 1),
 (371, 40, NULL, NULL, NULL, 133, 1, 1),
-(372, 41, NULL, NULL, NULL, 133, 1, 1);
+(372, 41, NULL, NULL, NULL, 133, 1, 1),
+(386, 52, 'No Conformidad Mayor', 'dfaddfa', 'dfadfad', 136, 2, 2),
+(387, 53, 'cumple', '', 'dfadfad', 136, 1, 1),
+(388, 54, 'Observación', 'dfad', 'dfad', 136, 2, 2),
+(389, 55, 'No Conformidad Menor', 'dfad', 'dfad', 136, 2, 2),
+(390, 56, 'Oportunidad de Mejora', 'dfad', 'dfad', 136, 2, 2),
+(391, 57, 'cumple', '', 'dfadfad', 136, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -234,26 +244,28 @@ CREATE TABLE `detallegrupo` (
   `idgrupo` int(11) NOT NULL,
   `idrolauditor` int(11) NOT NULL,
   `actividadrealizada` varchar(150) NOT NULL,
-  `iddetallegrupo` int(11) NOT NULL
+  `iddetallegrupo` int(11) NOT NULL,
+  `activo` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `detallegrupo`
 --
 
-INSERT INTO `detallegrupo` (`id_user`, `idgrupo`, `idrolauditor`, `actividadrealizada`, `iddetallegrupo`) VALUES
-(18, 11, 1, 'Auditor Lider ', 37),
-(19, 11, 2, 'auditor secundario', 38),
-(22, 11, 2, 'dfadfa', 39),
-(25, 12, 1, 'djfad', 40),
-(29, 12, 2, 'dfadfa', 41),
-(30, 12, 2, 'dfadfa', 46),
-(22, 12, 2, 'dfadfa', 47),
-(26, 11, 2, 'dfadfad', 48),
-(22, 14, 1, 'dfadfa', 49),
-(18, 14, 2, 'dfadfa', 50),
-(26, 14, 2, 'dfadfad', 51),
-(18, 12, 2, 'dfadfad', 52);
+INSERT INTO `detallegrupo` (`id_user`, `idgrupo`, `idrolauditor`, `actividadrealizada`, `iddetallegrupo`, `activo`) VALUES
+(18, 11, 1, 'Auditor Lider ', 37, 1),
+(19, 11, 2, 'auditor secundario', 38, 1),
+(22, 11, 2, 'dfadfa', 39, 1),
+(25, 12, 1, 'djfad', 40, 1),
+(29, 12, 2, 'dfadfa', 41, 1),
+(30, 12, 2, 'dfadfa', 46, 1),
+(22, 12, 2, 'dfadfa', 47, 1),
+(26, 11, 2, 'dfadfad', 48, 1),
+(18, 12, 2, 'dfadfad', 52, 1),
+(18, 13, 1, 'fdfad', 53, 0),
+(25, 16, 1, 'fdfdafd', 54, 0),
+(31, 19, 1, 'Auditora lider', 55, 1),
+(29, 19, 2, 'Auxiliar de auditoria ', 56, 1);
 
 -- --------------------------------------------------------
 
@@ -264,22 +276,23 @@ INSERT INTO `detallegrupo` (`id_user`, `idgrupo`, `idrolauditor`, `actividadreal
 CREATE TABLE `grupoauditor` (
   `idgrupo` int(11) NOT NULL,
   `nombregrupo` varchar(50) NOT NULL,
-  `idnorma` int(11) NOT NULL
+  `idnorma` int(11) NOT NULL,
+  `activo` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `grupoauditor`
 --
 
-INSERT INTO `grupoauditor` (`idgrupo`, `nombregrupo`, `idnorma`) VALUES
-(11, 'GrupoIso9001', 1),
-(12, 'GrupoBasc', 3),
-(13, 'GrupoIso9001Team2', 1),
-(14, 'GrupoBrc', 4),
-(15, 'GrupoBpm', 2),
-(16, 'GrupoBascTeam2', 3),
-(17, 'GrupoBrcTeam2', 4),
-(18, 'GrupoBpmTeam2', 2);
+INSERT INTO `grupoauditor` (`idgrupo`, `nombregrupo`, `idnorma`, `activo`) VALUES
+(11, 'GrupoIso9001', 1, 1),
+(12, 'GrupoBasc', 3, 1),
+(13, 'GrupoIso9001Team2', 1, 0),
+(15, 'GrupoBpm', 2, 1),
+(16, 'GrupoBascTeam2', 3, 0),
+(17, 'GrupoBrcTeam2', 4, 1),
+(18, 'GrupoBpmTeam2', 2, 1),
+(19, 'GrupoBRC', 4, 1);
 
 -- --------------------------------------------------------
 
@@ -350,7 +363,11 @@ INSERT INTO `plandeaccion` (`idplandeaccion`, `iddetalleclausula`, `consecuencia
 (49, 349, 'Plan01', 'Pareto', 'Plan01', 'Plan01'),
 (50, 348, 'Plan02', 'Diagrama de Ishkawa', 'Plan02', 'Plan02'),
 (51, 353, 'plan01', 'Pareto', 'plan01', 'plan01'),
-(52, 352, 'plan02', 'Pareto', 'plan02', 'plan02');
+(52, 352, 'plan02', 'Pareto', 'plan02', 'plan02'),
+(53, 386, 'ccccc', 'Otros', 'dfdfadf', 'dfdfadfa'),
+(54, 389, 'dfadf', 'Diagrama de Ishkawa', 'dfadfa', 'dfadfad'),
+(55, 388, 'dfad', 'Pareto', 'dfad', 'dfadf'),
+(56, 390, 'fdfsad', 'Diagrama de Ishkawa', 'dfadf', 'adfad');
 
 -- --------------------------------------------------------
 
@@ -448,7 +465,8 @@ INSERT INTO `usuario` (`id_user`, `user`, `password`, `correo`, `rol`, `estatus`
 (27, 'marianita', '102ddaf691e1615d5dacd4c86299bfa4', 'marianita@gmail.com', 3, 1),
 (28, 'brandon', '102ddaf691e1615d5dacd4c86299bfa4', 'brandon@gmail.com', 3, 1),
 (29, 'terra', '102ddaf691e1615d5dacd4c86299bfa4', 'terra@gmail.com', 2, 1),
-(30, 'harold', '102ddaf691e1615d5dacd4c86299bfa4', 'harold@gmail.com', 2, 1);
+(30, 'harold', '102ddaf691e1615d5dacd4c86299bfa4', 'harold@gmail.com', 2, 1),
+(31, 'Katherine ', '102ddaf691e1615d5dacd4c86299bfa4', 'katherine@gmail.com', 2, 1);
 
 --
 -- Índices para tablas volcadas
@@ -568,7 +586,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `accionespropuestas`
 --
 ALTER TABLE `accionespropuestas`
-  MODIFY `idaccionpropuesta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+  MODIFY `idaccionpropuesta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
 
 --
 -- AUTO_INCREMENT de la tabla `anexo`
@@ -580,7 +598,7 @@ ALTER TABLE `anexo`
 -- AUTO_INCREMENT de la tabla `anexopropuestas`
 --
 ALTER TABLE `anexopropuestas`
-  MODIFY `idanexopropuesta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `idanexopropuesta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de la tabla `clausula`
@@ -592,25 +610,25 @@ ALTER TABLE `clausula`
 -- AUTO_INCREMENT de la tabla `detalleauditoria`
 --
 ALTER TABLE `detalleauditoria`
-  MODIFY `iddetalleauditoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=134;
+  MODIFY `iddetalleauditoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=137;
 
 --
 -- AUTO_INCREMENT de la tabla `detalleclausula`
 --
 ALTER TABLE `detalleclausula`
-  MODIFY `iddetalleclausula` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=373;
+  MODIFY `iddetalleclausula` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=392;
 
 --
 -- AUTO_INCREMENT de la tabla `detallegrupo`
 --
 ALTER TABLE `detallegrupo`
-  MODIFY `iddetallegrupo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `iddetallegrupo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- AUTO_INCREMENT de la tabla `grupoauditor`
 --
 ALTER TABLE `grupoauditor`
-  MODIFY `idgrupo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `idgrupo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT de la tabla `norma`
@@ -628,7 +646,7 @@ ALTER TABLE `periodo`
 -- AUTO_INCREMENT de la tabla `plandeaccion`
 --
 ALTER TABLE `plandeaccion`
-  MODIFY `idplandeaccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `idplandeaccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- AUTO_INCREMENT de la tabla `procesos`
@@ -652,7 +670,7 @@ ALTER TABLE `rolauditor`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- Restricciones para tablas volcadas
